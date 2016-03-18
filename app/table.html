@@ -5,8 +5,16 @@
         <th *ngFor="#key of keys">{{ key }}</th>
         <th>Actions</th>
     </tr>
+    <tr>
+        <th *ngFor="#key of keys">
+            <input type="text"
+                   class="form-control"
+                   [(ngModel)]="search">
+        </th>
+        <th></th>
+    </tr>
     </thead>
-    <tr *ngFor="#row of Resource">
+    <tr *ngFor="#row of Resource | search : search ">
         <td *ngFor="#key of keys">
             {{ row[key] }}
         </td>
