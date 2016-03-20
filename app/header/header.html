@@ -1,0 +1,6 @@
+<input type="text"
+       placeholder="Search for {{ key }}"
+       class="form-control"
+       #input
+       (input)="update.emit({value: input.value, key: key})"
+>

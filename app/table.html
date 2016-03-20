@@ -1,5 +1,4 @@
-<h1>{{ title }}</h1>
-<table class="table table-condensed table-bordered table-responsive">
+<table class="table table-condensed table-bordered">
     <thead>
     <tr>
         <th *ngFor="#key of keys">{{ key }}</th>
@@ -7,14 +6,12 @@
     </tr>
     <tr>
         <th *ngFor="#key of keys">
-            <input type="text"
-                   class="form-control"
-                   [(ngModel)]="search">
+            <header (update)="term = $event" [key]="key"></header>
         </th>
         <th></th>
     </tr>
     </thead>
-    <tr *ngFor="#row of Resource | search : search ">
+    <tr *ngFor="#row of Resource | search : term ">
         <td *ngFor="#key of keys">
             {{ row[key] }}
         </td>
