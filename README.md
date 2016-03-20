@@ -15,7 +15,7 @@ You need to add only `<ng2-table></ng2-table>` to your html page
 </div>
 ```
 
-Don't forget about styles:
+Don't forget to add styles:
 ```
 <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
@@ -23,7 +23,7 @@ Don't forget about styles:
 
 ![table](http://i.imgur.com/ya2Woj3.png "table")
 
-To customize your table to the bootstrap add `ConfigService` for example:
+To customize your table add `ConfigService` to the bootstrap :
 ```
 bootstrap(AppComponent, [FiltersService, ConfigService]);
 ```
@@ -33,6 +33,8 @@ import {Injectable} from "angular2/core";
 @Injectable()
 export class ConfigService {
     public searchEnabled = true;
+    public orderEnabled = true;
+    // etc.
 }
 ```
 
@@ -42,4 +44,4 @@ export class ConfigService {
 |----------|:--------------:|:--------:|---------|
 | searchEnabled | bool | true false | public searchEnabled = true; |
 | orderEnabled | bool | true false | public orderEnabled = true; |
-
+| resourceUrl | string | | public resourceUrl = "http://beta.json-generator.com/api/json/get/Ey-KcWd6g"; |
