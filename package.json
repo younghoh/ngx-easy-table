@@ -1,6 +1,6 @@
 {
   "name": "ng2-easy-table",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Angular2 simple beautifull table",
   "repository": {
     "type": "git",
@@ -17,14 +17,15 @@
   "license": "ISC",
   "dependencies": {
     "angular2": "2.0.0-beta.11",
+    "bootstrap": "3.3.6",
     "bootstrap-material-design": "^0.5.9",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.35.0",
+    "font-awesome": "^4.5.0",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.24",
-    "zone.js": "^0.6.4",
-    "bootstrap": "3.3.6"
+    "zone.js": "^0.6.4"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
@@ -36,9 +37,9 @@
     "url": "https://github.com/ssuperczynski/ng2-table/issues"
   },
   "homepage": "https://github.com/ssuperczynski/ng2-table",
-  "main": "index.js",
+  "main": "app.component.js",
   "keywords": [
-    "angular2"
+    "angular2", "ng2", "table", "angular table", "angular2 table", "angular2-table", "ng2-easy-table"
   ],
   "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)"
 }

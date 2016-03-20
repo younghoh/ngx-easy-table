@@ -1,22 +1,24 @@
 import {Pipe} from 'angular2/core';
 import {FiltersService} from "../services/filters-service";
+import {ResourceService} from "../services/resource-service";
 
 @Pipe({
     name: 'search'
 })
 
 export class SearchPipe {
-    constructor(public filtersService:FiltersService) {
+    constructor(public filtersService:FiltersService,
+                public resource:ResourceService) {
     }
 
     transform(value, [filters]) {
-        if (typeof filters === 'undefined') {
-            return value;
+        this.resource.data = value.slice();
+        if (typeof filters === 'undefined' || Object.keys(filters).length === 0) {
+            return this.resource.data;
         }
 
         this.filtersService.update(filters.key, filters.value);
         let filtersArr = this.filtersService.get();
-        var response = value.slice();
 
         value.forEach((item) => {
             for (var filterKey in filtersArr) {
@@ -29,13 +31,13 @@ export class SearchPipe {
                         element = item[filterKey].toString();
                     }
                     if (element.indexOf(filtersArr[filterKey].toLocaleLowerCase()) === -1) {
-                        response.splice(response.indexOf(item), 1);
+                        this.resource.data.splice(this.resource.data.indexOf(item), 1);
                         return;
                     }
                 }
             }
         });
 
-        return response;
+        return this.resource.data;
     }
 }

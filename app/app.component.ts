@@ -7,27 +7,30 @@ import {bootstrap}    from 'angular2/platform/browser';
 import {FiltersService} from "./services/filters-service";
 import {Header} from "./components/header/header.component";
 import {ConfigService} from "./services/config-service";
+import {ResourceService} from "./services/resource-service";
 
 @Component({
     selector: 'ng2-table',
     templateUrl: 'app/table.html',
     directives: [Header],
-    pipes: [SearchPipe]
+    pipes: [SearchPipe],
+    styleUrls: ['app/table.css']
 })
 
 export class AppComponent {
-    constructor(
-        public filtersService:FiltersService,
-        public config:ConfigService
-    ) {
+    constructor(public filtersService:FiltersService,
+                public config:ConfigService,
+                public resource:ResourceService) {
     }
 
-    public Resource = Resource;
+    public data = data;
     public keys = keys;
-    public searchEnabled = this.config.searchEnabled;
+    public orderBy = (key) => {
+        this.resource.sortBy(key);
+    };
 }
 
-const Resource = [
+const data = [
     {id: 1, uuid: "123e-324b-cd23", name: "John Travolta", age: 12, created: "1987-09-08"},
     {id: 2, uuid: "ee17-11e5-9ce9", name: "Mick Jagger", age: 32, created: "1967-09-08"},
     {id: 3, uuid: "b21b-4603-a67f", name: "Hanna Montana", age: 42, created: "1957-09-08"},
@@ -35,6 +38,6 @@ const Resource = [
     {id: 5, uuid: "0fc8-4424-b50a", name: "Elon Musk", age: 62, created: "1937-09-08"},
 ];
 
-const keys = Object.keys(Resource[0]);
+const keys = Object.keys(data[0]);
 
-bootstrap(AppComponent, [FiltersService, ConfigService]);
+bootstrap(AppComponent, [FiltersService, ResourceService, ConfigService]);

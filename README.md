@@ -1,4 +1,7 @@
 # ng2-table
+
+[![NPM](https://nodei.co/npm/ng2-easy-table.png)](https://npmjs.org/package/ng2-easy-table)
+
 Early alpha version. Do not add it to page, it is highly unstable
 
 
@@ -10,6 +13,12 @@ You need to add only `<ng2-table></ng2-table>` to your html page
         <ng2-table></ng2-table>
     </div>
 </div>
+```
+
+Don't forget about styles:
+```
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 ```
 
 ![table](http://i.imgur.com/ya2Woj3.png "table")

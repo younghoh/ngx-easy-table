@@ -1,17 +1,26 @@
 <table class="table table-condensed table-bordered table-hover">
     <thead>
     <tr>
-        <th *ngFor="#key of keys">{{ key }}</th>
-        <th>Actions</th>
+        <th *ngIf="config.orderEnabled"
+            *ngFor="#key of keys"
+            (click)="orderBy(key)" class="sort-pointer">
+            {{ key }}
+            <span *ngIf="resource.order[key]==='asc' " class="fa fa-chevron-down pull-right"></span>
+            <span *ngIf="resource.order[key]==='desc' " class="fa fa-chevron-up pull-right"></span>
+        </th>
+        <th *ngIf="!config.orderEnabled"
+            *ngFor="#key of keys">
+            {{ key }}
+        </th>
     </tr>
-    <tr *ngIf="searchEnabled">
+    <tr *ngIf="config.searchEnabled">
         <th *ngFor="#key of keys">
             <header (update)="term = $event" [key]="key"></header>
         </th>
         <th></th>
     </tr>
     </thead>
-    <tr *ngFor="#row of Resource | search : term ">
+    <tr *ngFor="#row of data | search : term ">
         <td *ngFor="#key of keys">
             {{ row[key] }}
         </td>
