@@ -1,10 +1,10 @@
-<table class="table table-condensed table-bordered">
+<table class="table table-condensed table-bordered table-hover">
     <thead>
     <tr>
         <th *ngFor="#key of keys">{{ key }}</th>
         <th>Actions</th>
     </tr>
-    <tr>
+    <tr *ngIf="searchEnabled">
         <th *ngFor="#key of keys">
             <header (update)="term = $event" [key]="key"></header>
         </th>

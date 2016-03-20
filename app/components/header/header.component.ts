@@ -1,9 +1,9 @@
 import {Component, Input, Output, EventEmitter} from 'angular2/core';
-import {FiltersService} from "../services/filters-service";
+import {FiltersService} from "../../services/filters-service";
 
 @Component({
   selector: 'header',
-  templateUrl: 'app///header/header.html'
+  templateUrl: 'app///components/header/header.html'
 })
 
 export class Header {

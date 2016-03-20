@@ -12,5 +12,27 @@ Only thins what you need to do is add `<ng2-table></ng2-table>` in your html pag
 </div>
 ```
 
+To customize your table to bootstrap add ConfigService <br>
+for example:
+```
+bootstrap(AppComponent, [FiltersService, ConfigService]);
+```
+and create this service:
+```
+import {Injectable} from "angular2/core";
+@Injectable()
+export class ConfigService {
+    public searchEnabled = true;
+}
+```
+
+###Available config settings:
+
+| field    |      type      |  options |
+|----------|:-------------:|------:|
+| searchEnabled | bool | true false |
+| orderEnabled | bool | true false |
+
+searchEnabled = true
 
 ![table](http://i.imgur.com/ya2Woj3.png "table")

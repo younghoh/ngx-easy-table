@@ -1,7 +1,12 @@
 import {Component} from 'angular2/core';
-import {Header} from "./header/header.component";
+
 import {FiltersService} from "./services/filters-service";
 import {SearchPipe} from "./pipes/header-pipe";
+
+import {bootstrap}    from 'angular2/platform/browser';
+import {FiltersService} from "./services/filters-service";
+import {Header} from "./components/header/header.component";
+import {ConfigService} from "./services/config-service";
 
 @Component({
     selector: 'ng2-table',
@@ -11,9 +16,15 @@ import {SearchPipe} from "./pipes/header-pipe";
 })
 
 export class AppComponent {
-    constructor(public filtersService:FiltersService){}
+    constructor(
+        public filtersService:FiltersService,
+        public config:ConfigService
+    ) {
+    }
+
     public Resource = Resource;
     public keys = keys;
+    public searchEnabled = this.config.searchEnabled;
 }
 
 const Resource = [
@@ -25,3 +36,5 @@ const Resource = [
 ];
 
 const keys = Object.keys(Resource[0]);
+
+bootstrap(AppComponent, [FiltersService, ConfigService]);
