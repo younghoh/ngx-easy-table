@@ -12,7 +12,11 @@ export class SearchPipe {
     }
 
     transform(value, [filters]) {
+        if (typeof value === "undefined") {
+            return;
+        }
         this.resource.data = value.slice();
+
         if (typeof filters === 'undefined' || Object.keys(filters).length === 0) {
             return this.resource.data;
         }

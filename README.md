@@ -23,8 +23,7 @@ Don't forget about styles:
 
 ![table](http://i.imgur.com/ya2Woj3.png "table")
 
-To customize your table to bootstrap add ConfigService <br>
-for example:
+To customize your table to the bootstrap add `ConfigService` for example:
 ```
 bootstrap(AppComponent, [FiltersService, ConfigService]);
 ```

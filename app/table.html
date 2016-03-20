@@ -1,17 +1,19 @@
 <table class="table table-condensed table-bordered table-hover">
     <thead>
     <tr>
-        <th *ngIf="config.orderEnabled"
+        <th [style.display]="config.orderEnabled?'':'none' "
             *ngFor="#key of keys"
-            (click)="orderBy(key)" class="sort-pointer">
+            (click)="orderBy(key)"
+            class="sort-pointer">
             {{ key }}
             <span *ngIf="resource.order[key]==='asc' " class="fa fa-chevron-down pull-right"></span>
             <span *ngIf="resource.order[key]==='desc' " class="fa fa-chevron-up pull-right"></span>
         </th>
-        <th *ngIf="!config.orderEnabled"
+        <th [style.display]="!config.orderEnabled?'':'none' "
             *ngFor="#key of keys">
             {{ key }}
         </th>
+        <th>Actions</th>
     </tr>
     <tr *ngIf="config.searchEnabled">
         <th *ngFor="#key of keys">
@@ -24,6 +26,8 @@
         <td *ngFor="#key of keys">
             {{ row[key] }}
         </td>
-        <td><button class="btn btn-danger btn-raised">Edit</button></td>
+        <td>
+            <button class="btn btn-danger btn-raised">Edit</button>
+        </td>
     </tr>
 </table>

@@ -8,9 +8,13 @@ import {FiltersService} from "./services/filters-service";
 import {Header} from "./components/header/header.component";
 import {ConfigService} from "./services/config-service";
 import {ResourceService} from "./services/resource-service";
+import {HttpService} from "./services/http-service";
+import {HTTP_PROVIDERS} from 'angular2/http';
+import 'rxjs/add/operator/map';
 
 @Component({
     selector: 'ng2-table',
+    bindings: [HttpService],
     templateUrl: 'app/table.html',
     directives: [Header],
     pipes: [SearchPipe],
@@ -20,24 +24,26 @@ import {ResourceService} from "./services/resource-service";
 export class AppComponent {
     constructor(public filtersService:FiltersService,
                 public config:ConfigService,
-                public resource:ResourceService) {
+                public resource:ResourceService,
+                public httpService:HttpService
+    ) {
+        httpService.getData()
+            .subscribe(res => {
+                this.data = res;
+                this.keys = Object.keys(this.data[0]);
+            });
     }
 
-    public data = data;
-    public keys = keys;
+    public data:Array<>;
+    public keys:Array<>;
     public orderBy = (key) => {
         this.resource.sortBy(key);
     };
 }
 
-const data = [
-    {id: 1, uuid: "123e-324b-cd23", name: "John Travolta", age: 12, created: "1987-09-08"},
-    {id: 2, uuid: "ee17-11e5-9ce9", name: "Mick Jagger", age: 32, created: "1967-09-08"},
-    {id: 3, uuid: "b21b-4603-a67f", name: "Hanna Montana", age: 42, created: "1957-09-08"},
-    {id: 4, uuid: "a8f4-4348-8ff1", name: "Mikolai Copernicus", age: 52, created: "1927-09-08"},
-    {id: 5, uuid: "0fc8-4424-b50a", name: "Elon Musk", age: 62, created: "1937-09-08"},
-];
-
-const keys = Object.keys(data[0]);
-
-bootstrap(AppComponent, [FiltersService, ResourceService, ConfigService]);
+bootstrap(AppComponent, [
+    FiltersService,
+    ResourceService,
+    ConfigService,
+    HTTP_PROVIDERS
+]);
