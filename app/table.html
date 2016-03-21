@@ -22,7 +22,7 @@
         <th></th>
     </tr>
     </thead>
-    <tr *ngFor="#row of data | search : term ">
+    <tr *ngFor="#row of data | search : term | pagination : range">
         <td *ngFor="#key of keys">
             {{ row[key] }}
         </td>
@@ -31,3 +31,4 @@
         </td>
     </tr>
 </table>
+<pagination (update)="range = $event"></pagination>

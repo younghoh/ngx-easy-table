@@ -2,10 +2,12 @@ import {Component} from 'angular2/core';
 
 import {FiltersService} from "./services/filters-service";
 import {SearchPipe} from "./pipes/header-pipe";
+import {PaginationPipe} from "./pipes/pagination-pipe";
 
 import {bootstrap}    from 'angular2/platform/browser';
 import {FiltersService} from "./services/filters-service";
 import {Header} from "./components/header/header.component";
+import {Pagination} from "./components/pagination/pagination.component";
 import {ConfigService} from "./services/config-service";
 import {ResourceService} from "./services/resource-service";
 import {HttpService} from "./services/http-service";
@@ -16,8 +18,8 @@ import 'rxjs/add/operator/map';
     selector: 'ng2-table',
     bindings: [HttpService],
     templateUrl: 'app/table.html',
-    directives: [Header],
-    pipes: [SearchPipe],
+    directives: [Header, Pagination],
+    pipes: [SearchPipe, PaginationPipe],
     styleUrls: ['app/table.css']
 })
 
