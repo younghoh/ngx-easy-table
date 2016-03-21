@@ -40,8 +40,9 @@ export class ConfigService {
 
 ###Available config settings:
 
-| field    |      type      |  options | example |
-|----------|:--------------:|:--------:|---------|
-| searchEnabled | bool | true false | public searchEnabled = true; |
-| orderEnabled | bool | true false | public orderEnabled = true; |
-| resourceUrl | string | | public resourceUrl = "http://beta.json-generator.com/api/json/get/Ey-KcWd6g"; |
+| field               |      type      |  options   | example                      |
+|---------------------|:--------------:|:----------:|------------------------------|
+| searchEnabled       | bool           | true false | public searchEnabled = true; |
+| orderEnabled        | bool           | true false | public orderEnabled = true;  |
+| globalSearchEnabled | bool           | true false | public globalSearchEnabled = true; |
+| resourceUrl         | string         |            | public resourceUrl = "http://beta.json-generator.com/api/json/get/Ey-KcWd6g"; |

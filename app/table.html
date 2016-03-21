@@ -1,4 +1,6 @@
-<global-search (globalUpdate)="globalSearchTerm = $event"></global-search>
+<global-search
+        *ngIf="config.globalSearchEnabled"
+        (globalUpdate)="globalSearchTerm = $event"></global-search>
 <table class="table table-condensed table-bordered table-hover">
     <thead>
     <tr>
