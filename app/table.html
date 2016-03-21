@@ -25,6 +25,7 @@
         <th></th>
     </tr>
     </thead>
+    <tbody>
     <tr *ngFor="#row of data | search : term | global : globalSearchTerm">
         <td *ngFor="#key of keys">
             {{ row[key] }}
@@ -33,4 +34,10 @@
             <button class="btn btn-danger btn-raised">Edit</button>
         </td>
     </tr>
+    </tbody>
+    <tfoot *ngIf="config.footerEnabled">
+    <tr>
+       <td *ngFor="#key of keys"></td><td></td>
+    </tr>
+    </tfoot>
 </table>

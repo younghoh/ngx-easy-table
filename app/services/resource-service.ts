@@ -4,6 +4,7 @@ export class ResourceService {
     public data = [];
     public key:String;
     public order = [];
+    public footerSummary = this.footerSummary();
     public getOrder = () => {
         return this.order[this.key];
     };
@@ -23,7 +24,7 @@ export class ResourceService {
         }
     };
 
-    public compare = (a, b) => {
+    private compare = (a, b) => {
         if (a[this.key] < b[this.key]) {
             return -1;
         } else if (a[this.key] > b[this.key]) {
@@ -32,4 +33,8 @@ export class ResourceService {
             return 0;
         }
     };
+
+    private footerSummary = () => {
+
+    }
 }
