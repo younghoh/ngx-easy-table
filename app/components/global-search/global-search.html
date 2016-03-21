@@ -1,0 +1,7 @@
+<label for="search">Search</label>
+<input type="text"
+       id="search"
+       class="form-control pull-right"
+       #input
+       (input)="globalUpdate.emit({value: input.value})"
+       placeholder="Search">

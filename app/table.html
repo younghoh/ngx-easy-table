@@ -1,3 +1,4 @@
+<global-search (globalUpdate)="globalSearchTerm = $event"></global-search>
 <table class="table table-condensed table-bordered table-hover">
     <thead>
     <tr>
@@ -22,7 +23,7 @@
         <th></th>
     </tr>
     </thead>
-    <tr *ngFor="#row of data | search : term ">
+    <tr *ngFor="#row of data | search : term | global : globalSearchTerm">
         <td *ngFor="#key of keys">
             {{ row[key] }}
         </td>
