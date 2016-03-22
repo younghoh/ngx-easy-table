@@ -1,5 +1,4 @@
-# ng2-table
-[Imgur](http://i.imgur.com/gwjpUqe.png)
+![Imgur](http://i.imgur.com/gwjpUqe.png "logo")
 
 
 [![npm version](https://badge.fury.io/js/ng2-easy-table.svg)](https://badge.fury.io/js/ng2-easy-table)
