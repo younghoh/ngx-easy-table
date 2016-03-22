@@ -4,7 +4,6 @@ import {FiltersService} from "./services/filters-service";
 import {SearchPipe} from "./pipes/header-pipe";
 
 import {bootstrap}    from 'angular2/platform/browser';
-import {FiltersService} from "./services/filters-service";
 import {Header} from "./components/header/header.component";
 import {ConfigService} from "./services/config-service";
 import {ResourceService} from "./services/resource-service";
