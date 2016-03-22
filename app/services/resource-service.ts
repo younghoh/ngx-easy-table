@@ -4,7 +4,9 @@ export class ResourceService {
     public data = [];
     public key:String;
     public order = [];
-    public footerSummary = this.footerSummary();
+    public footerSummary = () => {
+
+    };
     public getOrder = () => {
         return this.order[this.key];
     };
@@ -33,8 +35,4 @@ export class ResourceService {
             return 0;
         }
     };
-
-    private footerSummary = () => {
-
-    }
 }
