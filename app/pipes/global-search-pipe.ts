@@ -22,19 +22,20 @@ export class GlobalSearchPipe {
                     let element;
                     if (typeof row[value] === "object") {
                         //for now just ignore nested object
-                        return;
+                        element = "" + row[value];
                     }
                     if (typeof row[value] === "boolean") {
-                        return;
+                        element = "" + row[value];
                     }
                     if (typeof row[value] === "string") {
                         element = row[value].toLocaleLowerCase();
                     }
                     if (typeof row[value] === "number") {
-                        element = row[value].toString();
+                        element = "" + row[value];
                     }
                     if (element.indexOf(filter["value"].toLocaleLowerCase()) >= 0) {
                         this.resource.data.push(row);
+                        return;
                     }
                 }
             }
