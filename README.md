@@ -1,6 +1,8 @@
 # ng2-table
+[Imgur](http://i.imgur.com/gwjpUqe.png)
 
-[![NPM](https://nodei.co/npm/ng2-easy-table.png)](https://npmjs.org/package/ng2-easy-table)
+
+[![npm version](https://badge.fury.io/js/ng2-easy-table.svg)](https://badge.fury.io/js/ng2-easy-table)
 
 Early alpha version. Do not add it to page, it is highly unstable.
 Beta will be available around 10th of April 2016
