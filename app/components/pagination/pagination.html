@@ -1,13 +1,14 @@
-<ul class="pagination">
-  <li><a href="#" (click)="changeRange(5)">5</a></li>
-  <li><a href="#" (click)="changeRange(10)">10</a></li>
-  <li><a href="#" (click)="changeRange(25)">25</a></li>
-  <li><a href="#" (click)="changeRange(50)">50</a></li>
-  <li><a href="#" (click)="changeRange(100)">100</a></li>
+<ul class="pagination ng2-table-pagination">
+
+  <li *ngFor="#page of pageNumbers">
+    <a href="#" (click)="changePage(page)">{{page}}</a>
+  </li>
 </ul>
 
-<ul class="pagination">
-  <li><a href="#" (click)="changePage(1)">1</a></li>
-  <li><a href="#" (click)="changePage(2)">2</a></li>
-  <li><a href="#" (click)="changePage(3)">3</a></li>
+<ul class="btn-group pull-right">
+  <button (click)="changeRange(5)" class="btn btn-default">5</button>
+  <button (click)="changeRange(10)" class="btn btn-default">10</button>
+  <button (click)="changeRange(25)" class="btn btn-default">25</button>
+  <button (click)="changeRange(50)" class="btn btn-default">50</button>
+  <button (click)="changeRange(100)" class="btn btn-default">100</button>
 </ul>
