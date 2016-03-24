@@ -15,6 +15,7 @@ export class Pagination {
 
   constructor() {
     this.pageNumber = 1;
+    this.range = 5;
     this.pageNumbers = [];
   }
 
@@ -23,21 +24,58 @@ export class Pagination {
   }
 
   public updatePagination():void {
-    let numberPerPage = this.numberOfItems.length / this.range;
+    if (this.range > this.numberOfItems && this.numberOfItems > 0) {
+      this.range = this.numberOfItems;
+    }
+    
+    let numberPerPage = this.numberOfItems / this.range;
     this.pageNumbers = Array(numberPerPage).fill().map((_, i) => i + 1);
+    this.emitPaginationProperties();
   }
+
+  public isActiveRange(currentRange:Number):boolean {
+    return currentRange === this.range;
+  }
+
+  public isActivePage(currentPage:Number):boolean {
+    return currentPage === this.pageNumber;
+  }
+
+  public nextPage():void {
+    if(!this.isLastPage()) {
+      this.pageNumber++;
+    }
+  }
+
+  public previousPage():void {
+    if(!this.isFirstPage()) {
+      this.pageNumber--;
+    }
+  }
+
+  public isLastPage(): boolean{
+    return this.pageNumber === this.pageNumbers.length;
+  }
+
+  public isFirstPage(): boolean{
+    return this.pageNumber === 1;
+  }
+
   @Input() numberOfItems: Number;
   @Output() updateRange = new EventEmitter();
+  ngOnChanges() {
+    this.updatePagination();
+  }
+
   changeRange(number){
     this.range = number;
+    this.pageNumber = 1;
     this.updatePagination();
-    this.emitPaginationProperties();
   }
 
   changePage(numberOfPage){
     this.pageNumber = numberOfPage;
     this.updatePagination();
-    this.emitPaginationProperties();
   }
   
 }

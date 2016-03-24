@@ -30,15 +30,19 @@ export class AppComponent {
                 public resource:ResourceService,
                 public httpService:HttpService
     ) {
-        httpService.getData()
-            .subscribe(res => {
-                this.data = res;
-                this.keys = Object.keys(this.data[0]);
-            });
+        this.numberOfItems = 0;
+        this.itemsObservables = httpService.getData();
+        this.itemsObservables.subscribe(res => {
+            this.data = res;
+            this.numberOfItems = res.length;
+            this.keys = Object.keys(this.data[0]);
+          });
     }
 
     public data:Array<>;
     public keys:Array<>;
+    public numberOfItems:Number;
+    public itemsObservables;
     public orderBy = (key) => {
         this.resource.sortBy(key);
     };

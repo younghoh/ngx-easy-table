@@ -20,6 +20,7 @@ export class PaginationPipe {
             range = filters.range;
             copiedArr = value.slice(range * (filters.page - 1));
         }
+        
         return copiedArr.splice(0, range);
     }
 }
