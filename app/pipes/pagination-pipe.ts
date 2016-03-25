@@ -1,11 +1,12 @@
 import {Pipe} from 'angular2/core';
+import {ResourceService} from "../services/resource-service";
 
 @Pipe({
     name: 'pagination'
 })
 
 export class PaginationPipe {
-    constructor() {
+  constructor(public resource: ResourceService) {
     }
 
     transform(value, [filters]) {
@@ -13,7 +14,7 @@ export class PaginationPipe {
         if (typeof value === 'undefined') {
             return;
         }
-
+        ResourceService.getPipedData().emit(value.length);
         let copiedArr = value.slice();
 
         if(typeof filters !== 'undefined') {

@@ -1,16 +1,26 @@
-import {Injectable} from "angular2/core";
+import {Injectable, EventEmitter} from "angular2/core";
 @Injectable()
 export class ResourceService {
     public data = [];
     public key:String;
     public order = [];
-    public footerSummary = () => {
+    public previousData = [];
+    private static _pipedDataEmitter;
+    public footerSummary() {
 
-    };
-    public getOrder = () => {
+    }
+
+    static getPipedData(): EventEmitter<any> {
+      if (!this._pipedDataEmitter)
+        this._pipedDataEmitter = new EventEmitter();
+      return this._pipedDataEmitter;
+    }
+
+    public getOrder() {
         return this.order[this.key];
     };
-    public sortBy = (key) => {
+    
+    public sortBy(key) {
         this.key = key;
         if (Object.keys(this.order).length === 0) {
             this.order[this.key] = 'asc';
@@ -26,7 +36,7 @@ export class ResourceService {
         }
     };
 
-    private compare = (a, b) => {
+    private compare(a, b) {
         if (a[this.key] < b[this.key]) {
             return -1;
         } else if (a[this.key] > b[this.key]) {
