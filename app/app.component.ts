@@ -2,9 +2,11 @@ import {Component} from 'angular2/core';
 
 import {FiltersService} from "./services/filters-service";
 import {SearchPipe} from "./pipes/header-pipe";
+import {PaginationPipe} from "./pipes/pagination-pipe";
 
 import {bootstrap}    from 'angular2/platform/browser';
 import {Header} from "./components/header/header.component";
+import {Pagination} from "./components/pagination/pagination.component";
 import {ConfigService} from "./services/config-service";
 import {ResourceService} from "./services/resource-service";
 import {HttpService} from "./services/http-service";
@@ -17,8 +19,8 @@ import {GlobalSearchPipe} from "./pipes/global-search-pipe";
     selector: 'ng2-table',
     bindings: [HttpService],
     templateUrl: 'app/table.html',
-    directives: [Header, GlobalSearch],
-    pipes: [SearchPipe, GlobalSearchPipe],
+    directives: [Header, Pagination, GlobalSearch],
+    pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
     styleUrls: ['app/table.css']
 })
 
@@ -28,15 +30,19 @@ export class AppComponent {
                 public resource:ResourceService,
                 public httpService:HttpService
     ) {
-        httpService.getData()
-            .subscribe(res => {
-                this.data = res;
-                this.keys = Object.keys(this.data[0]);
-            });
+        this.numberOfItems = 0;
+        this.itemsObservables = httpService.getData();
+        this.itemsObservables.subscribe(res => {
+            this.data = res;
+            this.numberOfItems = res.length;
+            this.keys = Object.keys(this.data[0]);
+          });
     }
 
     public data:Array<>;
     public keys:Array<>;
+    public numberOfItems:Number;
+    public itemsObservables;
     public orderBy = (key) => {
         this.resource.sortBy(key);
     };

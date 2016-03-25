@@ -5,5 +5,7 @@ export class ConfigService {
     public orderEnabled = true;
     public globalSearchEnabled = true;
     public footerEnabled = false;
-    public resourceUrl = "http://beta.json-generator.com/api/json/get/Nyl81BFTg";
+    public paginationEnabled = true;
+    // public resourceUrl = "http://beta.json-generator.com/api/json/get/Nyl81BFTg";
+    public resourceUrl = "http://beta.json-generator.com/api/json/get/Ey-KcWd6g";
 }
