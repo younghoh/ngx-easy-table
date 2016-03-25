@@ -1,5 +1,4 @@
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
-import {FiltersService} from "../../services/filters-service";
 
 @Component({
   selector: 'pagination',
@@ -9,8 +8,8 @@ import {FiltersService} from "../../services/filters-service";
 
 export class Pagination {
 
-  private pageNumber:Number;
-  private range:Number;
+  private pageNumber: number;
+  private range: number;
   public pageNumbers: Array<>;
 
   constructor() {
@@ -27,7 +26,7 @@ export class Pagination {
     if (this.range > this.numberOfItems && this.numberOfItems > 0) {
       this.range = this.numberOfItems;
     }
-    
+
     let numberPerPage = this.numberOfItems / this.range;
     this.pageNumbers = Array(numberPerPage).fill().map((_, i) => i + 1);
     this.emitPaginationProperties();
@@ -53,29 +52,28 @@ export class Pagination {
     }
   }
 
-  public isLastPage(): boolean{
+  public isLastPage():boolean {
     return this.pageNumber === this.pageNumbers.length;
   }
 
-  public isFirstPage(): boolean{
+  public isFirstPage():boolean {
     return this.pageNumber === 1;
   }
 
-  @Input() numberOfItems: Number;
+  @Input() numberOfItems:number;
   @Output() updateRange = new EventEmitter();
   ngOnChanges() {
     this.updatePagination();
   }
 
-  changeRange(number){
+  changeRange(number):void {
     this.range = number;
     this.pageNumber = 1;
     this.updatePagination();
   }
 
-  changePage(numberOfPage){
+  changePage(numberOfPage):void {
     this.pageNumber = numberOfPage;
     this.updatePagination();
   }
-  
 }
