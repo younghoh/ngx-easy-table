@@ -44,7 +44,7 @@ export class AppComponent {
     public numberOfItems:Number;
     public itemsObservables;
     public orderBy(key) {
-        this.resource.sortBy(key);
+        this.data = this.resource.sortBy(key);
     };
 }
 
