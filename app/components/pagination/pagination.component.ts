@@ -1,4 +1,5 @@
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
+import {ResourceService} from "../../services/resource-service";
 
 @Component({
   selector: 'pagination',
@@ -12,23 +13,31 @@ export class Pagination {
   private range: number;
   public pageNumbers: Array<>;
 
-  constructor() {
+  constructor(public resource: ResourceService) {
     this.pageNumber = 1;
     this.range = 5;
     this.pageNumbers = [];
+    ResourceService.getPipedData().subscribe(data => {
+      this.numberOfItems = data;
+      this.updateNumberPerPage();
+    });
   }
+
 
   public emitPaginationProperties():void {
     this.updateRange.emit({ range: this.range, page: this.pageNumber });
   }
 
-  public updatePagination():void {
+  public updateNumberPerPage(): void {
     if (this.range > this.numberOfItems && this.numberOfItems > 0) {
       this.range = this.numberOfItems;
     }
-
-    let numberPerPage = this.numberOfItems / this.range;
+    let numberPerPage = Math.ceil(this.numberOfItems / this.range);
     this.pageNumbers = Array(numberPerPage).fill().map((_, i) => i + 1);
+  }
+
+  public updatePagination():void {
+    this.updateNumberPerPage();    
     this.emitPaginationProperties();
   }
 
