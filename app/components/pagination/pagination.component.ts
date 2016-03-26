@@ -32,7 +32,7 @@ export class Pagination {
     if (this.range > this.numberOfItems && this.numberOfItems > 0) {
       this.range = this.numberOfItems;
     }
-    let numberPerPage = this.numberOfItems / this.range;
+    let numberPerPage = Math.ceil(this.numberOfItems / this.range);
     this.pageNumbers = Array(numberPerPage).fill().map((_, i) => i + 1);
   }
 

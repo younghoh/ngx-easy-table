@@ -43,7 +43,6 @@ export class AppComponent {
     public keys:Array<>;
     public numberOfItems:Number;
     public itemsObservables;
-    public lastIndex;
     public orderBy(key) {
         this.data = this.resource.sortBy(key);
     };
