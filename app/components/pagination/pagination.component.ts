@@ -9,8 +9,8 @@ import {ResourceService} from "../../services/resource-service";
 
 export class Pagination {
 
-  private pageNumber:Number;
-  private range:Number;
+  private pageNumber: number;
+  private range: number;
   public pageNumbers: Array<>;
 
   constructor(public resource: ResourceService) {
@@ -61,29 +61,28 @@ export class Pagination {
     }
   }
 
-  public isLastPage(): boolean{
+  public isLastPage():boolean {
     return this.pageNumber === this.pageNumbers.length;
   }
 
-  public isFirstPage(): boolean{
+  public isFirstPage():boolean {
     return this.pageNumber === 1;
   }
 
-  @Input() numberOfItems: Number;
+  @Input() numberOfItems:number;
   @Output() updateRange = new EventEmitter();
   ngOnChanges() {
     this.updatePagination();
   }
 
-  changeRange(number){
+  changeRange(number):void {
     this.range = number;
     this.pageNumber = 1;
     this.updatePagination();
   }
 
-  changePage(numberOfPage){
+  changePage(numberOfPage):void {
     this.pageNumber = numberOfPage;
     this.updatePagination();
   }
-  
 }
