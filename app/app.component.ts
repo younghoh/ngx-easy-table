@@ -14,12 +14,13 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 import 'rxjs/add/operator/map';
 import {GlobalSearch} from "./components/global-search/global-search.component";
 import {GlobalSearchPipe} from "./pipes/global-search-pipe";
+import {CsvExport} from "./components/dropdown/csv-export.component";
 
 @Component({
     selector: 'ng2-table',
     bindings: [HttpService],
     templateUrl: 'app/table.html',
-    directives: [Header, Pagination, GlobalSearch],
+    directives: [Header, Pagination, GlobalSearch, CsvExport],
     pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
     styleUrls: ['app/table.css']
 })

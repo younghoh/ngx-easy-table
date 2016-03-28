@@ -1,15 +1,17 @@
-Beta version (shipping date 10 April 2016)
+1.0 version (shipping date 10 April 2016)
 
 TODO:
 
 - show/hide column
-- edit row
 - ~~search in nested array~~
 - ~~pagination~~
 - ~~global search box~~
 - custom row look and feel
-- export to csv
-- export to excel
+- ~~export to csv~~
 - resize columns
 - clickable row
 - footer (summary)
+
+1.1 version (shipping after 10 April 2016)
+- export to excel
+- edit row
