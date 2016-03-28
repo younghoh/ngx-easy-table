@@ -2,6 +2,7 @@
 
 | date       |      what                 | version |
 |------------|---------------------------|---------|
+| 28.03.2016 | export to csv             | 0.0.10   |
 | 28.03.2016 | nested array search       | 0.0.9   |
 | 26.03.2016 | pagination                | 0.0.8   |
 | 21.03.2016 | global search box         | 0.0.6   |

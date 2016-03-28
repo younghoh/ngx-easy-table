@@ -49,6 +49,7 @@ export class ConfigService {
 | field               |      type      |  options   | example                                     |
 |---------------------|:--------------:|:----------:|---------------------------------------------|
 | searchEnabled       | bool           | true false | public searchEnabled = true;                |
+| exportEnabled       | bool           | true false | public exportEnabled = true;                |
 | orderEnabled        | bool           | true false | public orderEnabled = true;                 |
 | paginationEnabled   | bool           | true false | public paginationEnabled = true;            |
 | globalSearchEnabled | bool           | true false | public globalSearchEnabled = true;          |
