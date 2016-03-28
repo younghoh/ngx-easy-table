@@ -31,6 +31,9 @@ export class SearchPipe {
                     if (typeof item[filterKey] === "string") {
                         element = item[filterKey].toLocaleLowerCase();
                     }
+                    if (typeof item[filterKey] === "object") {
+                        element = JSON.stringify(item[filterKey]);
+                    }
                     if (typeof item[filterKey] === "number") {
                         element = item[filterKey].toString();
                     }

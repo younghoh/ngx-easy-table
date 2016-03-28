@@ -21,8 +21,7 @@ export class GlobalSearchPipe {
                 if (row.hasOwnProperty(value)) {
                     let element;
                     if (typeof row[value] === "object") {
-                        //for now just ignore nested object
-                        element = "" + row[value];
+                        element = JSON.stringify(row[value]);
                     }
                     if (typeof row[value] === "boolean") {
                         element = "" + row[value];
