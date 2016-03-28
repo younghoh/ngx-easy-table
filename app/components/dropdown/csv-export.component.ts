@@ -25,7 +25,8 @@ export class CsvExport {
                 }
             }
         });
-
+        let header = this.resource.keys.join(",");
+        csvContent += header + "\n";
         x.forEach((row, index) => {
             dataString = row.join(",");
             csvContent += index < data.length ? dataString+ "\n" : dataString;

@@ -3,18 +3,16 @@
 
 [![npm version](https://badge.fury.io/js/ng2-easy-table.svg)](https://badge.fury.io/js/ng2-easy-table)
 
-Early alpha version. Do not add it to page, it is highly unstable.
-Beta will be available around 10th of April 2016
+Early alpha version. Do not add it to the page, it is highly unstable.
+Beta will be available around 8th of April 2016
 
 
 This table always will be easy to add to every page.
 You need to add only `<ng2-table></ng2-table>` to your html page
 
 ```html
-<div class="row">
-    <div class="col-sm-12">
-        <ng2-table></ng2-table>
-    </div>
+<div class="container">
+    <ng2-table></ng2-table>
 </div>
 ```
 

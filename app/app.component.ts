@@ -37,6 +37,7 @@ export class AppComponent {
             this.data = res;
             this.numberOfItems = res.length;
             this.keys = Object.keys(this.data[0]);
+            this.resource.keys = this.keys;
           });
     }
 

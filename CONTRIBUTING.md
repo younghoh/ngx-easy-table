@@ -2,7 +2,6 @@
 
 TODO:
 
-- show/hide column
 - ~~search in nested array~~
 - ~~pagination~~
 - ~~global search box~~
@@ -15,3 +14,4 @@ TODO:
 1.1 version (shipping after 10 April 2016)
 - export to excel
 - edit row
+- show/hide column

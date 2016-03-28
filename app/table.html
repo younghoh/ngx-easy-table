@@ -6,7 +6,7 @@
         </global-search>
     </div>
     <div class="col-sm-2 pull-right">
-        <csv-export></csv-export>
+        <csv-export *ngIf="config.exportEnabled"></csv-export>
     </div>
 </div>
 <div class="row">

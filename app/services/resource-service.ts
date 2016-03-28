@@ -2,6 +2,7 @@ import {Injectable, EventEmitter} from "angular2/core";
 @Injectable()
 export class ResourceService {
     public data = [];
+    public keys = [];
     public key:String;
     public order = [];
     public previousData = [];
