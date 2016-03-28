@@ -28,10 +28,11 @@ export class Pagination {
     this.updateRange.emit({ range: this.range, page: this.pageNumber });
   }
 
-  public updateNumberPerPage(): void {
-    if (this.range > this.numberOfItems && this.numberOfItems > 0) {
-      this.range = this.numberOfItems;
-    }
+  public updateNumberPerPage():void {
+    // issue #5
+    // if (this.range > this.numberOfItems && this.numberOfItems > 0) {
+    //   this.range = this.numberOfItems;
+    // }
     let numberPerPage = Math.ceil(this.numberOfItems / this.range);
     this.pageNumbers = Array(numberPerPage).fill().map((_, i) => i + 1);
   }
