@@ -7,5 +7,5 @@ export class ConfigService {
     public footerEnabled = false;
     public paginationEnabled = true;
     // public resourceUrl = "http://beta.json-generator.com/api/json/get/Nyl81BFTg";
-    public resourceUrl = "http://beta.json-generator.com/api/json/get/Ey-KcWd6g";
+    public resourceUrl = "http://beta.json-generator.com/api/json/get/E164yBM0l";
 }
