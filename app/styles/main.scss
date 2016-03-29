@@ -1,0 +1,19 @@
+$ng2-table-border-color: #f0f0f0;
+
+.ng2-table {
+  &__table {
+    width: 100%;
+
+    td {
+      border: 1px solid $ng2-table-border-color;
+    }
+  }
+}
+
+.ng2-table-demo {
+  @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
+  * {
+    font-family: 'Source Sans Pro', 'Helvetica', sans-serif;
+  }
+}

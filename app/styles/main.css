@@ -1,0 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+.ng2-table__table {
+  width: 100%; }
+  .ng2-table__table td {
+    border: 1px solid #f0f0f0; }
+
+.ng2-table-demo { }
+  .ng2-table-demo * {
+    font-family: 'Source Sans Pro', 'Helvetica', sans-serif; }
