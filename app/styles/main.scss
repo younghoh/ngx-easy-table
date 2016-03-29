@@ -8,6 +8,13 @@ $ng2-table-border-color: #f0f0f0;
       border: 1px solid $ng2-table-border-color;
     }
   }
+
+  &__pagination,
+  &__items-per-page {
+    li {
+      display: inline-block;
+    }
+  }
 }
 
 .ng2-table-demo {

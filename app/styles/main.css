@@ -4,6 +4,9 @@
   .ng2-table__table td {
     border: 1px solid #f0f0f0; }
 
+.ng2-table__pagination li, .ng2-table__items-per-page li {
+  display: inline-block; }
+
 .ng2-table-demo { }
   .ng2-table-demo * {
     font-family: 'Source Sans Pro', 'Helvetica', sans-serif; }
