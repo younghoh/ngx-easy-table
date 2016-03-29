@@ -3,8 +3,7 @@ import {ResourceService} from "../../services/resource-service";
 
 @Component({
   selector: 'pagination',
-  templateUrl: 'app///components/pagination/pagination.html',
-  styleUrls: ['app/components/pagination/pagination.css']
+  templateUrl: 'app///components/pagination/pagination.html'
 })
 
 export class Pagination {
