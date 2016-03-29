@@ -12,6 +12,12 @@
 .ng2-table__pagination li, .ng2-table__items-per-page li {
   display: inline-block; }
 
+.ng2-table__input {
+  border: 0;
+  font-size: .9em;
+  padding: 2px;
+  width: 100%; }
+
 .ng2-table-demo { }
   .ng2-table-demo * {
     font-family: 'Source Sans Pro', 'Helvetica', sans-serif; }

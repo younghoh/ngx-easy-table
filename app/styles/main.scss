@@ -1,4 +1,5 @@
-$ng2-table-border-color: #f0f0f0;
+$ng2-table-border-color: #f0f0f0 !default;
+$ng2-table-cell-padding: 2px !default;
 
 .ng2-table {
   &__table {
@@ -8,7 +9,7 @@ $ng2-table-border-color: #f0f0f0;
     td, th {
       border: 1px solid $ng2-table-border-color;
       margin: 0;
-      padding: 2px;
+      padding: $ng2-table-cell-padding;
     }
 
     th {
@@ -21,6 +22,13 @@ $ng2-table-border-color: #f0f0f0;
     li {
       display: inline-block;
     }
+  }
+
+  &__input {
+    border: 0;
+    font-size: .9em;
+    padding: $ng2-table-cell-padding;
+    width: 100%;
   }
 }
 
