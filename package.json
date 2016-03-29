@@ -7,12 +7,13 @@
     "url": "https://github.com/ssuperczynski/ng2-table.git"
   },
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" \"npm run styles\" ",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
     "typings": "typings",
-    "postinstall": "typings install"
+    "postinstall": "typings install",
+    "styles": "node-sass -w app/styles/main.scss app/styles/main.css"
   },
   "license": "MIT",
   "dependencies": {
@@ -22,6 +23,7 @@
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.35.0",
     "font-awesome": "^4.5.0",
+    "node-sass": "^3.4.2",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.24",
@@ -33,9 +35,9 @@
     "typescript": "^1.8.7",
     "typings": "^0.7.5"
   },
-  "engines" : {
-    "node" : ">=4.4.0",
-    "npm" : ">=2.0.0"
+  "engines": {
+    "node": ">=4.4.0",
+    "npm": ">=2.0.0"
   },
   "bugs": {
     "url": "https://github.com/ssuperczynski/ng2-table/issues"
@@ -43,8 +45,14 @@
   "homepage": "https://github.com/ssuperczynski/ng2-table",
   "main": "app.component.js",
   "keywords": [
-    "angular2", "ng2", "table", "angular table", "angular2 table",
-    "angular 2 table", "angular2-table", "ng2-easy-table"
+    "angular2",
+    "ng2",
+    "table",
+    "angular table",
+    "angular2 table",
+    "angular 2 table",
+    "angular2-table",
+    "ng2-easy-table"
   ],
   "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)"
 }
