@@ -34,7 +34,8 @@
 .ng2-table__pagination, .ng2-table__items-per-page {
   display: inline-block;
   margin: 8px 0;
-  padding: 0; }
+  padding: 0;
+  list-style-type: none; }
   .ng2-table__pagination li, .ng2-table__items-per-page li {
     border: 1px solid #f0f0f0;
     float: left;

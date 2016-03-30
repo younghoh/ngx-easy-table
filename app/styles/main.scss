@@ -56,6 +56,7 @@ $ng2-table-global-search-max-width: 300px !default;
     display: inline-block;
     margin: $ng2-table-base-padding*4 0;
     padding: 0;
+    list-style-type: none;
 
     li {
       border: 1px solid $ng2-table-base-color;
