@@ -21,8 +21,7 @@ import {CsvExport} from "./components/dropdown/csv-export.component";
     bindings: [HttpService],
     templateUrl: 'app/table.html',
     directives: [Header, Pagination, GlobalSearch, CsvExport],
-    pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
-    styleUrls: ['app/table.css']
+    pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe]
 })
 
 export class AppComponent {
