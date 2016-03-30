@@ -16,13 +16,6 @@ You need to add only `<ng2-table></ng2-table>` to your html page
 </div>
 ```
 
-Don't forget to add styles:
-
-```html
-<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
-```
-
 ![table](http://i.imgur.com/diYGEMy.png "table")
 
 To customize your table add `ConfigService` to the bootstrap :

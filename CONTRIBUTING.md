@@ -5,7 +5,7 @@ TODO:
 - ~~search in nested array~~
 - ~~pagination~~
 - ~~global search box~~
-- custom row look and feel
+- ~~custom row look and feel~~
 - ~~export to csv~~
 - resize columns
 - clickable row
