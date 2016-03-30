@@ -25,7 +25,8 @@ $ng2-table-global-search-max-width: 300px !default;
     border-spacing: 0;
     width: 100%;
 
-    td, th {
+    td,
+    th {
       border-color: $ng2-table-base-color;
       border-style: solid;
       border-width: 1px 1px 0 0;
@@ -54,9 +55,9 @@ $ng2-table-global-search-max-width: 300px !default;
   &__pagination,
   &__items-per-page {
     display: inline-block;
+    list-style-type: none;
     margin: $ng2-table-base-padding*4 0;
     padding: 0;
-    list-style-type: none;
 
     li {
       border: 1px solid $ng2-table-base-color;
