@@ -23,7 +23,7 @@ Don't forget to add styles:
 <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 ```
 
-![table](http://i.imgur.com/XoxX8gM.png "table")
+![table](http://i.imgur.com/diYGEMy.png "table")
 
 To customize your table add `ConfigService` to the bootstrap :
 
