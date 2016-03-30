@@ -4,16 +4,15 @@
 </global-search>
 <csv-export *ngIf="config.exportEnabled"></csv-export>
 
-<table class="ng2-table__table">
+<table class="ng2-table__table--striped">
     <thead>
     <tr>
         <th [style.display]="config.orderEnabled?'':'none' "
             *ngFor="#key of keys"
-            (click)="orderBy(key)"
-            class="sort-pointer">
+            (click)="orderBy(key)">
             {{ key }}
-            <span *ngIf="resource.order[key]==='asc' " class="fa fa-chevron-down pull-right"></span>
-            <span *ngIf="resource.order[key]==='desc' " class="fa fa-chevron-up pull-right"></span>
+            <span *ngIf="resource.order[key]==='asc' " class="ng2-table__sort-indicator fa fa-chevron-down"></span>
+            <span *ngIf="resource.order[key]==='desc' " class="ng2-table__sort-indicator fa fa-chevron-up"></span>
         </th>
         <th [style.display]="!config.orderEnabled?'':'none' "
             *ngFor="#key of keys">
