@@ -1,13 +1,13 @@
 import {Injectable, EventEmitter} from "angular2/core";
 @Injectable()
 export class ResourceService {
-    public data = [];
-    public keys = [];
+    public data:Array<any> = [];
+    public keys:Array<any> = [];
     public key:String;
-    public order = [];
-    public previousData = [];
+    public order:Array<any> = [];
+    public previousData:Array<any> = [];
     private static _pipedDataEmitter;
-    public footerSummary() {
+    public footerSummary():void {
 
     }
 
@@ -17,11 +17,11 @@ export class ResourceService {
       return this._pipedDataEmitter;
     }
 
-    public getOrder() {
+    public getOrder():Array<any> {
         return this.order[this.key];
     };
     
-    public sortBy(key) {
+    public sortBy(key:String):Array<any> {
         this.key = key;
         if (Object.keys(this.order).length === 0) {
             this.order[this.key] = 'asc';
@@ -38,7 +38,7 @@ export class ResourceService {
         return this.data;
     };
 
-    private compare(a, b) {
+    private compare(a:Array<any>, b:Array<any>):number {
       if ((isNaN(parseFloat(a[this.key])) || !isFinite(a[this.key])) || (isNaN(parseFloat(b[this.key])) || !isFinite(b[this.key]))) {
         if (a[this.key].toLowerCase() < b[this.key].toLowerCase()) return -1;
         if (a[this.key].toLowerCase() > b[this.key].toLowerCase()) return 1;

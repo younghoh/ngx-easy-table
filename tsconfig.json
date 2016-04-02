@@ -11,6 +11,7 @@
     "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [
+    "app", // remove this dir to full test typescript
     "node_modules",
     "typings/main",
     "typings/main.d.ts"
