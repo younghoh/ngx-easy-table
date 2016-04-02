@@ -9,6 +9,7 @@
   "scripts": {
     "start": "concurrently \"npm run tsc:w\" \"npm run lite\" \"npm run styles\" ",
     "tsc": "tsc",
+    "test": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
     "typings": "typings",
