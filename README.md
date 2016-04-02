@@ -45,3 +45,7 @@ export class ConfigService {
 | paginationEnabled   | bool           | true false | public paginationEnabled = true;            |
 | globalSearchEnabled | bool           | true false | public globalSearchEnabled = true;          |
 | resourceUrl         | string         |            | public resourceUrl = "api/v1/persons.json"; |
+
+
+run tests by typing:
+`node_modules/karma/bin/karma start jasmine.conf.js --single-run`

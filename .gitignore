@@ -3,6 +3,7 @@
 node_modules
 npm-debug.log
 
-*.js
+app/**/*.js
+tests/**/*.js
 *.map
 typings
