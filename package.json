@@ -9,7 +9,7 @@
   "scripts": {
     "start": "concurrently \"npm run tsc:w\" \"npm run lite\" \"npm run styles\" ",
     "tsc": "tsc",
-    "test": "tsc",
+    "test": "karma start karma.conf.js --single-run",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
     "typings": "typings",
