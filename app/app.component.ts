@@ -40,11 +40,11 @@ export class AppComponent {
           });
     }
 
-    public data:Array<>;
-    public keys:Array<>;
-    public numberOfItems:Number;
+    public data:Array<any>;
+    public keys:Array<any>;
+    public numberOfItems:number;
     public itemsObservables;
-    public orderBy(key) {
+    public orderBy(key:String) {
         this.data = this.resource.sortBy(key);
     };
 }
