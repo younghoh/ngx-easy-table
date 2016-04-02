@@ -18,4 +18,4 @@ TODO:
 - show/hide column
 
 run tests by typing:
-`node_modules/karma/bin/karma start jasmine.conf.js --single-run`
+`node_modules/karma/bin/karma start karma.conf.js --single-run`

@@ -2,6 +2,7 @@
 
 
 [![npm version](https://badge.fury.io/js/ng2-easy-table.svg)](https://badge.fury.io/js/ng2-easy-table)
+[![Build Status](https://travis-ci.org/ssuperczynski/ng2-easy-table.svg?branch=master)](https://travis-ci.org/ssuperczynski/ng2-easy-table)
 
 Early alpha version. Do not add it to the page, it is highly unstable.
 Beta will be available around 8th of April 2016
@@ -48,4 +49,4 @@ export class ConfigService {
 
 
 run tests by typing:
-`node_modules/karma/bin/karma start jasmine.conf.js --single-run`
+`node_modules/karma/bin/karma start karma.conf.js --single-run`
