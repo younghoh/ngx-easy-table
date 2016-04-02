@@ -1,4 +1,4 @@
-import {Component} from "angular2/core";
+import {Component} from 'angular2/core';
 import {ResourceService} from "../../services/resource-service";
 @Component({
     selector: 'csv-export',
@@ -13,7 +13,7 @@ export class CsvExport {
         let data = this.resource.data;
         let csvContent = "data:text/csv;charset=utf-8,";
         let dataString = "";
-        let x = [];
+        let x:Array<any> = [];
         data.forEach((row, index) => {
             x[index] = [];
             for (var i in row) {
