@@ -17,41 +17,41 @@ import {GlobalSearchPipe} from "./pipes/global-search-pipe";
 import {CsvExport} from "./components/dropdown/csv-export.component";
 
 @Component({
-    selector: 'ng2-table',
-    bindings: [HttpService],
-    templateUrl: 'app/table.html',
-    directives: [Header, Pagination, GlobalSearch, CsvExport],
-    pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe]
+  selector: 'ng2-table',
+  bindings: [HttpService],
+  templateUrl: 'app/table.html',
+  directives: [Header, Pagination, GlobalSearch, CsvExport],
+  pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe]
 })
 
 export class AppComponent {
-    constructor(public filtersService:FiltersService,
-                public config:ConfigService,
-                public resource:ResourceService,
-                public httpService:HttpService
-    ) {
-        this.numberOfItems = 0;
-        this.itemsObservables = httpService.getData();
-        this.itemsObservables.subscribe(res => {
-            this.data = res;
-            this.numberOfItems = res.length;
-            this.keys = Object.keys(this.data[0]);
-            this.resource.keys = this.keys;
-          });
-    }
+  constructor(public filtersService:FiltersService,
+              public config:ConfigService,
+              public resource:ResourceService,
+              public httpService:HttpService) {
+    this.numberOfItems = 0;
+    this.itemsObservables = httpService.getData();
+    this.itemsObservables.subscribe(res => {
+      this.data = res;
+      this.numberOfItems = res.length;
+      this.keys = Object.keys(this.data[0]);
+      this.resource.keys = this.keys;
+    });
+  }
 
-    public data:Array<any>;
-    public keys:Array<any>;
-    public numberOfItems:number;
-    public itemsObservables;
-    public orderBy(key:String) {
-        this.data = this.resource.sortBy(key);
-    };
+  public data:Array<any>;
+  public keys:Array<any>;
+  public numberOfItems:number;
+  public itemsObservables;
+
+  public orderBy(key:String) {
+    this.data = this.resource.sortBy(key);
+  };
 }
 
 bootstrap(AppComponent, [
-    FiltersService,
-    ResourceService,
-    ConfigService,
-    HTTP_PROVIDERS
+  FiltersService,
+  ResourceService,
+  ConfigService,
+  HTTP_PROVIDERS
 ]);
