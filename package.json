@@ -4,7 +4,7 @@
   "description": "Angular2 simple beautifull table",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ssuperczynski/ng2-table.git"
+    "url": "https://github.com/ssuperczynski/ng2-easy-table.git"
   },
   "scripts": {
     "start": "concurrently \"npm run tsc:w\" \"npm run lite\" \"npm run styles\" ",

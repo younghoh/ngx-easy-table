@@ -7,6 +7,7 @@ TODO:
 - ~~global search box~~
 - ~~custom row look and feel~~
 - ~~export to csv~~
+- tests and Travic CI
 - resize columns
 - clickable row
 - footer (summary)
