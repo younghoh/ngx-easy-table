@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const gulp = require('gulp');
 const del = require('del');
 const typescript = require('gulp-typescript');
@@ -17,7 +18,7 @@ gulp.task('compile', ['clean'], function () {
     .pipe(gulp.dest('dist/app'));
 });
 
-gulp.task('copy:libs', ['clean'], function() {
+gulp.task('copy:libs', ['clean'], function () {
   return gulp.src([
       'node_modules/angular2/bundles/angular2-polyfills.js',
       'node_modules/systemjs/dist/system.src.js',
@@ -27,16 +28,16 @@ gulp.task('copy:libs', ['clean'], function() {
       'node_modules/es6-shim/es6-shim.js',
       'node_modules/angular2/bundles/http.dev.js'
     ])
-    .pipe(gulp.dest('dist/lib'))
+    .pipe(gulp.dest('dist/lib'));
 });
 
-gulp.task('copy:assets', ['clean'], function() {
+gulp.task('copy:assets', ['clean'], function () {
   return gulp
     .src('app/**/*.html')
     .pipe(gulp.dest('dist/app'));
 });
 
-gulp.task('tslint', function() {
+gulp.task('tslint', function () {
   return gulp.src('app/**/*.ts')
     .pipe(tslint())
     .pipe(tslint.report('verbose'));
