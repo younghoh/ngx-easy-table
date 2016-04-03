@@ -7,4 +7,3 @@ app/**/*.js
 
 *.map
 typings
-dist

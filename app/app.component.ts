@@ -21,6 +21,7 @@ import {CsvExport} from "./components/dropdown/csv-export.component";
   bindings: [HttpService],
   directives: [Header, Pagination, GlobalSearch, CsvExport],
   pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
+  providers: [  FiltersService, ResourceService, ConfigService],
   template: `
   <global-search
         *ngIf="config.globalSearchEnabled"
