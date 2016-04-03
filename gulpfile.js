@@ -37,11 +37,10 @@ gulp.task('copy:assets', ['clean'], function () {
     .pipe(gulp.dest('dist/app'));
 });
 
-gulp.task('tslint', function () {
-  return gulp.src('app/**/*.ts')
-    .pipe(tslint())
-    .pipe(tslint.report('verbose'));
+gulp.task('copy:css', ['clean'], function () {
+  return gulp.src('app/styles/*.css')
+    .pipe(gulp.dest('dist/app/styles'));
 });
 
-gulp.task('build', ['compile', 'copy:libs', 'copy:assets']);
+gulp.task('build', ['compile', 'copy:libs', 'copy:assets', 'copy:css']);
 gulp.task('default', ['build']);
