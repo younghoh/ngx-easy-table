@@ -2,7 +2,9 @@ import {Component} from 'angular2/core';
 import {ResourceService} from "../../services/resource-service";
 @Component({
     selector: 'csv-export',
-    templateUrl: 'app///components/dropdown/csv-export.html'
+    template: `<button class="ng2-table__csv-export-button"
+                    (click)="exportCsv()">Export to CSV
+                </button>`
 })
 
 export class CsvExport {
