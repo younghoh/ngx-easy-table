@@ -15,13 +15,13 @@ import 'rxjs/add/operator/map';
 import {GlobalSearch} from "./components/global-search/global-search.component";
 import {GlobalSearchPipe} from "./pipes/global-search-pipe";
 import {CsvExport} from "./components/dropdown/csv-export.component";
+import {HTTP_PROVIDERS} from "angular2/http";
 
 @Component({
   selector: 'ng2-table',
-  bindings: [HttpService],
+  bindings: [HttpService, FiltersService, ResourceService, ConfigService, HTTP_PROVIDERS],
   directives: [Header, Pagination, GlobalSearch, CsvExport],
   pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
-  providers: [  FiltersService, ResourceService, ConfigService],
   template: `
   <global-search
         *ngIf="config.globalSearchEnabled"
