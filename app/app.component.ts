@@ -4,13 +4,13 @@ import {FiltersService} from "./services/filters-service";
 import {SearchPipe} from "./pipes/header-pipe";
 import {PaginationPipe} from "./pipes/pagination-pipe";
 
-import {bootstrap}    from 'angular2/platform/browser';
+
 import {Header} from "./components/header/header.component";
 import {Pagination} from "./components/pagination/pagination.component";
 import {ConfigService} from "./services/config-service";
 import {ResourceService} from "./services/resource-service";
 import {HttpService} from "./services/http-service";
-import {HTTP_PROVIDERS} from 'angular2/http';
+
 import 'rxjs/add/operator/map';
 import {GlobalSearch} from "./components/global-search/global-search.component";
 import {GlobalSearchPipe} from "./pipes/global-search-pipe";
@@ -99,9 +99,4 @@ export class AppComponent {
   };
 }
 
-bootstrap(AppComponent, [
-  FiltersService,
-  ResourceService,
-  ConfigService,
-  HTTP_PROVIDERS
-]);
+
