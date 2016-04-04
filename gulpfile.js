@@ -3,7 +3,6 @@ const gulp = require('gulp');
 const del = require('del');
 const typescript = require('gulp-typescript');
 const tscConfig = require('./tsconfig.json');
-const tslint = require('gulp-tslint');
 
 // clean the contents of the distribution directory
 gulp.task('clean', function () {
