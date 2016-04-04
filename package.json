@@ -29,6 +29,9 @@
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.12.2",
     "jasmine-core": "2.4.1",
     "karma": "^0.13.22",
     "karma-firefox-launcher": "^0.1.7",
