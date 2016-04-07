@@ -9,7 +9,6 @@
     "removeComments": false,
     "suppressImplicitAnyIndexErrors": true,
     "noImplicitAny": false,
-    "noEmitOnError": true,
     "declaration": true
   },
   "exclude": [
