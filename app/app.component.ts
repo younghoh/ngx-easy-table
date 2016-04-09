@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit, Input} from 'angular2/core';
 
 import {FiltersService} from "./services/filters-service";
 import {SearchPipe} from "./pipes/header-pipe";
@@ -114,7 +114,8 @@ import {HTTP_PROVIDERS} from "angular2/http";
 `]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
+  @Input customConfig: ConfigService;
   constructor(public filtersService:FiltersService,
               public config:ConfigService,
               public resource:ResourceService,
@@ -129,6 +130,11 @@ export class AppComponent {
     });
   }
 
+  ngOnInit() {
+    if(this.customConfig) {
+      this.config = this.customConfig;
+    }
+  }
   public data:Array<any>;
   public keys:Array<any>;
   public numberOfItems:number;
