@@ -1,6 +1,6 @@
 {
   "name": "ng2-easy-table",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "Angular2 simple beautifull table",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "tsc:w": "tsc -w",
     "lite": "lite-server",
     "typings": "typings",
-    "postinstall": "concurrently \"typings install\" \"gulp\" ",
+    "postinstall": " \"typings\" \"install\" \"gulp\" ",
     "styles": "node-sass -w app/styles/main.scss app/styles/main.css"
   },
   "license": "MIT",
