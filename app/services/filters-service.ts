@@ -3,7 +3,7 @@ import {Injectable} from "angular2/core";
 export class FiltersService {
   public filters:Array<any> = [];
 
-  update(k:String, v:String) {
+  update(k:string, v:string) {
     this.filters[k] = v;
   };
 

@@ -32,7 +32,7 @@ export class Pagination {
 
   private pageNumber: number;
   private range: number;
-  public pageNumbers: Array<>;
+  public pageNumbers: Array<any>;
 
   constructor(public resource: ResourceService) {
     this.pageNumber = 1;

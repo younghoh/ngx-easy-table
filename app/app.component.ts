@@ -95,9 +95,7 @@ export class AppComponent {
   public numberOfItems:number;
   public itemsObservables;
 
-  public orderBy(key:String) {
+  public orderBy(key:string) {
     this.data = this.resource.sortBy(key);
   };
 }
-
-

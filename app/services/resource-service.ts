@@ -3,7 +3,7 @@ import {Injectable, EventEmitter} from "angular2/core";
 export class ResourceService {
   public data:Array<any> = [];
   public keys:Array<any> = [];
-  public key:String;
+  public key:string;
   public order:Array<any> = [];
   public previousData:Array<any> = [];
   private static _pipedDataEmitter;
@@ -22,7 +22,7 @@ export class ResourceService {
     return this.order[this.key];
   };
 
-  public sortBy(key:String):Array<any> {
+  public sortBy(key:string):Array<any> {
     this.key = key;
     if (Object.keys(this.order).length === 0) {
       this.order[this.key] = 'asc';
