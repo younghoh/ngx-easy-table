@@ -8,3 +8,5 @@ app/**/*.js
 *.map
 typings
 dist
+
+*.d.ts
