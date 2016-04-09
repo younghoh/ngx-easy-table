@@ -25,7 +25,31 @@ import {ResourceService} from "../../services/resource-service";
     <li [class.active]="isActiveRange(50)"><a href="#" (click)="changeRange(50)" class="btn btn-default">50</a></li>
     <li [class.active]="isActiveRange(100)"><a href="#" (click)="changeRange(100)" class="btn btn-default">100</a></li>
 </ul>
-`
+`,
+  styles: [`
+.ng2-table__pagination, .ng2-table__items-per-page {
+  display: inline-block;
+  list-style-type: none;
+  margin: 8px 0;
+  padding: 0; }
+  .ng2-table__pagination li, .ng2-table__items-per-page li {
+    border: 1px solid #f0f0f0;
+    float: left;
+    margin: 0;
+    padding: 6px; }
+    .ng2-table__pagination li a, .ng2-table__items-per-page li a {
+      color: inherit;
+      text-decoration: none; }
+  .ng2-table__pagination .active, .ng2-table__items-per-page .active {
+    background: #2196f3;
+    border-color: #0c7cd5;
+    color: #fff; }
+
+.ng2-table__items-per-page {
+  float: right; }
+
+
+`]
 })
 
 export class Pagination {

@@ -4,7 +4,19 @@ import {ResourceService} from "../../services/resource-service";
     selector: 'csv-export',
     template: `<button class="ng2-table__csv-export-button"
                     (click)="exportCsv()">Export to CSV
-                </button>`
+                </button>`,
+    styles: [`
+.ng2-table__button, .ng2-table__csv-export-button {
+  background: #f0f0f0;
+  border: 1px solid #d7d7d7;
+  font-size: .8em;
+  padding: 6px; }
+
+.ng2-table__csv-export-button {
+  display: inline-block;
+  float: right;
+  margin: 6px 0; }
+`]
 })
 
 export class CsvExport {
