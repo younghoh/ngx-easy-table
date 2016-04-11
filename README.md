@@ -46,7 +46,6 @@ export class ConfigService {
     public exportEnabled = false;
     // etc
 }
-
 ```
 ![table](http://i.imgur.com/yqlYtVR.png "table")
 
@@ -62,5 +61,28 @@ export class ConfigService {
 | resourceUrl         | string         |            | public resourceUrl = "api/v1/persons.json"; |
 
 
+If you have problem with display table, add this to `System.config`
+```html
+<script>
+        System.config({
+            map: {
+                'ng2-easy-table': 'node_modules/ng2-easy-table/dist'
+            },
+            packages: {
+                app: {
+                    format: 'register',
+                    defaultExtension: 'js'
+                },
+                'ng2-easy-table': {
+                    format: 'register',
+                    defaultExtension: 'js'
+                }
+            }
+        });
+        System.import('app/index.component')
+                .then(null, console.error.bind(console));
+    </script>
+
+```
 run tests by typing:
 `node_modules/karma/bin/karma start karma.conf.js --single-run`
