@@ -6,26 +6,34 @@
 
 Proudly powered by [![Imgur](http://i.imgur.com/qbbb6ah.png)](http://espeo.eu/)
 
-Early alpha version. Do not add it to the page, it is highly unstable.
-Beta will be available around 10th of April 2016
-
+Beta version. Component may contains some issues, but feel free to add it to your page!
 
 This table always will be easy to add to every page.
-You need to add only `<ng2-table></ng2-table>` to your html page
+#Installation
 
-```html
-<div class="container">
-    <ng2-table></ng2-table>
-</div>
+```typescript
+import {Component} from 'angular2/core';
+import {bootstrap}    from 'angular2/platform/browser';
+import {AppComponent}    from 'ng2-easy-table/app/app.component';
+import {ConfigService} from "./config-service";
+
+@Component({
+  selector: 'app',
+  directives: [AppComponent],
+  providers: [ConfigService],
+  template: `
+    <ng2-table [configuration]="configuration"></ng2-table>
+  `
+})
+export class App {
+  constructor(private configuration:ConfigService) {
+
+  }
+}
+
+bootstrap(App, [ConfigService]);
 ```
 
-![table](http://i.imgur.com/diYGEMy.png "table")
-
-To customize your table add `ConfigService` to the bootstrap :
-
-```js
-bootstrap(AppComponent, [FiltersService, ConfigService]);
-```
 and create this service:
 
 ```typescript
@@ -34,9 +42,15 @@ import {Injectable} from "angular2/core";
 export class ConfigService {
     public searchEnabled = true;
     public orderEnabled = true;
-    // etc.
+    public globalSearchEnabled = false;
+    public footerEnabled = false;
+    public paginationEnabled = false;
+    public exportEnabled = false;
+    // etc
 }
+
 ```
+![table](http://i.imgur.com/diYGEMy.png "table")
 
 ###Available config settings:
 

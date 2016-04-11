@@ -115,7 +115,7 @@ import {HTTP_PROVIDERS} from "angular2/http";
 })
 
 export class AppComponent implements OnInit{
-  @Input customConfig: ConfigService;
+  @Input() configuration: ConfigService;
   constructor(public filtersService:FiltersService,
               public config:ConfigService,
               public resource:ResourceService,
@@ -131,8 +131,9 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    if(this.customConfig) {
-      this.config = this.customConfig;
+    if(this.configuration) {
+      console.log("configuration", this.configuration);
+      this.config = this.configuration;
     }
   }
   public data:Array<any>;

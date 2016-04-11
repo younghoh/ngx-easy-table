@@ -1,5 +1,3 @@
-1.0 version (shipping date 10 April 2016)
-
 TODO:
 
 - ~~search in nested array~~
@@ -11,12 +9,11 @@ TODO:
 - resize columns
 - clickable row
 - footer (summary)
-
-1.1 version (shipping after 10 April 2016)
 - export to excel
 - edit row
 - show/hide column
 - define row and table header values by yourself (by providing given object fields)
+
 
 run tests by typing:
 `node_modules/karma/bin/karma start karma.conf.js --single-run`
