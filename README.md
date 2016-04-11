@@ -12,9 +12,9 @@ This table always will be easy to add to every page.
 #Installation
 
 ```typescript
-import {Component} from 'angular2/core';
-import {bootstrap}    from 'angular2/platform/browser';
-import {AppComponent}    from 'ng2-easy-table/app/app.component';
+import {Component}     from 'angular2/core';
+import {bootstrap}     from 'angular2/platform/browser';
+import {AppComponent}  from 'ng2-easy-table/app/app.component';
 import {ConfigService} from "./config-service";
 
 @Component({
@@ -26,9 +26,7 @@ import {ConfigService} from "./config-service";
   `
 })
 export class App {
-  constructor(private configuration:ConfigService) {
-
-  }
+  constructor(private configuration:ConfigService) {}
 }
 
 bootstrap(App, [ConfigService]);
@@ -50,7 +48,7 @@ export class ConfigService {
 }
 
 ```
-![table](http://i.imgur.com/diYGEMy.png "table")
+![table](http://i.imgur.com/yqlYtVR.png "table")
 
 ###Available config settings:
 
