@@ -1,21 +1,20 @@
 import {Component, OnInit, Input} from 'angular2/core';
+import 'rxjs/add/operator/map';
+import {HTTP_PROVIDERS} from "angular2/http";
 
-import {FiltersService} from "./services/filters-service";
 import {SearchPipe} from "./pipes/header-pipe";
 import {PaginationPipe} from "./pipes/pagination-pipe";
+import {GlobalSearchPipe} from "./pipes/global-search-pipe";
 
-
-import {Header} from "./components/header/header.component";
-import {Pagination} from "./components/pagination/pagination.component";
+import {FiltersService} from "./services/filters-service";
 import {ConfigService} from "./services/config-service";
 import {ResourceService} from "./services/resource-service";
 import {HttpService} from "./services/http-service";
 
-import 'rxjs/add/operator/map';
 import {GlobalSearch} from "./components/global-search/global-search.component";
-import {GlobalSearchPipe} from "./pipes/global-search-pipe";
 import {CsvExport} from "./components/dropdown/csv-export.component";
-import {HTTP_PROVIDERS} from "angular2/http";
+import {Header} from "./components/header/header.component";
+import {Pagination} from "./components/pagination/pagination.component";
 
 @Component({
   selector: 'ng2-table',
@@ -43,7 +42,7 @@ import {HTTP_PROVIDERS} from "angular2/http";
             *ngFor="#key of keys">
             {{ key }}
         </th>
-        <th>Actions</th>
+        <th *ngIf="config.editEnabled">Actions</th>
     </tr>
     <tr *ngIf="config.searchEnabled">
         <th *ngFor="#key of keys">
@@ -57,7 +56,7 @@ import {HTTP_PROVIDERS} from "angular2/http";
         <td *ngFor="#key of keys">
             {{ row[key] }}
         </td>
-        <td>
+        <td *ngIf="config.editEnabled">
             <button class="ng2-table__button">Edit</button>
         </td>
     </tr>
@@ -70,8 +69,9 @@ import {HTTP_PROVIDERS} from "angular2/http";
     </tfoot>
 </table>
 
-<pagination [numberOfItems]="numberOfItems" (updateRange)="range = $event"></pagination>
-
+<pagination *ngIf="config.paginationEnabled" 
+            [numberOfItems]="numberOfItems" 
+            (updateRange)="range = $event"></pagination>
   `,
   styles: [`
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700);
@@ -120,8 +120,16 @@ export class AppComponent implements OnInit{
               public config:ConfigService,
               public resource:ResourceService,
               public httpService:HttpService) {
+
+  }
+
+  ngOnInit() {
+    if(this.configuration) {
+      console.log("configuration", this.configuration);
+      this.config = this.configuration;
+    }
     this.numberOfItems = 0;
-    this.itemsObservables = httpService.getData();
+    this.itemsObservables = this.httpService.getData(this.config.resourceUrl);
     this.itemsObservables.subscribe(res => {
       this.data = res;
       this.numberOfItems = res.length;
@@ -130,17 +138,10 @@ export class AppComponent implements OnInit{
     });
   }
 
-  ngOnInit() {
-    if(this.configuration) {
-      console.log("configuration", this.configuration);
-      this.config = this.configuration;
-    }
-  }
   public data:Array<any>;
   public keys:Array<any>;
   public numberOfItems:number;
   public itemsObservables;
-
   public orderBy(key:string) {
     this.data = this.resource.sortBy(key);
   };

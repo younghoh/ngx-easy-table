@@ -1,16 +1,12 @@
 import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
-import {ConfigService} from "./config-service";
 import {Observable} from "rxjs/Observable";
 @Injectable()
 export class HttpService {
-  constructor(public http:Http,
-              public config:ConfigService) {
+  constructor(public http:Http) {}
 
-  }
-
-  public getData(): Observable<any> {
-    return this.http.get(this.config.resourceUrl)
+  public getData(url: string): Observable<any> {
+    return this.http.get(url)
       .map((responseData) => {
         return responseData.json();
       });
