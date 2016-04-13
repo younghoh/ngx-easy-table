@@ -8,6 +8,8 @@ Proudly powered by [![Imgur](http://i.imgur.com/qbbb6ah.png)](http://espeo.eu/)
 
 Beta version. Component may contains some issues, but feel free to add it to your page!
 
+<h3><a href="http://angular2-table.espeo.pl/" target="_blank">DEMO</a></h3>
+
 This table always will be easy to add to every page.
 #Installation
 
