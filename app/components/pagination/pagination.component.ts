@@ -6,24 +6,24 @@ import {ResourceService} from "../../services/resource-service";
   template: `
 <ul class="ng2-table__pagination">
     <li [class.disabled]="isFirstPage()">
-        <a href="#" (click)="previousPage()">«</a>
+        <a href="#" (click)="previousPage($event)">«</a>
     </li>
 
     <li *ngFor="#page of pageNumbers" [class.active]="isActivePage(page)">
-        <a href="#" (click)="changePage(page)">{{page}}</a>
+        <a href="#" (click)="changePage($event, page)">{{page}}</a>
     </li>
 
     <li [class.disabled]="isLastPage()">
-        <a href="#" (click)="nextPage()">»</a>
+        <a href="#" (click)="nextPage($event)">»</a>
     </li>
 </ul>
 
 <ul class="ng2-table__items-per-page">
-    <li [class.active]="isActiveRange(5)"><a href="#" (click)="changeRange(5)"  class="btn btn-default">5</a></li>
-    <li [class.active]="isActiveRange(10)"><a href="#" (click)="changeRange(10)" class="btn btn-default">10</a></li>
-    <li [class.active]="isActiveRange(25)"><a href="#" (click)="changeRange(25)" class="btn btn-default">25</a></li>
-    <li [class.active]="isActiveRange(50)"><a href="#" (click)="changeRange(50)" class="btn btn-default">50</a></li>
-    <li [class.active]="isActiveRange(100)"><a href="#" (click)="changeRange(100)" class="btn btn-default">100</a></li>
+    <li [class.active]="isActiveRange(5)"><a href="#" (click)="changeRange($event, 5)"  class="btn btn-default">5</a></li>
+    <li [class.active]="isActiveRange(10)"><a href="#" (click)="changeRange($event, 10)" class="btn btn-default">10</a></li>
+    <li [class.active]="isActiveRange(25)"><a href="#" (click)="changeRange($event, 25)" class="btn btn-default">25</a></li>
+    <li [class.active]="isActiveRange(50)"><a href="#" (click)="changeRange($event, 50)" class="btn btn-default">50</a></li>
+    <li [class.active]="isActiveRange(100)"><a href="#" (click)="changeRange($event, 100)" class="btn btn-default">100</a></li>
 </ul>
 `,
   styles: [`
@@ -95,13 +95,15 @@ export class Pagination {
     return currentPage === this.pageNumber;
   }
 
-  public nextPage():void {
+  public nextPage(event):void {
+    event.preventDefault();
     if(!this.isLastPage()) {
       this.pageNumber++;
     }
   }
 
-  public previousPage():void {
+  public previousPage(event):void {
+    event.preventDefault();
     if(!this.isFirstPage()) {
       this.pageNumber--;
     }
@@ -121,13 +123,15 @@ export class Pagination {
     this.updatePagination();
   }
 
-  changeRange(number):void {
+  changeRange(event, number):void {
+    event.preventDefault();
     this.range = number;
     this.pageNumber = 1;
     this.updatePagination();
   }
 
-  changePage(numberOfPage):void {
+  changePage(event, numberOfPage):void {
+    event.preventDefault();
     this.pageNumber = numberOfPage;
     this.updatePagination();
   }
