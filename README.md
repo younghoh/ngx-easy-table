@@ -11,8 +11,10 @@ Beta version. Component may contains some issues, but feel free to add it to you
 <h3><a href="http://angular2-table.espeo.pl/" target="_blank">DEMO</a></h3>
 
 This table always will be easy to add to every page.
-#Installation
 
+#Installation
+1. `npm install ng2-easy-table`
+2.
 ```typescript
 import {Component}     from 'angular2/core';
 import {bootstrap}     from 'angular2/platform/browser';
@@ -34,7 +36,7 @@ export class App {
 bootstrap(App, [ConfigService]);
 ```
 
-and create this service:
+3. create this service:
 
 ```typescript
 import {Injectable} from "angular2/core";
