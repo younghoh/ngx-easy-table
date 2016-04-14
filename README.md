@@ -13,9 +13,10 @@ Beta version. Component may contains some issues, but feel free to add it to you
 This table always will be easy to add to every page.
 
 #Installation
-1. `npm install ng2-easy-table`
 
-2.
+1. `npm install ng2-easy-table`
+2. component
+
 ```typescript
 import {Component}     from 'angular2/core';
 import {bootstrap}     from 'angular2/platform/browser';
@@ -37,7 +38,7 @@ export class App {
 bootstrap(App, [ConfigService]);
 ```
 
-3. create this service:
+3. config service:
 
 ```typescript
 import {Injectable} from "angular2/core";
