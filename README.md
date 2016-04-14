@@ -14,6 +14,7 @@ This table always will be easy to add to every page.
 
 #Installation
 1. `npm install ng2-easy-table`
+
 2.
 ```typescript
 import {Component}     from 'angular2/core';
