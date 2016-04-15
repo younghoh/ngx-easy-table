@@ -35,8 +35,8 @@ import {Pagination} from "./components/pagination/pagination.component";
             *ngFor="#key of keys"
             (click)="orderBy(key)">
             {{ key }}
-            <span *ngIf="resource.order[key]==='asc' " class="ng2-table__sort-indicator fa fa-chevron-down"></span>
-            <span *ngIf="resource.order[key]==='desc' " class="ng2-table__sort-indicator fa fa-chevron-up"></span>
+            <span *ngIf="resource.order[key]==='asc' " class="ng2-table__sort-indicator arrow-down"></span>
+            <span *ngIf="resource.order[key]==='desc' " class="ng2-table__sort-indicator arrow-up"></span>
         </th>
         <th [style.display]="!config.orderEnabled?'':'none' "
             *ngFor="#key of keys">
@@ -110,12 +110,24 @@ import {Pagination} from "./components/pagination/pagination.component";
 
 .ng2-table-demo {
   font-family: 'Source Sans Pro', 'Helvetica', sans-serif; }
-
+  .arrow-up {
+	width: 0; 
+	height: 0; 
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid black; }
+  .arrow-down {
+	width: 0; 
+	height: 0; 
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 5px solid black; }
 `]
 })
 
-export class AppComponent implements OnInit{
-  @Input() configuration: ConfigService;
+export class AppComponent implements OnInit {
+  @Input() configuration:ConfigService;
+
   constructor(public filtersService:FiltersService,
               public config:ConfigService,
               public resource:ResourceService,
@@ -124,7 +136,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    if(this.configuration) {
+    if (this.configuration) {
       console.log("configuration", this.configuration);
       this.config = this.configuration;
     }
@@ -142,6 +154,7 @@ export class AppComponent implements OnInit{
   public keys:Array<any>;
   public numberOfItems:number;
   public itemsObservables;
+
   public orderBy(key:string) {
     this.data = this.resource.sortBy(key);
   };
