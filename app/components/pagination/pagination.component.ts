@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnInit} from 'angular2/core';
 import {ResourceService} from "../../services/resource-service";
+import {ConfigService} from "../../services/config-service";
 
 @Component({
   selector: 'pagination',
@@ -58,9 +59,10 @@ export class Pagination {
   private range: number;
   public pageNumbers: Array<any>;
 
-  constructor(public resource: ResourceService) {
+  constructor(public resource: ResourceService,
+  public config: ConfigService) {
     this.pageNumber = 1;
-    this.range = 5;
+    this.range = this.config.rows || 10;
     this.pageNumbers = [];
     ResourceService.getPipedData().subscribe(data => {
       this.numberOfItems = data;

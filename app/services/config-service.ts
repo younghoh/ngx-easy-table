@@ -8,5 +8,6 @@ export class ConfigService {
     public paginationEnabled = true;
     public exportEnabled = true;
     public editEnabled = false;
-    public resourceUrl = "http://beta.json-generator.com/api/json/get/E164yBM0l";
+    public resourceUrl = "app/data.json";
+    public rows = 10;
 }
