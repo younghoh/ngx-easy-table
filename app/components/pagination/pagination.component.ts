@@ -55,12 +55,12 @@ import {ConfigService} from "../../services/config-service";
 
 export class Pagination {
 
-  private pageNumber: number;
-  private range: number;
-  public pageNumbers: Array<any>;
+  private pageNumber:number;
+  private range:number;
+  public pageNumbers:Array<any>;
 
-  constructor(public resource: ResourceService,
-  public config: ConfigService) {
+  constructor(public resource:ResourceService,
+              public config:ConfigService) {
     this.pageNumber = 1;
     this.range = this.config.rows || 10;
     this.pageNumbers = [];
@@ -70,9 +70,8 @@ export class Pagination {
     });
   }
 
-
   public emitPaginationProperties():void {
-    this.updateRange.emit({ range: this.range, page: this.pageNumber });
+    this.updateRange.emit({range: this.range, page: this.pageNumber});
   }
 
   public updateNumberPerPage():void {
@@ -85,7 +84,7 @@ export class Pagination {
   }
 
   public updatePagination():void {
-    this.updateNumberPerPage();    
+    this.updateNumberPerPage();
     this.emitPaginationProperties();
   }
 
@@ -99,14 +98,14 @@ export class Pagination {
 
   public nextPage(event):void {
     event.preventDefault();
-    if(!this.isLastPage()) {
+    if (!this.isLastPage()) {
       this.pageNumber++;
     }
   }
 
   public previousPage(event):void {
     event.preventDefault();
-    if(!this.isFirstPage()) {
+    if (!this.isFirstPage()) {
       this.pageNumber--;
     }
   }
@@ -121,6 +120,7 @@ export class Pagination {
 
   @Input() numberOfItems:number;
   @Output() updateRange = new EventEmitter();
+
   ngOnChanges() {
     this.updatePagination();
   }

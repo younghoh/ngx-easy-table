@@ -8,13 +8,10 @@ export class ResourceService {
   public previousData:Array<any> = [];
   private static _pipedDataEmitter;
 
-  public footerSummary():void {
-
-  }
-
   static getPipedData():EventEmitter<any> {
-    if (!this._pipedDataEmitter)
+    if (!this._pipedDataEmitter) {
       this._pipedDataEmitter = new EventEmitter();
+    }
     return this._pipedDataEmitter;
   }
 

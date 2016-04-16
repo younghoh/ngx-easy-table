@@ -1,7 +1,7 @@
 import {Component, OnInit, Output, EventEmitter} from "angular2/core";
 @Component({
-    selector: 'global-search',
-    template: `
+  selector: 'global-search',
+  template: `
 <label class="ng2-table__global-search-label" for="search">
     <input type="text"
            id="search"
@@ -10,7 +10,7 @@ import {Component, OnInit, Output, EventEmitter} from "angular2/core";
            (input)="globalUpdate.emit({value: input.value})"
            placeholder="Search" />
 </label>`,
-    styles: [`
+  styles: [`
 .ng2-table__global-search-label {
   border: 1px solid #f0f0f0;
   display: inline-block;
@@ -35,6 +35,5 @@ import {Component, OnInit, Output, EventEmitter} from "angular2/core";
 })
 
 export class GlobalSearch {
-    @Output() globalUpdate = new EventEmitter();
-
+  @Output() globalUpdate = new EventEmitter();
 }

@@ -132,7 +132,6 @@ export class AppComponent implements OnInit {
               public config:ConfigService,
               public resource:ResourceService,
               public httpService:HttpService) {
-
   }
 
   ngOnInit() {

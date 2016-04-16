@@ -12,10 +12,13 @@ import {FiltersService} from "../../services/filters-service";
 >`
 })
 
-export class Header implements OnInit{
-  constructor(public filtersService:FiltersService){}
+export class Header implements OnInit {
+  constructor(public filtersService:FiltersService) {
+  }
+
   @Input() key;
   @Output() update = new EventEmitter();
+
   ngOnInit() {
     this.update.emit({});
   }
