@@ -38,10 +38,10 @@ export class ResourceService {
 
   private compare(a:Array<any>, b:Array<any>):number {
     if ((isNaN(parseFloat(a[this.key])) || !isFinite(a[this.key])) || (isNaN(parseFloat(b[this.key])) || !isFinite(b[this.key]))) {
-      if (a[this.key].toLowerCase() < b[this.key].toLowerCase()) {
+      if (a[this.key]+''.toLowerCase() < b[this.key]+''.toLowerCase()) {
         return -1;
       }
-      if (a[this.key].toLowerCase() > b[this.key].toLowerCase()) {
+      if (a[this.key]+''.toLowerCase() > b[this.key]+''.toLowerCase()) {
         return 1;
       }
     } else {
