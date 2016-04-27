@@ -11,7 +11,7 @@ export class SearchPipe {
               public resource:ResourceService) {
   }
 
-  transform(value, [filters]) {
+  transform(value, filters) {
     if (typeof value === "undefined") {
       return;
     }
