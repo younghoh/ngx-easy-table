@@ -80,7 +80,7 @@ export class Pagination {
     //   this.range = this.numberOfItems;
     // }
     let numberPerPage = Math.ceil(this.numberOfItems / this.range);
-    this.pageNumbers = Array(numberPerPage).fill().map((_, i) => i + 1);
+    this.pageNumbers = Array(numberPerPage).fill(numberPerPage, 0).map((_, i) => i + 1);
   }
 
   public updatePagination():void {
