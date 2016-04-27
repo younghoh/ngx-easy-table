@@ -9,7 +9,7 @@ export class PaginationPipe {
   constructor(public resource:ResourceService) {
   }
 
-  transform(value, [filters]) {
+  transform(value, filters) {
     let range = 10;
     if (typeof value === 'undefined') {
       return;

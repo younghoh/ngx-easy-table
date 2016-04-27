@@ -8,7 +8,7 @@ export class GlobalSearchPipe {
   constructor(public resource:ResourceService) {
   }
 
-  transform(dataArr, [filter]) {
+  transform(dataArr, filter) {
     if (typeof dataArr === "undefined") {
       return;
     }
