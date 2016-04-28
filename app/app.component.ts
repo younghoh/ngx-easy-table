@@ -136,7 +136,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (this.configuration) {
-      console.log("configuration", this.configuration);
       this.config = this.configuration;
     }
     this.numberOfItems = 0;

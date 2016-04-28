@@ -20,11 +20,11 @@ import {ConfigService} from "../../services/config-service";
 </ul>
 
 <ul class="ng2-table__items-per-page">
-    <li [class.active]="isActiveRange(5)"><a href="#" (click)="changeRange($event, 5)"  class="btn btn-default">5</a></li>
-    <li [class.active]="isActiveRange(10)"><a href="#" (click)="changeRange($event, 10)" class="btn btn-default">10</a></li>
-    <li [class.active]="isActiveRange(25)"><a href="#" (click)="changeRange($event, 25)" class="btn btn-default">25</a></li>
-    <li [class.active]="isActiveRange(50)"><a href="#" (click)="changeRange($event, 50)" class="btn btn-default">50</a></li>
-    <li [class.active]="isActiveRange(100)"><a href="#" (click)="changeRange($event, 100)" class="btn btn-default">100</a></li>
+    <li [class.active]="isActiveRange(5)"><a href="#" (click)="changeRange($event, 5)">5</a></li>
+    <li [class.active]="isActiveRange(10)"><a href="#" (click)="changeRange($event, 10)">10</a></li>
+    <li [class.active]="isActiveRange(25)"><a href="#" (click)="changeRange($event, 25)">25</a></li>
+    <li [class.active]="isActiveRange(50)"><a href="#" (click)="changeRange($event, 50)">50</a></li>
+    <li [class.active]="isActiveRange(100)"><a href="#" (click)="changeRange($event, 100)">100</a></li>
 </ul>
 `,
   styles: [`
