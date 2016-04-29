@@ -44,13 +44,15 @@ bootstrap(App, [ConfigService]);
 import {Injectable} from "angular2/core";
 @Injectable()
 export class ConfigService {
-    public searchEnabled = true;
-    public orderEnabled = true;
-    public globalSearchEnabled = false;
-    public footerEnabled = false;
-    public paginationEnabled = false;
-    public exportEnabled = false;
-    // etc
+  public searchEnabled = false;
+  public orderEnabled = true;
+  public globalSearchEnabled = false;
+  public footerEnabled = false;
+  public paginationEnabled = false;
+  public exportEnabled = false;
+  public editEnabled = false;
+  public resourceUrl = "app/data.json";
+  public rows = 10;
 }
 ```
 ![table](http://i.imgur.com/yqlYtVR.png "table")
@@ -65,6 +67,7 @@ export class ConfigService {
 | paginationEnabled   | bool           | true false | public paginationEnabled = true;            |
 | globalSearchEnabled | bool           | true false | public globalSearchEnabled = true;          |
 | resourceUrl         | string         |            | public resourceUrl = "api/v1/persons.json"; |
+| rows                | int            |            | public rows = 10;                           |
 
 
 If you have problem with display table, add this to `System.config`
