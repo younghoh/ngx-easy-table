@@ -32,28 +32,28 @@ import {Pagination} from "./components/pagination/pagination.component";
     <thead>
     <tr>
         <th [style.display]="config.orderEnabled?'':'none' "
-            *ngFor="#key of keys"
+            *ngFor="let key of keys"
             (click)="orderBy(key)">
             {{ key }}
             <span *ngIf="resource.order[key]==='asc' " class="ng2-table__sort-indicator arrow-down"></span>
             <span *ngIf="resource.order[key]==='desc' " class="ng2-table__sort-indicator arrow-up"></span>
         </th>
         <th [style.display]="!config.orderEnabled?'':'none' "
-            *ngFor="#key of keys">
+            *ngFor="let key of keys">
             {{ key }}
         </th>
         <th *ngIf="config.editEnabled">Actions</th>
     </tr>
     <tr *ngIf="config.searchEnabled">
-        <th *ngFor="#key of keys">
+        <th *ngFor="let key of keys">
             <table-header (update)="term = $event" [key]="key"></table-header>
         </th>
         <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="#row of data | search : term | global : globalSearchTerm | pagination : range">
-        <td *ngFor="#key of keys">
+    <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range">
+        <td *ngFor="let key of keys">
             {{ row[key] }}
         </td>
         <td *ngIf="config.editEnabled">
@@ -63,7 +63,7 @@ import {Pagination} from "./components/pagination/pagination.component";
     </tbody>
     <tfoot *ngIf="config.footerEnabled">
     <tr>
-        <td *ngFor="#key of keys"></td>
+        <td *ngFor="let key of keys"></td>
         <td></td>
     </tr>
     </tfoot>

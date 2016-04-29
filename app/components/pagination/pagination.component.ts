@@ -10,7 +10,7 @@ import {ConfigService} from "../../services/config-service";
         <a href="#" (click)="previousPage($event)">«</a>
     </li>
 
-    <li *ngFor="#page of pageNumbers" [class.active]="isActivePage(page)">
+    <li *ngFor="let page of pageNumbers" [class.active]="isActivePage(page)">
         <a href="#" (click)="changePage($event, page)">{{page}}</a>
     </li>
 
