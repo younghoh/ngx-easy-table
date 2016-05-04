@@ -1,4 +1,4 @@
-import {Pipe} from 'angular2/core';
+import {Pipe} from '@angular/core';
 import {ResourceService} from "../services/resource-service";
 
 @Pipe({

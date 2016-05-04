@@ -1,4 +1,4 @@
-import {Pipe} from 'angular2/core';
+import {Pipe} from '@angular/core';
 import {FiltersService} from "../services/filters-service";
 import {ResourceService} from "../services/resource-service";
 

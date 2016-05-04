@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {ResourceService} from "../../services/resource-service";
 @Component({
   selector: 'csv-export',
