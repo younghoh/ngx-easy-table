@@ -14,8 +14,8 @@ This table always will be easy to add to every page.
 
 #Installation
 
-1. `npm install ng2-easy-table`
-2. component
+`npm install ng2-easy-table`
+### app.component.ts
 
 ```typescript
 ///<reference path="./../typings/browser/ambient/es6-shim/index.d.ts"/>
@@ -39,7 +39,7 @@ export class App {
 bootstrap(App, [ConfigService]);
 ```
 
-3. config service:
+### config-service.ts:
 
 ```typescript
 import {Injectable} from "@angular/core";

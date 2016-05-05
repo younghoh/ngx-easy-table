@@ -5,7 +5,9 @@ import {AppComponent} from "./app.component";
 import {FiltersService} from "./services/filters-service";
 import {ResourceService} from "./services/resource-service";
 import {ConfigService} from "./services/config-service";
+import { enableProdMode } from '@angular/core';
 
+enableProdMode();
 bootstrap(AppComponent, [
   FiltersService,
   ResourceService,
