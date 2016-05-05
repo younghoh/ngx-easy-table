@@ -71,28 +71,70 @@ export class ConfigService {
 | rows                | int            |            | public rows = 10;                           |
 
 
-If you have problem with display table, add this to `System.config`
+If you have problem with display table, add this lines to `index.html`
 ```html
 <script>
-        System.config({
-            map: {
-                'ng2-easy-table': 'node_modules/ng2-easy-table/dist'
-            },
-            packages: {
-                app: {
-                    format: 'register',
-                    defaultExtension: 'js'
-                },
-                'ng2-easy-table': {
-                    format: 'register',
-                    defaultExtension: 'js'
-                }
-            }
-        });
-        System.import('app/index.component')
-                .then(null, console.error.bind(console));
-    </script>
+    System.import('dist/app/index.component').catch(function (err) {
+      console.error(err);
+    });
+</script>
+```
 
+and add this `systemsj.config.js`
+
+```js
+(function(global) {
+
+  // map tells the System loader where to look for things
+  var map = {
+    'app':                        'app', // 'dist',
+    'rxjs':                       'node_modules/rxjs',
+    'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+    '@angular':                   'node_modules/@angular',
+    'ng2-easy-table':             'node_modules/ng2-easy-table/dist'
+  };
+
+  // packages tells the System loader how to load
+  // when no filename and/or no extension
+  var packages = {
+    'app':                        { main: 'index.component.js',  defaultExtension: 'js' },
+    'rxjs':                       { defaultExtension: 'js' },
+    'angular2-in-memory-web-api': { defaultExtension: 'js' },
+    'ng2-easy-table':             { format: 'register', defaultExtension: 'js' },
+     dist:                        { format: 'register', defaultExtension: 'js' }
+  };
+
+  var packageNames = [
+    '@angular/common',
+    '@angular/compiler',
+    '@angular/core',
+    '@angular/http',
+    '@angular/platform-browser',
+    '@angular/platform-browser-dynamic',
+    '@angular/router',
+    '@angular/router-deprecated',
+    '@angular/testing',
+    '@angular/upgrade'
+  ];
+
+  // add package entries for angular packages in the form
+  // '@angular/common': { main: 'index.js', defaultExtension: 'js' }
+  packageNames.forEach(function(pkgName) {
+    packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
+  });
+
+  var config = {
+    map: map,
+    packages: packages
+  };
+
+  // filterSystemConfig - index.html's chance
+  // to modify config before we register it.
+  if (global.filterSystemConfig) { global.filterSystemConfig(config); }
+
+  System.config(config);
+
+})(this);
 ```
 run tests by typing:
 `node_modules/karma/bin/karma start karma.conf.js --single-run`
