@@ -18,8 +18,9 @@ This table always will be easy to add to every page.
 2. component
 
 ```typescript
-import {Component}     from 'angular2/core';
-import {bootstrap}     from 'angular2/platform/browser';
+///<reference path="./../typings/browser/ambient/es6-shim/index.d.ts"/>
+import {Component}     from '@angular/core';
+import {bootstrap}     from '@angular/platform-browser-dynamic';
 import {AppComponent}  from 'ng2-easy-table/app/app.component';
 import {ConfigService} from "./config-service";
 
@@ -41,7 +42,7 @@ bootstrap(App, [ConfigService]);
 3. config service:
 
 ```typescript
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 @Injectable()
 export class ConfigService {
   public searchEnabled = false;
