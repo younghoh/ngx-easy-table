@@ -1,6 +1,6 @@
-import {Component, OnInit, Input} from 'angular2/core';
+import {Component, OnInit, Input} from '@angular/core';
 import 'rxjs/add/operator/map';
-import {HTTP_PROVIDERS} from "angular2/http";
+import {HTTP_PROVIDERS} from "@angular/http";
 
 import {SearchPipe} from "./pipes/header-pipe";
 import {PaginationPipe} from "./pipes/pagination-pipe";

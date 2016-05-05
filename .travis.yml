@@ -1,7 +1,7 @@
 language: node_js
 node_js:
   - "5"
-  - "4"
+  - "4.4"
 script:
     - node_modules/karma/bin/karma start karma.conf.js --single-run
 before_install:
@@ -9,6 +9,6 @@ before_install:
     - sh -e /etc/init.d/xvfb start
 before_script:
     - npm install
-#    - node_modules/typescript/bin/tsc -p . uncomment when typescript error will be fixed
+    - node_modules/gulp/bin/gulp.js
 notifications:
   email: false

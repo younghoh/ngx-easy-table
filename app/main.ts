@@ -1,6 +1,6 @@
-/// <reference path="../node_modules/angular2/typings/browser.d.ts" />
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {bootstrap}    from 'angular2/platform/browser';
+///<reference path="./../typings/browser/ambient/es6-shim/index.d.ts"/>
+import {HTTP_PROVIDERS} from '@angular/http';
+import {bootstrap}    from '@angular/platform-browser-dynamic';
 import {AppComponent} from "./app.component";
 import {FiltersService} from "./services/filters-service";
 import {ResourceService} from "./services/resource-service";
