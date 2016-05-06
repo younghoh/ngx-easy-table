@@ -14,6 +14,9 @@
   "exclude": [
     "node_modules",
     "typings/main",
-    "typings/main.d.ts"
+    "typings/main.d.ts",
+    "typings/browser",
+    "typings/browser.d.ts",
+    "tests"
   ]
 }
