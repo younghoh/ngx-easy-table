@@ -21,6 +21,7 @@ import {Pagination} from "./components/pagination/pagination.component";
   bindings: [HttpService, FiltersService, ResourceService, ConfigService, HTTP_PROVIDERS],
   directives: [Header, Pagination, GlobalSearch, CsvExport],
   pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
+  //encapsulation: ViewEncapsulation.Native,
   template: `
   <global-search
         *ngIf="config.globalSearchEnabled"
@@ -72,57 +73,7 @@ import {Pagination} from "./components/pagination/pagination.component";
 <pagination *ngIf="config.paginationEnabled" 
             [numberOfItems]="numberOfItems" 
             (updateRange)="range = $event"></pagination>
-  `,
-  styles: [`
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,700);
-.ng2-table__input {
-  border: 0;
-  font-size: .9em;
-  margin: 0;
-  padding: 2px;
-  width: 100%; }
-
-.ng2-table__table, .ng2-table__table--striped {
-  border-spacing: 0;
-  width: 100%; }
-  .ng2-table__table td,
-  .ng2-table__table th, .ng2-table__table--striped td,
-  .ng2-table__table--striped th {
-    border-color: #f0f0f0;
-    border-style: solid;
-    border-width: 1px 1px 0 0;
-    margin: 0;
-    padding: 2px; }
-  .ng2-table__table th, .ng2-table__table--striped th {
-    cursor: pointer;
-    font-weight: 700;
-    text-align: left; }
-  .ng2-table__table tr:last-child th, .ng2-table__table--striped tr:last-child th {
-    border-bottom-color: #cacaca; }
-
-.ng2-table__table--striped tbody tr:nth-child(odd) {
-  background: #f0f0f0; }
-
-.ng2-table__sort-indicator {
-  float: right;
-  font-size: .5em !important;
-  padding-top: 4px; }
-
-.ng2-table-demo {
-  font-family: 'Source Sans Pro', 'Helvetica', sans-serif; }
-  .arrow-up {
-	width: 0; 
-	height: 0; 
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-bottom: 5px solid black; }
-  .arrow-down {
-	width: 0; 
-	height: 0; 
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
-	border-top: 5px solid black; }
-`]
+  `
 })
 
 export class AppComponent implements OnInit {

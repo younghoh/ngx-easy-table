@@ -3,6 +3,7 @@ const gulp = require('gulp');
 const del = require('del');
 const typescript = require('gulp-typescript');
 const tscConfig = require('./tsconfig.json');
+const sass = require('gulp-sass');
 
 // clean the contents of the distribution directory
 gulp.task('clean', function () {
@@ -10,11 +11,19 @@ gulp.task('clean', function () {
 });
 
 // TypeScript compile
-gulp.task('compile', ['clean'], function () {
+gulp.task('compile:ts', ['clean'], function () {
   return gulp
     .src('app/**/*.ts')
     .pipe(typescript(tscConfig.compilerOptions))
     .pipe(gulp.dest('dist/app'));
+});
+
+// Styles compile
+gulp.task('compile:scss', ['clean'], function () {
+    return gulp
+        .src('app/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('app'));
 });
 
 gulp.task('copy:libs', ['clean'], function () {
@@ -39,5 +48,5 @@ gulp.task('copy:css', ['clean'], function () {
     .pipe(gulp.dest('dist/app/styles'));
 });
 
-gulp.task('build', ['compile', 'copy:libs', 'copy:assets', 'copy:css']);
+gulp.task('build', ['compile:ts','compile:scss', 'copy:libs', 'copy:assets', 'copy:css']);
 gulp.task('default', ['build']);
