@@ -27,7 +27,7 @@
     border-width: 1px 1px 0 0px;
     margin: 0;
     padding: 2px; }
-  .ng2-table__table th, .ng2-table__table--striped th {
+  .ng2-table__table thead > th, .ng2-table__table--striped thead > th {
     cursor: pointer;
     font-weight: 700;
     text-align: left; }

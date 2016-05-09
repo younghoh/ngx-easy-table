@@ -48,7 +48,7 @@ import {Pagination} from "./components/pagination/pagination.component";
         <th *ngFor="let key of keys">
             <table-header (update)="term = $event" [key]="key"></table-header>
         </th>
-        <th></th>
+        <th *ngIf="config.editEnabled"></th>
     </tr>
     </thead>
     <tbody>

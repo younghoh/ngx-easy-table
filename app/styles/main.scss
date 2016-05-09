@@ -43,7 +43,7 @@ $ng2-table-global-search-max-width: 300px !default;
       padding: $ng2-table-base-padding;
     }
 
-    th {
+    thead > th {
       cursor: pointer;
       font-weight: 700;
       text-align: left;
@@ -119,6 +119,7 @@ $ng2-table-global-search-max-width: 300px !default;
 }
 
 /* Pagination */
+
 .ng2-table {
   &__pagination,
   &__items-per-page {
