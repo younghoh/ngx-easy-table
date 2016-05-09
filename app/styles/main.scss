@@ -38,7 +38,7 @@ $ng2-table-global-search-max-width: 300px !default;
     th {
       border-color: $ng2-table-base-color;
       border-style: solid;
-      border-width: 1px 1px 0 0;
+      border-width: 1px 1px 0 0px;
       margin: 0;
       padding: $ng2-table-base-padding;
     }
@@ -51,6 +51,14 @@ $ng2-table-global-search-max-width: 300px !default;
 
     tr:last-child th {
       border-bottom-color: darken($ng2-table-base-color, 15%);
+    }
+
+    tbody > tr:last-child td {
+      border-bottom: 1px solid $ng2-table-base-color;
+    }
+
+    tbody > tr td:first-child, thead > tr th:first-child   {
+      border-left: 1px solid $ng2-table-base-color;
     }
 
   }
@@ -130,15 +138,22 @@ $ng2-table-global-search-max-width: 300px !default;
         text-decoration: none;
       }
     }
-
     .active {
       background: $ng2-table-base-brand-color;
       border-color: darken($ng2-table-base-brand-color, 10%);
       color: $ng2-table-secondary-text-color;
     }
   }
-
   &__items-per-page {
     float: right;
+  }
+  &__pagination-wrapper {
+    &:after {
+      visibility: hidden;
+      display: block;
+      content: "";
+      clear: both;
+      height: 0;
+    }
   }
 }

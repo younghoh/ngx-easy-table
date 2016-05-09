@@ -24,7 +24,7 @@
   .ng2-table__table--striped th {
     border-color: #f0f0f0;
     border-style: solid;
-    border-width: 1px 1px 0 0;
+    border-width: 1px 1px 0 0px;
     margin: 0;
     padding: 2px; }
   .ng2-table__table th, .ng2-table__table--striped th {
@@ -33,6 +33,10 @@
     text-align: left; }
   .ng2-table__table tr:last-child th, .ng2-table__table--striped tr:last-child th {
     border-bottom-color: #cacaca; }
+  .ng2-table__table tbody > tr:last-child td, .ng2-table__table--striped tbody > tr:last-child td {
+    border-bottom: 1px solid #f0f0f0; }
+  .ng2-table__table tbody > tr td:first-child, .ng2-table__table thead > tr th:first-child, .ng2-table__table--striped tbody > tr td:first-child, .ng2-table__table--striped thead > tr th:first-child {
+    border-left: 1px solid #f0f0f0; }
 
 .ng2-table__table--striped tbody tr:nth-child(odd) {
   background: #f0f0f0; }
@@ -93,3 +97,10 @@
 
 .ng2-table__items-per-page {
   float: right; }
+
+.ng2-table__pagination-wrapper:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0; }
