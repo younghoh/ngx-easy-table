@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {HTTP_PROVIDERS} from "@angular/http";
 
@@ -21,7 +21,6 @@ import {Pagination} from "./components/pagination/pagination.component";
   bindings: [HttpService, FiltersService, ResourceService, ConfigService, HTTP_PROVIDERS],
   directives: [Header, Pagination, GlobalSearch, CsvExport],
   pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
-  //encapsulation: ViewEncapsulation.Native,
   template: `
   <global-search
         *ngIf="config.globalSearchEnabled"
@@ -36,8 +35,8 @@ import {Pagination} from "./components/pagination/pagination.component";
             *ngFor="let key of keys"
             (click)="orderBy(key)">
             {{ key }}
-            <span *ngIf="resource.order[key]==='asc' " class="ng2-table__sort-indicator arrow-down"></span>
-            <span *ngIf="resource.order[key]==='desc' " class="ng2-table__sort-indicator arrow-up"></span>
+            <span *ngIf="resource.order[key]==='asc' " class="ng2-table__sort-indicator ng2-table__sort-indicator--down"></span>
+            <span *ngIf="resource.order[key]==='desc' " class="ng2-table__sort-indicator ng2-table__sort-indicator--up"></span>
         </th>
         <th [style.display]="!config.orderEnabled?'':'none' "
             *ngFor="let key of keys">
@@ -73,7 +72,10 @@ import {Pagination} from "./components/pagination/pagination.component";
 <pagination *ngIf="config.paginationEnabled" 
             [numberOfItems]="numberOfItems" 
             (updateRange)="range = $event"></pagination>
-  `
+  `,
+  styleUrls: ['app/styles/main.css'],
+  encapsulation: ViewEncapsulation.None,
+
 })
 
 export class AppComponent implements OnInit {

@@ -1,5 +1,8 @@
-/* Variables */
+/* Imports */
 
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css);
+
+/* Variables */
 $ng2-table-base-color: #f0f0f0 !default;
 $ng2-table-base-padding: 2px !default;
 $ng2-table-base-brand-color: #2196f3 !default;
@@ -94,6 +97,16 @@ $ng2-table-global-search-max-width: 300px !default;
     float: right;
     font-size: .5em !important;
     padding-top: $ng2-table-base-padding*2;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  &__sort-indicator--up {
+    border-bottom: 5px solid black;
+  }
+  &__sort-indicator--down {
+    border-top: 5px solid black;
   }
 }
 
@@ -129,19 +142,3 @@ $ng2-table-global-search-max-width: 300px !default;
     float: right;
   }
 }
-
-
-  .arrow-up {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid black;
-  }
-  .arrow-down {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid black;
-  }
