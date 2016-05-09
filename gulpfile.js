@@ -48,5 +48,12 @@ gulp.task('copy:css', ['clean'], function () {
     .pipe(gulp.dest('dist/app/styles'));
 });
 
-gulp.task('build', ['compile:ts','compile:scss', 'copy:libs', 'copy:assets', 'copy:css']);
+gulp.task('build', [
+    'compile:ts',
+    'compile:scss',
+    'copy:libs',
+    'copy:assets',
+    'copy:css'
+]);
+
 gulp.task('default', ['build']);
