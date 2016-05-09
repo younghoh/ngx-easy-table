@@ -58,7 +58,8 @@
     left: 290px;
     position: absolute;
     top: 18px;
-    z-index: 1; }
+    z-index: 1;
+    color: #cacaca; }
 
 .ng2-table__sort-indicator {
   float: right;

@@ -98,6 +98,7 @@ $ng2-table-global-search-max-width: 300px !default;
       position: absolute;
       top: 18px;
       z-index: 1;
+      color: darken($ng2-table-base-color, 15%);
     }
   }
 
