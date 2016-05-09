@@ -88,7 +88,7 @@ $ng2-table-global-search-max-width: 300px !default;
       font-family: 'FontAwesome', sans-serif;
       left: $ng2-table-global-search-max-width - 10px;
       position: absolute;
-      top: 20px;
+      top: 18px;
       z-index: 1;
     }
   }
@@ -118,7 +118,7 @@ $ng2-table-global-search-max-width: 300px !default;
     list-style-type: none;
     margin: $ng2-table-base-padding*4 0;
     padding: 0;
-
+    float: left;
     li {
       border: 1px solid $ng2-table-base-color;
       float: left;

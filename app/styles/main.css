@@ -53,7 +53,7 @@
     font-family: 'FontAwesome', sans-serif;
     left: 290px;
     position: absolute;
-    top: 20px;
+    top: 18px;
     z-index: 1; }
 
 .ng2-table__sort-indicator {
@@ -76,7 +76,8 @@
   display: inline-block;
   list-style-type: none;
   margin: 8px 0;
-  padding: 0; }
+  padding: 0;
+  float: left; }
   .ng2-table__pagination li, .ng2-table__items-per-page li {
     border: 1px solid #f0f0f0;
     float: left;
