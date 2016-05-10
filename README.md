@@ -71,16 +71,7 @@ export class ConfigService {
 | rows                | int            |            | public rows = 10;                           |
 
 
-If you have problem with display table, add this lines to `index.html`
-```html
-<script>
-    System.import('dist/app/index.component').catch(function (err) {
-      console.error(err);
-    });
-</script>
-```
-
-and add this `systemsj.config.js`
+If you have problem displaying table, check `systemsj.config.js` configuration
 
 ```js
 (function(global) {
@@ -136,5 +127,7 @@ and add this `systemsj.config.js`
 
 })(this);
 ```
+
+
 run tests by typing:
-`node_modules/karma/bin/karma start karma.conf.js --single-run`
+`npm test`
