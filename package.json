@@ -7,13 +7,14 @@
     "url": "https://github.com/ssuperczynski/ng2-easy-table.git"
   },
   "scripts": {
-    "start": "node_modules/concurrently/src/main.js \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" ",
     "tsc": "tsc",
     "test": "karma start karma.conf.js --single-run",
     "tsc:w": "tsc -w",
+    "concurrent": "concurrent",
     "lite": "lite-server",
     "typings": "typings",
-    "postinstall": "node_modules/concurrently/src/main.js  \"typings install\" \"npm run tsc\" ",
+    "postinstall": "typings install && npm run tsc",
     "prepublish": "gulp",
     "styles": "node-sass -w app/styles/main.scss app/styles/main.css"
   },
