@@ -18,7 +18,7 @@ import {Pagination} from "./components/pagination/pagination.component";
 
 @Component({
   selector: 'ng2-table',
-  bindings: [HttpService, FiltersService, ResourceService, ConfigService, HTTP_PROVIDERS],
+  providers: [HttpService, FiltersService, ResourceService, ConfigService, HTTP_PROVIDERS],
   directives: [Header, Pagination, GlobalSearch, CsvExport],
   pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
   template: `
