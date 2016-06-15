@@ -1,19 +1,20 @@
 {
   "name": "ng2-easy-table",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "Angular2 simple beautifull table",
   "repository": {
     "type": "git",
     "url": "https://github.com/ssuperczynski/ng2-easy-table.git"
   },
   "scripts": {
-    "start": "concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "concurrent \"npm run tsc:w\" \"npm run lite\" ",
     "tsc": "tsc",
     "test": "karma start karma.conf.js --single-run",
     "tsc:w": "tsc -w",
+    "concurrent": "concurrent",
     "lite": "lite-server",
     "typings": "typings",
-    "postinstall": "concurrently \"typings install\" \"npm run tsc\" ",
+    "postinstall": "typings install && npm run tsc",
     "prepublish": "gulp",
     "styles": "node-sass -w app/styles/main.scss app/styles/main.css"
   },
@@ -35,8 +36,8 @@
   },
   "devDependencies": {
     "angular2-in-memory-web-api": "0.0.7",
-    "concurrently": "^2.0.0",
     "del": "^2.2.0",
+    "concurrently": "^2.0.0",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.1",
     "gulp-typescript": "^2.12.2",
