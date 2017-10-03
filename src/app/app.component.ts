@@ -1,38 +1,26 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-
-import { SearchPipe } from "./pipes/header-pipe";
-import { PaginationPipe } from "./pipes/pagination-pipe";
-import { GlobalSearchPipe } from "./pipes/global-search-pipe";
+import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 
 import { FiltersService } from "./services/filters-service";
 import { ConfigService } from "./services/config-service";
 import { ResourceService } from "./services/resource-service";
 import { HttpService } from "./services/http-service";
 
-import { GlobalSearch } from "./components/global-search/global-search.component";
-import { CsvExport } from "./components/dropdown/csv-export.component";
-import { Header } from "./components/header/header.component";
-import { Pagination } from "./components/pagination/pagination.component";
-
 import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'ng2-table',
   providers: [HttpService, FiltersService, ResourceService, ConfigService],
-  // directives: [Header, Pagination, GlobalSearch, CsvExport],
-  // pipes: [SearchPipe, PaginationPipe, GlobalSearchPipe],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   @Input() configuration: ConfigService;
 
   constructor(public filtersService: FiltersService,
               public config: ConfigService,
               public resource: ResourceService,
-              public httpService: HttpService) {
+              public httpService: HttpService,
+              private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -49,6 +37,10 @@ export class AppComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
+  }
+
   public data: Array<any>;
   public keys: Array<any>;
   public numberOfItems: number;
@@ -56,5 +48,5 @@ export class AppComponent implements OnInit {
 
   public orderBy(key: string) {
     this.data = this.resource.sortBy(key);
-  };
+  }
 }
