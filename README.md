@@ -42,7 +42,13 @@ export class AppModule {
 ### app.component.html
 
 ```html
-<ng2-table></ng2-table>
+<ng2-table [configuration]="configuration"></ng2-table>
+```
+
+### app.component.ts
+
+```html
+<ng2-table [configuration]="configuration"></ng2-table>
 ```
 
 ### config-service.ts:
@@ -58,7 +64,7 @@ export class ConfigService {
   public paginationEnabled = false;
   public exportEnabled = false;
   public editEnabled = false;
-  public resourceUrl = "app/data.json";
+  resourceUrl: 'http://www.mocky.io/v2/59d5129e270000bf009cd582',
   public rows = 10;
 }
 ```
