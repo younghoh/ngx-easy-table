@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { AppComponent } from './app.component';
+import { TableComponent } from './app.component';
 import { GlobalSearch } from "./components/global-search/global-search.component";
 import { CsvExport } from "./components/dropdown/csv-export.component";
 import { Header } from "./components/header/header.component";
@@ -12,7 +12,7 @@ import { GlobalSearchPipe } from "./pipes/global-search-pipe";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    TableComponent,
     GlobalSearch,
     CsvExport,
     Header,
@@ -26,6 +26,6 @@ import { GlobalSearchPipe } from "./pipes/global-search-pipe";
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [TableComponent]
 })
-export class AppModule { }
+export class TableModule { }

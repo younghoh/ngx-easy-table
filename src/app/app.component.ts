@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './app.component.html',
 })
 
-export class AppComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit {
   @Input() configuration: ConfigService;
 
   constructor(public filtersService: FiltersService,

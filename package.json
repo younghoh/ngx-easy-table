@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Angular easy table",
   "repository": {
     "type": "git",
@@ -58,9 +58,9 @@
     "npm": ">=5.2.0"
   },
   "bugs": {
-    "url": "https://github.com/ssuperczynski/ng2-table/issues"
+    "url": "https://github.com/ssuperczynski/ng2-easy-table/issues"
   },
-  "homepage": "https://github.com/ssuperczynski/ng2-table",
+  "homepage": "https://github.com/ssuperczynski/ng2-easy-table",
   "main": "main.js",
   "keywords": [
     "angular",
