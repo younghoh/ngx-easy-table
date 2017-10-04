@@ -1,1 +1,1 @@
-export * from './app/app.module'
+export {TableModule} from './app/app.module'

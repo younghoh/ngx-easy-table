@@ -10,33 +10,39 @@ Beta version. Component may contains some issues, but feel free to add it to you
 
 <h3><a href="http://angular2-table.espeo.pl/" target="_blank">DEMO</a></h3>
 
-This table always will be easy to add to every page.
-
 #Installation
 
-`npm install ng2-easy-table`
-### app.component.ts
+`npm install ngx-easy-table`
+
+### app.module.ts
 
 ```typescript
-///<reference path="./../typings/browser/ambient/es6-shim/index.d.ts"/>
-import {Component}     from '@angular/core';
-import {bootstrap}     from '@angular/platform-browser-dynamic';
-import {AppComponent}  from 'ng2-easy-table/app/app.component';
-import {ConfigService} from "./config-service";
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-@Component({
-  selector: 'app',
-  directives: [AppComponent],
-  providers: [ConfigService],
-  template: `
-    <ng2-table [configuration]="configuration"></ng2-table>
-  `
+import {AppComponent} from './app.component';
+import {TableModule} from 'ngx-easy-table';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    TableModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class App {
-  constructor(private configuration:ConfigService) {}
+export class AppModule {
 }
 
-bootstrap(App, [ConfigService]);
+```
+
+### app.component.html
+
+```html
+<ng2-table></ng2-table>
 ```
 
 ### config-service.ts:
@@ -69,65 +75,3 @@ export class ConfigService {
 | globalSearchEnabled | bool           | true false | public globalSearchEnabled = true;          |
 | resourceUrl         | string         |            | public resourceUrl = "api/v1/persons.json"; |
 | rows                | int            |            | public rows = 10;                           |
-
-
-If you have problem displaying table, check `systemsj.config.js` configuration
-
-```js
-(function(global) {
-
-  // map tells the System loader where to look for things
-  var map = {
-    'app':                        'app', // 'dist',
-    'rxjs':                       'node_modules/rxjs',
-    'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-    '@angular':                   'node_modules/@angular',
-    'ng2-easy-table':             'node_modules/ng2-easy-table/dist'
-  };
-
-  // packages tells the System loader how to load
-  // when no filename and/or no extension
-  var packages = {
-    'app':                        { main: 'index.component.js',  defaultExtension: 'js' },
-    'rxjs':                       { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { defaultExtension: 'js' },
-    'ng2-easy-table':             { format: 'register', defaultExtension: 'js' },
-     dist:                        { format: 'register', defaultExtension: 'js' }
-  };
-
-  var packageNames = [
-    '@angular/common',
-    '@angular/compiler',
-    '@angular/core',
-    '@angular/http',
-    '@angular/platform-browser',
-    '@angular/platform-browser-dynamic',
-    '@angular/router',
-    '@angular/router-deprecated',
-    '@angular/testing',
-    '@angular/upgrade'
-  ];
-
-  // add package entries for angular packages in the form
-  // '@angular/common': { main: 'index.js', defaultExtension: 'js' }
-  packageNames.forEach(function(pkgName) {
-    packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
-  });
-
-  var config = {
-    map: map,
-    packages: packages
-  };
-
-  // filterSystemConfig - index.html's chance
-  // to modify config before we register it.
-  if (global.filterSystemConfig) { global.filterSystemConfig(config); }
-
-  System.config(config);
-
-})(this);
-```
-
-
-run tests by typing:
-`npm test`

@@ -25,6 +25,7 @@ import { GlobalSearchPipe } from "./pipes/global-search-pipe";
     BrowserModule,
     HttpModule
   ],
+  exports: [TableComponent],
   providers: [],
   bootstrap: [TableComponent]
 })
