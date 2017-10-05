@@ -1,6 +1,3 @@
-![Imgur](http://i.imgur.com/gwjpUqe.png "logo")
-
-
 [![npm version](https://badge.fury.io/js/ng2-easy-table.svg)](https://badge.fury.io/js/ng2-easy-table)
 [![Build Status](https://travis-ci.org/ssuperczynski/ng2-easy-table.svg?branch=master)](https://travis-ci.org/ssuperczynski/ng2-easy-table)
 
@@ -12,7 +9,7 @@ Beta version. Component may contains some issues, but feel free to add it to you
 
 #Installation
 
-`npm install ngx-easy-table`
+`npm install ngx-easy-table --save`
 
 ### app.module.ts
 
@@ -45,12 +42,6 @@ export class AppModule {
 <ng2-table [configuration]="configuration"></ng2-table>
 ```
 
-### app.component.ts
-
-```html
-<ng2-table [configuration]="configuration"></ng2-table>
-```
-
 ### config-service.ts:
 
 ```typescript
@@ -63,7 +54,6 @@ export class ConfigService {
   public footerEnabled = false;
   public paginationEnabled = false;
   public exportEnabled = false;
-  public editEnabled = false;
   resourceUrl: 'http://www.mocky.io/v2/59d5129e270000bf009cd582',
   public rows = 10;
 }
