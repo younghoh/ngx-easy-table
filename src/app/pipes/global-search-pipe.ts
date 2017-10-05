@@ -17,7 +17,7 @@ export class GlobalSearchPipe {
     }
     this.resource.data = [];
     dataArr.forEach((row) => {
-      for (var value in row) {
+      for (const value in row) {
         if (row.hasOwnProperty(value)) {
           let element;
           if (typeof row[value] === "object") {

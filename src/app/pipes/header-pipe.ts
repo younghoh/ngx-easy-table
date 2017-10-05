@@ -25,7 +25,7 @@ export class SearchPipe {
     let filtersArr = this.filtersService.get();
 
     value.forEach((item) => {
-      for (var filterKey in filtersArr) {
+      for (const filterKey in filtersArr) {
         if (filtersArr.hasOwnProperty(filterKey)) {
           let element;
           if (typeof item[filterKey] === "string") {

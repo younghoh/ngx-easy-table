@@ -7,7 +7,7 @@ Beta version. Component may contains some issues, but feel free to add it to you
 
 <h3><a href="http://angular2-table.espeo.pl/" target="_blank">DEMO</a></h3>
 
-#Installation
+# Installation
 
 `npm install ngx-easy-table --save`
 
@@ -58,9 +58,12 @@ export class ConfigService {
   public rows = 10;
 }
 ```
+
+# Screens
+
 ![table](http://i.imgur.com/yqlYtVR.png "table")
 
-###Available config settings:
+### Available config settings:
 
 | field               |      type      |  options   | example                                     |
 |---------------------|:--------------:|:----------:|---------------------------------------------|

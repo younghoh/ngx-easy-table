@@ -1,24 +1,26 @@
-import {Component} from '@angular/core';
-import {ResourceService} from "../../services/resource-service";
+import { Component } from '@angular/core';
+import { ResourceService } from "../../services/resource-service";
+
 @Component({
   selector: 'csv-export',
-  template: `<button class="ng2-table__csv-export-button"
-                    (click)="exportCsv()">Export to CSV
-                </button>`
+  template: `
+    <button class="ng2-table__csv-export-button"
+            (click)="exportCsv()">Export to CSV
+    </button>`
 })
 
 export class CsvExport {
-  constructor(public resource:ResourceService) {
+  constructor(public resource: ResourceService) {
   }
 
   public exportCsv = () => {
     let data = this.resource.data;
     let csvContent = "data:text/csv;charset=utf-8,";
     let dataString = "";
-    let x:Array<any> = [];
+    let x: Array<any> = [];
     data.forEach((row, index) => {
       x[index] = [];
-      for (var i in row) {
+      for (const i in row) {
         if (row.hasOwnProperty(i)) {
           if (typeof row[i] === "object") {
             row[i] = "Object"; // so far just change object to "Object" string
@@ -34,7 +36,7 @@ export class CsvExport {
       csvContent += index < data.length ? dataString + "\n" : dataString;
     });
     const encodedUri = encodeURI(csvContent);
-    var link = document.createElement("a");
+    const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
     link.setAttribute("download", "my_data.csv");
 
