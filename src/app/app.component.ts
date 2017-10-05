@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
   selector: 'ng2-table',
   providers: [HttpService, FiltersService, ResourceService, ConfigService],
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 
 export class TableComponent implements OnInit, AfterViewInit {
