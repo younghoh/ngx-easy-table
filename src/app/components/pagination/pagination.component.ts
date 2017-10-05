@@ -5,6 +5,7 @@ import {ConfigService} from "../../services/config-service";
 @Component({
   selector: 'pagination',
   templateUrl: './pagination.html',
+  styleUrls: ['./pagination.css']
 })
 
 export class Pagination {
