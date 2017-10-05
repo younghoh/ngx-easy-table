@@ -29,7 +29,7 @@
     <th *ngIf="config.editEnabled"></th>
   </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="data">
   <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range">
     <td *ngFor="let key of keys">
       {{ row[key] }}
@@ -38,6 +38,9 @@
       <button class="ng2-table__button">Edit</button>
     </td>
   </tr>
+  </tbody>
+  <tbody *ngIf="!data">
+  <tr><td>No results</td></tr>
   </tbody>
   <tfoot *ngIf="config.footerEnabled">
   <tr>
