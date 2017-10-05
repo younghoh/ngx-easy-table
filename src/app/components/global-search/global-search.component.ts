@@ -9,7 +9,8 @@ import {Component, OnInit, Output, EventEmitter} from "@angular/core";
            #input
            (input)="globalUpdate.emit({value: input.value})"
            placeholder="Search" />
-</label>`
+</label>`,
+  styleUrls: ['./global-search.css']
 })
 
 export class GlobalSearch {

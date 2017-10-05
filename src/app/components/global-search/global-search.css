@@ -1,0 +1,16 @@
+.ng2-table__global-search-label {
+  border: 1px solid #f0f0f0;
+  display: inline-block;
+  margin: 6px 0;
+  padding: 2px;
+  width: 300px;
+}
+.ng2-table__global-search-label::before {
+  color: #cacaca;
+  content: '\f002';
+  font-family: 'FontAwesome', sans-serif;
+  left: 290px;
+  position: absolute;
+  top: 18px;
+  z-index: 1;
+}

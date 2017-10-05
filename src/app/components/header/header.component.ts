@@ -9,7 +9,8 @@ import {FiltersService} from "../../services/filters-service";
        class="ng2-table__input"
        #input
        (input)="update.emit({value: input.value, key: key})"
->`
+>`,
+  styleUrls: ['./header.css']
 })
 
 export class Header implements OnInit {

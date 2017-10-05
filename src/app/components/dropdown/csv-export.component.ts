@@ -6,7 +6,8 @@ import { ResourceService } from "../../services/resource-service";
   template: `
     <button class="ng2-table__csv-export-button"
             (click)="exportCsv()">Export to CSV
-    </button>`
+    </button>`,
+  styleUrls: ['./csv-export.css']
 })
 
 export class CsvExport {
