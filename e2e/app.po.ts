@@ -5,7 +5,9 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getTable() {
+    return element
+      .all(by.className('ng2-table__table--striped'))
+      .all(by.css('tbody tr'));
   }
 }

@@ -1,14 +1,23 @@
 import { AppPage } from './app.po';
 
-describe('ngx-easy-table App', () => {
+describe('table', () => {
   let page: AppPage;
-
+  let data;
   beforeEach(() => {
     page = new AppPage();
+    page.navigateTo();
+    data = page.getTable();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+  it('should display 10 rows when default config', () => {
+    data.getText().then((table) => {
+      expect(table.length).toEqual(10);
+    });
+  });
+
+  it('should get first row from table', () => {
+    const firstRow = data.get(0);
+    expect(firstRow.getText())
+      .toEqual('+1 (956) 488-3403 ARTWORLDS Hahn 33 $1,843.19 false');
   });
 });
