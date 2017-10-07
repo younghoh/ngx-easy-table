@@ -53,10 +53,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   rowEvent($event, row, key) {
-    this.event.emit({
-      event: $event,
-      row: row,
-      key: key,
-    });
+    if (this.configuration.clickEvent) {
+      this.event.emit({
+        event: $event,
+        row: row,
+        key: key,
+      });
+    }
   }
 }

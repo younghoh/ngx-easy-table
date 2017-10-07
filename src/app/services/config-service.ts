@@ -8,6 +8,7 @@ export class ConfigService {
     public paginationEnabled = true;
     public exportEnabled = true;
     public editEnabled = false;
+    public clickEvent = true;
     public resourceUrl = "http://www.mocky.io/v2/59d5129e270000bf009cd582";
     public rows = 10;
 }
