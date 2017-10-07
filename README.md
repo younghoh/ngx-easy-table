@@ -88,6 +88,10 @@ export class ConfigurationService {
   public footerEnabled = false;
   public paginationEnabled = false;
   public exportEnabled = false;
+  public clickEvent = true;
+  public selectRow = true;
+  public selectCol = false;
+  public selectCell = false;
   public resourceUrl = 'https://www.json-generator.com/api/json/get/ciRBhHznFK?indent=2';
   public rows = 10;
 }
@@ -99,12 +103,4 @@ export class ConfigurationService {
 
 ### Available config settings:
 
-| field               |      type      |  options   | example                                     |
-|---------------------|:--------------:|:----------:|---------------------------------------------|
-| searchEnabled       | bool           | true false | public searchEnabled = true;                |
-| exportEnabled       | bool           | true false | public exportEnabled = true;                |
-| orderEnabled        | bool           | true false | public orderEnabled = true;                 |
-| paginationEnabled   | bool           | true false | public paginationEnabled = true;            |
-| globalSearchEnabled | bool           | true false | public globalSearchEnabled = true;          |
-| resourceUrl         | string         |            | public resourceUrl = "api/v1/persons.json"; |
-| rows                | int            |            | public rows = 10;                           |
+See https://github.com/ssuperczynski/ngx-easy-table/wiki
