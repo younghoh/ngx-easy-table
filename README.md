@@ -3,9 +3,18 @@
 
 Proudly powered by [![Imgur](http://i.imgur.com/qbbb6ah.png)](http://espeo.eu/)
 
-Beta version. Component may contains some issues, but feel free to add it to your page!
+Component may contains some issues, but feel free to add it to your app!
 
-<h3><a href="http://angular2-table.espeo.pl/" target="_blank">DEMO</a></h3>
+### Live edit
+<a href="https://stackblitz.com/edit/angular-5gsg43?embed=1&file=app/app.component.ts">
+<img width="187" src="https://github.com/gothinkster/realworld/raw/master/media/edit_on_blitz.png?raw=true" style="max-width:100%;">
+</a>
+
+### Interactive demo
+
+<a href="https://angular-2xhnud.stackblitz.io">
+<img width="187" src="https://github.com/gothinkster/realworld/raw/master/media/edit_on_blitz.png?raw=true" style="max-width:100%;">
+</a>
 
 # Installation
 
@@ -42,26 +51,51 @@ export class AppModule {
 <ng2-table [configuration]="configuration"></ng2-table>
 ```
 
+### app.component.ts
+
+```ts
+import { Component } from '@angular/core';
+import {ConfigurationService} from './configuration.service';
+
+@Component({
+  selector: 'my-app',
+  templateUrl: './app.component.html',
+  styleUrls: [ './app.component.css' ],
+  providers: [ConfigurationService],
+})
+export class AppComponent  {
+  constructor(private configuration: ConfigurationService) {
+    this.configuration = configuration;
+  }
+}
+
+```
+
+
 ### config-service.ts:
 
 ```typescript
-import {Injectable} from "@angular/core";
+import { Injectable } from '@angular/core';
+
 @Injectable()
-export class ConfigService {
+export class ConfigurationService {
+
+  constructor() { }
+
   public searchEnabled = false;
   public orderEnabled = true;
   public globalSearchEnabled = false;
   public footerEnabled = false;
   public paginationEnabled = false;
   public exportEnabled = false;
-  resourceUrl: 'http://www.mocky.io/v2/59d5129e270000bf009cd582',
+  public resourceUrl = 'https://www.json-generator.com/api/json/get/ciRBhHznFK?indent=2';
   public rows = 10;
 }
 ```
 
 # Screens
 
-![table](http://i.imgur.com/yqlYtVR.png "table")
+![table](http://i.imgur.com/nuUVQNl.png "table")
 
 ### Available config settings:
 
