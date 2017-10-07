@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
 
 import { FiltersService } from "./services/filters-service";
 import { ConfigService } from "./services/config-service";
@@ -16,6 +16,7 @@ import 'rxjs/add/operator/map';
 
 export class TableComponent implements OnInit, AfterViewInit {
   @Input() configuration: ConfigService;
+  @Output() event = new EventEmitter();
 
   constructor(public filtersService: FiltersService,
               public config: ConfigService,
@@ -49,5 +50,15 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public orderBy(key: string) {
     this.data = this.resource.sortBy(key);
+  }
+
+  rowEvent($event, row, key) {
+    if (this.configuration.clickEvent) {
+      this.event.emit({
+        event: $event,
+        row: row,
+        key: key,
+      });
+    }
   }
 }
