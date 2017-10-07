@@ -52,10 +52,11 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.data = this.resource.sortBy(key);
   }
 
-  cellEvent(key) {
-    console.log(key);
+  rowEvent($event, row, key) {
     this.event.emit({
-      event: key
+      event: $event,
+      row: row,
+      key: key,
     });
   }
 }

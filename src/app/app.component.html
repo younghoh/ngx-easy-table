@@ -32,7 +32,7 @@
   <tbody *ngIf="data">
   <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range">
     <td *ngFor="let key of keys">
-      <div (click)="cellEvent(row[key])">{{ row[key] }}</div>
+      <div (click)="rowEvent($event, row, key)">{{ row[key] }}</div>
     </td>
     <td *ngIf="config.editEnabled">
       <button class="ng2-table__button">Edit</button>
