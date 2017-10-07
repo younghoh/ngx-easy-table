@@ -46,18 +46,33 @@ export class TableComponent implements OnInit, AfterViewInit {
   public data: Array<any>;
   public keys: Array<any>;
   public numberOfItems: number;
+  public selectedRow: number;
+  public selectedCol: number;
+  public selectedCell: number;
   public itemsObservables;
 
   public orderBy(key: string) {
     this.data = this.resource.sortBy(key);
   }
 
-  rowEvent($event, row, key) {
-    if (this.configuration.clickEvent) {
+  clickedCell($event:object, row: object, key: string|number|boolean, colIndex: number, rowIndex: number) {
+    if (this.config.selectRow) {
+      this.selectedRow = rowIndex;
+    }
+    if (this.config.selectCol) {
+      this.selectedCol = colIndex;
+    }
+    if (this.config.selectCell) {
+      this.selectedRow = rowIndex;
+      this.selectedCol = colIndex;
+    }
+    if (this.config.clickEvent) {
       this.event.emit({
         event: $event,
         row: row,
         key: key,
+        rowId: rowIndex,
+        colId: colIndex,
       });
     }
   }
