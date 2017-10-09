@@ -17,7 +17,13 @@ describe('table', () => {
 
   it('should get first row from table', () => {
     const firstRow = data.get(0);
-    expect(firstRow.getText())
-      .toEqual('+1 (956) 488-3403 ARTWORLDS Hahn 33 $1,843.19 false');
+    firstRow.getText().then((row) => {
+      expect(row)
+        .toEqual('+1 (949) 527-2108\n' +
+          '36\n' +
+          'KONGENE\n' +
+          'Deanne Contreras\n' +
+          'false');
+    });
   });
 });
