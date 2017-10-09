@@ -8,9 +8,11 @@
   <thead>
   <tr>
     <th [style.display]="config.orderEnabled?'':'none' "
-        *ngFor="let key of keys"
+        *ngFor="let key of keys;let headerIndex = index"
         (click)="orderBy(key)">
-      {{ key }}
+      <div *ngIf="isColumnDefined();then customHeader else defaultHeader"></div>
+      <ng-template #customHeader>{{config.columns[headerIndex]}}</ng-template>
+      <ng-template #defaultHeader>{{ key }}</ng-template>
       <span *ngIf="resource.order[key]==='asc' "
             class="ng2-table__sort-indicator ng2-table__sort-indicator--down"></span>
       <span *ngIf="resource.order[key]==='desc' "
