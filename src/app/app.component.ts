@@ -78,6 +78,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   isColumnDefined() {
+    if (!('columns' in this.config)) {
+      console.error('you need to define "columns" property in the configuration service');
+      return false;
+    }
     if(this.config.columns.length === 0) {
       return false;
     }
