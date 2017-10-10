@@ -8,15 +8,24 @@
   <thead>
   <tr>
     <th [style.display]="config.orderEnabled?'':'none' "
-        *ngFor="let key of keys;let headerIndex = index"
-        (click)="orderBy(key)">
-      <div *ngIf="isColumnDefined();then customHeader else defaultHeader"></div>
-      <ng-template #customHeader>{{config.columns[headerIndex]}}</ng-template>
-      <ng-template #defaultHeader>{{ key }}</ng-template>
-      <span *ngIf="resource.order[key]==='asc' "
-            class="ng2-table__sort-indicator ng2-table__sort-indicator--down"></span>
-      <span *ngIf="resource.order[key]==='desc' "
-            class="ng2-table__sort-indicator ng2-table__sort-indicator--up"></span>
+        *ngFor="let key of keys;let headerIndex = index">
+      <div (click)="orderBy(key)"
+           class="ng2-table__header">
+        <div *ngIf="isColumnDefined();then customHeader else defaultHeader"></div>
+        <ng-template #customHeader>{{config.columns[headerIndex]}}</ng-template>
+        <ng-template #defaultHeader>{{ key }}</ng-template>
+        <span *ngIf="resource.order[key]==='asc' "
+              class="ng2-table__sort-indicator ng2-table__sort-indicator--down">
+        </span>
+        <span *ngIf="resource.order[key]==='desc' "
+              class="ng2-table__sort-indicator ng2-table__sort-indicator--up">
+        </span>
+      </div>
+      <div class="ng2-table__header-toggle">
+        <input type="checkbox"
+               (click)="toggleColumn(key)"
+               *ngIf="config.toggleColumns">
+      </div>
     </th>
     <th [style.display]="!config.orderEnabled?'':'none' "
         *ngFor="let key of keys">
@@ -35,20 +44,24 @@
   <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
               let rowIndex = index"
       [class.ng2-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-    <td *ngFor="let key of keys; let colIndex = index"
-        (click)="clickedCell($event, row, key, colIndex, rowIndex)"
-        [class.ng2-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
-        [class.ng2-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
-    >
-      <div>{{ row[key] }}</div>
-    </td>
+    <ng-container *ngFor="let key of keys; let colIndex = index">
+      <td *ngIf="showColumn(key)"
+          (click)="clickedCell($event, row, key, colIndex, rowIndex)"
+          [class.ng2-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
+          [class.ng2-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+      >
+        <div>{{ row[key] }}</div>
+      </td>
+    </ng-container>
     <td *ngIf="config.editEnabled">
       <button class="ng2-table__button">Edit</button>
     </td>
   </tr>
   </tbody>
   <tbody *ngIf="!data">
-  <tr><td>No results</td></tr>
+  <tr>
+    <td>No results</td>
+  </tr>
   </tbody>
   <tfoot *ngIf="config.footerEnabled">
   <tr>

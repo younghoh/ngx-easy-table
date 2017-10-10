@@ -65,4 +65,10 @@
 .ng2-table__sort-indicator--down {
   border-top: 5px solid #000;
 }
-
+.ng2-table__header {
+  display: inline-block;
+}
+.ng2-table__header-toggle {
+  display: inline-block;
+  float: right;
+}

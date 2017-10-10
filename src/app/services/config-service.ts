@@ -9,11 +9,13 @@ export class ConfigService {
   public paginationEnabled = true;
   public exportEnabled = true;
   public editEnabled = false;
-  public clickEvent = true;
+  public clickEvent = false;
   public selectRow = true;
   public selectCol = false;
   public selectCell = false;
   public resourceUrl = "https://www.json-generator.com/api/json/get/ceVvFoDEeq";
   public rows = 10;
   public columns: string[] = [];
+  public toggleColumns = true;
+  public hiddenColumns = new Set(['APPLE', 'ORANGE', 'MANGO']);
 }

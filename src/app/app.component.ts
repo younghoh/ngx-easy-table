@@ -45,6 +45,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   public data: Array<any>;
   public keys: Array<any>;
+  public hiddenColumns: Set<string> = new Set<string>();
   public numberOfItems: number;
   public selectedRow: number;
   public selectedCol: number;
@@ -91,5 +92,21 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
 
     return true;
+  }
+
+  showColumn(colIndex) {
+    if (!('toggleColumns' in this.config)) {
+      console.error('you need to define "toggleColumns" property in the configuration service');
+    }
+
+    return !this.hiddenColumns.has(colIndex);
+  }
+
+  toggleColumn(colIndex) {
+    if (this.hiddenColumns.has(colIndex)) {
+      this.hiddenColumns.delete(colIndex)
+    } else {
+      this.hiddenColumns.add(colIndex);
+    }
   }
 }
