@@ -48,7 +48,9 @@ export class AppModule {
 ### app.component.html
 
 ```html
-<ng2-table [configuration]="configuration"></ng2-table>
+<ng2-table [configuration]="configuration"
+           (event)="eventEmitted($event)">
+</ng2-table>
 ```
 
 ### app.component.ts
@@ -94,6 +96,8 @@ export class ConfigurationService {
   public selectCell = false;
   public resourceUrl = 'https://www.json-generator.com/api/json/get/ciRBhHznFK?indent=2';
   public rows = 10;
+  public columns: string[] = [];
+  public hiddenColumns = new Set([]);
 }
 ```
 
