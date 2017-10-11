@@ -16,6 +16,5 @@ export class ConfigService {
   public resourceUrl = "https://www.json-generator.com/api/json/get/ceVvFoDEeq";
   public rows = 10;
   public columns: string[] = [];
-  public toggleColumns = true;
-  public hiddenColumns = new Set(['APPLE', 'ORANGE', 'MANGO']);
+  public hiddenColumns = new Set(['APPLE', 'ORANGE', 'company']);
 }

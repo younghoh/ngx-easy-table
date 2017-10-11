@@ -7,10 +7,10 @@
 <table class="ng2-table__table--striped">
   <thead>
   <tr>
-    <th [style.display]="config.orderEnabled?'':'none' "
-        *ngFor="let key of keys;let headerIndex = index">
-      <div (click)="orderBy(key)"
-           class="ng2-table__header">
+    <ng-container *ngFor="let key of keys;let headerIndex = index">
+      <th [style.display]="config.orderEnabled?'':'none' "
+          *ngIf="showColumn(key)"
+          (click)="orderBy(key)">
         <div *ngIf="isColumnDefined();then customHeader else defaultHeader"></div>
         <ng-template #customHeader>{{config.columns[headerIndex]}}</ng-template>
         <ng-template #defaultHeader>{{ key }}</ng-template>
@@ -20,23 +20,22 @@
         <span *ngIf="resource.order[key]==='desc' "
               class="ng2-table__sort-indicator ng2-table__sort-indicator--up">
         </span>
-      </div>
-      <div class="ng2-table__header-toggle">
-        <input type="checkbox"
-               (click)="toggleColumn(key)"
-               *ngIf="config.toggleColumns">
-      </div>
-    </th>
-    <th [style.display]="!config.orderEnabled?'':'none' "
-        *ngFor="let key of keys">
-      {{ key }}
-    </th>
+      </th>
+    </ng-container>
+    <ng-container *ngFor="let key of keys">
+      <th [style.display]="!config.orderEnabled?'':'none' "
+          *ngIf="showColumn(key)">
+        {{ key }}
+      </th>
+    </ng-container>
     <th *ngIf="config.editEnabled">Actions</th>
   </tr>
   <tr *ngIf="config.searchEnabled">
-    <th *ngFor="let key of keys">
-      <table-header (update)="term = $event" [key]="key"></table-header>
-    </th>
+    <ng-container *ngFor="let key of keys">
+      <th *ngIf="showColumn(key)">
+        <table-header (update)="term = $event" [key]="key"></table-header>
+      </th>
+    </ng-container>
     <th *ngIf="config.editEnabled"></th>
   </tr>
   </thead>
