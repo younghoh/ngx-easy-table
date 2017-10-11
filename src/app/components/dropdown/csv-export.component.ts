@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ResourceService } from "../../services/resource-service";
+import { ResourceService, ConfigService } from "../../services";
 
 @Component({
   selector: 'csv-export',
@@ -11,27 +11,31 @@ import { ResourceService } from "../../services/resource-service";
 })
 
 export class CsvExport {
-  constructor(public resource: ResourceService) {
+  constructor(public resource: ResourceService,
+              public config: ConfigService) {
   }
 
   public exportCsv = () => {
-    let data = this.resource.data;
+    const data = this.resource.data;
     let csvContent = "data:text/csv;charset=utf-8,";
     let dataString = "";
     let x: Array<any> = [];
+    const keys = [...this.resource.keys].filter((key) => {
+      return !this.config.hiddenColumns.has(key);
+    });
     data.forEach((row, index) => {
       x[index] = [];
-      for (const i in row) {
+      keys.forEach((i) => {
         if (row.hasOwnProperty(i)) {
           if (typeof row[i] === "object") {
             row[i] = "Object"; // so far just change object to "Object" string
           }
           x[index].push(row[i]);
         }
-      }
+      });
     });
-    let header = this.resource.keys.join(",");
-    csvContent += header + "\n";
+
+    csvContent += keys + "\n";
     x.forEach((row, index) => {
       dataString = row.join(",");
       csvContent += index < data.length ? dataString + "\n" : dataString;
@@ -42,5 +46,5 @@ export class CsvExport {
     link.setAttribute("download", "my_data.csv");
 
     link.click();
-  }
+  };
 }

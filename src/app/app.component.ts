@@ -76,4 +76,36 @@ export class TableComponent implements OnInit, AfterViewInit {
       });
     }
   }
+
+  isColumnDefined() {
+    if (!('columns' in this.config)) {
+      console.error('you need to define "columns" property in the configuration service');
+      return false;
+    }
+    if(this.config.columns.length === 0) {
+      return false;
+    }
+    if (this.keys.length !== this.config.columns.length) {
+      console.error('columns count in the configuration is not equal to columns count from JSON');
+      return false;
+    }
+
+    return true;
+  }
+
+  showColumn(colIndex) {
+    if (!('hiddenColumns' in this.config)) {
+      console.error('you need to define "hiddenColumns" property in the configuration service');
+    }
+
+    return !this.config.hiddenColumns.has(colIndex);
+  }
+
+  toggleColumn(colIndex) {
+    if (this.config.hiddenColumns.has(colIndex)) {
+      this.config.hiddenColumns.delete(colIndex)
+    } else {
+      this.config.hiddenColumns.add(colIndex);
+    }
+  }
 }
