@@ -92,4 +92,20 @@ export class TableComponent implements OnInit, AfterViewInit {
 
     return true;
   }
+
+  showColumn(colIndex) {
+    if (!('hiddenColumns' in this.config)) {
+      console.error('you need to define "hiddenColumns" property in the configuration service');
+    }
+
+    return !this.config.hiddenColumns.has(colIndex);
+  }
+
+  toggleColumn(colIndex) {
+    if (this.config.hiddenColumns.has(colIndex)) {
+      this.config.hiddenColumns.delete(colIndex)
+    } else {
+      this.config.hiddenColumns.add(colIndex);
+    }
+  }
 }
