@@ -66,9 +66,7 @@ import {ConfigurationService} from './configuration.service';
   providers: [ConfigurationService],
 })
 export class AppComponent  {
-  constructor(private configuration: ConfigurationService) {
-    this.configuration = configuration;
-  }
+  constructor(private configuration: ConfigurationService) {}
 }
 
 ```
@@ -78,12 +76,10 @@ export class AppComponent  {
 
 ```typescript
 import { Injectable } from '@angular/core';
+import { Config } from 'ngx-easy-table/app/model/config';
 
 @Injectable()
-export class ConfigurationService {
-
-  constructor() { }
-
+export class ConfigurationService implements Config {
   public searchEnabled = false;
   public orderEnabled = true;
   public globalSearchEnabled = false;

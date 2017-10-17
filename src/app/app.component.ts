@@ -1,10 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
-
-import { FiltersService } from "./services/filters-service";
-import { ConfigService } from "./services/config-service";
-import { ResourceService } from "./services/resource-service";
-import { HttpService } from "./services/http-service";
-
+import { FiltersService, ConfigService, ResourceService, HttpService } from "./services";
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -15,6 +10,14 @@ import 'rxjs/add/operator/map';
 })
 
 export class TableComponent implements OnInit, AfterViewInit {
+  public data: Array<any>;
+  public keys: Array<any>;
+  public numberOfItems: number;
+  public selectedRow: number;
+  public selectedCol: number;
+  public selectedCell: number;
+  public itemsObservables;
+
   @Input() configuration: ConfigService;
   @Output() event = new EventEmitter();
 
@@ -43,19 +46,11 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.cdr.detectChanges();
   }
 
-  public data: Array<any>;
-  public keys: Array<any>;
-  public numberOfItems: number;
-  public selectedRow: number;
-  public selectedCol: number;
-  public selectedCell: number;
-  public itemsObservables;
-
-  public orderBy(key: string) {
+  orderBy(key: string) {
     this.data = this.resource.sortBy(key);
   }
 
-  clickedCell($event:object, row: object, key: string|number|boolean, colIndex: number, rowIndex: number) {
+  clickedCell($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number) {
     if (this.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -78,11 +73,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   isColumnDefined() {
-    if (!('columns' in this.config)) {
-      console.error('you need to define "columns" property in the configuration service');
-      return false;
-    }
-    if(this.config.columns.length === 0) {
+    if (this.config.columns.length === 0) {
       return false;
     }
     if (this.keys.length !== this.config.columns.length) {
@@ -94,10 +85,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   showColumn(colIndex) {
-    if (!('hiddenColumns' in this.config)) {
-      console.error('you need to define "hiddenColumns" property in the configuration service');
-    }
-
     return !this.config.hiddenColumns.has(colIndex);
   }
 

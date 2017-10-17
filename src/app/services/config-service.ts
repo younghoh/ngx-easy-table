@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
+import { Config } from '../model/config';
 
 @Injectable()
-export class ConfigService {
+export class ConfigService implements Config {
   public searchEnabled = true;
   public orderEnabled = true;
   public globalSearchEnabled = true;
@@ -15,6 +16,6 @@ export class ConfigService {
   public selectCell = false;
   public resourceUrl = "https://www.json-generator.com/api/json/get/ceVvFoDEeq";
   public rows = 10;
-  public columns: string[] = [];
+  public columns = [];
   public hiddenColumns = new Set([]);
 }
