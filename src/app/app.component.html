@@ -40,22 +40,33 @@
   </tr>
   </thead>
   <tbody *ngIf="data">
-  <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
+  <ng-container *ngIf="tpl">
+    <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
               let rowIndex = index"
-      [class.ng2-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-    <ng-container *ngFor="let key of keys; let colIndex = index">
-      <td *ngIf="showColumn(key)"
-          (click)="clickedCell($event, row, key, colIndex, rowIndex)"
-          [class.ng2-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
-          [class.ng2-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
-      >
-        <div>{{ row[key] }}</div>
+        [class.ng2-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+      <ng-container [ngTemplateOutlet]="tpl"
+                    [ngOutletContext]="{ $implicit: row }">
+      </ng-container>
+    </tr>
+  </ng-container>
+  <ng-container *ngIf="!tpl">
+    <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
+              let rowIndex = index"
+        [class.ng2-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+      <ng-container *ngFor="let key of keys; let colIndex = index">
+        <td *ngIf="showColumn(key)"
+            (click)="clickedCell($event, row, key, colIndex, rowIndex)"
+            [class.ng2-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
+            [class.ng2-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+        >
+          <div>{{ row[key] }}</div>
+        </td>
+      </ng-container>
+      <td *ngIf="config.editEnabled">
+        <button class="ng2-table__button">Edit</button>
       </td>
-    </ng-container>
-    <td *ngIf="config.editEnabled">
-      <button class="ng2-table__button">Edit</button>
-    </td>
-  </tr>
+    </tr>
+  </ng-container>
   </tbody>
   <tbody *ngIf="!data">
   <tr>
