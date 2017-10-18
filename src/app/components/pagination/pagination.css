@@ -28,8 +28,8 @@
   text-decoration: none;
 }
 .ng2-table__pagination .active, .ng2-table__items-per-page .active {
-  background: #2196f3;
-  border-color: #0c7cd5;
+  background: #3e71b4;
+  border-color: #3e71b4;
   color: #fff;
 }
 
