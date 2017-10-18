@@ -74,5 +74,8 @@
     "ng2-easy-table",
     "ngx-easy-table"
   ],
-  "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)"
+  "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)",
+  "dependencies": {
+    "lato-font": "^3.0.0"
+  }
 }
