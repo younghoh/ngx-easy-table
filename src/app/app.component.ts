@@ -1,4 +1,7 @@
-import { Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, Output, EventEmitter,
+  ContentChild, TemplateRef
+} from '@angular/core';
 import { FiltersService, ConfigService, ResourceService, HttpService } from "./services";
 import 'rxjs/add/operator/map';
 
@@ -20,7 +23,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   @Input() configuration: ConfigService;
   @Output() event = new EventEmitter();
-
+  @ContentChild(TemplateRef) public tpl: TemplateRef<any>;
   constructor(public filtersService: FiltersService,
               public config: ConfigService,
               public resource: ResourceService,

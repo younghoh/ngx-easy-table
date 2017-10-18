@@ -1,10 +1,6 @@
 [![npm version](https://badge.fury.io/js/ngx-easy-table.svg)](https://badge.fury.io/js/ngx-easy-table)
 [![Build Status](https://travis-ci.org/ssuperczynski/ngx-easy-table.svg?branch=master)](https://travis-ci.org/ssuperczynski/ngx-easy-table)
 
-Proudly powered by [![Imgur](http://i.imgur.com/qbbb6ah.png)](http://espeo.eu/)
-
-Component may contains some issues, but feel free to add it to your app!
-
 ### Live edit
 <a href="https://stackblitz.com/edit/angular-5gsg43?embed=1&file=app/app.component.ts">
 <img width="187" src="https://github.com/gothinkster/realworld/raw/master/media/edit_on_blitz.png?raw=true" style="max-width:100%;">
@@ -104,3 +100,7 @@ export class ConfigurationService implements Config {
 ### Available config settings:
 
 See https://github.com/ssuperczynski/ngx-easy-table/wiki
+
+Proudly powered by 
+
+[![Imgur](http://i.imgur.com/qbbb6ah.png)](http://espeo.eu/)

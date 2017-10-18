@@ -4,12 +4,16 @@ import {FiltersService} from "../../services/filters-service";
 @Component({
   selector: 'table-header',
   template: `
-  <input type="text"
-       placeholder="Search for {{ key }}"
-       class="ng2-table__input"
-       #input
-       (input)="update.emit({value: input.value, key: key})"
->`,
+  <label for="search_{{ key }}">
+    <input type="text"
+           id="search_{{ key }}"
+           aria-label="Search"
+           placeholder="Search for {{ key }}"
+           class="ng2-table__input"
+           #input
+           (input)="update.emit({value: input.value, key: key})"
+    >
+  </label>`,
   styleUrls: ['./header.css']
 })
 
