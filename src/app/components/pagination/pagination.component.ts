@@ -1,6 +1,5 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {ResourceService} from "../../services/resource-service";
-import {ConfigService} from "../../services/config-service";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ResourceService, ConfigService } from "../../services";
 
 @Component({
   selector: 'pagination',
@@ -10,12 +9,14 @@ import {ConfigService} from "../../services/config-service";
 
 export class Pagination {
 
-  private pageNumber:number;
-  private range:number;
-  public pageNumbers:Array<any>;
+  private pageNumber: number;
+  private range: number;
+  public pageNumbers: Array<any>;
+  public ranges: number[];
 
-  constructor(public resource:ResourceService,
-              public config:ConfigService) {
+  constructor(public resource: ResourceService,
+              public config: ConfigService) {
+    this.ranges = [5, 10, 25, 50, 100];
     this.pageNumber = 1;
     this.range = this.config.rows || 10;
     this.pageNumbers = [];
@@ -25,11 +26,11 @@ export class Pagination {
     });
   }
 
-  public emitPaginationProperties():void {
-    this.updateRange.emit({range: this.range, page: this.pageNumber});
+  public emitPaginationProperties(): void {
+    this.updateRange.emit({ range: this.range, page: this.pageNumber });
   }
 
-  public updateNumberPerPage():void {
+  public updateNumberPerPage(): void {
     // issue #5
     // if (this.range > this.numberOfItems && this.numberOfItems > 0) {
     //   this.range = this.numberOfItems;
@@ -38,56 +39,56 @@ export class Pagination {
     this.pageNumbers = Array(numberPerPage).fill(numberPerPage, 0).map((_, i) => i + 1);
   }
 
-  public updatePagination():void {
+  public updatePagination(): void {
     this.updateNumberPerPage();
     this.emitPaginationProperties();
   }
 
-  public isActiveRange(currentRange:Number):boolean {
+  public isActiveRange(currentRange: Number): boolean {
     return currentRange === this.range;
   }
 
-  public isActivePage(currentPage:Number):boolean {
+  public isActivePage(currentPage: Number): boolean {
     return currentPage === this.pageNumber;
   }
 
-  public nextPage(event):void {
+  public nextPage(event): void {
     event.preventDefault();
     if (!this.isLastPage()) {
       this.pageNumber++;
     }
   }
 
-  public previousPage(event):void {
+  public previousPage(event): void {
     event.preventDefault();
     if (!this.isFirstPage()) {
       this.pageNumber--;
     }
   }
 
-  public isLastPage():boolean {
+  public isLastPage(): boolean {
     return this.pageNumber === this.pageNumbers.length;
   }
 
-  public isFirstPage():boolean {
+  public isFirstPage(): boolean {
     return this.pageNumber === 1;
   }
 
-  @Input() numberOfItems:number;
+  @Input() numberOfItems: number;
   @Output() updateRange = new EventEmitter();
 
   ngOnChanges() {
     this.updatePagination();
   }
 
-  changeRange(event, number):void {
+  changeRange(event, number): void {
     event.preventDefault();
     this.range = number;
     this.pageNumber = 1;
     this.updatePagination();
   }
 
-  changePage(event, numberOfPage):void {
+  changePage(event, numberOfPage): void {
     event.preventDefault();
     this.pageNumber = numberOfPage;
     this.updatePagination();

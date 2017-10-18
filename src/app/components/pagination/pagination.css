@@ -21,6 +21,17 @@
   color: #fff;
 }
 
+.ng2-table__pagination-item {
+  cursor: pointer;
+}
+
+.ng2-table__pagination .disabled, .ng2-table__items-per-page .disabled {
+  background: #fff;
+  border-color: #f0f0f0;
+  color: #dddddd;
+  cursor: default;
+}
+
 .ng2-table__items-per-page {
   float: right;
 }

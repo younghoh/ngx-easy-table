@@ -1,23 +1,31 @@
 <div class="ng2-table__pagination-wrapper">
   <ul class="ng2-table__pagination">
-    <li [class.disabled]="isFirstPage()">
-      <a href="#" (click)="previousPage($event)">«</a>
+    <li [class.disabled]="isFirstPage()"
+        (click)="previousPage($event)"
+        class="ng2-table__pagination-item">
+      <a href="#">«</a>
     </li>
 
-    <li *ngFor="let page of pageNumbers" [class.active]="isActivePage(page)">
-      <a href="#" (click)="changePage($event, page)">{{page}}</a>
+    <li *ngFor="let page of pageNumbers"
+        class="ng2-table__pagination-item"
+        (click)="changePage($event, page)"
+        [class.active]="isActivePage(page)">
+      <a href="#">{{page}}</a>
     </li>
 
-    <li [class.disabled]="isLastPage()">
-      <a href="#" (click)="nextPage($event)">»</a>
+    <li [class.disabled]="isLastPage()"
+        (click)="nextPage($event)"
+        class="ng2-table__pagination-item">
+      <a href="#">»</a>
     </li>
   </ul>
 
   <ul class="ng2-table__items-per-page">
-    <li [class.active]="isActiveRange(5)"><a href="#" (click)="changeRange($event, 5)">5</a></li>
-    <li [class.active]="isActiveRange(10)"><a href="#" (click)="changeRange($event, 10)">10</a></li>
-    <li [class.active]="isActiveRange(25)"><a href="#" (click)="changeRange($event, 25)">25</a></li>
-    <li [class.active]="isActiveRange(50)"><a href="#" (click)="changeRange($event, 50)">50</a></li>
-    <li [class.active]="isActiveRange(100)"><a href="#" (click)="changeRange($event, 100)">100</a></li>
+    <li [class.active]="isActiveRange(range)"
+        class="ng2-table__pagination-item"
+        (click)="changeRange($event, range)"
+        *ngFor="let range of ranges">
+      <a href="#">{{range}}</a>
+    </li>
   </ul>
 </div>
