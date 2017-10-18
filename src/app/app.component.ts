@@ -2,8 +2,11 @@ import {
   Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, Output, EventEmitter,
   ContentChild, TemplateRef
 } from '@angular/core';
-import { FiltersService, ConfigService, ResourceService, HttpService } from "./services";
 import 'rxjs/add/operator/map';
+import { HttpService } from './services/http-service';
+import { FiltersService } from './services/filters-service';
+import { ResourceService } from './services/resource-service';
+import { ConfigService } from './services/config-service';
 
 @Component({
   selector: 'ng2-table',

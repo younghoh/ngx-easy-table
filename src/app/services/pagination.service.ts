@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
-import { ConfigService, ResourceService } from './index';
 import { Subject } from 'rxjs/Subject';
+import { ResourceService } from './resource-service';
+import { ConfigService } from './config-service';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PaginationService {
