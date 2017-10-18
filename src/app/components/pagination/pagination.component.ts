@@ -35,8 +35,9 @@ export class Pagination {
     // if (this.range > this.numberOfItems && this.numberOfItems > 0) {
     //   this.range = this.numberOfItems;
     // }
-    let numberPerPage = Math.ceil(this.numberOfItems / this.range);
-    this.pageNumbers = Array(numberPerPage).fill(numberPerPage, 0).map((_, i) => i + 1);
+    this.pageNumbers = Array(this.paginationItemsCount)
+      .fill(this.paginationItemsCount, 0)
+      .map((_, i) => i + 1);
   }
 
   public updatePagination(): void {
@@ -56,6 +57,7 @@ export class Pagination {
     event.preventDefault();
     if (!this.isLastPage()) {
       this.pageNumber++;
+      this.updatePagination();
     }
   }
 
@@ -63,6 +65,7 @@ export class Pagination {
     event.preventDefault();
     if (!this.isFirstPage()) {
       this.pageNumber--;
+      this.updatePagination();
     }
   }
 
@@ -90,7 +93,12 @@ export class Pagination {
 
   changePage(event, numberOfPage): void {
     event.preventDefault();
+    const prevPage = this.pageNumber;
     this.pageNumber = numberOfPage;
     this.updatePagination();
+  }
+
+  get paginationItemsCount(): number {
+    return Math.ceil(this.numberOfItems / this.range);
   }
 }

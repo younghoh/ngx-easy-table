@@ -1,3 +1,5 @@
+@import url("../../../assets/fonts/style.css");
+
 .ng2-table__pagination, .ng2-table__items-per-page {
   display: inline-block;
   float: left;
@@ -10,6 +12,16 @@
   float: left;
   margin: 0;
   padding: 6px;
+  height: 16px;
+  cursor: pointer;
+  border-left: 0;
+  border-right: 0;
+}
+.ng2-table__pagination li:first-child, .ng2-table__items-per-page li:first-child {
+  border-left: 1px solid #f0f0f0;
+}
+.ng2-table__pagination li:last-child, .ng2-table__items-per-page li:last-child {
+  border-right: 1px solid #f0f0f0;
 }
 .ng2-table__pagination a, .ng2-table__items-per-page a {
   color: inherit;
@@ -19,10 +31,6 @@
   background: #2196f3;
   border-color: #0c7cd5;
   color: #fff;
-}
-
-.ng2-table__pagination-item {
-  cursor: pointer;
 }
 
 .ng2-table__pagination .disabled, .ng2-table__items-per-page .disabled {
