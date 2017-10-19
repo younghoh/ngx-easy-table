@@ -6,6 +6,11 @@
   font-family: Lato, serif;
 }
 
+.table td, .table th {
+  border-bottom: .05rem solid #e7e9ed;
+  padding: .2rem .3rem;
+}
+
 .ng2-table__table-row--selected {
   background: #9cbff9 !important;
 }

@@ -9,7 +9,7 @@ import {FiltersService} from "../../services/filters-service";
            id="search_{{ key }}"
            aria-label="Search"
            placeholder="Search for {{ key }}"
-           class="form-input"
+           class="form-input input-sm"
            #input
            (input)="update.emit({value: input.value, key: key})"
     >

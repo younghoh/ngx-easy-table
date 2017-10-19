@@ -95,7 +95,7 @@ export class ConfigurationService implements Config {
 
 # Screens
 
-![table](http://i.imgur.com/nuUVQNl.png "table")
+![table](https://i.imgur.com/WAt6fIy.png "table")
 
 ### Available config settings:
 
