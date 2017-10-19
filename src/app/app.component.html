@@ -15,10 +15,10 @@
         <ng-template #customHeader>{{config.columns[headerIndex]}}</ng-template>
         <ng-template #defaultHeader>{{ key }}</ng-template>
         <span *ngIf="resource.order[key]==='asc' "
-              class="icon-sort-alpha-desc">
+              class="ion-chevron-down">
         </span>
         <span *ngIf="resource.order[key]==='desc' "
-              class="icon-sort-alpha-asc">
+              class="ion-chevron-up">
         </span>
       </th>
     </ng-container>
