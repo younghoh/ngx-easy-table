@@ -5,10 +5,9 @@ import { ConfigService } from '../../services/config-service';
 @Component({
   selector: 'csv-export',
   template: `
-    <button class="ng2-table__csv-export-button"
-            (click)="exportCsv()">Export to CSV
-    </button>`,
-  styleUrls: ['./csv-export.css']
+    <a (click)="exportCsv()">
+      CSV export
+    </a>`
 })
 
 export class CsvExport {

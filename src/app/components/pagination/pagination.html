@@ -1,25 +1,33 @@
-<div class="ng2-table__pagination-wrapper">
-  <ul class="ng2-table__pagination">
-    <li [class.disabled]="paginationService.isFirstPage()"
-        (click)="paginationService.previousPage($event)">
-      <span class="ion-chevron-left"></span>
-    </li>
-    <li *ngFor="let page of paginationService.pageNumbers"
-        (click)="paginationService.changePage($event, page)"
-        [class.active]="paginationService.isActivePage(page)">
-      <a href="#">{{page}}</a>
-    </li>
-    <li [class.disabled]="paginationService.isLastPage()"
-        (click)="paginationService.nextPage($event)">
-      <span class="ion-chevron-right"></span>
-    </li>
-  </ul>
+<div class="columns">
+  <div class="column col-4 col-mr-auto">
+    <ul class="pagination">
+      <li class="page-item disabled"
+          [class.disabled]="paginationService.isFirstPage()"
+          (click)="paginationService.previousPage($event)">
+        <a href="#" tabindex="-1">Prev</a>
+      </li>
+      <li class="page-item active"
+          *ngFor="let page of paginationService.pageNumbers"
+          (click)="paginationService.changePage($event, page)"
+          [class.active]="paginationService.isActivePage(page)">
+        <a href="#">{{page}}</a>
+      </li>
+      <li class="page-item"
+          [class.disabled]="paginationService.isLastPage()"
+          (click)="paginationService.nextPage($event)">
+        <a href="#">Next</a>
+      </li>
+    </ul>
+  </div>
+  <div class="column col-2">
+    <ul class="pagination">
+      <li [class.active]="paginationService.isActiveRange(range)"
+          class="page-item"
+          (click)="paginationService.changeRange($event, range)"
+          *ngFor="let range of paginationService.ranges">
+        <a href="#">{{range}}</a>
+      </li>
+    </ul>
+  </div>
 
-  <ul class="ng2-table__items-per-page">
-    <li [class.active]="paginationService.isActiveRange(range)"
-        (click)="paginationService.changeRange($event, range)"
-        *ngFor="let range of paginationService.ranges">
-      <a href="#">{{range}}</a>
-    </li>
-  </ul>
 </div>

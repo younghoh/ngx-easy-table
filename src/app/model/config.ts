@@ -14,4 +14,5 @@ export interface Config {
   rows: number;
   columns: string[];
   hiddenColumns: Set<string>;
+  additionalActions: boolean;
 }

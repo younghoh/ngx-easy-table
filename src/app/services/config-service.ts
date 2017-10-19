@@ -18,4 +18,5 @@ export class ConfigService implements Config {
   public rows = 10;
   public columns = [];
   public hiddenColumns = new Set([]);
+  public additionalActions = false;
 }

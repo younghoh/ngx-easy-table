@@ -9,12 +9,11 @@ import {FiltersService} from "../../services/filters-service";
            id="search_{{ key }}"
            aria-label="Search"
            placeholder="Search for {{ key }}"
-           class="ng2-table__input"
+           class="form-input"
            #input
            (input)="update.emit({value: input.value, key: key})"
     >
-  </label>`,
-  styleUrls: ['./header.css']
+  </label>`
 })
 
 export class Header implements OnInit {
