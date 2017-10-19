@@ -1,6 +1,6 @@
 import {
   Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, Output, EventEmitter,
-  ContentChild, TemplateRef
+  ContentChild, TemplateRef, OnChanges, SimpleChanges, SimpleChange
 } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HttpService } from './services/http-service';
@@ -15,7 +15,7 @@ import { ConfigService } from './services/config-service';
   styleUrls: ['./app.component.css']
 })
 
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   public data: Array<any>;
   public keys: Array<any>;
   public numberOfItems: number;
@@ -25,8 +25,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   public itemsObservables;
 
   @Input() configuration: ConfigService;
+  @Input() filter: any;
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public tpl: TemplateRef<any>;
+
   constructor(public filtersService: FiltersService,
               public config: ConfigService,
               public resource: ResourceService,
@@ -50,6 +52,11 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const filter: SimpleChange = changes.filter;
+    console.log('name: ', filter.currentValue);
   }
 
   orderBy(key: string) {
