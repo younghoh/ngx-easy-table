@@ -53,7 +53,9 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   orderBy(key: string) {
-    this.data = this.resource.sortBy(key);
+    if (this.config.orderEnabled) {
+      this.data = this.resource.sortBy(key);
+    }
   }
 
   clickedCell($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number) {

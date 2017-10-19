@@ -8,24 +8,19 @@
   <thead>
   <tr>
     <ng-container *ngFor="let key of keys;let headerIndex = index">
-      <th [style.display]="config.orderEnabled?'':'none' "
-          *ngIf="showColumn(key)"
+      <th *ngIf="showColumn(key)"
           (click)="orderBy(key)">
         <div *ngIf="isColumnDefined();then customHeader else defaultHeader"></div>
         <ng-template #customHeader>{{config.columns[headerIndex]}}</ng-template>
-        <ng-template #defaultHeader>{{ key }}</ng-template>
+        <ng-template #defaultHeader>1defaultHeader {{ key }}</ng-template>
         <span *ngIf="resource.order[key]==='asc' "
+              [style.display]="config.orderEnabled?'':'none' "
               class="ion-chevron-down">
         </span>
         <span *ngIf="resource.order[key]==='desc' "
+              [style.display]="config.orderEnabled?'':'none' "
               class="ion-chevron-up">
         </span>
-      </th>
-    </ng-container>
-    <ng-container *ngFor="let key of keys">
-      <th [style.display]="!config.orderEnabled?'':'none' "
-          *ngIf="showColumn(key)">
-        {{ key }}
       </th>
     </ng-container>
     <th *ngIf="config.editEnabled">Actions</th>

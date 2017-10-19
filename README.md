@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/ssuperczynski/ngx-easy-table.svg?branch=master)](https://travis-ci.org/ssuperczynski/ngx-easy-table)
 
 ### Live edit
-<a href="https://stackblitz.com/edit/angular-5gsg43?embed=1&file=app/app.component.ts">
+<a href="https://stackblitz.com/edit/angular-2xhnud?embed=1&file=app/app.component.ts">
 <img width="187" src="https://github.com/gothinkster/realworld/raw/master/media/edit_on_blitz.png?raw=true" style="max-width:100%;">
 </a>
 
