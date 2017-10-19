@@ -21,7 +21,7 @@ export class GlobalSearchPipe {
         if (row.hasOwnProperty(value)) {
           let element;
           if (typeof row[value] === "object") {
-            element = JSON.stringify(row[value]);
+            element = JSON.stringify(row[value]).toLocaleLowerCase();
           }
           if (typeof row[value] === "boolean") {
             element = "" + row[value];
