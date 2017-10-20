@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Angular easy table",
   "repository": {
     "type": "git",
@@ -74,8 +74,5 @@
     "ng2-easy-table",
     "ngx-easy-table"
   ],
-  "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)",
-  "dependencies": {
-    "lato-font": "^3.0.0"
-  }
+  "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)"
 }
