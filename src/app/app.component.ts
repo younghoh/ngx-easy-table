@@ -45,13 +45,21 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.config = this.configuration;
     }
     this.numberOfItems = 0;
-    this.itemsObservables = this.httpService.getData(this.config.resourceUrl);
-    this.itemsObservables.subscribe(res => {
-      this.data = res;
-      this.numberOfItems = res.length;
+    if (this.config.data.length > 1) {
+      this.data = this.config.data;
+      this.numberOfItems = this.config.data.length;
       this.keys = Object.keys(this.data[0]);
       this.resource.keys = this.keys;
-    });
+    } else {
+      this.itemsObservables = this.httpService
+        .getData(this.config.resourceUrl, this.config.httpHeaders);
+      this.itemsObservables.subscribe(res => {
+        this.data = res;
+        this.numberOfItems = res.length;
+        this.keys = Object.keys(this.data[0]);
+        this.resource.keys = this.keys;
+      });
+    }
   }
 
   ngAfterViewInit(): void {

@@ -1,3 +1,5 @@
+import { HttpHeaders } from '@angular/common/http';
+
 export interface Config {
   searchEnabled: boolean;
   orderEnabled: boolean;
@@ -10,6 +12,8 @@ export interface Config {
   selectRow: boolean;
   selectCol: boolean;
   selectCell: boolean;
+  data: Array<Object>;
+  httpHeaders: HttpHeaders;
   resourceUrl: string;
   rows: number;
   columns: string[];
