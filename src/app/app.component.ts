@@ -45,7 +45,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.config = this.configuration;
     }
     this.numberOfItems = 0;
-    if (this.config.data.length > 1) {
+    if (this.config.data && this.config.data.length > 0) {
       this.data = this.config.data;
       this.numberOfItems = this.config.data.length;
       this.keys = Object.keys(this.data[0]);
