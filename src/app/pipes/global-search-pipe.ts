@@ -1,11 +1,12 @@
-import {Pipe} from "@angular/core";
-import {ResourceService} from "../services/resource-service";
+import { Pipe, PipeTransform } from "@angular/core";
+import { ResourceService } from "../services/resource-service";
+
 @Pipe({
   name: 'global'
 })
 
-export class GlobalSearchPipe {
-  constructor(public resource:ResourceService) {
+export class GlobalSearchPipe implements PipeTransform {
+  constructor(public resource: ResourceService) {
   }
 
   transform(dataArr, filter) {
