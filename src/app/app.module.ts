@@ -9,6 +9,7 @@ import { Pagination } from "./components/pagination/pagination.component";
 import { SearchPipe } from "./pipes/header-pipe";
 import { PaginationPipe } from "./pipes/pagination-pipe";
 import { GlobalSearchPipe } from "./pipes/global-search-pipe";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,11 @@ import { GlobalSearchPipe } from "./pipes/global-search-pipe";
     GlobalSearchPipe,
   ],
   imports: [
-    BrowserModule,
-    HttpModule
+    HttpClientModule,
+    BrowserModule
   ],
   exports: [TableComponent],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [TableComponent]
 })
 export class TableModule { }

@@ -7,12 +7,18 @@ import { HttpService } from './services/http-service';
 import { FiltersService } from './services/filters-service';
 import { ResourceService } from './services/resource-service';
 import { ConfigService } from './services/config-service';
+import {ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'ng2-table',
   providers: [HttpService, FiltersService, ResourceService, ConfigService],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: [
+    './../assets/spectre.css',
+    './../assets/icons.css',
+    './app.component.css',
+  ],
+  encapsulation: ViewEncapsulation.Native
 })
 
 export class TableComponent implements OnInit, AfterViewInit {
@@ -39,13 +45,21 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.config = this.configuration;
     }
     this.numberOfItems = 0;
-    this.itemsObservables = this.httpService.getData(this.config.resourceUrl);
-    this.itemsObservables.subscribe(res => {
-      this.data = res;
-      this.numberOfItems = res.length;
+    if (this.config.data && this.config.data.length > 0) {
+      this.data = this.config.data;
+      this.numberOfItems = this.config.data.length;
       this.keys = Object.keys(this.data[0]);
       this.resource.keys = this.keys;
-    });
+    } else {
+      this.itemsObservables = this.httpService
+        .getData(this.config.resourceUrl, this.config.httpHeaders);
+      this.itemsObservables.subscribe(res => {
+        this.data = res;
+        this.numberOfItems = res.length;
+        this.keys = Object.keys(this.data[0]);
+        this.resource.keys = this.keys;
+      });
+    }
   }
 
   ngAfterViewInit(): void {
