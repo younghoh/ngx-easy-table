@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Config } from '../model/config';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class ConfigService implements Config {
@@ -14,7 +15,9 @@ export class ConfigService implements Config {
   public selectRow = true;
   public selectCol = false;
   public selectCell = false;
-  public resourceUrl = "https://www.json-generator.com/api/json/get/ceVvFoDEeq";
+  public data = [];
+  public httpHeaders = new HttpHeaders();
+  public resourceUrl = 'https://www.json-generator.com/api/json/get/ceVvFoDEeq';
   public rows = 10;
   public columns = [];
   public hiddenColumns = new Set([]);

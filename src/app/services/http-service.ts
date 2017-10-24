@@ -1,17 +1,13 @@
-import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/map';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class HttpService {
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
   }
 
-  public getData(url: string): Observable<any> {
-    return this.http.get(url)
-      .map((responseData) => {
-        return responseData.json();
-      });
+  public getData(url: string, headers: HttpHeaders): Observable<any> {
+    return this.http.get(url, { headers: headers });
   }
 }

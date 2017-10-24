@@ -1,9 +1,7 @@
 @import url("https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css");
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-@import url("https://unpkg.com/spectre.css/dist/spectre.min.css");
 
 * {
-  font-family: Lato, serif;
+  font-family: Verdana, serif;
 }
 
 .table td, .table th {
@@ -24,8 +22,8 @@
 }
 
 .ng2-table__table-menu {
-  top: 80%;
-  left: -150px;
+  top: 80% !important;
+  left: -150px !important;
 }
 
 .ng2-table__table-menu li {
