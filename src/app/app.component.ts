@@ -98,8 +98,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     if (this.config.columns.length === 0) {
       return false;
     }
-    if (this.keys.length !== this.config.columns.length) {
-      console.error('columns count in the configuration is not equal to columns count from JSON');
+    if (this.keys.length > this.config.columns.length) {
+      console.error('columns count in the configuration service is not equal to columns count from your data JSON');
       return false;
     }
 
