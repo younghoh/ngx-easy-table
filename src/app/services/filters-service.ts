@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ResourceService } from './resource-service';
 import { isNumeric } from 'rxjs/util/isNumeric';
+
 @Injectable()
 export class FiltersService {
 
@@ -18,7 +19,6 @@ export class FiltersService {
   }
 
   public applyCustomFilters(filters: Object, data: Array<Object>): Array<Object> {
-    console.log('customFilters: ', filters);
     if (Object.keys(filters).length === 0) {
       return data;
     }
@@ -27,11 +27,11 @@ export class FiltersService {
       Object.keys(filters).forEach((key) => {
         const cell = row[key];
         const filter = filters[key];
-        console.log('query', filter['query']);
         switch (filter['query']) {
           case '=': {
             // TODO add Date type
-            if (isNumeric(cell) && isNumeric(filter['value'])) {
+            if ((isNumeric(cell) && isNumeric(filter['value'])) ||
+              typeof cell === 'boolean' && typeof filter['value'] === 'boolean') {
               if (cell !== filter['value']) {
                 tmpData.splice(tmpData.indexOf(row), 1);
               }
