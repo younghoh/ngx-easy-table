@@ -7,18 +7,14 @@ import { HttpService } from './services/http-service';
 import { FiltersService } from './services/filters-service';
 import { ResourceService } from './services/resource-service';
 import { ConfigService } from './services/config-service';
-import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ng2-table',
   providers: [HttpService, FiltersService, ResourceService, ConfigService],
   templateUrl: './app.component.html',
   styleUrls: [
-    './../assets/spectre.css',
-    './../assets/icons.css',
     './app.component.css',
   ],
-  encapsulation: ViewEncapsulation.Native
 })
 
 export class TableComponent implements OnInit, OnChanges, AfterViewInit {
