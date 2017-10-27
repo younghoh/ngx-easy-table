@@ -70,7 +70,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
     const filters: SimpleChange = changes.filters;
-    this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
+    if (filters) {
+      this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
+    }
   }
 
   orderBy(key: string) {
