@@ -12,12 +12,10 @@
     <table class="table table-striped table-hover">
       <thead>
       <tr>
-        <ng-container *ngFor="let key of resource.keys;let headerIndex = index">
+        <ng-container *ngFor="let key of headerKeys">
           <th *ngIf="showColumn(key)"
               (click)="orderBy(key)">
-            <div *ngIf="isColumnDefined();then customHeader else defaultHeader"></div>
-            <ng-template #customHeader>{{config.columns[headerIndex]}}</ng-template>
-            <ng-template #defaultHeader>{{ key }}</ng-template>
+            <div>{{ key }}</div>
             <span *ngIf="resource.order[key]==='asc' "
                   [style.display]="config.orderEnabled?'':'none' "
                   class="ion-chevron-down">

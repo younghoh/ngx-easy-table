@@ -101,10 +101,6 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  isColumnDefined() {
-    return this.config.columns.length !== 0;
-  }
-
   showColumn(colIndex) {
     return !this.config.hiddenColumns.has(colIndex);
   }
@@ -115,5 +111,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     } else {
       this.config.hiddenColumns.add(colIndex);
     }
+  }
+
+  get headerKeys() {
+    if (this.config.columns.length !== 0) {
+      return this.config.columns;
+    }
+    return this.resource.keys;
   }
 }
