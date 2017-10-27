@@ -1,12 +1,12 @@
-import {Pipe} from '@angular/core';
-import {ResourceService} from "../services/resource-service";
+import { Pipe, PipeTransform } from '@angular/core';
+import { ResourceService } from '../services/resource-service';
 
 @Pipe({
   name: 'pagination'
 })
 
-export class PaginationPipe {
-  constructor(public resource:ResourceService) {
+export class PaginationPipe implements PipeTransform {
+  constructor(public resource: ResourceService) {
   }
 
   transform(value, filters) {

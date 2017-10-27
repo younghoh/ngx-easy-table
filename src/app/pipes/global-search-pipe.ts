@@ -1,11 +1,12 @@
-import {Pipe} from "@angular/core";
-import {ResourceService} from "../services/resource-service";
+import { Pipe, PipeTransform } from "@angular/core";
+import { ResourceService } from "../services/resource-service";
+
 @Pipe({
   name: 'global'
 })
 
-export class GlobalSearchPipe {
-  constructor(public resource:ResourceService) {
+export class GlobalSearchPipe implements PipeTransform {
+  constructor(public resource: ResourceService) {
   }
 
   transform(dataArr, filter) {
@@ -21,7 +22,7 @@ export class GlobalSearchPipe {
         if (row.hasOwnProperty(value)) {
           let element;
           if (typeof row[value] === "object") {
-            element = JSON.stringify(row[value]);
+            element = JSON.stringify(row[value]).toLocaleLowerCase();
           }
           if (typeof row[value] === "boolean") {
             element = "" + row[value];

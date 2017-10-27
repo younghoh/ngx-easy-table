@@ -1,13 +1,13 @@
 import {
   Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, Output, EventEmitter,
-  ContentChild, TemplateRef
+  ContentChild, TemplateRef, OnChanges, SimpleChanges, SimpleChange
 } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { HttpService } from './services/http-service';
 import { FiltersService } from './services/filters-service';
 import { ResourceService } from './services/resource-service';
 import { ConfigService } from './services/config-service';
-import {ViewEncapsulation} from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ng2-table',
@@ -21,18 +21,20 @@ import {ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.Native
 })
 
-export class TableComponent implements OnInit, AfterViewInit {
+export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   public data: Array<any>;
+  public filteredData: Array<any>;
   public keys: Array<any>;
   public numberOfItems: number;
   public selectedRow: number;
   public selectedCol: number;
   public selectedCell: number;
-  public itemsObservables;
 
   @Input() configuration: ConfigService;
+  @Input() filters: any;
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public tpl: TemplateRef<any>;
+
   constructor(public filtersService: FiltersService,
               public config: ConfigService,
               public resource: ResourceService,
@@ -47,23 +49,30 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.numberOfItems = 0;
     if (this.config.data && this.config.data.length > 0) {
       this.data = this.config.data;
+      this.filteredData = [...this.data];
       this.numberOfItems = this.config.data.length;
-      this.keys = Object.keys(this.data[0]);
-      this.resource.keys = this.keys;
+      this.resource.keys = Object.keys(this.data[0]);
     } else {
-      this.itemsObservables = this.httpService
-        .getData(this.config.resourceUrl, this.config.httpHeaders);
-      this.itemsObservables.subscribe(res => {
-        this.data = res;
-        this.numberOfItems = res.length;
-        this.keys = Object.keys(this.data[0]);
-        this.resource.keys = this.keys;
-      });
+      this.httpService
+        .getData(this.config.resourceUrl, this.config.httpHeaders)
+        .subscribe(res => {
+          this.data = res;
+          this.filteredData = [...this.data];
+          this.numberOfItems = res.length;
+          this.resource.keys = Object.keys(this.data[0]);
+        });
     }
   }
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const filters: SimpleChange = changes.filters;
+    if (filters) {
+      this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
+    }
   }
 
   orderBy(key: string) {
@@ -94,27 +103,22 @@ export class TableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  isColumnDefined() {
-    if (this.config.columns.length === 0) {
-      return false;
-    }
-    if (this.keys.length !== this.config.columns.length) {
-      console.error('columns count in the configuration is not equal to columns count from JSON');
-      return false;
-    }
-
-    return true;
-  }
-
   showColumn(colIndex) {
     return !this.config.hiddenColumns.has(colIndex);
   }
 
   toggleColumn(colIndex) {
     if (this.config.hiddenColumns.has(colIndex)) {
-      this.config.hiddenColumns.delete(colIndex)
+      this.config.hiddenColumns.delete(colIndex);
     } else {
       this.config.hiddenColumns.add(colIndex);
     }
+  }
+
+  get headerKeys() {
+    if (this.config.columns.length !== 0) {
+      return this.config.columns;
+    }
+    return this.resource.keys;
   }
 }

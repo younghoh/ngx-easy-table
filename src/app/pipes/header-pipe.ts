@@ -1,14 +1,14 @@
-import {Pipe} from '@angular/core';
-import {FiltersService} from "../services/filters-service";
-import {ResourceService} from "../services/resource-service";
+import { Pipe, PipeTransform } from '@angular/core';
+import { FiltersService } from "../services/filters-service";
+import { ResourceService } from "../services/resource-service";
 
 @Pipe({
   name: 'search'
 })
 
-export class SearchPipe {
-  constructor(public filtersService:FiltersService,
-              public resource:ResourceService) {
+export class SearchPipe implements PipeTransform {
+  constructor(public filtersService: FiltersService,
+              public resource: ResourceService) {
   }
 
   transform(value, filters) {
@@ -22,8 +22,7 @@ export class SearchPipe {
     }
 
     this.filtersService.update(filters.key, filters.value);
-    let filtersArr = this.filtersService.get();
-
+    const filtersArr = this.filtersService.get();
     value.forEach((item) => {
       for (const filterKey in filtersArr) {
         if (filtersArr.hasOwnProperty(filterKey)) {

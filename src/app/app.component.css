@@ -22,8 +22,8 @@
 }
 
 .ng2-table__table-menu {
-  top: 80%;
-  left: -150px;
+  top: 80% !important;
+  left: -150px !important;
 }
 
 .ng2-table__table-menu li {
