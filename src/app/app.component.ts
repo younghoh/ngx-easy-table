@@ -102,15 +102,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   isColumnDefined() {
-    if (this.config.columns.length === 0) {
-      return false;
-    }
-    if (this.resource.keys.length > this.config.columns.length) {
-      console.error('columns count in the configuration service is not equal to columns count from your data JSON');
-      return false;
-    }
-
-    return true;
+    return this.config.columns.length !== 0;
   }
 
   showColumn(colIndex) {
@@ -119,7 +111,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   toggleColumn(colIndex) {
     if (this.config.hiddenColumns.has(colIndex)) {
-      this.config.hiddenColumns.delete(colIndex)
+      this.config.hiddenColumns.delete(colIndex);
     } else {
       this.config.hiddenColumns.add(colIndex);
     }
