@@ -16,10 +16,6 @@
 
 `npm install ngx-easy-table --save`
 
-# Screens
-
-![table](https://i.imgur.com/WAt6fIy.png "table")
-
 ### Available config settings:
 
 See https://github.com/ssuperczynski/ngx-easy-table/wiki

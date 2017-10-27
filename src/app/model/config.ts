@@ -13,7 +13,6 @@ export interface Config {
   selectCol: boolean;
   selectCell: boolean;
   data: Array<Object>;
-  httpHeaders: HttpHeaders;
   resourceUrl: string;
   rows: number;
   columns: string[];
