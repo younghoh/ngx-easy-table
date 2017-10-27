@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ResourceService } from './resource-service';
-
+import { isNumeric } from 'rxjs/util/isNumeric';
 @Injectable()
 export class FiltersService {
 
@@ -30,6 +30,13 @@ export class FiltersService {
         console.log('query', filter['query']);
         switch (filter['query']) {
           case '=': {
+            // TODO add Date type
+            if (isNumeric(cell) && isNumeric(filter['value'])) {
+              if (cell !== filter['value']) {
+                tmpData.splice(tmpData.indexOf(row), 1);
+              }
+              break;
+            }
             if (cell.toLocaleLowerCase().indexOf(filter['value'].toLocaleLowerCase()) === -1) {
               tmpData.splice(tmpData.indexOf(row), 1);
             }
