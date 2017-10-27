@@ -24,27 +24,42 @@ export class FiltersService {
     }
     const tmpData = [...data];
     data.forEach((row) => {
-      Object.keys(filters).forEach( (key) => {
+      Object.keys(filters).forEach((key) => {
         const cell = row[key];
         const filter = filters[key];
+        console.log('query', filter['query']);
         switch (filter['query']) {
           case '=': {
-            console.log('=');
             if (cell.toLocaleLowerCase().indexOf(filter['value'].toLocaleLowerCase()) === -1) {
               tmpData.splice(tmpData.indexOf(row), 1);
             }
             break;
           }
           case '>': {
-            console.log('>');
+            if (!(cell > filter['value'])) {
+              tmpData.splice(tmpData.indexOf(row), 1);
+            }
+            break;
+          }
+          case '>=': {
+            if (!(cell >= filter['value'])) {
+              tmpData.splice(tmpData.indexOf(row), 1);
+            }
             break;
           }
           case '<': {
-            console.log('<');
+            if (!(cell < filter['value'])) {
+              tmpData.splice(tmpData.indexOf(row), 1);
+            }
+            break;
+          }
+          case '<=': {
+            if (!(cell <= filter['value'])) {
+              tmpData.splice(tmpData.indexOf(row), 1);
+            }
             break;
           }
           case 'IN': {
-            console.log('IN');
             if (filter['value'].length === 0) {
               break;
             }
