@@ -31,7 +31,7 @@
             <a class="ngx-btn ngx-btn-link ngx-dropdown-toggle" tabindex="0">
               <span class="ngx-icon ngx-icon-menu"></span>
             </a>
-            <ul class="ngx-menu ng2-table__table-menu">
+            <ul class="ngx-menu ngx-table__table-menu">
               <li class="ngx-menu-item">
                 <csv-export *ngIf="config.exportEnabled"></csv-export>
               </li>
@@ -52,7 +52,7 @@
       <ng-container *ngIf="tpl">
         <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
               let rowIndex = index"
-            [class.ng2-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+            [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container [ngTemplateOutlet]="tpl"
                         [ngOutletContext]="{ $implicit: row }">
           </ng-container>
@@ -61,18 +61,18 @@
       <ng-container *ngIf="!tpl">
         <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
               let rowIndex = index"
-            [class.ng2-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+            [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container *ngFor="let key of resource.keys; let colIndex = index">
             <td *ngIf="showColumn(key)"
                 (click)="clickedCell($event, row, key, colIndex, rowIndex)"
-                [class.ng2-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
-                [class.ng2-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+                [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
+                [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
             >
               <div>{{ row[key] }}</div>
             </td>
           </ng-container>
           <td *ngIf="config.additionalActions">
-            <!--<button class="ng2-table__button">Edit</button>-->
+            <!--<button class="ngx-table__button">Edit</button>-->
           </td>
         </tr>
       </ng-container>
