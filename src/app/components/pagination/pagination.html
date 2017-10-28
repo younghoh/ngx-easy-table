@@ -1,28 +1,28 @@
-<div class="columns">
-  <div class="column col-4 col-mr-auto">
-    <ul class="pagination">
-      <li class="page-item disabled"
-          [class.disabled]="paginationService.isFirstPage()"
+<div class="ngx-columns">
+  <div class="ngx-column ngx-col-4 ngx-col-mr-auto">
+    <ul class="ngx-pagination">
+      <li class="ngx-page-item ngx-disabled"
+          [class.ngx-disabled]="paginationService.isFirstPage()"
           (click)="paginationService.previousPage($event)">
         <a href="#" tabindex="-1">Prev</a>
       </li>
-      <li class="page-item active"
+      <li class="ngx-page-item ngx-active"
           *ngFor="let page of paginationService.pageNumbers"
           (click)="paginationService.changePage($event, page)"
-          [class.active]="paginationService.isActivePage(page)">
+          [class.ngx-active]="paginationService.isActivePage(page)">
         <a href="#">{{page}}</a>
       </li>
-      <li class="page-item"
-          [class.disabled]="paginationService.isLastPage()"
+      <li class="ngx-page-item"
+          [class.ngx-disabled]="paginationService.isLastPage()"
           (click)="paginationService.nextPage($event)">
         <a href="#">Next</a>
       </li>
     </ul>
   </div>
-  <div class="column col-3">
-    <ul class="pagination float-right">
-      <li [class.active]="paginationService.isActiveRange(range)"
-          class="page-item"
+  <div class="ngx-column ngx-col-3">
+    <ul class="ngx-pagination ngx-float-right">
+      <li [class.ngx-active]="paginationService.isActiveRange(range)"
+          class="ngx-page-item"
           (click)="paginationService.changeRange($event, range)"
           *ngFor="let range of paginationService.ranges">
         <a href="#">{{range}}</a>

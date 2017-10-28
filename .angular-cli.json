@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "app/app.component.scss"
+        "assets/spectre.css",
+        "assets/spectre-icons.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
