@@ -41,7 +41,7 @@
         </th>
       </tr>
       <tr *ngIf="config.searchEnabled">
-        <ng-container *ngFor="let key of resource.keys">
+        <ng-container *ngFor="let key of headerKeys">
           <th *ngIf="showColumn(key)">
             <table-header (update)="term = $event" [key]="key"></table-header>
           </th>
