@@ -16,15 +16,40 @@ export class AppPage {
       .all(by.css('tbody tr'));
   }
 
-  getPagination() {
-    return element
+  async getPagination() {
+    return await element
       .all(by.className('ngx-container'))
       .all(by.id('pagination'))
       .all(by.css('li'));
   }
 
+  async clickPaginationPrev() {
+    return await element
+      .all(by.className('ngx-container'))
+      .all(by.id('pagination'))
+      .all(by.css('li:first-child'))
+      .click();
+  }
+
+  async clickPaginationNext() {
+    return await element
+      .all(by.className('ngx-container'))
+      .all(by.id('pagination'))
+      .all(by.css('li:last-child'))
+      .click();
+  }
+
+  async clickPagination2nd() {
+    return await element
+      .all(by.className('ngx-container'))
+      .all(by.id('pagination'))
+      .all(by.css('li:nth-child(3)'))
+      .click();
+  }
+
   async click5Rows() {
-    return element
+    await browser.executeScript('window.scrollTo(0,3000);');
+    return await  element
       .all(by.className('ngx-container'))
       .all(by.id('rowAmount'))
       .all(by.css('li:nth-child(1)'))
@@ -32,42 +57,38 @@ export class AppPage {
   }
 
   async click10Rows() {
-    return browser.executeScript('window.scrollTo(0,0);').then(function () {
-      element
-        .all(by.className('ngx-container'))
-        .all(by.id('rowAmount'))
-        .all(by.css('li:nth-child(2)'))
-        .click();
-    });
+    await browser.executeScript('window.scrollTo(0,3000);');
+    return await  element
+      .all(by.className('ngx-container'))
+      .all(by.id('rowAmount'))
+      .all(by.css('li:nth-child(2)'))
+      .click();
   }
 
   async click25Rows() {
-    return browser.executeScript('window.scrollTo(0,10000);').then(function () {
-      element
-        .all(by.className('ngx-container'))
-        .all(by.id('rowAmount'))
-        .all(by.css('li:nth-child(3)'))
-        .click();
-    });
+    await browser.executeScript('window.scrollTo(0,3000);');
+    return await  element
+      .all(by.className('ngx-container'))
+      .all(by.id('rowAmount'))
+      .all(by.css('li:nth-child(3)'))
+      .click();
   }
 
   async click50Rows() {
-    return browser.executeScript('window.scrollTo(0,10000);').then(function () {
-      element
-        .all(by.className('ngx-container'))
-        .all(by.id('rowAmount'))
-        .all(by.css('li:nth-child(4)'))
-        .click();
-    });
+    await browser.executeScript('window.scrollTo(0,3000);');
+    return await  element
+      .all(by.className('ngx-container'))
+      .all(by.id('rowAmount'))
+      .all(by.css('li:nth-child(4)'))
+      .click();
   }
 
   async click100Rows() {
-    return browser.executeScript('window.scrollTo(0,10000);').then(function () {
-      element
-        .all(by.className('ngx-container'))
-        .all(by.id('rowAmount'))
-        .all(by.css('li:nth-child(5)'))
-        .click();
-    });
+    await browser.executeScript('window.scrollTo(0,3000);');
+    return await  element
+      .all(by.className('ngx-container'))
+      .all(by.id('rowAmount'))
+      .all(by.css('li:nth-child(5)'))
+      .click();
   }
 }

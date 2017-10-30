@@ -3,24 +3,49 @@ import { AppPage } from './app.po';
 describe('table', () => {
   const page: AppPage = new AppPage();
   let data;
-  let pagination;
 
   beforeEach(() => {
     data = page.getTable();
-    pagination = page.getPagination();
   });
-
   describe('pagination', () => {
-    it('should display next 10 rows when pagination "2" clicked', async () => {
-      await pagination.get(2).click();
+    it('should display 10 rows when default configuration', async () => {
       const table = await data.getText();
       expect(table.length).toEqual(10);
+      const row = await data.get(0).getText();
+      expect(row).toEqual('+1 (949) 527-2108\n' +
+        '36\n' +
+        'KONGENE\n' +
+        'Deanne Contreras\n' +
+        'false');
     });
-    it('should display 5 rows when pagination "2" clicked and row amount set to 5', async () => {
-      await page.click5Rows();
-      await pagination.get(2).click();
+    it('should pagination NEXT button show next 10 elements', async () => {
+      await page.clickPaginationNext();
+      const row = await data.get(0).getText();
+      expect(row).toEqual('+1 (902) 500-3665\n' +
+        '28\n' +
+        'CALCULA\n' +
+        'Wilson Hatfield\n' +
+        'true');
+    });
+    it('should pagination PREV button show previous 10 elements', async () => {
+      await page.clickPaginationPrev();
+      const row = await data.get(0).getText();
+      expect(row).toEqual('+1 (949) 527-2108\n' +
+        '36\n' +
+        'KONGENE\n' +
+        'Deanne Contreras\n' +
+        'false');
+    });
+    it('should display 10 rows from 2 page, when pagination "2" clicked', async () => {
+      await page.clickPagination2nd();
       const table = await data.getText();
-      expect(table.length).toEqual(5);
+      expect(table.length).toEqual(10);
+      const row = await data.get(0).getText();
+      expect(row).toEqual('+1 (902) 500-3665\n' +
+        '28\n' +
+        'CALCULA\n' +
+        'Wilson Hatfield\n' +
+        'true');
     });
   });
   describe('row amount', () => {
@@ -48,18 +73,6 @@ describe('table', () => {
       await page.click100Rows();
       const table = await data.getText();
       expect(table.length).toBeGreaterThan(50);
-    });
-  });
-
-  it('should get first row from table', () => {
-    const firstRow = data.get(0);
-    firstRow.getText().then((row) => {
-      expect(row)
-        .toEqual('+1 (949) 527-2108\n' +
-          '36\n' +
-          'KONGENE\n' +
-          'Deanne Contreras\n' +
-          'false');
     });
   });
 });
