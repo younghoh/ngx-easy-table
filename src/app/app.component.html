@@ -11,24 +11,26 @@
   <div class="ngx-columns">
     <table class="ngx-table ngx-table-striped ngx-table-hover">
       <thead>
-      <tr>
+      <tr class="ngx-table__header">
         <ng-container *ngFor="let key of headerKeys">
           <th *ngIf="showColumn(key)"
+              class="ngx-table__header-cell"
               (click)="orderBy(key)">
             <div class="ngx-d-inline">{{ key }}</div>
             <span *ngIf="resource.order[key]==='asc' "
                   [style.display]="config.orderEnabled?'':'none' "
                   class="ngx-icon ngx-icon-arrow-up">
-        </span>
+            </span>
             <span *ngIf="resource.order[key]==='desc' "
                   [style.display]="config.orderEnabled?'':'none' "
                   class="ngx-icon ngx-icon-arrow-down">
-        </span>
+            </span>
           </th>
         </ng-container>
-        <th *ngIf="config.additionalActions">
+        <th *ngIf="config.additionalActions"
+            class="ngx-table__header-cell-additional-actions">
           <div class="ngx-dropdown ngx-active ngx-dropdown-right"
-                [class.ngx-active]="menuActive">
+               [class.ngx-active]="menuActive">
             <a class="ngx-btn ngx-btn-link" (click)="menuActive = !menuActive">
               <span class="ngx-icon ngx-icon-menu"></span>
             </a>
@@ -40,7 +42,8 @@
           </div>
         </th>
       </tr>
-      <tr *ngIf="config.searchEnabled">
+      <tr *ngIf="config.searchEnabled"
+          class="ngx-table__sortHeader">
         <ng-container *ngFor="let key of headerKeys">
           <th *ngIf="showColumn(key)">
             <table-header (update)="term = $event" [key]="key"></table-header>
@@ -79,12 +82,12 @@
       </ng-container>
       </tbody>
       <tbody *ngIf="!data">
-      <tr>
+      <tr class="ngx-table__body-empty">
         <td>No results</td>
       </tr>
       </tbody>
       <tfoot *ngIf="config.footerEnabled">
-      <tr>
+      <tr class="ngx-table__footer">
         <td *ngFor="let key of resource.keys"></td>
         <td></td>
       </tr>

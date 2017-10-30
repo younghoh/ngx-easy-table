@@ -67,14 +67,12 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges');
     const filters: SimpleChange = changes.filters;
     const sort: SimpleChange = changes.sort;
     if (filters) {
       this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
     }
     if (sort) {
-      console.log('sort.currentValue', sort.currentValue);
       this.data = this.resource.sortBy(sort.currentValue.key, sort.currentValue.order);
     }
   }
