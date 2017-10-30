@@ -1,6 +1,6 @@
 <div class="ngx-columns">
   <div class="ngx-column ngx-col-4 ngx-col-mr-auto">
-    <ul class="ngx-pagination">
+    <ul class="ngx-pagination" id="pagination">
       <li class="ngx-page-item ngx-disabled"
           [class.ngx-disabled]="paginationService.isFirstPage()"
           (click)="paginationService.previousPage($event)">
@@ -20,7 +20,7 @@
     </ul>
   </div>
   <div class="ngx-column ngx-col-3">
-    <ul class="ngx-pagination ngx-float-right">
+    <ul class="ngx-pagination ngx-float-right" id="rowAmount">
       <li [class.ngx-active]="paginationService.isActiveRange(range)"
           class="ngx-page-item"
           (click)="paginationService.changeRange($event, range)"
