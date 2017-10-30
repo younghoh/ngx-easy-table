@@ -28,6 +28,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input() configuration: ConfigService;
   @Input() filters: any;
+  @Input() sort: any;
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public tpl: TemplateRef<any>;
 
@@ -65,15 +66,21 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges');
     const filters: SimpleChange = changes.filters;
+    const sort: SimpleChange = changes.sort;
     if (filters) {
       this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
+    }
+    if (sort) {
+      console.log('sort.currentValue', sort.currentValue);
+      this.data = this.resource.sortBy(sort.currentValue.key, sort.currentValue.order);
     }
   }
 
   orderBy(key: string) {
     if (this.config.orderEnabled) {
-      this.data = this.resource.sortBy(key);
+      this.data = this.resource.sortBy(key, null);
     }
   }
 

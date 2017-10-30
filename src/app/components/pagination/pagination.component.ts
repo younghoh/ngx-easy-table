@@ -15,7 +15,7 @@ export class Pagination {
   constructor(public paginationService: PaginationService) {
     paginationService.updateRange$.subscribe(
       ev => {
-        this.updateRange.emit(ev)
+        this.updateRange.emit(ev);
       });
   }
 }

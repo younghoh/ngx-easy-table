@@ -1,25 +1,26 @@
-import {Injectable, EventEmitter} from "@angular/core";
+import { Injectable, EventEmitter } from '@angular/core';
+
 @Injectable()
 export class ResourceService {
-  public data:Array<any> = [];
-  public keys:Array<any> = [];
-  public key:string;
-  public order:Array<any> = [];
-  public previousData:Array<any> = [];
   private static _pipedDataEmitter;
+  public data: Array<any> = [];
+  public keys: Array<any> = [];
+  public key: string;
+  public order: Array<any> = [];
+  public previousData: Array<any> = [];
 
-  static getPipedData():EventEmitter<any> {
+  static getPipedData(): EventEmitter<any> {
     if (!this._pipedDataEmitter) {
       this._pipedDataEmitter = new EventEmitter();
     }
     return this._pipedDataEmitter;
   }
 
-  public getOrder():Array<any> {
+  public getOrder(): Array<any> {
     return this.order[this.key];
-  };
+  }
 
-  public sortBy(key:string):Array<any> {
+  public sortBy(key: string, order: string | null): Array<any> {
     this.key = key;
     if (Object.keys(this.order).length === 0) {
       this.order[this.key] = 'asc';
@@ -34,14 +35,14 @@ export class ResourceService {
       this.data.sort((a, b) => this.compare(b, a));
     }
     return this.data;
-  };
+  }
 
-  private compare(a:Array<any>, b:Array<any>):number {
+  private compare(a: Array<any>, b: Array<any>): number {
     if ((isNaN(parseFloat(a[this.key])) || !isFinite(a[this.key])) || (isNaN(parseFloat(b[this.key])) || !isFinite(b[this.key]))) {
-      if (a[this.key]+''.toLowerCase() < b[this.key]+''.toLowerCase()) {
+      if (a[this.key] + ''.toLowerCase() < b[this.key] + ''.toLowerCase()) {
         return -1;
       }
-      if (a[this.key]+''.toLowerCase() > b[this.key]+''.toLowerCase()) {
+      if (a[this.key] + ''.toLowerCase() > b[this.key] + ''.toLowerCase()) {
         return 1;
       }
     } else {
@@ -54,5 +55,5 @@ export class ResourceService {
     }
 
     return 0;
-  };
+  }
 }
