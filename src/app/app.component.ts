@@ -25,6 +25,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
   public selectedCell: number;
+  public menuActive = false;
 
   @Input() configuration: ConfigService;
   @Input() filters: any;

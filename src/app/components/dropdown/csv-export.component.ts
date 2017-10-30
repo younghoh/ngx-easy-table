@@ -10,7 +10,7 @@ import { ConfigService } from '../../services/config-service';
     </a>`
 })
 
-export class CsvExport {
+export class CsvExportComponent {
   constructor(public resource: ResourceService,
               public config: ConfigService) {
   }
@@ -46,5 +46,5 @@ export class CsvExport {
     link.setAttribute("download", "my_data.csv");
 
     link.click();
-  };
+  }
 }

@@ -8,7 +8,7 @@ import { PaginationService } from '../../services/pagination.service';
   providers: [PaginationService],
 })
 
-export class Pagination {
+export class PaginationComponent {
   @Input() numberOfItems: number = this.paginationService.numberOfItems;
   @Output() updateRange = new EventEmitter();
 
