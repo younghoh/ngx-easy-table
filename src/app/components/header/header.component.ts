@@ -16,7 +16,7 @@ import {FiltersService} from "../../services/filters-service";
   </label>`
 })
 
-export class Header implements OnInit {
+export class HeaderComponent implements OnInit {
   constructor(public filtersService:FiltersService) {
   }
 

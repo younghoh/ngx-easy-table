@@ -8,14 +8,14 @@ import { PaginationService } from '../../services/pagination.service';
   providers: [PaginationService],
 })
 
-export class Pagination {
+export class PaginationComponent {
   @Input() numberOfItems: number = this.paginationService.numberOfItems;
   @Output() updateRange = new EventEmitter();
 
   constructor(public paginationService: PaginationService) {
     paginationService.updateRange$.subscribe(
       ev => {
-        this.updateRange.emit(ev)
+        this.updateRange.emit(ev);
       });
   }
 }
