@@ -294,8 +294,8 @@ template {
 
 .ngx-table td,
 .ngx-table th {
-  border-bottom: .05rem solid #fff;
-  padding: .2rem .2rem;
+  border-bottom: .05rem solid #e7e9ed;
+  padding: .4rem .4rem;
 }
 
 .ngx-table th {
