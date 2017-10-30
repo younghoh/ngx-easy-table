@@ -9,7 +9,7 @@ import { ResourceService } from './services/resource-service';
 import { ConfigService } from './services/config-service';
 
 @Component({
-  selector: 'ng2-table',
+  selector: 'ngx-table',
   providers: [HttpService, FiltersService, ResourceService, ConfigService],
   templateUrl: './app.component.html',
   styleUrls: [

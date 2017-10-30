@@ -5,6 +5,7 @@ describe('table', () => {
   let data;
 
   beforeEach(() => {
+    page.refresh();
     data = page.getTable();
   });
   describe('pagination', () => {
@@ -68,11 +69,6 @@ describe('table', () => {
       await page.click50Rows();
       const table = await data.getText();
       expect(table.length).toEqual(50);
-    });
-    it('should display more than 50 rows when row amount clicked to 100', async () => {
-      await page.click100Rows();
-      const table = await data.getText();
-      expect(table.length).toBeGreaterThan(50);
     });
   });
 });

@@ -3,7 +3,6 @@ import { browser, by, element } from 'protractor';
 export class AppPage {
 
   constructor() {
-    browser.get('/');
   }
 
   refresh() {
@@ -14,6 +13,54 @@ export class AppPage {
     return element
       .all(by.className('ngx-table'))
       .all(by.css('tbody tr'));
+  }
+
+  getTableFirstRow() {
+    return element
+      .all(by.className('ngx-table'))
+      .all(by.css('tbody tr:nth-child(1)'))
+      .get(0);
+  }
+
+  async getTablePhoneFirstValue() {
+    return element
+      .all(by.className('ngx-table'))
+      .all(by.css('tbody tr:nth-child(1) > td:nth-child(1)'));
+  }
+
+  getTableAgeFirstValue() {
+    return element
+      .all(by.className('ngx-table'))
+      .all(by.css('tbody tr:nth-child(1) > td:nth-child(2)'))
+      .get(0);
+  }
+
+  async globalSearch(query: string) {
+    return await element
+      .all(by.css('input[type=text]'))
+      .get(0)
+      .sendKeys(query);
+  }
+
+  async searchByName(name: string) {
+    return await element
+      .all(by.css('input[type=text]'))
+      .get(4)
+      .sendKeys(name);
+  }
+
+  async clickSortByPhone() {
+    return await element
+      .all(by.className('ngx-container'))
+      .all(by.css('ngx-table > div > div:nth-child(2) > table > thead > tr:nth-child(1) > th:nth-child(1)'))
+      .click();
+  }
+
+  async clickSortByAge() {
+    return await element
+      .all(by.className('ngx-container'))
+      .all(by.css('ngx-table > div > div:nth-child(2) > table > thead > tr:nth-child(1) > th:nth-child(2)'))
+      .click();
   }
 
   async getPagination() {
@@ -48,8 +95,7 @@ export class AppPage {
   }
 
   async click5Rows() {
-    await browser.executeScript('window.scrollTo(0,3000);');
-    return await  element
+    return await element
       .all(by.className('ngx-container'))
       .all(by.id('rowAmount'))
       .all(by.css('li:nth-child(1)'))
@@ -57,8 +103,7 @@ export class AppPage {
   }
 
   async click10Rows() {
-    await browser.executeScript('window.scrollTo(0,3000);');
-    return await  element
+    return await element
       .all(by.className('ngx-container'))
       .all(by.id('rowAmount'))
       .all(by.css('li:nth-child(2)'))
@@ -66,8 +111,7 @@ export class AppPage {
   }
 
   async click25Rows() {
-    await browser.executeScript('window.scrollTo(0,3000);');
-    return await  element
+    return await element
       .all(by.className('ngx-container'))
       .all(by.id('rowAmount'))
       .all(by.css('li:nth-child(3)'))
@@ -75,8 +119,7 @@ export class AppPage {
   }
 
   async click50Rows() {
-    await browser.executeScript('window.scrollTo(0,3000);');
-    return await  element
+    return await element
       .all(by.className('ngx-container'))
       .all(by.id('rowAmount'))
       .all(by.css('li:nth-child(4)'))
@@ -84,8 +127,7 @@ export class AppPage {
   }
 
   async click100Rows() {
-    await browser.executeScript('window.scrollTo(0,3000);');
-    return await  element
+    return await element
       .all(by.className('ngx-container'))
       .all(by.id('rowAmount'))
       .all(by.css('li:nth-child(5)'))
