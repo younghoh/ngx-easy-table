@@ -14,14 +14,8 @@
   background: #9cbff9 !important;
 }
 
-.ngx-table__table-menu {
-  top: 80% !important;
-  left: -150px !important;
-}
-
 .ngx-table__table-menu li {
   font-weight: 100;
   margin-top: 0;
   text-align: left;
 }
-

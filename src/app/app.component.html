@@ -27,8 +27,9 @@
           </th>
         </ng-container>
         <th *ngIf="config.additionalActions">
-          <div class="ngx-dropdown">
-            <a class="ngx-btn ngx-btn-link ngx-dropdown-toggle" tabindex="0">
+          <div class="ngx-dropdown ngx-active ngx-dropdown-right"
+                [class.ngx-active]="menuActive">
+            <a class="ngx-btn ngx-btn-link" (click)="menuActive = !menuActive">
               <span class="ngx-icon ngx-icon-menu"></span>
             </a>
             <ul class="ngx-menu ngx-table__table-menu">
