@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './components/app/app.component';
-import { AppModule } from './components/app/app.module';
+import { AppComponent } from './components/base/base.component';
+import { AppModule } from './components/base/base.module';
 
 @NgModule({
   imports: [

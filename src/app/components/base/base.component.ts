@@ -11,8 +11,8 @@ import { HttpService } from '../../services/http-service';
 
 @Component({
   selector: 'ngx-table',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  templateUrl: './base.component.html',
+  styleUrls: ['./base.component.css'],
   providers: [HttpService, FiltersService, ResourceService, ConfigService]
 })
 export class AppComponent implements OnInit, OnChanges, AfterViewInit {

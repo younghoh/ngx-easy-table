@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppComponent } from './app.component';
+import { AppComponent } from './base.component';
 import { PaginationPipe } from '../../pipes/pagination-pipe';
 import { GlobalSearchComponent } from '../global-search/global-search.component';
 import { GlobalSearchPipe } from '../../pipes/global-search-pipe';
