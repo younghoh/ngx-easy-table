@@ -9,7 +9,7 @@ import { ResourceService } from './services/resource-service';
 import { ConfigService } from './services/config-service';
 
 @Component({
-  selector: 'ng2-table',
+  selector: 'ngx-table',
   providers: [HttpService, FiltersService, ResourceService, ConfigService],
   templateUrl: './app.component.html',
   styleUrls: [
@@ -25,9 +25,11 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
   public selectedCell: number;
+  public menuActive = false;
 
   @Input() configuration: ConfigService;
   @Input() filters: any;
+  @Input() sort: any;
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public tpl: TemplateRef<any>;
 
@@ -66,14 +68,18 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngOnChanges(changes: SimpleChanges) {
     const filters: SimpleChange = changes.filters;
+    const sort: SimpleChange = changes.sort;
     if (filters) {
       this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
+    }
+    if (sort) {
+      this.data = this.resource.sortBy(sort.currentValue.key, sort.currentValue.order);
     }
   }
 
   orderBy(key: string) {
     if (this.config.orderEnabled) {
-      this.data = this.resource.sortBy(key);
+      this.data = this.resource.sortBy(key, null);
     }
   }
 

@@ -36,6 +36,9 @@ export class SearchPipe implements PipeTransform {
           if (typeof item[filterKey] === "number") {
             element = item[filterKey].toString();
           }
+          if (typeof item[filterKey] === "boolean") {
+            element = item[filterKey].toString();
+          }
           if (element.indexOf(filtersArr[filterKey].toLocaleLowerCase()) === -1) {
             this.resource.data.splice(this.resource.data.indexOf(item), 1);
             return;

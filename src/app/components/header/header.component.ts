@@ -9,14 +9,14 @@ import {FiltersService} from "../../services/filters-service";
            id="search_{{ key }}"
            aria-label="Search"
            placeholder="Search for {{ key }}"
-           class="ngx-form-input ngx-input-sm"
+           class="ngx-table__header-search ngx-form-input ngx-input-sm"
            #input
            (input)="update.emit({value: input.value, key: key})"
     >
   </label>`
 })
 
-export class Header implements OnInit {
+export class HeaderComponent implements OnInit {
   constructor(public filtersService:FiltersService) {
   }
 

@@ -5,6 +5,6 @@ import { Component, Output, EventEmitter } from "@angular/core";
   templateUrl: './global-search.html'
 })
 
-export class GlobalSearch {
+export class GlobalSearchComponent {
   @Output() globalUpdate = new EventEmitter();
 }
