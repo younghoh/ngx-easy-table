@@ -4,7 +4,7 @@
     <div class="ngx-column ngx-col-3">
       <global-search
         *ngIf="config.globalSearchEnabled"
-        (globalUpdate)="globalSearchTerm = $event">
+        (globalUpdate)="onGlobalSearch($event)">
       </global-search>
     </div>
   </div>
@@ -46,7 +46,7 @@
           class="ngx-table__sortHeader">
         <ng-container *ngFor="let key of headerKeys">
           <th *ngIf="showColumn(key)">
-            <table-header (update)="term = $event" [key]="key"></table-header>
+            <table-header (update)="onSearch($event)" [key]="key"></table-header>
           </th>
         </ng-container>
         <th *ngIf="config.additionalActions"></th>
@@ -97,6 +97,6 @@
   <pagination
     *ngIf="config.paginationEnabled"
     [numberOfItems]="numberOfItems"
-    (updateRange)="range = $event">
+    (updateRange)="onPagination($event)">
   </pagination>
 </div>

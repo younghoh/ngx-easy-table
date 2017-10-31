@@ -19,7 +19,7 @@ export class PaginationService {
               public config: ConfigService) {
     this.ranges = [5, 10, 25, 50, 100];
     this.pageNumber = 1;
-    this.range = this.config.rows || 10;
+    this.range = this.config.rows;
     this.pageNumbers = [];
     ResourceService.getPipedData().subscribe(data => {
       this.numberOfItems = data;
@@ -32,10 +32,6 @@ export class PaginationService {
   }
 
   public updateNumberPerPage(): void {
-    // issue #5
-    // if (this.range > this.numberOfItems && this.numberOfItems > 0) {
-    //   this.range = this.numberOfItems;
-    // }
     this.pageNumbers = Array(this.paginationItemsCount)
       .fill(this.paginationItemsCount, 0)
       .map((_, i) => i + 1);

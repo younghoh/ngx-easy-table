@@ -11,8 +11,8 @@ export class ConfigService implements Config {
   public paginationEnabled = true;
   public exportEnabled = true;
   public editEnabled = false;
-  public clickEvent = false;
-  public selectRow = true;
+  public clickEvent = true;
+  public selectRow = false;
   public selectCol = false;
   public selectCell = false;
   public data = [];
@@ -22,4 +22,5 @@ export class ConfigService implements Config {
   public columns = [];
   public hiddenColumns = new Set([]);
   public additionalActions = true;
+  public serverPagination = true;
 }

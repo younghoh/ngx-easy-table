@@ -7,14 +7,15 @@ import { HttpService } from './services/http-service';
 import { FiltersService } from './services/filters-service';
 import { ResourceService } from './services/resource-service';
 import { ConfigService } from './services/config-service';
+import { Event } from './model/event.enum';
 
 @Component({
   selector: 'ngx-table',
   providers: [HttpService, FiltersService, ResourceService, ConfigService],
   templateUrl: './app.component.html',
   styleUrls: [
-    './app.component.css',
-  ],
+    './app.component.css'
+  ]
 })
 
 export class TableComponent implements OnInit, OnChanges, AfterViewInit {
@@ -26,6 +27,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedCol: number;
   public selectedCell: number;
   public menuActive = false;
+  public term;
+  public globalSearchTerm;
+  public range;
 
   @Input() configuration: ConfigService;
   @Input() filters: any;
@@ -80,10 +84,11 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   orderBy(key: string) {
     if (this.config.orderEnabled) {
       this.data = this.resource.sortBy(key, null);
+      this.onOrder(key);
     }
   }
 
-  clickedCell($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number) {
+  clickedCell($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
     if (this.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -95,21 +100,22 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       this.selectedCol = colIndex;
     }
     if (this.config.clickEvent) {
-      this.event.emit({
+      const value = {
         event: $event,
         row: row,
         key: key,
         rowId: rowIndex,
-        colId: colIndex,
-      });
+        colId: colIndex
+      };
+      this.emitEvent(Event.onClick, value);
     }
   }
 
-  showColumn(colIndex) {
+  showColumn(colIndex): boolean {
     return !this.config.hiddenColumns.has(colIndex);
   }
 
-  toggleColumn(colIndex) {
+  toggleColumn(colIndex): void {
     if (this.config.hiddenColumns.has(colIndex)) {
       this.config.hiddenColumns.delete(colIndex);
     } else {
@@ -122,5 +128,33 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       return this.config.columns;
     }
     return this.resource.keys;
+  }
+
+  onSearch($event): void {
+    this.term = $event;
+    this.emitEvent(Event.onSearch, $event);
+  }
+
+  onGlobalSearch($event): void {
+    this.globalSearchTerm = $event;
+    this.emitEvent(Event.onGlobalSearch, $event);
+  }
+
+  onPagination($event): void {
+    this.range = $event;
+    this.emitEvent(Event.onPagination, $event);
+  }
+
+  onOrder(key): void {
+    const value = {
+      key,
+      order: this.resource.order[key]
+    };
+    this.emitEvent(Event.onOrder, value);
+  }
+
+  private emitEvent(event, value: Object): void {
+    console.log(`event: ${Event[event]}; value: ${JSON.stringify(value)}`);
+    this.event.emit({ event: Event[event], value });
   }
 }
