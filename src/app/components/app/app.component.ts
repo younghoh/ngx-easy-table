@@ -1,23 +1,21 @@
 import {
-  Component, OnInit, Input, ChangeDetectorRef, AfterViewInit, Output, EventEmitter,
-  ContentChild, TemplateRef, OnChanges, SimpleChanges, SimpleChange
+  AfterViewInit, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnChanges, OnInit, Output,
+  SimpleChange,
+  SimpleChanges,
+  TemplateRef
 } from '@angular/core';
-import 'rxjs/add/operator/map';
-import { HttpService } from './services/http-service';
-import { FiltersService } from './services/filters-service';
-import { ResourceService } from './services/resource-service';
-import { ConfigService } from './services/config-service';
+import { ConfigService } from '../../services/config-service';
+import { ResourceService } from '../../services/resource-service';
+import { FiltersService } from '../../services/filters-service';
+import { HttpService } from '../../services/http-service';
 
 @Component({
   selector: 'ngx-table',
-  providers: [HttpService, FiltersService, ResourceService, ConfigService],
   templateUrl: './app.component.html',
-  styleUrls: [
-    './app.component.css',
-  ],
+  styleUrls: ['./app.component.css'],
+  providers: [HttpService, FiltersService, ResourceService, ConfigService]
 })
-
-export class TableComponent implements OnInit, OnChanges, AfterViewInit {
+export class AppComponent implements OnInit, OnChanges, AfterViewInit {
   public data: Array<any>;
   public filteredData: Array<any>;
   public keys: Array<any>;
@@ -100,7 +98,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
         row: row,
         key: key,
         rowId: rowIndex,
-        colId: colIndex,
+        colId: colIndex
       });
     }
   }
