@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Logger } from 'angular2-logger/core';
 import { ConfigService } from './config-service';
+import { Logger } from '@nsalaun/ng-logger';
 
 @Injectable()
 export class LoggerService {
+  _logger: Logger;
 
-  constructor(private config: ConfigService,
-              private _logger: Logger) {
-    this._logger.level = this.config.loggerLevel;
+  constructor(private config: ConfigService) {
+    this._logger = new Logger(this.config.loggerLevel);
   }
 
   error(message?: any) {

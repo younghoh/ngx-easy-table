@@ -76,6 +76,6 @@
   ],
   "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)",
   "dependencies": {
-    "angular2-logger": "^0.6.0"
+    "@nsalaun/ng-logger": "^2.0.2"
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Config } from '../model/config';
 import { HttpHeaders } from '@angular/common/http';
-import { Level } from 'angular2-logger/core';
+import { Level } from '@nsalaun/ng-logger';
 
 @Injectable()
 export class ConfigService implements Config {

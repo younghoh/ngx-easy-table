@@ -3,15 +3,17 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './components/base/base.component';
 import { AppModule } from './components/base/base.module';
-import { Logger } from 'angular2-logger/core';
+import { Level, NgLoggerModule } from '@nsalaun/ng-logger';
 
 @NgModule({
   imports: [
     HttpClientModule,
     BrowserModule,
-    AppModule
+    AppModule,
+    NgLoggerModule.forRoot(Level.LOG)
   ],
   bootstrap: [AppComponent],
-  providers: [Logger]
+  providers: []
 })
-export class TableModule { }
+export class TableModule {
+}
