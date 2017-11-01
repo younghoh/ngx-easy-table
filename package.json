@@ -13,7 +13,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng-packagr && cp src/assets/spectre.css dist/ && cp src/assets/spectre-icons.css dist/"
+    "build:lib": "ng-packagr && cp src/assets/spectre.css dist/ && cp src/assets/spectre-icons.css dist/ && ng e2e"
   },
   "license": "MIT",
   "devDependencies": {
