@@ -13,6 +13,7 @@ import { Level, NgLoggerModule } from '@nsalaun/ng-logger';
     NgLoggerModule.forRoot(Level.LOG)
   ],
   bootstrap: [AppComponent],
+  exports: [AppComponent],
   providers: []
 })
 export class TableModule {
