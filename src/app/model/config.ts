@@ -1,3 +1,5 @@
+import { Level } from 'angular2-logger/core';
+
 export interface Config {
   searchEnabled: boolean;
   orderEnabled: boolean;
@@ -16,4 +18,5 @@ export interface Config {
   columns: string[];
   hiddenColumns: Set<string>;
   additionalActions: boolean;
+  loggerLevel: number | Level;
 }
