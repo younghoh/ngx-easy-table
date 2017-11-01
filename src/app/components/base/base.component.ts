@@ -8,10 +8,11 @@ import { FiltersService } from '../../services/filters-service';
 import { ResourceService } from '../../services/resource-service';
 import { ConfigService } from '../../services/config-service';
 import { Event } from '../../model/event.enum';
+import { LoggerService } from '../../services/logger.service';
 
 @Component({
   selector: 'ngx-table',
-  providers: [HttpService, FiltersService, ResourceService, ConfigService],
+  providers: [HttpService, FiltersService, ResourceService, ConfigService, LoggerService],
   templateUrl: './base.component.html',
   styleUrls: ['./base.component.css']
 })
@@ -38,10 +39,13 @@ export class AppComponent implements OnInit, OnChanges, AfterViewInit {
               public config: ConfigService,
               public resource: ResourceService,
               public httpService: HttpService,
-              private cdr: ChangeDetectorRef) {
+              private cdr: ChangeDetectorRef,
+              private logger: LoggerService,
+  ) {
   }
 
   ngOnInit() {
+    this.logger.init();
     if (this.configuration) {
       this.config = this.configuration;
     }
@@ -151,7 +155,7 @@ export class AppComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private emitEvent(event, value: Object): void {
-    console.log(`event: ${Event[event]}; value: ${JSON.stringify(value)}`);
+    this.logger.info(`event: ${Event[event]}; value: ${JSON.stringify(value)}`);
     this.event.emit({ event: Event[event], value });
   }
 }

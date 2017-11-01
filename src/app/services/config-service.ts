@@ -23,4 +23,5 @@ export class ConfigService implements Config {
   public hiddenColumns = new Set([]);
   public additionalActions = true;
   public serverPagination = true;
+  public loggerLevel = 3;
 }
