@@ -7,9 +7,6 @@ export class LoggerService {
 
   constructor(private config: ConfigService,
               private _logger: Logger) {
-  }
-
-  init() {
     this._logger.level = this.config.loggerLevel;
   }
 

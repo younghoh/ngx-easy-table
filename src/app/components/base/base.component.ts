@@ -45,7 +45,6 @@ export class AppComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnInit() {
-    this.logger.init();
     if (this.configuration) {
       this.config = this.configuration;
     }
