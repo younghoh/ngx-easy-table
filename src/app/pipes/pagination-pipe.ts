@@ -14,7 +14,7 @@ export class PaginationPipe implements PipeTransform {
     if (typeof value === 'undefined') {
       return;
     }
-    ResourceService.getPipedData().emit(value.length);
+    this.resource.getPipedData().emit(value.length);
     let copiedArr = value.slice();
 
     if (typeof filters !== 'undefined') {
