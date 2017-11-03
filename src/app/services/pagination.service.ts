@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { ResourceService } from './resource-service';
 import { ConfigService } from './config-service';
@@ -21,7 +21,7 @@ export class PaginationService {
     this.pageNumber = 1;
     this.range = this.config.rows;
     this.pageNumbers = [];
-    ResourceService.getPipedData().subscribe(data => {
+    this.resource.getPipedData().subscribe(data => {
       this.numberOfItems = data;
       this.updateNumberPerPage();
     });
@@ -72,10 +72,6 @@ export class PaginationService {
 
   public isFirstPage(): boolean {
     return this.pageNumber === 1;
-  }
-
-  ngOnChanges() {
-    this.updatePagination();
   }
 
   changeRange(event, number): void {

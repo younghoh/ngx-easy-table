@@ -2,12 +2,12 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class ResourceService {
-  private static _pipedDataEmitter;
+  private _pipedDataEmitter;
   public data: Array<any> = [];
   public key: string;
   public order: Array<any> = [];
 
-  static getPipedData(): EventEmitter<any> {
+  public getPipedData(): EventEmitter<any> {
     if (!this._pipedDataEmitter) {
       this._pipedDataEmitter = new EventEmitter();
     }
