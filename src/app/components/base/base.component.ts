@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() filters: any;
   @Input() sort: any;
   @Input() data: Array<Object>;
+  @Input() rows: number;
   @Input() columns: Array<string>;
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public tpl: TemplateRef<any>;
@@ -55,7 +56,7 @@ export class AppComponent implements OnInit, OnChanges, AfterViewInit {
     const filters: SimpleChange = changes.filters;
     const sort: SimpleChange = changes.sort;
     const data: SimpleChange = changes.data;
-    console.log('lib data: ', data);
+    const rows: SimpleChange = changes.rows;
     if (filters) {
       this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
     }
@@ -64,7 +65,11 @@ export class AppComponent implements OnInit, OnChanges, AfterViewInit {
     }
     if (data) {
       this.data = [...data.currentValue];
-      this.numberOfItems = this.data.length;
+      console.log('lib this.data: ', this.data);
+    }
+    if (rows) {
+      this.numberOfItems = rows.currentValue;
+      console.log('lib this.numberOfItems: ', this.numberOfItems);
     }
   }
 

@@ -1,5 +1,3 @@
-import { Level } from '@nsalaun/ng-logger';
-
 export interface Config {
   searchEnabled: boolean;
   headerEnabled: boolean;
@@ -11,5 +9,4 @@ export interface Config {
   selectCol: boolean;
   selectCell: boolean;
   rows: number;
-  loggerLevel: number | Level;
 }

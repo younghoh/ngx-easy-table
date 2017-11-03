@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { ResourceService } from './resource-service';
 import { ConfigService } from './config-service';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class PaginationService {
+export class PaginationService implements OnChanges{
   public pageNumber: number;
   public range: number;
   public pageNumbers: Array<any>;
@@ -27,6 +27,10 @@ export class PaginationService {
     });
   }
 
+  ngOnChanges() {
+    this.updatePagination();
+  }
+
   public emitPaginationProperties(): void {
     this.updateRangeSource.next({ range: this.range, page: this.pageNumber });
   }
@@ -38,6 +42,7 @@ export class PaginationService {
   }
 
   public updatePagination(): void {
+    console.log('updatePagination');
     this.updateNumberPerPage();
     this.emitPaginationProperties();
   }
