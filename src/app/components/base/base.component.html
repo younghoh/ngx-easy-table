@@ -4,17 +4,16 @@
     <div class="ngx-column ngx-col-3">
       <global-search
         *ngIf="config.globalSearchEnabled"
-        (globalUpdate)="globalSearchTerm = $event">
+        (globalUpdate)="onGlobalSearch($event)">
       </global-search>
     </div>
   </div>
   <div class="ngx-columns">
     <table class="ngx-table ngx-table-striped ngx-table-hover">
       <thead>
-      <tr class="ngx-table__header">
-        <ng-container *ngFor="let key of headerKeys">
-          <th *ngIf="showColumn(key)"
-              class="ngx-table__header-cell"
+      <tr class="ngx-table__header" *ngIf="config.headerEnabled">
+        <ng-container *ngFor="let key of columns">
+          <th class="ngx-table__header-cell"
               (click)="orderBy(key)">
             <div class="ngx-d-inline">{{ key }}</div>
             <span *ngIf="resource.order[key]==='asc' "
@@ -44,40 +43,37 @@
       </tr>
       <tr *ngIf="config.searchEnabled"
           class="ngx-table__sortHeader">
-        <ng-container *ngFor="let key of headerKeys">
-          <th *ngIf="showColumn(key)">
-            <table-header (update)="term = $event" [key]="key"></table-header>
+        <ng-container *ngFor="let key of columns">
+          <th>
+            <table-header (update)="onSearch($event)" [key]="key"></table-header>
           </th>
         </ng-container>
         <th *ngIf="config.additionalActions"></th>
       </tr>
       </thead>
-      <tbody *ngIf="data">
+      <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : paginationPipe;
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container [ngTemplateOutlet]="tpl"
-                        [ngOutletContext]="{ $implicit: row }">
+                        [ngTemplateOutletContext]="{ $implicit: row }">
           </ng-container>
         </tr>
       </ng-container>
       <ng-container *ngIf="!tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : paginationPipe;
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-          <ng-container *ngFor="let key of resource.keys; let colIndex = index">
-            <td *ngIf="showColumn(key)"
-                (click)="clickedCell($event, row, key, colIndex, rowIndex)"
+          <ng-container *ngFor="let key of columns; let colIndex = index">
+            <td (click)="clickedCell($event, row, key, colIndex, rowIndex)"
                 [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                 [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
             >
               <div>{{ row[key] }}</div>
             </td>
           </ng-container>
-          <td *ngIf="config.additionalActions">
-            <!--<button class="ngx-table__button">Edit</button>-->
-          </td>
+          <td *ngIf="config.additionalActions"></td>
         </tr>
       </ng-container>
       </tbody>
@@ -86,17 +82,18 @@
         <td>No results</td>
       </tr>
       </tbody>
-      <tfoot *ngIf="config.footerEnabled">
-      <tr class="ngx-table__footer">
-        <td *ngFor="let key of resource.keys"></td>
-        <td></td>
+      <tbody *ngIf="config.isLoading">
+      <tr class="ngx-table__body-loading">
+        <td>
+          <div class="ngx-table__table-loader"></div>
+        </td>
       </tr>
-      </tfoot>
+      </tbody>
     </table>
   </div>
   <pagination
     *ngIf="config.paginationEnabled"
-    [numberOfItems]="numberOfItems"
-    (updateRange)="range = $event">
+    [pagination]="pagination"
+    (updateRange)="onPagination($event)">
   </pagination>
 </div>
