@@ -9,11 +9,13 @@ export class ConfigService {
     orderEnabled: true,
     globalSearchEnabled: true,
     paginationEnabled: true,
+    exportEnabled: false,
     clickEvent: true,
     selectRow: false,
     selectCol: false,
     selectCell: false,
     rows: 10,
+    additionalActions: false,
     serverPagination: true,
     isLoading: true,
   };

@@ -26,6 +26,20 @@
             </span>
           </th>
         </ng-container>
+        <th *ngIf="config.additionalActions"
+            class="ngx-table__header-cell-additional-actions">
+          <div class="ngx-dropdown ngx-active ngx-dropdown-right"
+               [class.ngx-active]="menuActive">
+            <a class="ngx-btn ngx-btn-link" (click)="menuActive = !menuActive">
+              <span class="ngx-icon ngx-icon-menu"></span>
+            </a>
+            <ul class="ngx-menu ngx-table__table-menu">
+              <li class="ngx-menu-item">
+                <csv-export *ngIf="config.exportEnabled"></csv-export>
+              </li>
+            </ul>
+          </div>
+        </th>
       </tr>
       <tr *ngIf="config.searchEnabled"
           class="ngx-table__sortHeader">
@@ -34,6 +48,7 @@
             <table-header (update)="onSearch($event)" [key]="key"></table-header>
           </th>
         </ng-container>
+        <th *ngIf="config.additionalActions"></th>
       </tr>
       </thead>
       <tbody *ngIf="data && !config.isLoading">
@@ -58,6 +73,7 @@
               <div>{{ row[key] }}</div>
             </td>
           </ng-container>
+          <td *ngIf="config.additionalActions"></td>
         </tr>
       </ng-container>
       </tbody>

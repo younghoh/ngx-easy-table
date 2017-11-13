@@ -19,9 +19,6 @@ export class FiltersService {
   }
 
   /**
-   * @deprecated
-   * by applying <ngx-table [data]="data"> custom filters are not deeded anymore.
-   * You can do your own filter through "data" array and pass to the table.
    * @param {Object} filters
    * @param {Array<Object>} data
    * @return {Array<Object>}

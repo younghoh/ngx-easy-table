@@ -1,4 +1,4 @@
-import { Injectable, OnChanges, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { ResourceService } from './resource-service';
 import { ConfigService } from './config-service';

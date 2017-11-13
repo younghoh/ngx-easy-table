@@ -4,11 +4,13 @@ export interface Config {
   orderEnabled: boolean;
   globalSearchEnabled: boolean;
   paginationEnabled: boolean;
+  exportEnabled: boolean;
   clickEvent: boolean;
   selectRow: boolean;
   selectCol: boolean;
   selectCell: boolean;
   rows: number;
+  additionalActions: boolean;
   serverPagination: boolean;
   isLoading: boolean;
 }

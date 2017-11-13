@@ -7,11 +7,13 @@ import { GlobalSearchPipe } from '../../pipes/global-search-pipe';
 import { SearchPipe } from '../../pipes/header-pipe';
 import { HeaderComponent } from '../header/header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { CsvExportComponent } from '../csv-export.component';
 
 @NgModule({
   declarations: [
     BaseComponent,
     GlobalSearchComponent,
+    CsvExportComponent,
     HeaderComponent,
     PaginationComponent,
     SearchPipe,
