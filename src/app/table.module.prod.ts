@@ -1,11 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BaseComponent } from './components/base/base.component';
 import { BaseModule } from './components/base/base.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
-    BrowserModule,
+    CommonModule,
     BaseModule,
   ],
   bootstrap: [BaseComponent],

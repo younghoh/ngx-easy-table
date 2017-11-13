@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppComponent } from './base.component';
+import { BaseComponent } from './base.component';
 import { PaginationPipe } from '../../pipes/pagination-pipe';
 import { GlobalSearchComponent } from '../global-search/global-search.component';
 import { GlobalSearchPipe } from '../../pipes/global-search-pipe';
-import { CsvExportComponent } from '../dropdown/csv-export.component';
 import { SearchPipe } from '../../pipes/header-pipe';
 import { HeaderComponent } from '../header/header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
-import { HttpClient } from '@angular/common/http';
+import { CsvExportComponent } from '../csv-export.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    BaseComponent,
     GlobalSearchComponent,
     CsvExportComponent,
     HeaderComponent,
@@ -24,7 +23,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     CommonModule
   ],
-  providers: [HttpClient]
+  exports: [BaseComponent],
 })
-export class AppModule {
+export class BaseModule {
 }

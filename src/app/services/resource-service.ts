@@ -2,22 +2,16 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class ResourceService {
-  private static _pipedDataEmitter;
+  private _pipedDataEmitter;
   public data: Array<any> = [];
-  public keys: Array<any> = [];
   public key: string;
   public order: Array<any> = [];
-  public previousData: Array<any> = [];
 
-  static getPipedData(): EventEmitter<any> {
+  public getPipedData(): EventEmitter<any> {
     if (!this._pipedDataEmitter) {
       this._pipedDataEmitter = new EventEmitter();
     }
     return this._pipedDataEmitter;
-  }
-
-  public getOrder(): Array<any> {
-    return this.order[this.key];
   }
 
   public sortBy(key: string, order: string | null): Array<any> {

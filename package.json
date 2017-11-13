@@ -1,7 +1,8 @@
 {
   "name": "ngx-easy-table",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Angular easy table",
+  "typings": "index.prod.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/ssuperczynski/ngx-easy-table.git"
@@ -18,13 +19,12 @@
   "license": "MIT",
   "devDependencies": {
     "@angular/animations": "^4.0.0",
-    "@angular/cli": "^1.4.9",
+    "@angular/cli": "^1.5.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@angular/http": "^4.0.0",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
@@ -33,7 +33,7 @@
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
-    "codelyzer": "~3.1.1",
+    "codelyzer": "^4.0.0",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",
     "karma": "~1.7.0",
@@ -48,7 +48,7 @@
     "rxjs": "^5.4.3",
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
-    "typescript": "~2.3.3",
+    "typescript": "<2.4.0",
     "zone.js": "^0.8.14"
   },
   "engines": {

@@ -18,6 +18,11 @@ export class FiltersService {
     return this.filters;
   }
 
+  /**
+   * @param {Object} filters
+   * @param {Array<Object>} data
+   * @return {Array<Object>}
+   */
   public applyCustomFilters(filters: Object, data: Array<Object>): Array<Object> {
     if (Object.keys(filters).length === 0) {
       return data;

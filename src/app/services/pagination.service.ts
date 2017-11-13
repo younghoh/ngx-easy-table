@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { ResourceService } from './resource-service';
 import { ConfigService } from './config-service';
@@ -6,11 +6,11 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class PaginationService {
-  public pageNumber: number;
-  public range: number;
   public pageNumbers: Array<any>;
   public ranges: number[];
-  public numberOfItems: number;
+  public count: number;
+  public offset: number;
+  public limit: number;
 
   updateRangeSource = new Subject<any>();
   updateRange$ = this.updateRangeSource.asObservable();
@@ -18,85 +18,84 @@ export class PaginationService {
   constructor(public resource: ResourceService,
               public config: ConfigService) {
     this.ranges = [5, 10, 25, 50, 100];
-    this.pageNumber = 1;
-    this.range = this.config.rows || 10;
+    this.offset = 1;
+    this.limit = ConfigService.config.rows;
     this.pageNumbers = [];
-    ResourceService.getPipedData().subscribe(data => {
-      this.numberOfItems = data;
-      this.updateNumberPerPage();
-    });
+    if (!ConfigService.config.serverPagination) {
+      this.resource.getPipedData().subscribe(count => {
+        this.count = count;
+        this.updateNumberPerPage();
+      });
+    }
   }
 
   public emitPaginationProperties(): void {
-    this.updateRangeSource.next({ range: this.range, page: this.pageNumber });
+    this.updateRangeSource.next({ limit: this.limit, offset: this.offset });
   }
 
   public updateNumberPerPage(): void {
-    // issue #5
-    // if (this.range > this.numberOfItems && this.numberOfItems > 0) {
-    //   this.range = this.numberOfItems;
-    // }
     this.pageNumbers = Array(this.paginationItemsCount)
       .fill(this.paginationItemsCount, 0)
       .map((_, i) => i + 1);
   }
 
   public updatePagination(): void {
-    this.updateNumberPerPage();
+    if (!ConfigService.config.serverPagination) {
+      this.updateNumberPerPage();
+    }
     this.emitPaginationProperties();
   }
 
-  public isActiveRange(currentRange: Number): boolean {
-    return currentRange === this.range;
+  public isActiveLimit(currentLimit: Number): boolean {
+    return currentLimit === this.limit;
   }
 
-  public isActivePage(currentPage: Number): boolean {
-    return currentPage === this.pageNumber;
+  public isActivePage(offset: Number): boolean {
+    return offset === this.offset;
   }
 
   public nextPage(event): void {
     event.preventDefault();
-    if (!this.isLastPage()) {
-      this.pageNumber++;
-      this.updatePagination();
+    if (!ConfigService.config.serverPagination) {
+      if (!this.isLastPage()) {
+        this.offset++;
+        this.updatePagination();
+      }
     }
   }
 
   public previousPage(event): void {
     event.preventDefault();
-    if (!this.isFirstPage()) {
-      this.pageNumber--;
-      this.updatePagination();
+    if (!ConfigService.config.serverPagination) {
+      if (!this.isFirstPage()) {
+        this.offset--;
+        this.updatePagination();
+      }
     }
   }
 
   public isLastPage(): boolean {
-    return this.pageNumber === this.pageNumbers.length;
+    return this.offset === this.pageNumbers.length;
   }
 
   public isFirstPage(): boolean {
-    return this.pageNumber === 1;
+    return this.offset === 1;
   }
 
-  ngOnChanges() {
+  changeLimit(event, limit): void {
+    event.preventDefault();
+    this.limit = limit;
+    this.offset = 1;
     this.updatePagination();
   }
 
-  changeRange(event, number): void {
+  changeOffset(event, offset): void {
     event.preventDefault();
-    this.range = number;
-    this.pageNumber = 1;
-    this.updatePagination();
-  }
-
-  changePage(event, numberOfPage): void {
-    event.preventDefault();
-    const prevPage = this.pageNumber;
-    this.pageNumber = numberOfPage;
+    this.offset = offset;
     this.updatePagination();
   }
 
   get paginationItemsCount(): number {
-    return Math.ceil(this.numberOfItems / this.range);
+    return Math.ceil(this.count / this.limit);
   }
 }

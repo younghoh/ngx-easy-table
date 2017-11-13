@@ -24,6 +24,6 @@ export class HeaderComponent implements OnInit {
   @Output() update = new EventEmitter();
 
   ngOnInit() {
-    this.update.emit({});
+    // this.update.emit({});
   }
 }
