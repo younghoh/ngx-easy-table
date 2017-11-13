@@ -9,4 +9,6 @@ export interface Config {
   selectCol: boolean;
   selectCell: boolean;
   rows: number;
+  serverPagination: boolean;
+  isLoading: boolean;
 }

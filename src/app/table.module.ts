@@ -1,15 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './components/base/base.component';
-import { AppModule } from './components/base/base.module';
+import { BaseComponent } from './components/base/base.component';
+import { BaseModule } from './components/base/base.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    AppModule,
+    BaseModule,
   ],
-  bootstrap: [AppComponent],
-  exports: [AppComponent],
+  bootstrap: [BaseComponent],
+  exports: [BaseComponent],
   providers: []
 })
 export class TableModule {

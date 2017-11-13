@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppComponent } from './base.component';
+import { BaseComponent } from './base.component';
 import { PaginationPipe } from '../../pipes/pagination-pipe';
 import { GlobalSearchComponent } from '../global-search/global-search.component';
 import { GlobalSearchPipe } from '../../pipes/global-search-pipe';
 import { SearchPipe } from '../../pipes/header-pipe';
 import { HeaderComponent } from '../header/header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
-import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    BaseComponent,
     GlobalSearchComponent,
     HeaderComponent,
     PaginationComponent,
@@ -22,8 +21,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     CommonModule
   ],
-  providers: [HttpClient],
-  exports: [AppComponent],
+  exports: [BaseComponent],
 })
-export class AppModule {
+export class BaseModule {
 }

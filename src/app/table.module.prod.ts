@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { AppComponent } from './components/base/base.component';
-import { AppModule } from './components/base/base.module';
+import { BaseComponent } from './components/base/base.component';
+import { BaseModule } from './components/base/base.module';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
     CommonModule,
-    AppModule,
+    BaseModule,
   ],
-  bootstrap: [AppComponent],
-  exports: [AppComponent],
+  bootstrap: [BaseComponent],
+  exports: [BaseComponent],
   providers: []
 })
 export class TableModule {

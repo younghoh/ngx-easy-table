@@ -36,9 +36,9 @@
         </ng-container>
       </tr>
       </thead>
-      <tbody *ngIf="data">
+      <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : paginationPipe;
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container [ngTemplateOutlet]="tpl"
@@ -47,7 +47,7 @@
         </tr>
       </ng-container>
       <ng-container *ngIf="!tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : range;
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : paginationPipe;
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container *ngFor="let key of columns; let colIndex = index">
@@ -66,12 +66,18 @@
         <td>No results</td>
       </tr>
       </tbody>
+      <tbody *ngIf="config.isLoading">
+      <tr class="ngx-table__body-loading">
+        <td>
+          <div class="ngx-table__table-loader"></div>
+        </td>
+      </tr>
+      </tbody>
     </table>
   </div>
   <pagination
     *ngIf="config.paginationEnabled"
-    [numberOfItems]="numberOfItems"
+    [pagination]="pagination"
     (updateRange)="onPagination($event)">
   </pagination>
 </div>
-numberOfItems: {{numberOfItems}}
