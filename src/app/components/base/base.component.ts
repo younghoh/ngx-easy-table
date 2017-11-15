@@ -25,7 +25,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public globalSearchTerm;
   menuActive = false;
   page = 1;
-  count = 1;
+  count = null;
   limit = 10;
 
   @Input() configuration: Config;
