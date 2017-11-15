@@ -1,37 +1,38 @@
 import {
-  ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChange,
-  SimpleChanges
+  ChangeDetectionStrategy, Component, EventEmitter, Input, Output
 } from '@angular/core';
-import { PaginationService } from '../../services/pagination.service';
+import { ConfigService } from '../../services/config-service';
 
 @Component({
   selector: 'pagination',
   templateUrl: './pagination.html',
   styleUrls: ['./pagination.css'],
-  providers: [PaginationService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class PaginationComponent implements OnChanges {
+export class PaginationComponent {
   @Input() pagination;
   @Output() updateRange = new EventEmitter();
+  ranges = [5, 10, 25, 50, 100];
+  limit = ConfigService.config.rows;
 
-  constructor(public paginationService: PaginationService) {
-    paginationService.updateRange$.subscribe(
-      ev => {
-        this.updateRange.emit(ev);
-      });
+  onPageChange($event) {
+    this.updateRange.emit({
+      page: $event,
+      limit: this.limit
+    });
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.pagination.currentValue) {
-      const count: number = changes.pagination.currentValue.count;
-      const offset: number = changes.pagination.currentValue.offset;
-      const limit: number = changes.pagination.currentValue.limit;
-      this.paginationService.count = count;
-      this.paginationService.offset = offset;
-      this.paginationService.limit = limit;
-      this.paginationService.updateNumberPerPage();
-    }
+  public isActiveLimit(currentLimit: Number): boolean {
+    return currentLimit === this.limit;
+  }
+
+  changeLimit(event, limit): void {
+    event.preventDefault();
+    this.limit = limit;
+    this.updateRange.emit({
+      page: 1,
+      limit: limit
+    });
   }
 }

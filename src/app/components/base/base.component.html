@@ -53,7 +53,7 @@
       </thead>
       <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : paginationPipe;
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container [ngTemplateOutlet]="tpl"
@@ -62,7 +62,7 @@
         </tr>
       </ng-container>
       <ng-container *ngIf="!tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : paginationPipe;
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container *ngFor="let key of columns; let colIndex = index">

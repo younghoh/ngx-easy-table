@@ -23,7 +23,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public term;
   public config: Config;
   public globalSearchTerm;
-  public paginationPipe;
+  menuActive = false;
+  page = 1;
+  count = 1;
+  limit = 10;
 
   @Input() configuration: Config;
   @Input() filters: any;
@@ -58,6 +61,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const filters: SimpleChange = changes.filters;
     const sort: SimpleChange = changes.sort;
     const data: SimpleChange = changes.data;
+    const pagination: SimpleChange = changes.pagination;
     if (filters) {
       this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
     }
@@ -66,6 +70,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
     if (data && data.currentValue) {
       this.data = [...data.currentValue];
+    }
+    if (pagination && pagination.currentValue) {
+      this.count = pagination.currentValue.count;
     }
   }
 
@@ -123,7 +130,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onPagination($event): void {
-    this.paginationPipe = $event;
+    this.page = $event.page;
+    this.limit = $event.limit;
     this.emitEvent(Event.onPagination, $event);
   }
 
