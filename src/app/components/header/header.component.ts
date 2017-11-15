@@ -1,29 +1,21 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {FiltersService} from "../../services/filters-service";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'table-header',
   template: `
-  <label for="search_{{ key }}">
-    <input type="text"
-           id="search_{{ key }}"
-           aria-label="Search"
-           placeholder="Search for {{ key }}"
-           class="ngx-table__header-search ngx-form-input ngx-input-sm"
-           #input
-           (input)="update.emit({value: input.value, key: key})"
-    >
-  </label>`
+    <label for="search_{{ column['key'] }}">
+      <input type="text"
+             id="search_{{ column['key'] }}"
+             aria-label="Search"
+             placeholder="Search {{ column['title'] }}"
+             class="ngx-table__header-search ngx-form-input ngx-input-sm"
+             #input
+             (input)="update.emit({value: input.value, key: column['key']})"
+      >
+    </label>`
 })
 
-export class HeaderComponent implements OnInit {
-  constructor(public filtersService:FiltersService) {
-  }
-
-  @Input() key;
+export class HeaderComponent {
+  @Input() column;
   @Output() update = new EventEmitter();
-
-  ngOnInit() {
-    // this.update.emit({});
-  }
 }

@@ -1,30 +1,17 @@
 <div class="ngx-columns">
-  <div class="ngx-column ngx-col-4 ngx-col-xs-12 ngx-col-mr-auto">
-    <ul class="ngx-pagination" id="pagination">
-      <li class="ngx-page-item ngx-disabled"
-          [class.ngx-disabled]="paginationService.isFirstPage()"
-          (click)="paginationService.previousPage($event)">
-        <a href="#" tabindex="-1">Prev</a>
-      </li>
-      <li class="ngx-page-item ngx-active"
-          *ngFor="let offset of paginationService.pageNumbers"
-          (click)="paginationService.changeOffset($event, offset)"
-          [class.ngx-active]="paginationService.isActivePage(offset)">
-        <a href="#">{{offset}}</a>
-      </li>
-      <li class="ngx-page-item"
-          [class.ngx-disabled]="paginationService.isLastPage()"
-          (click)="paginationService.nextPage($event)">
-        <a href="#">Next</a>
-      </li>
-    </ul>
+  <div class="ngx-column ngx-col-5 ngx-col-xs-12 ngx-col-mr-auto">
+    <pagination-controls
+      [maxSize]="5"
+      [previousLabel]="'Prev'"
+      (pageChange)="onPageChange($event)">
+    </pagination-controls>
   </div>
   <div class="ngx-column ngx-col-3 ngx-col-xs-12">
     <ul class="ngx-pagination ngx-float-right" id="rowAmount">
-      <li [class.ngx-active]="paginationService.isActiveLimit(limit)"
-          class="ngx-page-item"
-          (click)="paginationService.changeLimit($event, limit)"
-          *ngFor="let limit of paginationService.ranges">
+      <li [class.ngx-active]="isActiveLimit(limit)"
+          class="ngx-page-item ngx-c-hand"
+          (click)="changeLimit($event, limit)"
+          *ngFor="let limit of ranges">
         <a href="#">{{limit}}</a>
       </li>
     </ul>

@@ -1,18 +1,10 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ResourceService {
-  private _pipedDataEmitter;
   public data: Array<any> = [];
   public key: string;
   public order: Array<any> = [];
-
-  public getPipedData(): EventEmitter<any> {
-    if (!this._pipedDataEmitter) {
-      this._pipedDataEmitter = new EventEmitter();
-    }
-    return this._pipedDataEmitter;
-  }
 
   public sortBy(key: string, order: string | null): Array<any> {
     this.key = key;

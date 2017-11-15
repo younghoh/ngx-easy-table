@@ -12,15 +12,15 @@
     <table class="ngx-table ngx-table-striped ngx-table-hover">
       <thead>
       <tr class="ngx-table__header" *ngIf="config.headerEnabled">
-        <ng-container *ngFor="let key of columns">
+        <ng-container *ngFor="let column of columns">
           <th class="ngx-table__header-cell"
-              (click)="orderBy(key)">
-            <div class="ngx-d-inline">{{ key }}</div>
-            <span *ngIf="resource.order[key]==='asc' "
+              (click)="orderBy(column['key'])">
+            <div class="ngx-d-inline">{{ column['title'] }}</div>
+            <span *ngIf="resource.order[column['key']]==='asc' "
                   [style.display]="config.orderEnabled?'':'none' "
                   class="ngx-icon ngx-icon-arrow-up">
             </span>
-            <span *ngIf="resource.order[key]==='desc' "
+            <span *ngIf="resource.order[column['key']]==='desc' "
                   [style.display]="config.orderEnabled?'':'none' "
                   class="ngx-icon ngx-icon-arrow-down">
             </span>
@@ -43,9 +43,9 @@
       </tr>
       <tr *ngIf="config.searchEnabled"
           class="ngx-table__sortHeader">
-        <ng-container *ngFor="let key of columns">
+        <ng-container *ngFor="let column of columns">
           <th>
-            <table-header (update)="onSearch($event)" [key]="key"></table-header>
+            <table-header (update)="onSearch($event)" [column]="column"></table-header>
           </th>
         </ng-container>
         <th *ngIf="config.additionalActions"></th>
@@ -53,7 +53,7 @@
       </thead>
       <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : paginationPipe;
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container [ngTemplateOutlet]="tpl"
@@ -62,15 +62,15 @@
         </tr>
       </ng-container>
       <ng-container *ngIf="!tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | pagination : paginationPipe;
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-          <ng-container *ngFor="let key of columns; let colIndex = index">
-            <td (click)="clickedCell($event, row, key, colIndex, rowIndex)"
+          <ng-container *ngFor="let column of columns; let colIndex = index">
+            <td (click)="clickedCell($event, row, column['key'], colIndex, rowIndex)"
                 [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                 [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
             >
-              <div>{{ row[key] }}</div>
+              <div>{{ row[column['key']] }}</div>
             </td>
           </ng-container>
           <td *ngIf="config.additionalActions"></td>

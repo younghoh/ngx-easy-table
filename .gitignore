@@ -44,3 +44,5 @@ Thumbs.db
 
 *.metadata.json
 *.map.js
+
+.ng_pkg_build

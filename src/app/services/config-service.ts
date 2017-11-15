@@ -4,19 +4,19 @@ import { Config } from '../model/config';
 @Injectable()
 export class ConfigService {
   public static config: Config = {
-    searchEnabled: true,
+    searchEnabled: false,
     headerEnabled: true,
     orderEnabled: true,
-    globalSearchEnabled: true,
+    globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
-    clickEvent: true,
+    clickEvent: false,
     selectRow: false,
     selectCol: false,
     selectCell: false,
     rows: 10,
     additionalActions: false,
-    serverPagination: true,
+    serverPagination: false,
     isLoading: true,
   };
 }
