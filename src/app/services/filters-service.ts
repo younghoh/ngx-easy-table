@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ResourceService } from './resource-service';
 import { isNumeric } from 'rxjs/util/isNumeric';
 
 @Injectable()
 export class FiltersService {
-
-  constructor(public resource: ResourceService) {
-  }
 
   public filters: Array<any> = [];
 

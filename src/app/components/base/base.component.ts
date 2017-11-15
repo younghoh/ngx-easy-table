@@ -79,6 +79,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   orderBy(key: string) {
     if (ConfigService.config.orderEnabled || !ConfigService.config.serverPagination) {
       this.data = this.resource.sortBy(key, null);
+      this.data = [...this.data];
     }
     this.onOrder(key);
   }
