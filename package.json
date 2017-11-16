@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "Angular easy table",
   "typings": "index.prod.d.ts",
   "repository": {
@@ -42,12 +42,12 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "ng-packagr": "^1.5.0",
+    "ng-packagr": "^1.6.0",
     "node-sass": "^4.5.3",
     "protractor": "~5.1.2",
     "rxjs": "^5.4.3",
     "ts-node": "~3.2.0",
-    "tslint": "~5.3.2",
+    "tslint": "^5.8.0",
     "typescript": "<2.4.0",
     "zone.js": "^0.8.14"
   },
@@ -75,7 +75,7 @@
     "ng2-easy-table",
     "ngx-easy-table"
   ],
-  "author": "Sebastian Superczynski <sebastian.superczynski@espeo.eu> (http://espeo.eu/)",
+  "author": "Sebastian Superczynski <s.superczynski@gmail.com> (http://espeo.eu/)",
   "dependencies": {
     "ngx-pagination": "^3.0.3"
   }

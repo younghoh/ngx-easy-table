@@ -26,9 +26,10 @@
             </span>
           </th>
         </ng-container>
-        <th *ngIf="config.additionalActions"
+        <th *ngIf="config.additionalActions || config.detailsTemplate"
             class="ngx-table__header-cell-additional-actions">
           <div class="ngx-dropdown ngx-active ngx-dropdown-right"
+               *ngIf="config.additionalActions"
                [class.ngx-active]="menuActive">
             <a class="ngx-btn ngx-btn-link" (click)="menuActive = !menuActive">
               <span class="ngx-icon ngx-icon-menu"></span>
@@ -48,7 +49,7 @@
             <table-header (update)="onSearch($event)" [column]="column"></table-header>
           </th>
         </ng-container>
-        <th *ngIf="config.additionalActions"></th>
+        <th *ngIf="config.additionalActions || config.detailsTemplate"></th>
       </tr>
       </thead>
       <tbody *ngIf="data && !config.isLoading">
@@ -62,19 +63,36 @@
         </tr>
       </ng-container>
       <ng-container *ngIf="!tpl">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
-              let rowIndex = index"
-            [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-          <ng-container *ngFor="let column of columns; let colIndex = index">
-            <td (click)="clickedCell($event, row, column['key'], colIndex, rowIndex)"
-                [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
-                [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
-            >
-              <div>{{ row[column['key']] }}</div>
+        <ng-container
+          *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
+                  let rowIndex = index"
+          [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+          <tr>
+            <ng-container *ngFor="let column of columns; let colIndex = index">
+              <td (click)="clickedCell($event, row, column['key'], colIndex, rowIndex)"
+                  [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
+                  [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
+              >
+                <div>{{ row[column['key']] }}</div>
+              </td>
+            </ng-container>
+            <td *ngIf="config.additionalActions || config.detailsTemplate">
+              <span class="ngx-icon ngx-c-hand"
+                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId === rowIndex"
+                    [class.ngx-icon-arrow-right]="selectedDetailsTemplateRowId !== rowIndex"
+                    (click)="selectRowId(rowIndex)">
+              </span>
             </td>
-          </ng-container>
-          <td *ngIf="config.additionalActions"></td>
-        </tr>
+          </tr>
+          <tr *ngIf="config.detailsTemplate && selectedDetailsTemplateRowId === rowIndex">
+            <td [attr.colspan]="columns.length + 1">
+              <ng-container
+                [ngTemplateOutlet]="detailsTemplate"
+                [ngTemplateOutletContext]="{ $implicit: row }">
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
       </ng-container>
       </tbody>
       <tbody *ngIf="!data">

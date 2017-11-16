@@ -1,3 +1,9 @@
 :host /deep/ pagination-controls > pagination-template > ul > li {
   border: 1px solid #f0f0f0;
 }
+@media screen and (max-width: 480px) {
+  .pagination-mobile {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

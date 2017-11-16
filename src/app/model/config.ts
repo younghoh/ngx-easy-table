@@ -13,4 +13,5 @@ export interface Config {
   additionalActions: boolean;
   serverPagination: boolean;
   isLoading: boolean;
+  detailsTemplate: boolean;
 }
