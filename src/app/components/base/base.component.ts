@@ -27,12 +27,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   page = 1;
   count = null;
   limit = 10;
+  selectedDetailsTemplateRowId = null;
 
   @Input() configuration: Config;
   @Input() filters: any;
   @Input() sort: any;
   @Input() data: Array<Object>;
   @Input() pagination;
+  @Input() detailsTemplate;
   @Input() columns: Array<string>;
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public tpl: TemplateRef<any>;
@@ -147,5 +149,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   private emitEvent(event, value: Object): void {
     this.logger.info(`event: ${Event[event]}; value: ${JSON.stringify(value)}`);
     this.event.emit({ event: Event[event], value });
+  }
+
+  selectRowId(rowIndex) {
+    if (this.selectedDetailsTemplateRowId === rowIndex) {
+      this.selectedDetailsTemplateRowId = null;
+    } else {
+      this.selectedDetailsTemplateRowId = rowIndex;
+    }
   }
 }

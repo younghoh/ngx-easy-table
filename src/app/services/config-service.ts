@@ -18,5 +18,6 @@ export class ConfigService {
     additionalActions: false,
     serverPagination: false,
     isLoading: true,
+    detailsTemplate: true,
   };
 }
