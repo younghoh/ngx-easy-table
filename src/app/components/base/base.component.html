@@ -77,7 +77,11 @@
               </td>
             </ng-container>
             <td *ngIf="config.additionalActions || config.detailsTemplate">
-              <span class="ngx-icon ngx-icon-arrow-down ngx-c-hand" (click)="selectRowId(rowIndex)"></span>
+              <span class="ngx-icon ngx-c-hand"
+                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId === rowIndex"
+                    [class.ngx-icon-arrow-right]="selectedDetailsTemplateRowId !== rowIndex"
+                    (click)="selectRowId(rowIndex)">
+              </span>
             </td>
           </tr>
           <tr *ngIf="config.detailsTemplate && selectedDetailsTemplateRowId === rowIndex">
