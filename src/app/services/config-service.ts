@@ -19,5 +19,6 @@ export class ConfigService {
     serverPagination: false,
     isLoading: true,
     detailsTemplate: true,
+    groupRows: true,
   };
 }

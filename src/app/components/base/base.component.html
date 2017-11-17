@@ -62,7 +62,7 @@
           </ng-container>
         </tr>
       </ng-container>
-      <ng-container *ngIf="!tpl">
+      <ng-container *ngIf="!tpl && !config.groupRows">
         <ng-container
           *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
                   let rowIndex = index"
@@ -91,6 +91,32 @@
                 [ngTemplateOutletContext]="{ $implicit: row }">
               </ng-container>
             </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!tpl && config.groupRows">
+        <ng-container
+          *ngFor="let row of grouped;
+                  let rowIndex = index">
+          <tr>
+            <td [attr.colspan]="columns.length">
+              <div>Group</div>
+            </td>
+            <td>
+              <span class="ngx-icon ngx-c-hand"
+                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId === rowIndex"
+                    [class.ngx-icon-arrow-right]="selectedDetailsTemplateRowId !== rowIndex"
+                    (click)="selectRowId(rowIndex)">
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="selectedDetailsTemplateRowId === rowIndex">
+            <td [attr.colspan]="columns.length + 1">
+              <ul>
+                <li *ngFor="let position of row">{{position | json}}</li>
+              </ul>
+            </td>
+            <!-- TODO allow users to add groupRowsTemplateRef -->
           </tr>
         </ng-container>
       </ng-container>

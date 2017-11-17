@@ -3,12 +3,15 @@ import {
   SimpleChange, SimpleChanges, TemplateRef
 } from '@angular/core';
 
-import { FiltersService } from '../../services/filters-service';
-import { ResourceService } from '../../services/resource-service';
-import { ConfigService } from '../../services/config-service';
+import { FiltersService, ResourceService, ConfigService } from '../../services';
 import { Event } from '../../model/event.enum';
 import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/reduce';
+import 'rxjs/add/operator/groupBy';
 
 @Component({
   selector: 'ngx-table',
@@ -23,6 +26,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public term;
   public config: Config;
   public globalSearchTerm;
+  grouped = [];
   menuActive = false;
   page = 1;
   count = null;
@@ -34,6 +38,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() sort: any;
   @Input() data: Array<Object>;
   @Input() pagination;
+  @Input() groupRowsBy;
   @Input() detailsTemplate;
   @Input() columns: Array<string>;
   @Output() event = new EventEmitter();
@@ -52,6 +57,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.config = ConfigService.config;
     if (this.data) {
       this.filteredData = [...this.data];
+    }
+    if (this.groupRowsBy) {
+      const source = Observable.from(this.data);
+      source
+        .groupBy(row => row[this.groupRowsBy])
+        .flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], []))
+        .subscribe(row => this.grouped.push(row));
     }
   }
 
