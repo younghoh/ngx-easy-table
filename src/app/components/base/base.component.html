@@ -96,11 +96,10 @@
       </ng-container>
       <ng-container *ngIf="!rowTemplate && config.groupRows">
         <ng-container
-          *ngFor="let row of grouped;
-                  let rowIndex = index">
+          *ngFor="let group of grouped; let rowIndex = index">
           <tr>
             <td [attr.colspan]="columns.length">
-              <div>Group</div>
+              <div>{{group[0][groupRowsBy]}} ({{group.length}})</div>
             </td>
             <td>
               <span class="ngx-icon ngx-c-hand"
@@ -111,11 +110,12 @@
             </td>
           </tr>
           <ng-container *ngIf="selectedDetailsTemplateRowId === rowIndex">
-            <tr *ngFor="let position of row">
-              <td [attr.colspan]="columns.length + 1">
-                {{position | json}}
+            <tr *ngFor="let row of group">
+              <td *ngFor="let column of columns">
+                {{row[column['key']]}}
                 <!-- TODO allow users to add groupRowsTemplateRef -->
               </td>
+              <td></td>
             </tr>
           </ng-container>
         </ng-container>

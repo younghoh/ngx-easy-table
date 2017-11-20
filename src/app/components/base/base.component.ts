@@ -52,8 +52,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
     this.config = ConfigService.config;
     if (this.groupRowsBy) {
-      const source = Observable.from(this.data);
-      source
+      Observable
+        .from(this.data)
         .groupBy(row => row[this.groupRowsBy])
         .flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], []))
         .subscribe(row => this.grouped.push(row));
