@@ -110,14 +110,14 @@
               </span>
             </td>
           </tr>
-          <tr *ngIf="selectedDetailsTemplateRowId === rowIndex">
-            <td [attr.colspan]="columns.length + 1">
-              <ul>
-                <li *ngFor="let position of row">{{position | json}}</li>
-              </ul>
-            </td>
-            <!-- TODO allow users to add groupRowsTemplateRef -->
-          </tr>
+          <ng-container *ngIf="selectedDetailsTemplateRowId === rowIndex">
+            <tr *ngFor="let position of row">
+              <td [attr.colspan]="columns.length + 1">
+                {{position | json}}
+                <!-- TODO allow users to add groupRowsTemplateRef -->
+              </td>
+            </tr>
+          </ng-container>
         </ng-container>
       </ng-container>
       </tbody>
