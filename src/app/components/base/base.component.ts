@@ -3,7 +3,7 @@ import {
   SimpleChange, SimpleChanges, TemplateRef
 } from '@angular/core';
 
-import { FiltersService, ResourceService, ConfigService } from '../../services';
+import { ResourceService, ConfigService } from '../../services';
 import { Event } from '../../model/event.enum';
 import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
@@ -15,12 +15,11 @@ import 'rxjs/add/operator/groupBy';
 
 @Component({
   selector: 'ngx-table',
-  providers: [FiltersService, ResourceService, LoggerService, ConfigService],
+  providers: [ResourceService, LoggerService, ConfigService],
   templateUrl: './base.component.html',
   styleUrls: ['./base.component.css']
 })
 export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
-  public filteredData: Array<any>;
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -34,18 +33,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   selectedDetailsTemplateRowId = null;
 
   @Input() configuration: Config;
-  @Input() filters: any;
-  @Input() sort: any;
   @Input() data: Array<Object>;
   @Input() pagination;
   @Input() groupRowsBy;
   @Input() detailsTemplate;
   @Input() columns: Array<string>;
   @Output() event = new EventEmitter();
-  @ContentChild(TemplateRef) public tpl: TemplateRef<any>;
+  @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor(public filtersService: FiltersService,
-              public resource: ResourceService,
+  constructor(public resource: ResourceService,
               private cdr: ChangeDetectorRef,
               private logger: LoggerService) {
   }
@@ -55,9 +51,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       ConfigService.config = this.configuration;
     }
     this.config = ConfigService.config;
-    if (this.data) {
-      this.filteredData = [...this.data];
-    }
     if (this.groupRowsBy) {
       const source = Observable.from(this.data);
       source
@@ -72,16 +65,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const filters: SimpleChange = changes.filters;
-    const sort: SimpleChange = changes.sort;
     const data: SimpleChange = changes.data;
     const pagination: SimpleChange = changes.pagination;
-    if (filters) {
-      this.data = this.filtersService.applyCustomFilters(filters.currentValue, this.filteredData);
-    }
-    if (sort) {
-      this.data = this.resource.sortBy(sort.currentValue.key, sort.currentValue.order);
-    }
     if (data && data.currentValue) {
       this.data = [...data.currentValue];
     }
@@ -92,7 +77,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
 
   orderBy(key: string) {
     if (ConfigService.config.orderEnabled || !ConfigService.config.serverPagination) {
-      this.data = this.resource.sortBy(key, null);
+      this.data = this.resource.sortBy(key);
       this.data = [...this.data];
     }
     this.onOrder(key);
