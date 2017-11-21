@@ -13,7 +13,7 @@ export class CsvExportComponent {
   constructor(public resource: ResourceService) {
   }
 
-  public exportCsv = () => {
+  public exportCsv() {
     const data = this.resource.data;
     let csvContent = 'data:text/csv;charset=utf-8,';
     let dataString = '';
