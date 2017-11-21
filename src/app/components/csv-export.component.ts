@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ResourceService } from '../services';
+import { ResourceService } from '../services/resource-service';
 
 @Component({
   selector: 'csv-export',
