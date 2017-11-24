@@ -3,7 +3,8 @@ import {
   SimpleChange, SimpleChanges, TemplateRef
 } from '@angular/core';
 
-import { ResourceService, ConfigService } from '../../services';
+import { ResourceService } from '../../services/resource-service';
+import { ConfigService } from '../../services/config-service';
 import { Event } from '../../model/event.enum';
 import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ResourceService } from '../services';
+import { ResourceService } from '../services/resource-service';
 
 @Component({
   selector: 'csv-export',
@@ -13,7 +13,7 @@ export class CsvExportComponent {
   constructor(public resource: ResourceService) {
   }
 
-  public exportCsv = () => {
+  public exportCsv() {
     const data = this.resource.data;
     let csvContent = 'data:text/csv;charset=utf-8,';
     let dataString = '';
