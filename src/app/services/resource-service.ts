@@ -6,7 +6,7 @@ export class ResourceService {
   public key: string;
   public order: Array<any> = [];
 
-  public sortBy(key: string, order: string | null): Array<any> {
+  public sortBy(key: string): Array<any> {
     this.key = key;
     if (Object.keys(this.order).length === 0) {
       this.order[this.key] = 'asc';

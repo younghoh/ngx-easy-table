@@ -53,16 +53,16 @@
       </tr>
       </thead>
       <tbody *ngIf="data && !config.isLoading">
-      <ng-container *ngIf="tpl">
+      <ng-container *ngIf="rowTemplate">
         <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-          <ng-container [ngTemplateOutlet]="tpl"
+          <ng-container [ngTemplateOutlet]="rowTemplate"
                         [ngTemplateOutletContext]="{ $implicit: row }">
           </ng-container>
         </tr>
       </ng-container>
-      <ng-container *ngIf="!tpl">
+      <ng-container *ngIf="!rowTemplate && !config.groupRows">
         <ng-container
           *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
                   let rowIndex = index"
@@ -92,6 +92,32 @@
               </ng-container>
             </td>
           </tr>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="!rowTemplate && config.groupRows">
+        <ng-container
+          *ngFor="let group of grouped; let rowIndex = index">
+          <tr>
+            <td [attr.colspan]="columns.length">
+              <div>{{group[0][groupRowsBy]}} ({{group.length}})</div>
+            </td>
+            <td>
+              <span class="ngx-icon ngx-c-hand"
+                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId === rowIndex"
+                    [class.ngx-icon-arrow-right]="selectedDetailsTemplateRowId !== rowIndex"
+                    (click)="selectRowId(rowIndex)">
+              </span>
+            </td>
+          </tr>
+          <ng-container *ngIf="selectedDetailsTemplateRowId === rowIndex">
+            <tr *ngFor="let row of group">
+              <td *ngFor="let column of columns">
+                {{row[column['key']]}}
+                <!-- TODO allow users to add groupRowsTemplateRef -->
+              </td>
+              <td></td>
+            </tr>
+          </ng-container>
         </ng-container>
       </ng-container>
       </tbody>

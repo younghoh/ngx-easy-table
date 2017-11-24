@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FiltersService } from '../services/filters-service';
 import { ResourceService } from '../services/resource-service';
 
 @Pipe({
@@ -7,8 +6,7 @@ import { ResourceService } from '../services/resource-service';
 })
 
 export class SearchPipe implements PipeTransform {
-  constructor(public filtersService: FiltersService,
-              public resource: ResourceService) {
+  constructor(public resource: ResourceService) {
   }
 
   transform(value, filters) {
@@ -21,8 +19,8 @@ export class SearchPipe implements PipeTransform {
       return this.resource.data;
     }
 
-    this.filtersService.update(filters.key, filters.value);
-    const filtersArr = this.filtersService.get();
+    const filtersArr = [];
+    filtersArr[filters.key] = filters.value;
     value.forEach((item) => {
       for (const filterKey in filtersArr) {
         if (filtersArr.hasOwnProperty(filterKey)) {

@@ -14,4 +14,5 @@ export interface Config {
   serverPagination: boolean;
   isLoading: boolean;
   detailsTemplate: boolean;
+  groupRows: boolean;
 }
