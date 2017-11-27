@@ -1,5 +1,6 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnChanges, OnInit, Output,
+  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnChanges,
+  OnInit, Output,
   SimpleChange, SimpleChanges, TemplateRef
 } from '@angular/core';
 
@@ -18,7 +19,8 @@ import 'rxjs/add/operator/groupBy';
   selector: 'ngx-table',
   providers: [ResourceService, LoggerService, ConfigService],
   templateUrl: './base.component.html',
-  styleUrls: ['./base.component.css']
+  styleUrls: ['./base.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
