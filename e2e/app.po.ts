@@ -37,7 +37,7 @@ export class AppPage {
 
   async globalSearch(query: string) {
     return await element
-      .all(by.css('input[type=text]'))
+      .all(by.id('search'))
       .get(0)
       .sendKeys(query);
   }
@@ -72,25 +72,19 @@ export class AppPage {
 
   async clickPaginationPrev() {
     return await element
-      .all(by.className('ngx-container'))
-      .all(by.id('pagination'))
-      .all(by.css('li:first-child'))
+      .all(by.css('pagination-template ul li:nth-child(1)'))
       .click();
   }
 
   async clickPaginationNext() {
     return await element
-      .all(by.className('ngx-container'))
-      .all(by.id('pagination'))
-      .all(by.css('li:last-child'))
+      .all(by.css('pagination-template ul li:last-child'))
       .click();
   }
 
   async clickPagination2nd() {
     return await element
-      .all(by.className('ngx-container'))
-      .all(by.id('pagination'))
-      .all(by.css('li:nth-child(3)'))
+      .all(by.css('pagination-template ul li:nth-child(3)'))
       .click();
   }
 
