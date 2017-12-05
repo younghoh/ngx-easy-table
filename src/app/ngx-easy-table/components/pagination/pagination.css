@@ -7,3 +7,20 @@
     margin-left: auto;
   }
 }
+
+.ngx-btn {
+  color: #4f596c;
+  border: 1px solid #f0f0f0;
+}
+
+.ngx-range-dropdown {
+  margin-top: 16px;
+}
+
+.ngx-range-dropdown-button {
+  padding: 4px;
+}
+
+.ngx-menu {
+  min-width: 55px;
+}

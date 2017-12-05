@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@angular/animations": "^5.0.3",
-    "@angular/cli": "^1.5.4",
+    "@angular/cli": "^1.5.5",
     "@angular/common": "^5.0.3",
     "@angular/compiler": "^5.0.3",
     "@angular/compiler-cli": "^5.0.3",

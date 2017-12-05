@@ -20,6 +20,5 @@
 
 See https://github.com/ssuperczynski/ngx-easy-table/wiki
 
-Proudly powered by 
 
 [![Imgur](http://i.imgur.com/qbbb6ah.png)](http://espeo.eu/)

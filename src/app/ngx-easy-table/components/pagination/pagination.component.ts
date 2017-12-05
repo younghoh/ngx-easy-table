@@ -15,6 +15,7 @@ export class PaginationComponent {
   @Output() updateRange = new EventEmitter();
   ranges = [5, 10, 25, 50, 100];
   limit = ConfigService.config.rows;
+  showRange = false;
 
   onPageChange($event) {
     this.updateRange.emit({
@@ -23,12 +24,8 @@ export class PaginationComponent {
     });
   }
 
-  public isActiveLimit(currentLimit: Number): boolean {
-    return currentLimit === this.limit;
-  }
-
-  changeLimit(event, limit): void {
-    event.preventDefault();
+  changeLimit(limit): void {
+    this.showRange = !this.showRange;
     this.limit = limit;
     this.updateRange.emit({
       page: 1,
