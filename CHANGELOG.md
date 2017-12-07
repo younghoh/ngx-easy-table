@@ -1,3 +1,7 @@
+# 2.1.2
+
+- when you had more than 1 table at the page, when updated one table, second was updated as well
+
 # 2.1.1
 
 - fixed range dropdown in pagination

@@ -54,7 +54,7 @@
       </thead>
       <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="rowTemplate">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
+        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container [ngTemplateOutlet]="rowTemplate"
@@ -64,7 +64,7 @@
       </ng-container>
       <ng-container *ngIf="!rowTemplate && !config.groupRows">
         <ng-container
-          *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count };
+          *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index"
           [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <tr>
@@ -137,6 +137,7 @@
   </div>
   <pagination
     *ngIf="config.paginationEnabled"
+    [id]="id"
     [pagination]="pagination"
     (updateRange)="onPagination($event)">
   </pagination>

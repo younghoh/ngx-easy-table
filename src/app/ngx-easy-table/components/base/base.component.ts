@@ -34,7 +34,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   count = null;
   limit = 10;
   selectedDetailsTemplateRowId = null;
-
+  id;
   @Input() configuration: Config;
   @Input() data: Array<Object>;
   @Input() pagination;
@@ -47,6 +47,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(public resource: ResourceService,
               private cdr: ChangeDetectorRef,
               private logger: LoggerService) {
+    // make random pagination ID to avoid situation when we have more than 1 table at page
+    this.id = Math.floor((Math.random() * 10000) + 1);
   }
 
   ngOnInit() {

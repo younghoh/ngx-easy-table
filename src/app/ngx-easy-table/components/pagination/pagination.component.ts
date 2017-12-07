@@ -12,6 +12,7 @@ import { ConfigService } from '../../services/config-service';
 
 export class PaginationComponent {
   @Input() pagination;
+  @Input() id;
   @Output() updateRange = new EventEmitter();
   ranges = [5, 10, 25, 50, 100];
   limit = ConfigService.config.rows;
