@@ -32,7 +32,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   menuActive = false;
   page = 1;
   count = null;
-  limit = 10;
+  limit;
   selectedDetailsTemplateRowId = null;
   id;
   @Input() configuration: Config;
@@ -56,6 +56,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       ConfigService.config = this.configuration;
     }
     this.config = ConfigService.config;
+    this.limit = this.configuration.rows;
     if (this.groupRowsBy) {
       Observable
         .from(this.data)
