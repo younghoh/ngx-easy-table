@@ -56,6 +56,7 @@
       <ng-container *ngIf="rowTemplate">
         <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index"
+            (click)="clickedCell($event, row, '', '', rowIndex)"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container [ngTemplateOutlet]="rowTemplate"
                         [ngTemplateOutletContext]="{ $implicit: row }">

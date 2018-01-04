@@ -10,7 +10,7 @@ export class ConfigService {
     globalSearchEnabled: true,
     paginationEnabled: true,
     exportEnabled: false,
-    clickEvent: false,
+    clickEvent: true,
     selectRow: false,
     selectCol: false,
     selectCell: false,
