@@ -15,4 +15,5 @@ export interface Config {
   isLoading: boolean;
   detailsTemplate: boolean;
   groupRows: boolean;
+  paginationRangeEnabled: boolean;
 }

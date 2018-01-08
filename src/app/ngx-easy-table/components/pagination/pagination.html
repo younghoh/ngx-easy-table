@@ -8,7 +8,7 @@
       (pageChange)="onPageChange($event)">
     </pagination-controls>
   </div>
-  <div class="pagination-mobile">
+  <div class="pagination-mobile" *ngIf="config.paginationRangeEnabled">
     <div class="ngx-dropdown ngx-range-dropdown ngx-float-right"
          [class.ngx-active]="showRange"
          id="rowAmount">

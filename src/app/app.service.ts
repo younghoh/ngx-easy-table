@@ -19,6 +19,7 @@ export class ConfigService {
     serverPagination: false,
     isLoading: false,
     detailsTemplate: false,
-    groupRows: false
+    groupRows: false,
+    paginationRangeEnabled: false,
   };
 }

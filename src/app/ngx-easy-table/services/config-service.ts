@@ -20,5 +20,6 @@ export class ConfigService {
     isLoading: true,
     detailsTemplate: false,
     groupRows: false,
+    paginationRangeEnabled: true,
   };
 }
