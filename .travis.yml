@@ -10,3 +10,5 @@ before_script:
     - npm install
 notifications:
   email: false
+addons:
+  chrome: stable
