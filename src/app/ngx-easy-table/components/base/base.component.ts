@@ -81,8 +81,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  orderBy(key: string) {
-    if (ConfigService.config.orderEnabled || !ConfigService.config.serverPagination) {
+  orderBy(key: string): void {
+    if (!ConfigService.config.orderEnabled) {
+      return;
+    }
+    if (!ConfigService.config.serverPagination) {
       this.data = this.resource.sortBy(key);
       this.data = [...this.data];
     }
@@ -154,7 +157,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.event.emit({ event: Event[event], value });
   }
 
-  selectRowId(rowIndex) {
+  selectRowId(rowIndex): void {
     if (this.selectedDetailsTemplateRowId === rowIndex) {
       this.selectedDetailsTemplateRowId = null;
     } else {

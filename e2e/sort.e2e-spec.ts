@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('table sort', () => {
+xdescribe('table sort', () => {
   const page: AppPage = new AppPage();
   let data;
 

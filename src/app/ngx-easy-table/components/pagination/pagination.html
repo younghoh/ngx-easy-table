@@ -13,10 +13,10 @@
          [class.ngx-active]="showRange"
          id="rowAmount">
       <div class="ngx-btn-group">
-        <span class="ngx-btn ngx-range-dropdown-button"
+        <div class="ngx-btn ngx-range-dropdown-button"
               (click)="showRange = !showRange">
           {{limit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
-        </span>
+        </div>
         <ul class="ngx-menu">
           <li class="ngx-c-hand ngx-range-dropdown-button"
               (click)="changeLimit(limit)"

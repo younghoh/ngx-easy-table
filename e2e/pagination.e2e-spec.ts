@@ -47,22 +47,22 @@ describe('table pagination', () => {
       'Wilson Hatfield\n' +
       'true');
   });
-  it('should display 5 rows when row amount clicked to 5', async () => {
+  xit('should display 5 rows when row amount clicked to 5', async () => {
     await page.click5Rows();
     const table = await data.getText();
     expect(table.length).toEqual(5);
   });
-  it('should display 10 rows when row amount clicked to 10', async () => {
+  xit('should display 10 rows when row amount clicked to 10', async () => {
     await page.click10Rows();
     const table = await data.getText();
     expect(table.length).toEqual(10);
   });
-  it('should display 25 rows when row amount clicked to 25', async () => {
+  xit('should display 25 rows when row amount clicked to 25', async () => {
     await page.click25Rows();
     const table = await data.getText();
     expect(table.length).toEqual(25);
   });
-  it('should display 40 rows when row amount clicked to 50', async () => {
+  xit('should display 40 rows when row amount clicked to 50', async () => {
     await page.click50Rows();
     const table = await data.getText();
     expect(table.length).toEqual(40); // 40 because array has only 40 elements
