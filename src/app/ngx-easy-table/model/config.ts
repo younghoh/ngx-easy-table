@@ -16,4 +16,5 @@ export interface Config {
   detailsTemplate: boolean;
   groupRows: boolean;
   paginationRangeEnabled: boolean;
+  collapseAllRows: boolean;
 }

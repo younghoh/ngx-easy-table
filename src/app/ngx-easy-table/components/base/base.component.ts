@@ -33,7 +33,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   page = 1;
   count = null;
   limit;
-  selectedDetailsTemplateRowId = null;
+  selectedDetailsTemplateRowId = new Set();
   id;
   @Input() configuration: Config;
   @Input() data: Array<Object>;
@@ -158,10 +158,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   selectRowId(rowIndex): void {
-    if (this.selectedDetailsTemplateRowId === rowIndex) {
-      this.selectedDetailsTemplateRowId = null;
+    if (this.selectedDetailsTemplateRowId.has(rowIndex)) {
+      this.selectedDetailsTemplateRowId.delete(rowIndex);
     } else {
-      this.selectedDetailsTemplateRowId = rowIndex;
+      this.selectedDetailsTemplateRowId.add(rowIndex);
     }
   }
 }

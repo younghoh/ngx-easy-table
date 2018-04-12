@@ -21,5 +21,6 @@ export class ConfigService {
     detailsTemplate: false,
     groupRows: false,
     paginationRangeEnabled: true,
+    collapseAllRows: false,
   };
 }

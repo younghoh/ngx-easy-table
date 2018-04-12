@@ -54,14 +54,31 @@
       </thead>
       <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="rowTemplate">
-        <tr *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+        <ng-container *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index"
             (click)="clickedCell($event, row, '', '', rowIndex)"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-          <ng-container [ngTemplateOutlet]="rowTemplate"
-                        [ngTemplateOutletContext]="{ $implicit: row }">
-          </ng-container>
-        </tr>
+          <tr>
+            <ng-container [ngTemplateOutlet]="rowTemplate"
+                          [ngTemplateOutletContext]="{ $implicit: row }">
+            </ng-container>
+            <td *ngIf="config.detailsTemplate">
+              <span class="ngx-icon ngx-c-hand"
+                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId.has(rowIndex) || config.collapseAllRows"
+                    [class.ngx-icon-arrow-right]="!selectedDetailsTemplateRowId.has(rowIndex) || !config.collapseAllRows"
+                    (click)="selectRowId(rowIndex)">
+              </span>
+            </td>
+          </tr>
+          <tr *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
+            <td [attr.colspan]="columns.length + 1">
+              <ng-container
+                [ngTemplateOutlet]="detailsTemplate"
+                [ngTemplateOutletContext]="{ $implicit: row }">
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
       </ng-container>
       <ng-container *ngIf="!rowTemplate && !config.groupRows">
         <ng-container
@@ -79,13 +96,13 @@
             </ng-container>
             <td *ngIf="config.additionalActions || config.detailsTemplate">
               <span class="ngx-icon ngx-c-hand"
-                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId === rowIndex"
-                    [class.ngx-icon-arrow-right]="selectedDetailsTemplateRowId !== rowIndex"
+                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId.has(rowIndex) || config.collapseAllRows"
+                    [class.ngx-icon-arrow-right]="!selectedDetailsTemplateRowId.has(rowIndex) || !config.collapseAllRows"
                     (click)="selectRowId(rowIndex)">
               </span>
             </td>
           </tr>
-          <tr *ngIf="config.detailsTemplate && selectedDetailsTemplateRowId === rowIndex">
+          <tr *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
             <td [attr.colspan]="columns.length + 1">
               <ng-container
                 [ngTemplateOutlet]="detailsTemplate"
@@ -104,13 +121,13 @@
             </td>
             <td>
               <span class="ngx-icon ngx-c-hand"
-                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId === rowIndex"
-                    [class.ngx-icon-arrow-right]="selectedDetailsTemplateRowId !== rowIndex"
+                    [class.ngx-icon-arrow-down]="selectedDetailsTemplateRowId.has(rowIndex) || config.collapseAllRows"
+                    [class.ngx-icon-arrow-right]="!selectedDetailsTemplateRowId.has(rowIndex) || !config.collapseAllRows"
                     (click)="selectRowId(rowIndex)">
               </span>
             </td>
           </tr>
-          <ng-container *ngIf="selectedDetailsTemplateRowId === rowIndex">
+          <ng-container *ngIf="selectedDetailsTemplateRowId.has(rowIndex)">
             <tr *ngFor="let row of group">
               <td *ngFor="let column of columns">
                 {{row[column['key']]}}
