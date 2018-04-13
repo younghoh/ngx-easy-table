@@ -73,11 +73,16 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     const data: SimpleChange = changes.data;
     const pagination: SimpleChange = changes.pagination;
+    const configuration: SimpleChange = changes.configuration;
     if (data && data.currentValue) {
       this.data = [...data.currentValue];
     }
     if (pagination && pagination.currentValue) {
       this.count = pagination.currentValue.count;
+    }
+    if (configuration && configuration.currentValue) {
+      this.config = configuration.currentValue;
+      this.cdr.markForCheck();
     }
   }
 
