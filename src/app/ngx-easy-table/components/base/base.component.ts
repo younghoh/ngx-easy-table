@@ -173,8 +173,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     from(this.data).pipe(
       groupBy(row => row[this.groupRowsBy]),
       flatMap(group => group.pipe(
-        reduce((acc: Array<Object>, curr) => [...acc, curr], [])
+        reduce((acc: Array<Object>, curr) => [...acc, curr], []),
       )),
     ).subscribe(row => this.grouped.push(row));
+  }
+
+  isRowCollapsed(rowIndex: number): boolean {
+    if (this.config.collapseAllRows) {
+      return true;
+    }
+    return this.selectedDetailsTemplateRowId.has(rowIndex);
   }
 }
