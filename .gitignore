@@ -46,3 +46,5 @@ Thumbs.db
 *.map.js
 
 .ng_pkg_build
+
+dist.tgz

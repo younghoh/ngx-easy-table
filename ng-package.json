@@ -5,5 +5,8 @@
   "workingDirectory": ".ng_build",
   "lib": {
     "entryFile": "index.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "ngx-pagination"
+  ]
 }
