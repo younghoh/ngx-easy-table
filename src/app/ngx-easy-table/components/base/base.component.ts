@@ -20,7 +20,7 @@ import { Event } from '../../model/event.enum';
 import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
 import { from } from 'rxjs/observable/from';
-import { flatMap, groupBy } from 'rxjs/operators';
+import { flatMap, groupBy, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-table',
@@ -172,7 +172,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.grouped = [];
     from(this.data).pipe(
       groupBy(row => row[this.groupRowsBy]),
-      flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], [])),
+      flatMap(group => group.pipe(
+        reduce((acc: Array<Object>, curr) => [...acc, curr], [])
+      )),
     ).subscribe(row => this.grouped.push(row));
   }
 }
