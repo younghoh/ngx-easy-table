@@ -19,11 +19,8 @@ import { ConfigService } from '../../services/config-service';
 import { Event } from '../../model/event.enum';
 import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/operator/mergeMap';
-import 'rxjs/add/operator/reduce';
-import 'rxjs/add/operator/groupBy';
+import { from } from 'rxjs/observable/from';
+import { flatMap, groupBy } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-table',
@@ -173,9 +170,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
 
   private doGroupRows() {
     this.grouped = [];
-    Observable.from(this.data)
-      .groupBy(row => row[this.groupRowsBy])
-      .flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], []))
-      .subscribe(row => this.grouped.push(row));
+    from(this.data).pipe(
+      groupBy(row => row[this.groupRowsBy]),
+      flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], [])),
+    ).subscribe(row => this.grouped.push(row));
   }
 }
