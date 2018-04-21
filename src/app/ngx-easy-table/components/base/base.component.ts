@@ -1,7 +1,17 @@
 import {
-  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnChanges,
-  OnInit, Output,
-  SimpleChange, SimpleChanges, TemplateRef
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChange,
+  SimpleChanges,
+  TemplateRef,
 } from '@angular/core';
 
 import { ResourceService } from '../../services/resource-service';
@@ -20,7 +30,7 @@ import 'rxjs/add/operator/groupBy';
   providers: [ResourceService, LoggerService, ConfigService],
   templateUrl: './base.component.html',
   styleUrls: ['./base.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
@@ -58,11 +68,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.config = ConfigService.config;
     this.limit = this.configuration.rows;
     if (this.groupRowsBy) {
-      Observable
-        .from(this.data)
-        .groupBy(row => row[this.groupRowsBy])
-        .flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], []))
-        .subscribe(row => this.grouped.push(row));
+      this.doGroupRows();
     }
   }
 
@@ -74,6 +80,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const data: SimpleChange = changes.data;
     const pagination: SimpleChange = changes.pagination;
     const configuration: SimpleChange = changes.configuration;
+    const groupRowsBy: SimpleChange = changes.groupRowsBy;
     if (data && data.currentValue) {
       this.data = [...data.currentValue];
     }
@@ -83,6 +90,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (configuration && configuration.currentValue) {
       this.config = configuration.currentValue;
       this.cdr.markForCheck();
+    }
+    if (groupRowsBy && groupRowsBy.currentValue) {
+      this.doGroupRows();
     }
   }
 
@@ -114,18 +124,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
         row: row,
         key: key,
         rowId: rowIndex,
-        colId: colIndex
+        colId: colIndex,
       };
       this.emitEvent(Event.onClick, value);
-    }
-  }
-
-  toggleColumn(colIndex): void {
-    const toggleColumns = new Set(this.columns);
-    if (toggleColumns.has(colIndex)) {
-      toggleColumns.delete(colIndex);
-    } else {
-      toggleColumns.add(colIndex);
     }
   }
 
@@ -152,7 +153,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onOrder(key): void {
     const value = {
       key,
-      order: this.resource.order[key]
+      order: this.resource.order[key],
     };
     this.emitEvent(Event.onOrder, value);
   }
@@ -168,5 +169,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     } else {
       this.selectedDetailsTemplateRowId.add(rowIndex);
     }
+  }
+
+  private doGroupRows() {
+    this.grouped = [];
+    Observable.from(this.data)
+      .groupBy(row => row[this.groupRowsBy])
+      .flatMap(group => group.reduce((acc: Array<Object>, curr) => [...acc, curr], []))
+      .subscribe(row => this.grouped.push(row));
   }
 }
