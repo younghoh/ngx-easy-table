@@ -12,10 +12,10 @@ describe('table pagination', () => {
     const table = await data.getText();
     expect(table.length).toEqual(10);
     const row = await data.get(0).getText();
-    expect(row).toEqual('+1 (949) 527-2108\n' +
-      '36\n' +
-      'KONGENE\n' +
-      'Deanne Contreras\n' +
+    expect(row).toEqual('+1 (882) 527-2652\n' +
+      '25\n' +
+      'GYNKO\n' +
+      'Gordon Rutledge\n' +
       'false');
   });
   it('should pagination NEXT button show next 10 elements', async () => {
@@ -30,10 +30,10 @@ describe('table pagination', () => {
   it('should pagination PREV button show previous 10 elements', async () => {
     await page.clickPaginationPrev();
     const row = await data.get(0).getText();
-    expect(row).toEqual('+1 (949) 527-2108\n' +
-      '36\n' +
-      'KONGENE\n' +
-      'Deanne Contreras\n' +
+    expect(row).toEqual('+1 (882) 527-2652\n' +
+      '25\n' +
+      'GYNKO\n' +
+      'Gordon Rutledge\n' +
       'false');
   });
   it('should display 10 rows from 2 page, when pagination "2" clicked', async () => {
