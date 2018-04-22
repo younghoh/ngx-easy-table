@@ -6,6 +6,7 @@ import { GlobalSearchPipe } from '../../pipes/global-search-pipe';
 import { SearchPipe } from '../../pipes/search-pipe';
 import { HeaderComponent } from '../header/header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { CsvExportComponent } from '../csv-export.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SortPipe } from '../../pipes/sort.pipe';
 
@@ -13,6 +14,7 @@ import { SortPipe } from '../../pipes/sort.pipe';
   declarations: [
     BaseComponent,
     GlobalSearchComponent,
+    CsvExportComponent,
     HeaderComponent,
     PaginationComponent,
     SearchPipe,
