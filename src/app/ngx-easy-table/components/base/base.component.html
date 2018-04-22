@@ -16,11 +16,11 @@
           <th class="ngx-table__header-cell"
               (click)="orderBy(column['key'])">
             <div class="ngx-d-inline">{{ column['title'] }}</div>
-            <span *ngIf="resource.order[column['key']]==='asc' "
+            <span *ngIf="sortBy.key === column['key'] && sortBy.order==='asc'"
                   [style.display]="config.orderEnabled?'':'none' "
                   class="ngx-icon ngx-icon-arrow-up">
             </span>
-            <span *ngIf="resource.order[column['key']]==='desc' "
+            <span *ngIf="sortBy.key === column['key'] && sortBy.order==='desc'"
                   [style.display]="config.orderEnabled?'':'none' "
                   class="ngx-icon ngx-icon-arrow-down">
             </span>
@@ -54,7 +54,7 @@
       </thead>
       <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="rowTemplate">
-        <ng-container *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+        <ng-container *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index"
                       (click)="clickedCell($event, row, '', '', rowIndex)"
                       [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
@@ -82,7 +82,7 @@
       </ng-container>
       <ng-container *ngIf="!rowTemplate && !config.groupRows">
         <ng-container
-          *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
+          *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index"
           [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <tr>

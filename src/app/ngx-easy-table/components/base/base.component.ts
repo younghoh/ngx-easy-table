@@ -14,7 +14,6 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { ResourceService } from '../../services/resource-service';
 import { ConfigService } from '../../services/config-service';
 import { Event } from '../../model/event.enum';
 import { LoggerService } from '../../services/logger.service';
@@ -24,7 +23,7 @@ import { flatMap, groupBy, reduce } from 'rxjs/operators';
 
 @Component({
   selector: 'ngx-table',
-  providers: [ResourceService, LoggerService, ConfigService],
+  providers: [LoggerService, ConfigService],
   templateUrl: './base.component.html',
   styleUrls: ['./base.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,6 +39,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   page = 1;
   count = null;
   limit;
+  sortBy = {
+    key: '',
+    order: 'asc'
+  };
   selectedDetailsTemplateRowId = new Set();
   id;
   @Input() configuration: Config;
@@ -51,8 +54,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor(public resource: ResourceService,
-              private cdr: ChangeDetectorRef,
+  constructor(private cdr: ChangeDetectorRef,
               private logger: LoggerService) {
     // make random pagination ID to avoid situation when we have more than 1 table at page
     this.id = Math.floor((Math.random() * 10000) + 1);
@@ -97,11 +99,20 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (!ConfigService.config.orderEnabled) {
       return;
     }
+    this.sortBy.key = key;
+    if (this.sortBy.order === 'asc') {
+      this.sortBy.order = 'desc';
+    } else {
+      this.sortBy.order = 'asc';
+    }
+    const value = {
+      key,
+      order: this.sortBy.order,
+    };
     if (!ConfigService.config.serverPagination) {
-      this.data = this.resource.sortBy(key);
       this.data = [...this.data];
     }
-    this.onOrder(key);
+    this.emitEvent(Event.onOrder, value);
   }
 
   clickedCell($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
@@ -145,14 +156,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.page = $event.page;
     this.limit = $event.limit;
     this.emitEvent(Event.onPagination, $event);
-  }
-
-  onOrder(key): void {
-    const value = {
-      key,
-      order: this.resource.order[key],
-    };
-    this.emitEvent(Event.onOrder, value);
   }
 
   private emitEvent(event, value: Object): void {
