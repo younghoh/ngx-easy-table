@@ -146,7 +146,7 @@
       </tbody>
       <tbody *ngIf="config.isLoading">
       <tr class="ngx-table__body-loading">
-        <td>
+        <td [attr.colspan]="columns.length + 1">
           <div class="ngx-table__table-loader"></div>
         </td>
       </tr>
