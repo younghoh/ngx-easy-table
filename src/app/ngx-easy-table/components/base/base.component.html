@@ -36,7 +36,9 @@
             </a>
             <ul class="ngx-menu ngx-table__table-menu">
               <li class="ngx-menu-item">
-                <csv-export *ngIf="config.exportEnabled"></csv-export>
+                <app-csv-export [data]="data"
+                                *ngIf="config.exportEnabled">
+                </app-csv-export>
               </li>
             </ul>
           </div>
