@@ -56,8 +56,8 @@
       <ng-container *ngIf="rowTemplate">
         <ng-container *ngFor="let row of data | search : term | global : globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index"
-            (click)="clickedCell($event, row, '', '', rowIndex)"
-            [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+                      (click)="clickedCell($event, row, '', '', rowIndex)"
+                      [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <tr>
             <ng-container [ngTemplateOutlet]="rowTemplate"
                           [ngTemplateOutletContext]="{ $implicit: row }">
@@ -139,9 +139,13 @@
         </ng-container>
       </ng-container>
       </tbody>
-      <tbody *ngIf="!data">
+      <tbody *ngIf="!data || (data && data.length < 1)">
       <tr class="ngx-table__body-empty">
-        <td>No results</td>
+        <td [attr.colspan]="columns.length + 1">
+          <div class="ngx-table__table-no-results">
+            No results
+          </div>
+        </td>
       </tr>
       </tbody>
       <tbody *ngIf="config.isLoading">
