@@ -58,7 +58,8 @@
       <ng-container *ngIf="rowTemplate">
         <ng-container *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index"
-                      (click)="clickedCell($event, row, '', '', rowIndex)"
+                      (click)="onClick($event, row, '', null, rowIndex)"
+                      (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
                       [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <tr>
             <ng-container [ngTemplateOutlet]="rowTemplate"
@@ -89,7 +90,8 @@
           [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <tr>
             <ng-container *ngFor="let column of columns; let colIndex = index">
-              <td (click)="clickedCell($event, row, column['key'], colIndex, rowIndex)"
+              <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
+                  (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
                   [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                   [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
               >

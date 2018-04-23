@@ -115,7 +115,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onOrder, value);
   }
 
-  clickedCell($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+  onClick($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
     if (ConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -136,6 +136,17 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       };
       this.emitEvent(Event.onClick, value);
     }
+  }
+
+  onDoubleClick($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+    const value = {
+      event: $event,
+      row: row,
+      key: key,
+      rowId: rowIndex,
+      colId: colIndex,
+    };
+    this.emitEvent(Event.onDoubleClick, value);
   }
 
   onSearch($event): void {
