@@ -66,11 +66,11 @@
       <tbody *ngIf="data && !config.isLoading">
       <ng-container *ngIf="rowTemplate">
         <ng-container *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-              let rowIndex = index"
-                      (click)="onClick($event, row, '', null, rowIndex)"
-                      (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
-                      [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-          <tr>
+              let rowIndex = index">
+          <tr
+            (click)="onClick($event, row, '', null, rowIndex)"
+            (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
+            [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
             <ng-container [ngTemplateOutlet]="rowTemplate"
                           [ngTemplateOutletContext]="{ $implicit: row }">
             </ng-container>
@@ -95,9 +95,8 @@
       <ng-container *ngIf="!rowTemplate && !config.groupRows">
         <ng-container
           *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
-                  let rowIndex = index"
-          [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-          <tr>
+                  let rowIndex = index">
+          <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
             <td *ngIf="config.checkboxes">
               <div class="form-group">
                 <label class="form-checkbox">
