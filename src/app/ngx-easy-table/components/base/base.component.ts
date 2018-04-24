@@ -36,6 +36,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public globalSearchTerm;
   grouped = [];
   menuActive = false;
+  isSelected = false;
   page = 1;
   count = null;
   limit;
@@ -149,6 +150,20 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onDoubleClick, value);
   }
 
+  onCheckboxSelect($event: object, row: object, rowIndex: number): void {
+    const value = {
+      event: $event,
+      row: row,
+      rowId: rowIndex,
+    };
+    this.emitEvent(Event.onCheckboxSelect, value);
+  }
+
+  onSelectAll() {
+    this.isSelected = !this.isSelected;
+    this.emitEvent(Event.onSelectAll, this.isSelected);
+  }
+
   onSearch($event): void {
     if (!ConfigService.config.serverPagination) {
       this.term = $event;
@@ -170,7 +185,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private emitEvent(event, value: Object): void {
-    this.logger.info(`event: ${Event[event]}; value: ${JSON.stringify(value)}`);
+    console.log(Event[event], value);
     this.event.emit({ event: Event[event], value });
   }
 

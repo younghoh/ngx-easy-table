@@ -5,4 +5,6 @@ export enum Event {
   onSearch,
   onClick,
   onDoubleClick,
+  onCheckboxSelect,
+  onSelectAll,
 }

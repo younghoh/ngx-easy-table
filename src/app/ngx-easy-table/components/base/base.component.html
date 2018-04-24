@@ -12,6 +12,14 @@
     <table class="ngx-table ngx-table-striped ngx-table-hover">
       <thead>
       <tr class="ngx-table__header" *ngIf="config.headerEnabled">
+        <th *ngIf="config.checkboxes">
+          <div class="form-group">
+            <label class="form-checkbox">
+              <input type="checkbox" (change)="onSelectAll()">
+              <i class="form-icon"></i>
+            </label>
+          </div>
+        </th>
         <ng-container *ngFor="let column of columns">
           <th class="ngx-table__header-cell"
               (click)="orderBy(column['key'])">
@@ -46,6 +54,7 @@
       </tr>
       <tr *ngIf="config.searchEnabled"
           class="ngx-table__sortHeader">
+        <th *ngIf="config.checkboxes"></th>
         <ng-container *ngFor="let column of columns">
           <th>
             <table-header (update)="onSearch($event)" [column]="column"></table-header>
@@ -89,6 +98,17 @@
                   let rowIndex = index"
           [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <tr>
+            <td *ngIf="config.checkboxes">
+              <div class="form-group">
+                <label class="form-checkbox">
+                  <input type="checkbox"
+                         id="checkbox-{{rowIndex}}"
+                         [checked]="isSelected"
+                         (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+                  <i class="form-icon"></i>
+                </label>
+              </div>
+            </td>
             <ng-container *ngFor="let column of columns; let colIndex = index">
               <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
                   (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
@@ -107,6 +127,7 @@
             </td>
           </tr>
           <tr *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
+            <td *ngIf="config.checkboxes"></td>
             <td [attr.colspan]="columns.length + 1">
               <ng-container
                 [ngTemplateOutlet]="detailsTemplate"
