@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import { ResourceService } from '../services/resource-service';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'csv-export',
+  selector: 'app-csv-export',
   template: `
     <a (click)="exportCsv()">
       CSV export
@@ -10,15 +9,13 @@ import { ResourceService } from '../services/resource-service';
 })
 
 export class CsvExportComponent {
-  constructor(public resource: ResourceService) {
-  }
-
+  @Input() data;
   public exportCsv() {
-    const data = this.resource.data;
+    const data = this.data;
     let csvContent = 'data:text/csv;charset=utf-8,';
     let dataString = '';
     const x: Array<any> = [];
-    const keys = Object.keys(this.resource.data[0]);
+    const keys = Object.keys(this.data[0]);
     data.forEach((row, index) => {
       x[index] = [];
       keys.forEach((i) => {
