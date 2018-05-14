@@ -63,7 +63,9 @@
         <th *ngIf="config.additionalActions || config.detailsTemplate"></th>
       </tr>
       </thead>
-      <tbody *ngIf="data && !config.isLoading">
+      <tbody *ngIf="data && !config.isLoading"
+             [class.ngx-dnd-container]="config.draggable"
+             ngxDroppable>
       <ng-container *ngIf="rowTemplate">
         <ng-container *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index">
@@ -96,7 +98,9 @@
         <ng-container
           *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
-          <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+          <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell"
+              [class.ngx-dnd-item]="config.draggable"
+              ngxDraggable>
             <td *ngIf="config.checkboxes">
               <div class="form-group">
                 <label class="form-checkbox">
