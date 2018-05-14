@@ -6,10 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SortPipe implements PipeTransform {
   private static compare(a: Array<any>, b: Array<any>, key): number {
     if ((isNaN(parseFloat(a[key])) || !isFinite(a[key])) || (isNaN(parseFloat(b[key])) || !isFinite(b[key]))) {
-      if (a[key] + ''.toLowerCase() < b[key] + ''.toLowerCase()) {
+      if ((a[key] + '').toLowerCase() < (b[key] + '').toLowerCase()) {
         return -1;
       }
-      if (a[key] + ''.toLowerCase() > b[key] + ''.toLowerCase()) {
+      if ((a[key] + '').toLowerCase() > (b[key] + '').toLowerCase()) {
         return 1;
       }
     } else {
