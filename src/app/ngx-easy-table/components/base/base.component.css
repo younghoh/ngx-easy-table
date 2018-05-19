@@ -27,6 +27,23 @@
   animation: spin 1s linear infinite;
 }
 
+.ngx-table__header-cell {
+  position: relative;
+}
+
+.ngx-table__column-resizer {
+  background-color: #f3f3f3;
+  cursor: col-resize;
+  display: block;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  padding: 0;
+  right: 0;
+  top: 0;
+  width: 3px;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
