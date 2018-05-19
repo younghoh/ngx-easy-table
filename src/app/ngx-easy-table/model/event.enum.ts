@@ -10,4 +10,6 @@ export enum Event {
   onColumnResizeMouseDown,
   onColumnResizeMouseMove,
   onColumnResizeMouseUp,
+  onRowDrag,
+  onRowDrop,
 }

@@ -233,7 +233,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       this.th.style.width = this.startOffset + event.pageX + 'px';
       this.th.style.cursor = 'col-resize';
       this.th.style['user-select'] = 'none';
-      this.emitEvent(Event.onColumnResizeMouseMove, event);
     }
   }
 
@@ -244,5 +243,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onColumnResizeMouseUp, event);
     this.th.style.cursor = 'default';
     this.th = undefined;
+  }
+
+  onRowDrag(event) {
+    this.emitEvent(Event.onRowDrag, event);
+  }
+  onRowDrop(event) {
+    this.emitEvent(Event.onRowDrop, event);
   }
 }
