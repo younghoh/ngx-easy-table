@@ -21,8 +21,12 @@
           </div>
         </th>
         <ng-container *ngFor="let column of columns">
-          <th class="ngx-table__header-cell"
+          <th class="ngx-table__header-cell" #th
+              (mousedown)="onMouseDown($event, th)"
+              (mouseup)="onMouseUp($event)"
+              (mousemove)="onMouseMove($event)"
               (click)="orderBy(column['key'])">
+            <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn"></div>
             <div class="ngx-d-inline">{{ column['title'] }}</div>
             <span *ngIf="sortBy.key === column['key'] && sortBy.order==='asc'"
                   [style.display]="config.orderEnabled?'':'none' "
