@@ -24,18 +24,19 @@
           <th class="ngx-table__header-cell" #th
               (mousedown)="onMouseDown($event, th)"
               (mouseup)="onMouseUp($event)"
-              (mousemove)="onMouseMove($event)"
-              (click)="orderBy(column['key'])">
+              (mousemove)="onMouseMove($event)">
+            <div (click)="orderBy(column['key'])">
+              <div class="ngx-d-inline">{{ column['title'] }}<span>&nbsp;</span></div>
+              <span *ngIf="sortBy.key === column['key'] && sortBy.order==='asc'"
+                    [style.display]="config.orderEnabled?'':'none' "
+                    class="ngx-icon ngx-icon-arrow-up">
+              </span>
+              <span *ngIf="sortBy.key === column['key'] && sortBy.order==='desc'"
+                    [style.display]="config.orderEnabled?'':'none' "
+                    class="ngx-icon ngx-icon-arrow-down">
+              </span>
+            </div>
             <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn"></div>
-            <div class="ngx-d-inline">{{ column['title'] }}</div>
-            <span *ngIf="sortBy.key === column['key'] && sortBy.order==='asc'"
-                  [style.display]="config.orderEnabled?'':'none' "
-                  class="ngx-icon ngx-icon-arrow-up">
-            </span>
-            <span *ngIf="sortBy.key === column['key'] && sortBy.order==='desc'"
-                  [style.display]="config.orderEnabled?'':'none' "
-                  class="ngx-icon ngx-icon-arrow-down">
-            </span>
           </th>
         </ng-container>
         <th *ngIf="config.additionalActions || config.detailsTemplate || config.collapseAllRows || config.groupRows"

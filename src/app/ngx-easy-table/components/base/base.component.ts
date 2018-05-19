@@ -232,6 +232,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.th) {
       this.th.style.width = this.startOffset + event.pageX + 'px';
       this.th.style.cursor = 'col-resize';
+      this.th.style['user-select'] = 'none';
       this.emitEvent(Event.onColumnResizeMouseMove, event);
     }
   }

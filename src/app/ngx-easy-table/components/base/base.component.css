@@ -32,16 +32,16 @@
 }
 
 .ngx-table__column-resizer {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  width: 8px;
-  height: 100%;
-  padding: 0;
+  background-color: #f3f3f3;
   cursor: col-resize;
-  border: 1px solid transparent;
+  display: block;
+  height: 100%;
+  margin: 0;
+  position: absolute;
+  padding: 0;
+  right: 0;
+  top: 0;
+  width: 3px;
 }
 
 @keyframes spin {
