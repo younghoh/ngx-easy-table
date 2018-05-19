@@ -7,7 +7,7 @@ export class ConfigService {
     searchEnabled: false,
     headerEnabled: true,
     orderEnabled: true,
-    globalSearchEnabled: true,
+    globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: true,
@@ -24,6 +24,6 @@ export class ConfigService {
     collapseAllRows: false,
     checkboxes: false,
     resizeColumn: true,
-    draggable: false
+    draggable: true
   };
 }
