@@ -42,10 +42,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   limit;
   sortBy = {
     key: '',
-    order: 'asc'
+    order: 'asc',
   };
   selectedDetailsTemplateRowId = new Set();
   id;
+  th = undefined;
+  startOffset;
   @Input() configuration: Config;
   @Input() data: Array<Object>;
   @Input() pagination;
@@ -212,5 +214,41 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       return true;
     }
     return this.selectedDetailsTemplateRowId.has(rowIndex);
+  }
+
+  onMouseDown(event, th) {
+    if (!this.config.resizeColumn) {
+      return;
+    }
+    this.th = th;
+    this.startOffset = th.offsetWidth - event.pageX;
+    this.emitEvent(Event.onColumnResizeMouseDown, event);
+  }
+
+  onMouseMove(event) {
+    if (!this.config.resizeColumn) {
+      return;
+    }
+    if (this.th) {
+      this.th.style.width = this.startOffset + event.pageX + 'px';
+      this.th.style.cursor = 'col-resize';
+      this.th.style['user-select'] = 'none';
+    }
+  }
+
+  onMouseUp(event) {
+    if (!this.config.resizeColumn) {
+      return;
+    }
+    this.emitEvent(Event.onColumnResizeMouseUp, event);
+    this.th.style.cursor = 'default';
+    this.th = undefined;
+  }
+
+  onRowDrag(event) {
+    this.emitEvent(Event.onRowDrag, event);
+  }
+  onRowDrop(event) {
+    this.emitEvent(Event.onRowDrop, event);
   }
 }

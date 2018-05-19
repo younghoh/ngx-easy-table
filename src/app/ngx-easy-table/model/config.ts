@@ -18,4 +18,6 @@ export interface Config {
   paginationRangeEnabled: boolean;
   collapseAllRows: boolean;
   checkboxes: boolean;
+  resizeColumn: boolean;
+  draggable: boolean;
 }

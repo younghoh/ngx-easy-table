@@ -18,10 +18,12 @@ export class ConfigService {
     additionalActions: false,
     serverPagination: false,
     isLoading: false,
-    detailsTemplate: true,
+    detailsTemplate: false,
     groupRows: false,
     paginationRangeEnabled: true,
     collapseAllRows: false,
-    checkboxes: false
+    checkboxes: false,
+    resizeColumn: true,
+    draggable: true
   };
 }

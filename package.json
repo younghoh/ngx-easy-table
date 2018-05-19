@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng-packagr && cp src/assets/spectre.css dist/ && cp src/assets/spectre-icons.css dist/"
+    "build:lib": "ng-packagr && cp src/assets/style.css dist/"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -29,6 +29,7 @@
     }
   },
   "dependencies": {
+    "@swimlane/ngx-dnd": "^4.0.1",
     "ngx-pagination": "^3.1.1"
   },
   "devDependencies": {
@@ -64,7 +65,7 @@
     "rxjs": "^6.1.0",
     "ts-node": "^6.0.3",
     "tslint": "^5.10.0",
-    "typescript": "^2.8.3",
+    "typescript": "2.7.2",
     "zone.js": "^0.8.26"
   },
   "engines": {
