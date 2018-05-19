@@ -23,6 +23,7 @@ export class ConfigService {
     paginationRangeEnabled: true,
     collapseAllRows: false,
     checkboxes: true,
+    resizeColumn: true,
     draggable: false,
   };
 }

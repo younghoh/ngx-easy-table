@@ -7,4 +7,7 @@ export enum Event {
   onDoubleClick,
   onCheckboxSelect,
   onSelectAll,
+  onColumnResizeMouseDown,
+  onColumnResizeMouseMove,
+  onColumnResizeMouseUp,
 }
