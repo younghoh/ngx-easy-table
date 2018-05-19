@@ -18,8 +18,8 @@ import { ConfigService } from '../../services/config-service';
 import { Event } from '../../model/event.enum';
 import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
-import { from } from 'rxjs/observable/from';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'ngx-table',
