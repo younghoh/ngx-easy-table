@@ -52,6 +52,8 @@
       </thead>
       <tbody *ngIf="data && !config.isLoading"
              [class.ngx-dnd-container]="config.draggable"
+             (drag)="onRowDrag($event)"
+             (drop)="onRowDrop($event)"
              ngxDroppable>
       <ng-container *ngIf="!rowTemplate && !config.groupRows">
         <ng-container
