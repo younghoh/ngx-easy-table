@@ -4,19 +4,23 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
-  private static compare(a: Array<any>, b: Array<any>, key): number {
-    if ((isNaN(parseFloat(a[key])) || !isFinite(a[key])) || (isNaN(parseFloat(b[key])) || !isFinite(b[key]))) {
-      if ((a[key] + '').toLowerCase() < (b[key] + '').toLowerCase()) {
+  private static compare(a: Array<any>, b: Array<any>, key: string): number {
+    const get = (p, o) => p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o);
+    const split = key.split('.');
+    const aV = get(split, a);
+    const bV = get(split, b);
+    if ((isNaN(parseFloat(aV)) || !isFinite(aV)) || (isNaN(parseFloat(bV)) || !isFinite(bV))) {
+      if ((aV + '').toLowerCase() < (bV + '').toLowerCase()) {
         return -1;
       }
-      if ((a[key] + '').toLowerCase() > (b[key] + '').toLowerCase()) {
+      if ((aV + '').toLowerCase() > (bV + '').toLowerCase()) {
         return 1;
       }
     } else {
-      if (parseFloat(a[key]) < parseFloat(b[key])) {
+      if (parseFloat(aV) < parseFloat(bV)) {
         return -1;
       }
-      if (parseFloat(a[key]) > parseFloat(b[key])) {
+      if (parseFloat(aV) > parseFloat(bV)) {
         return 1;
       }
     }
@@ -25,6 +29,9 @@ export class SortPipe implements PipeTransform {
   }
 
   transform(value: any, args: any): any {
+    if (!args.key || args.key === '') {
+      return value;
+    }
     if (args.order === 'asc') {
       return value.sort((a, b) => SortPipe.compare(a, b, args.key));
     } else {

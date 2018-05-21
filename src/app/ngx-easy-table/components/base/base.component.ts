@@ -248,7 +248,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onRowDrag(event) {
     this.emitEvent(Event.onRowDrag, event);
   }
+
   onRowDrop(event) {
     this.emitEvent(Event.onRowDrop, event);
+  }
+
+  renderValue(row: any, key: string): any {
+    const split = key.split('.');
+    const get = (p, o) => p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o);
+
+    return get(split, row);
   }
 }
