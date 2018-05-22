@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { FiltersService } from '../services/filters.service';
 
 @Pipe({
   name: 'search',
 })
 
 export class SearchPipe implements PipeTransform {
-  transform(value: any, filter?: any): any {
+  transform(value: any, filter?: { value: string, key: string }): any {
     if (typeof value === 'undefined') {
       return;
     }
@@ -14,19 +15,14 @@ export class SearchPipe implements PipeTransform {
       return value;
     }
 
+    const split = filter.key.split('.');
     return value.filter((item) => {
       let element = '';
-      if (typeof item[filter.key] === 'string') {
-        element = item[filter.key].toLocaleLowerCase();
-      }
-      if (typeof item[filter.key] === 'object') {
-        element = JSON.stringify(item[filter.key]);
-      }
-      if (typeof item[filter.key] === 'number') {
-        element = item[filter.key].toString();
-      }
-      if (typeof item[filter.key] === 'boolean') {
-        element = item[filter.key].toString();
+      const val = FiltersService.getPath(split, item);
+      if (typeof val === 'object') {
+        element = JSON.stringify(val);
+      } else {
+        element = val.toString().toLocaleLowerCase();
       }
       return element.indexOf(filter.value.toLocaleLowerCase()) !== -1;
     });

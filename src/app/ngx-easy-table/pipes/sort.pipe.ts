@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { FiltersService } from '../services/filters.service';
 
 @Pipe({
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
   private static compare(a: Array<any>, b: Array<any>, key: string): number {
-    const get = (p, o) => p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o);
     const split = key.split('.');
-    const aV = get(split, a);
-    const bV = get(split, b);
+    const aV = FiltersService.getPath(split, a);
+    const bV = FiltersService.getPath(split, b);
     if ((isNaN(parseFloat(aV)) || !isFinite(aV)) || (isNaN(parseFloat(bV)) || !isFinite(bV))) {
       if ((aV + '').toLowerCase() < (bV + '').toLowerCase()) {
         return -1;
