@@ -246,14 +246,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.th = undefined;
   }
 
-  onRowDrag(event) {
-    this.emitEvent(Event.onRowDrag, event);
-  }
-
-  onRowDrop(event) {
-    this.emitEvent(Event.onRowDrop, event);
-  }
-
   renderValue(row: any, key: string): any {
     const split = key.split('.');
 

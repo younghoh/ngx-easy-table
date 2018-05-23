@@ -9,7 +9,6 @@ import { PaginationComponent } from '../pagination/pagination.component';
 import { CsvExportComponent } from '../csv-export.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SortPipe } from '../../pipes/sort.pipe';
-import { NgxDnDModule } from '@swimlane/ngx-dnd';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { NgxDnDModule } from '@swimlane/ngx-dnd';
   imports: [
     CommonModule,
     NgxPaginationModule,
-    NgxDnDModule
   ],
   exports: [BaseComponent]
 })
