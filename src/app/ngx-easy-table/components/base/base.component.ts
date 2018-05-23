@@ -20,6 +20,7 @@ import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
+import { FiltersService } from '../../services/filters.service';
 
 @Component({
   selector: 'ngx-table',
@@ -248,7 +249,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onRowDrag(event) {
     this.emitEvent(Event.onRowDrag, event);
   }
+
   onRowDrop(event) {
     this.emitEvent(Event.onRowDrop, event);
+  }
+
+  renderValue(row: any, key: string): any {
+    const split = key.split('.');
+
+    return FiltersService.getPath(split, row);
   }
 }
