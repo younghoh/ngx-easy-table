@@ -71,8 +71,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/assets/spectre.css",
-              "src/assets/spectre-icons.css"
+              "src/assets/spectre.css"
             ],
             "assets": [
               "src/assets",
