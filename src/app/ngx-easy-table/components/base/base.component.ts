@@ -185,7 +185,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onPagination($event): void {
     this.page = $event.page;
     this.limit = $event.limit;
-    this.doShowLoadingSpinner();
     this.emitEvent(Event.onPagination, $event);
   }
 
@@ -254,12 +253,19 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return FiltersService.getPath(split, row);
   }
 
-  doShowLoadingSpinner() {
+  get isLoading(): boolean {
     const rows = document.getElementById('table')['rows'];
-    if (rows.length > 4) {
-      this.loadingHeight = ((rows.length - 2) * (rows[4].offsetHeight - 2)) + 'px';
-      // TODO calculate border bottom, top, set fixed th width
+    if (rows.length > 3) {
+      this.getLoadingHeight(rows);
     }
-    this.configuration.isLoading = !this.configuration.isLoading;
+    return this.config.isLoading;
+  }
+
+  getLoadingHeight(rows: any): void {
+    const searchEnabled = this.configuration.searchEnabled ? 1 : 0;
+    const headerEnabled = this.configuration.headerEnabled ? 1 : 0;
+    const borderTrHeight = 1;
+    const borderDivHeight = 2;
+    this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
   }
 }

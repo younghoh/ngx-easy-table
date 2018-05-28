@@ -24,5 +24,6 @@ export class ConfigService {
     collapseAllRows: false,
     checkboxes: true,
     resizeColumn: true,
+    fixedColumnWidth: false,
   };
 }
