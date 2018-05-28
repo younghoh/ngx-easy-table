@@ -5,7 +5,7 @@ export const data = [
     address: { street: 'Some street', number: 12 },
     company: 'KONGENE',
     name: 'Deanne Contreras',
-    isActive: false,
+    isActive: true,
   }, {
     phone: '+1 (878) 515-3653',
     age: 32,
@@ -89,7 +89,7 @@ export const data = [
     address: { street: 'Dacota street', number: 12 },
     company: 'MARKETOID',
     name: 'Scott Barker',
-    isActive: false,
+    isActive: true,
   }, {
     phone: '+1 (949) 600-2827',
     age: 29,

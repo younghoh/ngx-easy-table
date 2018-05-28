@@ -13,17 +13,29 @@ describe('table search', () => {
     const row = await data.getText();
     expect(row).toEqual('+1 (949) 527-2108\n' +
       '36\n' +
+      'Some street\n' +
       'KONGENE\n' +
       'Deanne Contreras\n' +
-      'false');
+      'true');
   });
   it('should find 1 row when filtering by name', async () => {
     await page.searchByName('Scott Barker');
     const row = await data.getText();
     expect(row).toEqual('+1 (939) 530-3189\n' +
       '34\n' +
+      'Dacota street\n' +
       'MARKETOID\n' +
       'Scott Barker\n' +
-      'false');
+      'true');
+  });
+  it('should find 1 row when filtering by address street which is nested object property', async () => {
+    await page.searchByAddress('Dacota');
+    const row = await data.getText();
+    expect(row).toEqual('+1 (939) 530-3189\n' +
+      '34\n' +
+      'Dacota street\n' +
+      'MARKETOID\n' +
+      'Scott Barker\n' +
+      'true');
   });
 });
