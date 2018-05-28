@@ -21,6 +21,7 @@ import { Config } from '../../model/config';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { FiltersService } from '../../services/filters.service';
+import { Columns } from '../../model/columns';
 
 @Component({
   selector: 'ngx-table',
@@ -55,7 +56,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() pagination;
   @Input() groupRowsBy;
   @Input() detailsTemplate;
-  @Input() columns: Array<string>;
+  @Input() columns: Columns[];
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
@@ -267,5 +268,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const borderTrHeight = 1;
     const borderDivHeight = 2;
     this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
+  }
+
+  getColumnWidth(column: any): string {
+    if (column.width) {
+      return column.width;
+    }
+    return this.config.fixedColumnWidth ? 100 / this.columns.length + '%' : null;
   }
 }

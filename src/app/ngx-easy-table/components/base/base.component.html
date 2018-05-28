@@ -23,7 +23,7 @@
         <ng-container *ngFor="let column of columns">
           <th class="ngx-table__header-cell"
               #th
-              [attr.width]="config.fixedColumnWidth ? 100 / columns.length + '%' : null"
+              [attr.width]="getColumnWidth(column)"
               (mousedown)="onMouseDown($event, th)"
               (mouseup)="onMouseUp($event)"
               (mousemove)="onMouseMove($event)">
