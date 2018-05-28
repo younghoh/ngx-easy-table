@@ -1,20 +1,22 @@
 * {
   font-family: Verdana, serif;
 }
-
 .ngx-table__table-row--selected {
   background: #9cbff9 !important;
 }
-
 .ngx-table__table-col--selected {
   background: #9cbff9 !important;
 }
-
 .ngx-table__table-cell--selected {
   background: #9cbff9 !important;
 }
 .ngx-table__table-no-results {
   text-align: center;
+}
+.ngx-table__table-loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .ngx-table__table-loader {
   border: 4px solid #f3f3f3;
@@ -26,11 +28,9 @@
   margin-right: auto;
   animation: spin 1s linear infinite;
 }
-
 .ngx-table__header-cell {
   position: relative;
 }
-
 .ngx-table__column-resizer {
   background-color: #f3f3f3;
   cursor: col-resize;
@@ -43,7 +43,6 @@
   top: 0;
   width: 3px;
 }
-
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

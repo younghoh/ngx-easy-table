@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="ngx-columns">
-    <table class="ngx-table ngx-table-striped ngx-table-hover">
+    <table id="table" class="ngx-table ngx-table-striped ngx-table-hover">
       <thead>
       <tr class="ngx-table__header" *ngIf="config.headerEnabled">
         <th *ngIf="config.checkboxes">
@@ -180,7 +180,10 @@
       <tbody *ngIf="config.isLoading">
       <tr class="ngx-table__body-loading">
         <td [attr.colspan]="columns.length + 1">
-          <div class="ngx-table__table-loader"></div>
+          <div [style.height]="loadingHeight"
+               class="ngx-table__table-loader-wrapper">
+            <div class="ngx-table__table-loader"></div>
+          </div>
         </td>
       </tr>
       </tbody>

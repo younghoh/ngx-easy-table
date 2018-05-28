@@ -49,6 +49,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   id;
   th = undefined;
   startOffset;
+  loadingHeight = '30px';
   @Input() configuration: Config;
   @Input() data: Array<Object>;
   @Input() pagination;
@@ -184,6 +185,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onPagination($event): void {
     this.page = $event.page;
     this.limit = $event.limit;
+    this.doShowLoadingSpinner();
     this.emitEvent(Event.onPagination, $event);
   }
 
@@ -250,5 +252,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const split = key.split('.');
 
     return FiltersService.getPath(split, row);
+  }
+
+  doShowLoadingSpinner() {
+    const rows = document.getElementById('table')['rows'];
+    if (rows.length > 4) {
+      this.loadingHeight = ((rows.length - 2) * (rows[4].offsetHeight - 2)) + 'px';
+      // TODO calculate border bottom, top, set fixed th width
+    }
+    this.configuration.isLoading = !this.configuration.isLoading;
   }
 }
