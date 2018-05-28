@@ -19,4 +19,5 @@ export interface Config {
   collapseAllRows: boolean;
   checkboxes: boolean;
   resizeColumn: boolean;
+  fixedColumnWidth: boolean;
 }

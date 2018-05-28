@@ -21,6 +21,7 @@ import { Config } from '../../model/config';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { FiltersService } from '../../services/filters.service';
+import { Columns } from '../../model/columns';
 
 @Component({
   selector: 'ngx-table',
@@ -49,12 +50,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   id;
   th = undefined;
   startOffset;
+  loadingHeight = '30px';
   @Input() configuration: Config;
   @Input() data: Array<Object>;
   @Input() pagination;
   @Input() groupRowsBy;
   @Input() detailsTemplate;
-  @Input() columns: Array<string>;
+  @Input() columns: Columns[];
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
@@ -250,5 +252,28 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const split = key.split('.');
 
     return FiltersService.getPath(split, row);
+  }
+
+  get isLoading(): boolean {
+    const rows = document.getElementById('table')['rows'];
+    if (rows.length > 3) {
+      this.getLoadingHeight(rows);
+    }
+    return this.config.isLoading;
+  }
+
+  getLoadingHeight(rows: any): void {
+    const searchEnabled = this.configuration.searchEnabled ? 1 : 0;
+    const headerEnabled = this.configuration.headerEnabled ? 1 : 0;
+    const borderTrHeight = 1;
+    const borderDivHeight = 2;
+    this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
+  }
+
+  getColumnWidth(column: any): string {
+    if (column.width) {
+      return column.width;
+    }
+    return this.config.fixedColumnWidth ? 100 / this.columns.length + '%' : null;
   }
 }

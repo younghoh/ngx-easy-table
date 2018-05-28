@@ -45,7 +45,14 @@ export class AppPage {
   async searchByName(name: string) {
     return await element
       .all(by.css('input[type=text]'))
-      .get(4)
+      .get(5)
+      .sendKeys(name);
+  }
+
+  async searchByAddress(name: string) {
+    return await element
+      .all(by.css('input[type=text]'))
+      .get(3)
       .sendKeys(name);
   }
 

@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="ngx-columns">
-    <table class="ngx-table ngx-table-striped ngx-table-hover">
+    <table id="table" class="ngx-table ngx-table-striped ngx-table-hover">
       <thead>
       <tr class="ngx-table__header" *ngIf="config.headerEnabled">
         <th *ngIf="config.checkboxes">
@@ -21,7 +21,9 @@
           </div>
         </th>
         <ng-container *ngFor="let column of columns">
-          <th class="ngx-table__header-cell" #th
+          <th class="ngx-table__header-cell"
+              #th
+              [attr.width]="getColumnWidth(column)"
               (mousedown)="onMouseDown($event, th)"
               (mouseup)="onMouseUp($event)"
               (mousemove)="onMouseMove($event)">
@@ -68,7 +70,7 @@
         <th *ngIf="config.additionalActions || config.detailsTemplate"></th>
       </tr>
       </thead>
-      <tbody *ngIf="data && !config.isLoading">
+      <tbody *ngIf="data && !isLoading">
       <ng-container *ngIf="rowTemplate">
         <ng-container *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
               let rowIndex = index">
@@ -177,10 +179,13 @@
         </td>
       </tr>
       </tbody>
-      <tbody *ngIf="config.isLoading">
+      <tbody *ngIf="isLoading">
       <tr class="ngx-table__body-loading">
         <td [attr.colspan]="columns.length + 1">
-          <div class="ngx-table__table-loader"></div>
+          <div [style.height]="loadingHeight"
+               class="ngx-table__table-loader-wrapper">
+            <div class="ngx-table__table-loader"></div>
+          </div>
         </td>
       </tr>
       </tbody>
