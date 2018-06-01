@@ -21,7 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/assets/spectre.css"
+              "src/assets/spectre.scss"
             ],
             "scripts": []
           },

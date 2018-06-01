@@ -4,10 +4,10 @@ import { Config } from './ngx-easy-table/model/config';
 @Injectable()
 export class ConfigService {
   public static config: Config = {
-    searchEnabled: true,
+    searchEnabled: false,
     headerEnabled: true,
     orderEnabled: true,
-    globalSearchEnabled: true,
+    globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: true,
@@ -25,5 +25,13 @@ export class ConfigService {
     checkboxes: false,
     resizeColumn: false,
     fixedColumnWidth: false,
+    horizontalScroll: false,
+    pinnedCol: false,
+    tableLayout: {
+      style: 'normal',
+      border: true,
+      hover: true,
+      striped: false,
+    }
   };
 }

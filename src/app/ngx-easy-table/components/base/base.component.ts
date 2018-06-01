@@ -22,12 +22,13 @@ import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
 import { FiltersService } from '../../services/filters.service';
 import { Columns } from '../../model/columns';
+import { UtilsService } from '../../services/utils-service';
 
 @Component({
   selector: 'ngx-table',
-  providers: [LoggerService, ConfigService],
+  providers: [LoggerService, ConfigService, UtilsService],
   templateUrl: './base.component.html',
-  styleUrls: ['./base.component.css'],
+  styleUrls: ['./base.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
@@ -62,16 +63,21 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(private cdr: ChangeDetectorRef,
               private logger: LoggerService) {
-    // make random pagination ID to avoid situation when we have more than 1 table at page
-    this.id = Math.floor((Math.random() * 10000) + 1);
+    this.id = UtilsService.randomId();
   }
 
   ngOnInit() {
+    if (!this.columns) {
+      console.error('[columns] property required!');
+    }
+    if (!this.data) {
+      console.error('[data] property required!');
+    }
     if (this.configuration) {
       ConfigService.config = this.configuration;
     }
     this.config = ConfigService.config;
-    this.limit = this.configuration.rows;
+    this.limit = this.config.rows;
     if (this.groupRowsBy) {
       this.doGroupRows();
     }
@@ -263,8 +269,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getLoadingHeight(rows: any): void {
-    const searchEnabled = this.configuration.searchEnabled ? 1 : 0;
-    const headerEnabled = this.configuration.headerEnabled ? 1 : 0;
+    const searchEnabled = this.config.searchEnabled ? 1 : 0;
+    const headerEnabled = this.config.headerEnabled ? 1 : 0;
     const borderTrHeight = 1;
     const borderDivHeight = 2;
     this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';

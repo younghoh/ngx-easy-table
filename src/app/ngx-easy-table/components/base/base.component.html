@@ -9,10 +9,21 @@
     </div>
   </div>
   <div class="ngx-columns">
-    <table id="table" class="ngx-table ngx-table-striped ngx-table-hover">
+    <table id="table"
+           class="ngx-table ngx-table-striped ngx-table-hover"
+           [class.ngx-table__table-tiny]="config.tableLayout.style === 'tiny'"
+           [class.ngx-table__table-normal]="config.tableLayout.style === 'normal'"
+           [class.ngx-table__table-big]="config.tableLayout.style === 'big'"
+           [class.ngx-table__table--borders]="config.tableLayout.border"
+           [class.ngx-table__table--hoverable]="config.tableLayout.hover"
+           [class.ngx-table__table--striped]="config.tableLayout.striped"
+           [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !isLoading"
+           [class.ngx-table__pinned-col-width]="config.pinnedCol && !isLoading"
+    >
       <thead>
       <tr class="ngx-table__header" *ngIf="config.headerEnabled">
-        <th *ngIf="config.checkboxes">
+        <th *ngIf="config.checkboxes"
+            [class.ngx-table__pinned-col]="config.pinnedCol">
           <div class="form-group">
             <label class="form-checkbox">
               <input type="checkbox" (change)="onSelectAll()">
@@ -20,8 +31,9 @@
             </label>
           </div>
         </th>
-        <ng-container *ngFor="let column of columns">
+        <ng-container *ngFor="let column of columns;let colIndex = index">
           <th class="ngx-table__header-cell"
+              [class.ngx-table__pinned-col]="config.pinnedCol && colIndex === 0 && !isLoading"
               #th
               [attr.width]="getColumnWidth(column)"
               (mousedown)="onMouseDown($event, th)"
@@ -61,9 +73,10 @@
       </tr>
       <tr *ngIf="config.searchEnabled"
           class="ngx-table__sortHeader">
-        <th *ngIf="config.checkboxes"></th>
-        <ng-container *ngFor="let column of columns">
-          <th>
+        <th *ngIf="config.checkboxes"
+            [class.ngx-table__pinned-col]="config.pinnedCol"></th>
+        <ng-container *ngFor="let column of columns; let colIndex = index">
+          <th [class.ngx-table__pinned-col]="config.pinnedCol && colIndex === 0 && !isLoading">
             <table-header (update)="onSearch($event)" [column]="column"></table-header>
           </th>
         </ng-container>
@@ -78,6 +91,7 @@
             (click)="onClick($event, row, '', null, rowIndex)"
             (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
+            <td [class.ngx-table__pinned-col]="config.pinnedCol"></td>
             <ng-container [ngTemplateOutlet]="rowTemplate"
                           [ngTemplateOutletContext]="{ $implicit: row }">
             </ng-container>
@@ -104,7 +118,8 @@
           *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
           <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-            <td *ngIf="config.checkboxes">
+            <td *ngIf="config.checkboxes"
+                [class.ngx-table__pinned-col]="config.pinnedCol">
               <div class="form-group">
                 <label class="form-checkbox">
                   <input type="checkbox"
@@ -118,6 +133,7 @@
             <ng-container *ngFor="let column of columns; let colIndex = index">
               <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
                   (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
+                  [class.ngx-table__pinned-col]="config.pinnedCol && colIndex === 0"
                   [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                   [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
               >
@@ -133,7 +149,8 @@
             </td>
           </tr>
           <tr *ngIf="(config.detailsTemplate && selectedDetailsTemplateRowId.has(rowIndex)) || config.collapseAllRows">
-            <td *ngIf="config.checkboxes"></td>
+            <td *ngIf="config.checkboxes"
+                [class.ngx-table__pinned-col]="config.pinnedCol"></td>
             <td [attr.colspan]="columns.length + 1">
               <ng-container
                 [ngTemplateOutlet]="detailsTemplate"
@@ -172,7 +189,7 @@
       </tbody>
       <tbody *ngIf="!data || (data && data.length < 1)">
       <tr class="ngx-table__body-empty">
-        <td [attr.colspan]="columns.length + 1">
+        <td [attr.colspan]="columns && columns.length + 1">
           <div class="ngx-table__table-no-results">
             No results
           </div>
@@ -181,7 +198,7 @@
       </tbody>
       <tbody *ngIf="isLoading">
       <tr class="ngx-table__body-loading">
-        <td [attr.colspan]="columns.length + 1">
+        <td [attr.colspan]="columns && columns.length + 1">
           <div [style.height]="loadingHeight"
                class="ngx-table__table-loader-wrapper">
             <div class="ngx-table__table-loader"></div>

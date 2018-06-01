@@ -8,6 +8,9 @@ import { Component, Input } from '@angular/core';
     </a>`
 })
 
+/**
+ * Since version 5.0 CsvExportComponent will be moved to CsvExportComponent plugin
+ */
 export class CsvExportComponent {
   @Input() data;
   public exportCsv() {

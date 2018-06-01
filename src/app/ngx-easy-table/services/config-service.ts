@@ -17,13 +17,21 @@ export class ConfigService {
     rows: 10,
     additionalActions: false,
     serverPagination: false,
-    isLoading: true,
+    isLoading: false,
     detailsTemplate: false,
     groupRows: false,
     paginationRangeEnabled: true,
     collapseAllRows: false,
-    checkboxes: true,
-    resizeColumn: true,
+    checkboxes: false,
+    resizeColumn: false,
     fixedColumnWidth: false,
+    horizontalScroll: false,
+    pinnedCol: false,
+    tableLayout: {
+      style: 'normal',
+      border: true,
+      hover: true,
+      striped: true,
+    }
   };
 }
