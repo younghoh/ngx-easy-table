@@ -2,7 +2,7 @@
 
 context('Pagination', () => {
   before(() => {
-      cy.visit('localhost:4200/pagination');
+      cy.visit('http://127.0.0.1:4200/#/pagination');
     },
   );
 

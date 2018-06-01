@@ -69,4 +69,4 @@ export const routes = [
   { path: 'fixed-width', component: FixedWidthComponent },
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
