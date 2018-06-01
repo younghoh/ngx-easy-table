@@ -91,7 +91,7 @@
             (click)="onClick($event, row, '', null, rowIndex)"
             (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
             [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-            <td [class.ngx-table__pinned-col]="config.pinnedCol"></td>
+            <td *ngIf="config.pinnedCol" class="ngx-table__pinned-col"></td>
             <ng-container [ngTemplateOutlet]="rowTemplate"
                           [ngTemplateOutletContext]="{ $implicit: row }">
             </ng-container>
