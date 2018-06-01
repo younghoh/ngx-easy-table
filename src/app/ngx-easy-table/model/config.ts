@@ -20,8 +20,8 @@ export interface Config {
   checkboxes: boolean;
   resizeColumn: boolean;
   fixedColumnWidth: boolean;
-  horizontalScroll: boolean;
-  pinnedCol: boolean;
+  horizontalScroll?: boolean;
+  pinnedCol?: boolean;
   tableLayout?: {
     style: string,
     border: boolean,

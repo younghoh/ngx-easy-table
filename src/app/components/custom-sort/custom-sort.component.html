@@ -1,0 +1,22 @@
+<h3>Custom sort</h3>
+<small>For maximum flexibility tables doesn't have any built-in custom filters or sort. <br>
+Because of that, you can add anything you want to the table, see <b>custom-filters.component.ts</b> or <b>custom-sort.component.ts</b> for more details.
+</small>
+<div class="mb-2">
+  <a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Fcustom-sort%2Fcustom-sort.component.ts" target="_blank">
+    See code here
+  </a>
+</div>
+<br><br>
+<div class="columns">
+	<div class="column col-12">
+		<button class="btn btn-primary" (click)="sortByNameAsc()">Sort by name asc</button>
+		<button class="btn" (click)="sortByNameDesc()">Sort by name desc</button>
+	</div>
+</div>
+<div class="columns">
+	<div class="column col-12">
+		<ngx-table [configuration]="configuration" [data]="data" [columns]="columns" [pagination]="pagination">
+		</ngx-table>
+	</div>
+</div>

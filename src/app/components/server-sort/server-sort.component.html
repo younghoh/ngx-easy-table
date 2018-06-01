@@ -1,0 +1,36 @@
+<h3>Server sort </h3>
+<div class="columns">
+	<div class="column col-2">
+		<div class="mb-2">
+			<a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Fserver-sort%2Fserver-sort.component.html"
+			 target="_blank">
+				See code here
+			</a>
+		</div>
+	</div>
+  <div class="column col-2 col-ml-auto">
+		<div class="mb-2">
+			<div class="dropdown range-dropdown float-right"
+         [class.active]="showSortDropdown"
+         id="rowAmount">
+      <div class="btn-group">
+        <span class="btn range-dropdown-button"
+              (click)="showSortDropdown = !showSortDropdown">
+          Sort by <i class="icon icon-arrow-down"></i>
+        </span>
+        <ul class="menu">
+          <li class="c-hand range-dropdown-button" (click)="orderBy(order)" *ngFor="let order of orderDropdown">
+            {{order.name}}
+          </li>
+        </ul>
+      </div>
+    </div>
+		</div>
+	</div>
+</div>
+<div class="columns">
+	<div class="column col-12">
+		<ngx-table [configuration]="configuration" [data]="data" [columns]="columns" [pagination]="pagination" (event)="eventEmitted($event)">
+		</ngx-table>
+	</div>
+</div>

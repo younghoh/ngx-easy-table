@@ -1,0 +1,27 @@
+<h3>Collapsed rows</h3>
+<div class="mb-2">
+	<a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Fcollapsed-rows%2Fcollapsed-rows.component.ts"
+	 target="_blank">
+		See code here
+	</a>
+</div>
+<div class="form-group">
+	<label class="form-switch">
+    <input type="checkbox"
+    [checked]="toggled"
+    (click)="toggleRows()">
+    <i class="form-icon"></i> Show details
+  </label>
+</div>
+<div class="columns">
+	<div class="column col-12">
+		<ngx-table [configuration]="configuration" [pagination]="pagination" [data]="data" [columns]="columns" [detailsTemplate]="detailsTemplateRef">
+		</ngx-table>
+	</div>
+</div>
+<ng-template #detailsTemplate let-row>
+	<div>
+		<h2 class="color-green">{{row.phone }}</h2>
+		{{row.name }} - {{row.age}}
+	</div>
+</ng-template>

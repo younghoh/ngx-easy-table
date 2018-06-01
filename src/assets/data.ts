@@ -1,3 +1,11 @@
+export const columns = [
+  { key: 'phone', title: 'Phone' },
+  { key: 'age', title: 'Age' },
+  { key: 'company', title: 'Company' },
+  { key: 'name', title: 'Name' },
+  { key: 'isActive', title: 'Active' },
+];
+
 export const data = [
   {
     phone: '+1 (949) 527-2108',

@@ -1,0 +1,4 @@
+:host /deep/ .ngx-table__header-cell > div {
+  text-align: center;
+  display: block;
+}

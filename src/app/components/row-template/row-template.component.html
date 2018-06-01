@@ -1,0 +1,26 @@
+<h3>Row template</h3>
+<small>Click <i class="icon icon-arrow-right"></i> arrow on the right table side</small><br><br>
+<div class="mb-2">
+	<a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Frow-template%2Frow-template.component.ts"
+	 target="_blank">
+		See code here
+	</a>
+</div>
+<div class="columns">
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      (event)="eventEmitted($event)"
+      [columns]="columns"
+      [detailsTemplate]="detailsTemplateRef"
+      [pagination]="pagination">
+    </ngx-table>
+  </div>
+</div>
+<ng-template #detailsTemplate let-row>
+  <div>
+    <h2 class="color-green">{{row.phone }}</h2>
+    {{row.name }} - {{row.age}}
+  </div>
+</ng-template>

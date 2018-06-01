@@ -1,0 +1,43 @@
+<h3>Checkboxes - templates</h3>
+<div class="mb-2">
+	<a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Fcheckboxes%2Fcheckboxes.component.ts"
+	 target="_blank">
+		See code here
+	</a>
+</div>
+<div class="mb-2">
+  <h2>Selected: {{selected.size}} </h2>
+</div>
+<ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+	<ng-template let-row>
+		<td>
+			<div class="form-group">
+				<label class="form-checkbox">
+          <input type="checkbox" (change)="onChange(row)">
+          <i class="form-icon"></i>
+        </label>
+			</div>
+		</td>
+		<td class="recruitments__table-row-recruitment">
+			<h5 class="color-green font-light">{{row.name}}</h5>
+		</td>
+		<td>
+			<div class="font-small">
+				Company: {{row.company}}
+				<small class="d-block">{{row.date | date}}</small>
+			</div>
+		</td>
+		<td>
+			<span class="font-small display-block">Supervisor: </span><br>
+			<strong>{{row.name}}</strong>
+		</td>
+		<td>
+			<span class="font-small display-block">Phone:</span>
+			<span class="font-small">{{row.phone}}</span>
+		</td>
+		<td>
+			<div class="circle"></div>
+		</td>
+	</ng-template>
+
+</ngx-table>

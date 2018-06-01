@@ -1,0 +1,40 @@
+<h3>Group rows</h3>
+<small>Click <i class="icon icon-arrow-right"></i> arrow on the right table side, to get row details</small><br><br>
+<div class="mb-2">
+  <a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Fgroup-rows%2Fgroup-rows.component.ts" target="_blank">
+    See code here
+  </a>
+</div>
+<div class="form-group">
+  <label class="form-label">Group by:</label>
+  <label class="form-radio">
+    <input type="radio" name="group" (change)="onChange('phone')">
+    <i class="form-icon"></i> Phone
+  </label>
+  <label class="form-radio">
+    <input type="radio" name="group" (change)="onChange('age')" checked>
+    <i class="form-icon"></i> Age
+  </label>
+  <label class="form-radio">
+    <input type="radio" name="group" (change)="onChange('company')">
+    <i class="form-icon"></i> Company
+  </label>
+  <label class="form-radio">
+    <input type="radio" name="group" (change)="onChange('name')">
+    <i class="form-icon"></i> Name
+  </label>
+  <label class="form-radio">
+    <input type="radio" name="group" (change)="onChange('isActive')">
+    <i class="form-icon"></i> Active
+  </label>
+</div>
+<div class="columns">
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      [columns]="columns"
+      [groupRowsBy]="groupBy">
+    </ngx-table>
+  </div>
+</div>

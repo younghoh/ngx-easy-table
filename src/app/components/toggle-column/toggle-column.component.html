@@ -1,0 +1,43 @@
+<h3>Toggle column</h3>
+<small>For maximum flexibility tables doesn't have any built-in custom filters or sort. <br>
+Because of that, you can add anything you want to the table, see <b>custom-filters.component.ts</b>, <b>toggle-column.component.ts</b> or <b>custom-sort.component.ts</b> for more details.
+</small>
+<div class="mb-2">
+	<a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Fcustom-sort%2Fcustom-sort.component.ts"
+	 target="_blank">
+		See code here
+	</a>
+</div>
+<br><br>
+<div class="columns">
+	<div class="column col-12">
+		<div class="form-group">
+			<label class="form-checkbox">
+        <input type="checkbox" [checked]="true" (change)="toggle('phone', $event.target.checked)">
+        <i class="form-icon"></i> phone
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" [checked]="true" (change)="toggle('age', $event.target.checked)">
+        <i class="form-icon"></i> age
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" [checked]="true" (change)="toggle('company', $event.target.checked)">
+        <i class="form-icon"></i> company
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" [checked]="true" (change)="toggle('name', $event.target.checked)">
+        <i class="form-icon"></i> name
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" [checked]="true" (change)="toggle('isActive', $event.target.checked)">
+        <i class="form-icon"></i> active
+      </label>
+		</div>
+	</div>
+</div>
+<div class="columns">
+	<div class="column col-12">
+		<ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+		</ngx-table>
+	</div>
+</div>

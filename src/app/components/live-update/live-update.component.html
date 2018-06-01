@@ -1,0 +1,28 @@
+<h3>Template</h3>
+<div class="mb-2">
+	<a class="btn" href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Flive-update%2Flive-update.component.ts"
+	 target="_blank">
+		See code here
+	</a>
+</div>
+<ngx-table [configuration]="configuration" [data]="data" [columns]="columns" [pagination]="pagination">
+	<ng-template let-row>
+		<td class="row__email">
+			<h5 class="color-green font-light">{{row.status}}</h5>
+		</td>
+		<td class="row__progressbar">
+			{{row.amount}}
+		</td>
+		<td>
+			<div class="font-small">
+				{{row.company}}
+			</div>
+		</td>
+		<td>
+			<div class="d-inline circle" [style.color]="row.balance < 1000 ? 'red': 'green'"></div> {{row.balance}}
+		</td>
+		<td [style.backgroundColor]="row.limit <= 1000 ? '#FFB6C1': '' ">
+			<span class="font-small">{{row.limit}}</span>
+		</td>
+	</ng-template>
+</ngx-table>

@@ -1,0 +1,12 @@
+.circle:before {
+  content: ' \25CF';
+  font-size: 20px;
+}
+
+.row__email {
+  width: 100px;
+}
+
+.row__progressbar {
+  width: 100px;
+}

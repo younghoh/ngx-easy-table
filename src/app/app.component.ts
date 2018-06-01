@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ConfigService } from './app.service';
-import { data } from '../assets/data';
-import { Columns } from './ngx-easy-table/model/columns';
 
 @Component({
   selector: 'app-table',
@@ -9,24 +7,48 @@ import { Columns } from './ngx-easy-table/model/columns';
   styleUrls: ['./app.component.css'],
   providers: [ConfigService],
 })
-export class AppComponent implements OnInit {
-  configuration;
-  data;
-  columns: Columns[];
+export class AppComponent {
+  showMenu = false;
 
-  constructor() {
-  }
-
-  ngOnInit() {
-    this.configuration = ConfigService.config;
-    this.columns = [
-      { key: 'phone', title: 'phone', placeholder: 'Search phone', width: '15%' },
-      { key: 'age', title: 'age', placeholder: 'Search age', width: '10%' },
-      { key: 'address.street', title: 'Address', placeholder: 'Search street', width: '25%' },
-      { key: 'company', title: 'company', placeholder: 'Search company', width: '20%' },
-      { key: 'name', title: 'name', placeholder: 'Search name', width: '20%' },
-      { key: 'isActive', title: 'isActive', placeholder: 'Search status', width: '10%' },
-    ];
-    this.data = data;
-  }
+  basic = [
+    { link: '/', name: 'Basic', },
+    { link: '/pagination', name: 'Pagination', },
+    { link: '/server-pagination', name: 'Server pagination', },
+    { link: '/server-sort', name: 'Server sort', },
+    { link: '/export-csv', name: 'Export to CSV', },
+    { link: '/click-event', name: 'Click event', },
+    { link: '/many-tables', name: 'Many tables', },
+    { link: '/dynamic-row', name: 'Dynamic row', },
+    { link: '/horizontal-scroll', name: 'Horizontal scroll', },
+    { link: '/dynamic-conf', name: 'Dynamic configration', },
+    { link: '/exports', name: 'Exports', },
+    { link: '/column-resizer', name: 'Column resizer', },
+    { link: '/column-width', name: 'Column width', },
+    { link: '/fixed-width', name: 'Fixed width', },
+  ];
+  templates = [
+    { link: '/template', name: 'Basic template', },
+    { link: '/modal', name: 'Modal', },
+    { link: '/live-update', name: 'Live update', },
+    { link: '/row-template', name: 'Row details', },
+    { link: '/group-rows', name: 'Group rows', },
+    { link: '/collapsed-rows', name: 'Collapsed rows', },
+    { link: '/checkboxes', name: 'Checkboxes', },
+    { link: '/checkboxes2', name: 'Checkboxes2', },
+  ];
+  select = [
+    { link: '/select-row', name: 'Select row', },
+    { link: '/select-col', name: 'Select col', },
+    { link: '/select-cell', name: 'Select cell', },
+  ];
+  filters = [
+    { link: '/search', name: 'Search', },
+    { link: '/global-search', name: 'Global search', },
+    { link: '/custom-filters', name: 'Custom filters', },
+    { link: '/toggle-column', name: 'Toggle column', },
+  ];
+  sort = [
+    { link: '/sort', name: 'Sort', },
+    { link: '/custom-sort', name: 'Custom sort', },
+  ];
 }
