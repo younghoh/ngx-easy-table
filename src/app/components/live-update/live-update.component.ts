@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+
 @Component({
   selector: 'app-live-update',
   templateUrl: './live-update.component.html',
@@ -25,9 +25,15 @@ export class LiveUpdateComponent implements OnInit, AfterViewInit {
     { key: 'balance', title: 'Balance' },
   ];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
   }
+
+  static random(min, max) {
+    return Math.floor(min + (Math.random() * (max - min + 1)));
+  }
+
   ngOnInit() {
     this.data = this.array;
   }
@@ -42,9 +48,5 @@ export class LiveUpdateComponent implements OnInit, AfterViewInit {
       array[LiveUpdateComponent.random(0, 3)]['balance'] = LiveUpdateComponent.random(900, 1100);
       array[LiveUpdateComponent.random(0, 3)]['amount'] = LiveUpdateComponent.random(100, 9100);
     }, 800);
-  }
-
-  static random(min, max) {
-    return Math.floor(min + (Math.random() * (max - min + 1)));
   }
 }

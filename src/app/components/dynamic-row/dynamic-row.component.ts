@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+
 @Component({
   selector: 'app-dynamic-row',
   templateUrl: './dynamic-row.component.html',
@@ -24,6 +24,7 @@ export class DynamicRowComponent {
     { key: 'balance', title: 'Balance' },
   ];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
   }
@@ -39,8 +40,8 @@ export class DynamicRowComponent {
         'amount': this.randNumber(1, 5),
         'company': 'foo',
         limit: this.randNumber(800, 1200),
-        'balance': this.randNumber(800, 3000)
-      }
+        'balance': this.randNumber(800, 3000),
+      },
     );
     this.data = [...this.data];
   }

@@ -44,12 +44,12 @@ export class ExportsComponent {
   }
 
   exportToCSV() {
-    const data = this.data;
+    const rows = this.data;
     let csvContent = 'data:text/csv;charset=utf-8,';
     let dataString = '';
     const x: Array<any> = [];
     const keys = Object.keys(this.data[0]);
-    data.forEach((row, index) => {
+    rows.forEach((row, index) => {
       x[index] = [];
       keys.forEach((i) => {
         if (row.hasOwnProperty(i)) {

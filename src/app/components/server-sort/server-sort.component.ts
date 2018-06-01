@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
 import { CompanyService, Company } from '../../services/company.service';
+
 @Component({
   selector: 'app-server-sort',
   templateUrl: './server-sort.component.html',
@@ -21,24 +22,24 @@ export class ServerSortComponent implements OnInit {
     { key: 'id', title: 'ID' },
   ];
 
-    orderDropdown = [
+  orderDropdown = [
     {
       id: 0,
       key: 'email',
       order: 'asc',
-      name: 'Email asc'
+      name: 'Email asc',
     },
     {
       id: 1,
       key: 'email',
       order: 'desc',
-      name: 'Email desc'
+      name: 'Email desc',
     },
     {
       id: 2,
       key: 'company',
       order: 'asc',
-      name: 'Company asc'
+      name: 'Company asc',
     },
   ];
 
@@ -49,8 +50,10 @@ export class ServerSortComponent implements OnInit {
     offset: 0,
     count: null,
   };
+
   constructor(private companyService: CompanyService) {
   }
+
   ngOnInit() {
     this.getData('');
   }
@@ -58,6 +61,7 @@ export class ServerSortComponent implements OnInit {
   eventEmitted(event) {
     this.parseEvent(event);
   }
+
   private parseEvent(obj: EventObject) {
     this.pagination.limit = obj.value.limit ? obj.value.limit : this.pagination.limit;
     this.pagination.offset = obj.value.page ? obj.value.page : this.pagination.offset;
@@ -73,13 +77,14 @@ export class ServerSortComponent implements OnInit {
     this.configuration = ConfigService.config;
     this.companyService.getCompanies(params)
       .subscribe((response: Array<Company>) => {
-        this.data = response;
-        this.pagination.count = this.pagination.count ? this.pagination.count : response.length; // ensure this.pagination.count is set only once and contains count of whole array not just paginated one
-        this.pagination = { ...this.pagination };
-      },
-      error => {
-        console.error('ERROR: ', error.message);
-      });
+          this.data = response;
+          // ensure this.pagination.count is set only once and contains count of whole array not just paginated one
+          this.pagination.count = this.pagination.count ? this.pagination.count : response.length;
+          this.pagination = { ...this.pagination };
+        },
+        error => {
+          console.error('ERROR: ', error.message);
+        });
   }
 
   orderBy(sort): void {

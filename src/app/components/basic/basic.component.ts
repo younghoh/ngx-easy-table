@@ -17,7 +17,7 @@ export class BasicComponent {
     { key: 'isActive', title: 'STATUS' },
   ];
 
-  data = []
+  data = [];
 
   constructor() {
     this.data = data;

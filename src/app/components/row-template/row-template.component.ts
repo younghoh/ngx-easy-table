@@ -1,6 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ConfigService } from './configuration.service';
 import { data } from '../../../assets/data';
+
 @Component({
   selector: 'app-row-template',
   templateUrl: './row-template.component.html',
@@ -18,6 +19,7 @@ export class RowTemplateComponent {
   ];
   data = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;

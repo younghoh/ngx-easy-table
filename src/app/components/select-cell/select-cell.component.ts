@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
 import { data } from '../../../assets/data';
+
 @Component({
   selector: 'app-select-cell',
   templateUrl: './select-cell.component.html',
@@ -17,10 +18,12 @@ export class SelectCellComponent implements OnInit {
   ];
   data = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
   }
+
   ngOnInit() {
   }
 

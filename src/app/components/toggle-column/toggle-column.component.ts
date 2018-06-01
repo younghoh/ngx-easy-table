@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
 import { data, columns } from '../../../assets/data';
+
 @Component({
   selector: 'app-toggle-column',
   templateUrl: './toggle-column.component.html',
-  styleUrls: ['./toggle-column.component.css']
+  styleUrls: ['./toggle-column.component.css'],
 })
 export class ToggleColumnComponent {
   columns = [];
@@ -12,6 +13,7 @@ export class ToggleColumnComponent {
   data = [];
   checked = new Set(['phone', 'age', 'company', 'name', 'isActive']);
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;

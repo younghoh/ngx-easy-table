@@ -35,8 +35,9 @@ export class HorizontalScrollComponent {
     { key: 'company18', title: 'Company18' },
     { key: 'company19', title: 'Company19' },
   ];
-  
+
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
