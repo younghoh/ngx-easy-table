@@ -1,10 +1,12 @@
 language: node_js
 node_js:
   - "8"
+cache:
+  directories:
+    - ./node_modules
 script:
   - npm run lint
-  - npm run start
-  - npm run e2e
+  - npm run cy:ci
   - npm run build:lib
 before_install:
   - export DISPLAY=:99.0
