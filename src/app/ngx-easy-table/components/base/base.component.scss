@@ -16,14 +16,17 @@ $grey-dark: #f3f3f3;
     justify-content: center;
     align-items: center;
   }
+  &body-loading:hover {
+    background: 0 !important;
+  }
   &table-loader {
-    border: 4px solid $grey;
+    animation: loading .5s infinite linear;
+    border: .2rem solid $grey;
     border-radius: 50%;
-    height: 20px;
-    width: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: spin 1s linear infinite;
+    border-right-color: #0000;
+    border-top-color: #0000;
+    height: 1.8rem;
+    width: 1.8rem;
   }
   &header-cell {
     position: relative;
