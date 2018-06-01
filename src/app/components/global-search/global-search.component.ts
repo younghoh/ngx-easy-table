@@ -5,6 +5,7 @@ import { data } from '../../../assets/data';
   selector: 'app-global-search',
   templateUrl: './global-search.component.html',
   providers: [ConfigService],
+  styles: [],
 })
 export class GlobalSearchComponent {
 

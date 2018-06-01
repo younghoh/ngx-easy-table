@@ -5,6 +5,7 @@ import { data } from '../../../assets/data';
   selector: 'app-select-row',
   templateUrl: './select-row.component.html',
   providers: [ConfigService],
+  styles: [],
 })
 export class SelectRowComponent implements OnInit {
 

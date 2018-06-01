@@ -5,6 +5,7 @@ import { data } from '../../../assets/data';
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   providers: [ConfigService],
+  styles: [],
 })
 export class PaginationComponent implements OnInit {
 

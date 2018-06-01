@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './app.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [ConfigService],
 })
 export class AppComponent {
   showMenu = false;

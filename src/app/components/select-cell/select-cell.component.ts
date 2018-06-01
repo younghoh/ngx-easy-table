@@ -6,6 +6,7 @@ import { data } from '../../../assets/data';
   selector: 'app-select-cell',
   templateUrl: './select-cell.component.html',
   providers: [ConfigService],
+  styles: [],
 })
 export class SelectCellComponent implements OnInit {
 

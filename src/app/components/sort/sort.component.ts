@@ -5,6 +5,7 @@ import { data } from '../../../assets/data';
   selector: 'app-sort',
   templateUrl: './sort.component.html',
   providers: [ConfigService],
+  styles: [],
 })
 export class SortComponent implements OnInit {
 

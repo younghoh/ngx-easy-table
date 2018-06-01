@@ -5,6 +5,7 @@ import { data } from '../../../assets/data';
   selector: 'app-select-col',
   templateUrl: './select-col.component.html',
   providers: [ConfigService],
+  styles: [],
 })
 export class SelectColComponent implements OnInit {
 
