@@ -45,23 +45,6 @@ $grey-dark: #f3f3f3;
       background-color: grey;
     }
   }
-  &pinned-col-width {
-    margin-left: 10em;
-  }
-  &pinned-col-text-ellipsis {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  &pinned-col-template {
-    height: 100%;
-  }
-  &pinned-col {
-    border-right: 2px solid $grey-dark;
-    position: absolute;
-    left: 0;
-    width: 10em;
-  }
   &column-resizer {
     background-color: $grey-dark;
     cursor: col-resize;

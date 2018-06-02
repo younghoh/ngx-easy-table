@@ -21,7 +21,6 @@ export interface Config {
   resizeColumn: boolean;
   fixedColumnWidth: boolean;
   horizontalScroll: boolean;
-  pinnedCol: boolean;
   tableLayout: {
     style: string,
     borderless: boolean,
