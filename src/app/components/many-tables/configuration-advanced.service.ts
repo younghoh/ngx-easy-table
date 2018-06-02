@@ -29,7 +29,7 @@ export class ConfigurationAdvancedService {
     pinnedCol: false,
     tableLayout: {
       style: 'normal',
-      border: true,
+      borderless: false,
       hover: true,
       striped: false,
     }

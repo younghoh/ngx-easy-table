@@ -29,7 +29,7 @@ export class ConfigService {
     pinnedCol: false,
     tableLayout: {
       style: 'normal',
-      border: true,
+      borderless: true,
       hover: true,
       striped: false,
     }

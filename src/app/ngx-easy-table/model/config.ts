@@ -24,7 +24,7 @@ export interface Config {
   pinnedCol: boolean;
   tableLayout: {
     style: string,
-    border: boolean,
+    borderless: boolean,
     hover: boolean,
     striped: boolean,
   };
