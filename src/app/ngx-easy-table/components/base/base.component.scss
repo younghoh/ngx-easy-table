@@ -1,6 +1,7 @@
 $grey: #e7e9ed;
 $grey-lighter: #f6f7f9;
 $grey-dark: #f3f3f3;
+$dark: #212529;
 
 * {
   font-family: Verdana, serif;
@@ -68,23 +69,26 @@ $grey-dark: #f3f3f3;
   &table--striped > tbody tr:nth-of-type(odd) {
     background: $grey-lighter;
   }
-  &table-tiny > {
+  &table--tiny > {
     tbody > tr > td, thead > tr > th {
       border-bottom: 1px solid $grey;
       padding: 4px 7px;
     }
   }
-  &table-normal > {
+  &table--normal > {
     tbody > tr > td, thead > tr > th {
       border-bottom: 1px solid $grey;
       padding: 6px 8px;
     }
   }
-  &table-big > {
+  &table--big > {
     tbody > tr > td, thead > tr > th {
       border-bottom: 1px solid $grey;
       padding: 12px 8px;
     }
+  }
+  &table--dark {
+    background-color: $dark;
   }
 }
 @keyframes spin {

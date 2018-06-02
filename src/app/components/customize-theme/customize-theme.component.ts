@@ -37,4 +37,9 @@ export class CustomizeThemeComponent {
     this.configuration.tableLayout.style = size;
     this.configuration = { ...this.configuration };
   }
+
+  setTheme(theme: string) {
+    this.configuration.tableLayout.theme = theme;
+    this.configuration = { ...this.configuration };
+  }
 }

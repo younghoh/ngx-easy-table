@@ -28,6 +28,7 @@ export class ConfigurationBasicService {
     horizontalScroll: false,
     tableLayout: {
       style: 'normal',
+      theme: 'light',
       borderless: false,
       hover: true,
       striped: false,

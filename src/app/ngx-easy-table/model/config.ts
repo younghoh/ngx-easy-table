@@ -23,6 +23,7 @@ export interface Config {
   horizontalScroll: boolean;
   tableLayout: {
     style: string,
+    theme: string,
     borderless: boolean,
     hover: boolean,
     striped: boolean,

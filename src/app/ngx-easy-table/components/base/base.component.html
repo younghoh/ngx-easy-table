@@ -10,11 +10,12 @@
   </div>
   <div class="ngx-columns">
     <table id="table"
-           class="ngx-table ngx-table-striped ngx-table-hover"
-           [class.ngx-table__table-tiny]="config.tableLayout.style === 'tiny'"
-           [class.ngx-table__table-normal]="config.tableLayout.style === 'normal'"
-           [class.ngx-table__table-big]="config.tableLayout.style === 'big'"
+           class="ngx-table"
+           [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
+           [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
+           [class.ngx-table__table--big]="config.tableLayout.style === 'big'"
            [class.ngx-table__table--borderless]="config.tableLayout.borderless"
+           [class.ngx-table__table--dark]="config.tableLayout.theme === 'dark'"
            [class.ngx-table__table--hoverable]="config.tableLayout.hover"
            [class.ngx-table__table--striped]="config.tableLayout.striped"
            [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !isLoading">

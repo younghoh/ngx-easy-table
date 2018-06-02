@@ -28,6 +28,7 @@ export class ConfigService {
     horizontalScroll: false,
     tableLayout: {
       style: 'normal',
+      theme: 'light',
       borderless: false,
       hover: false,
       striped: false,
