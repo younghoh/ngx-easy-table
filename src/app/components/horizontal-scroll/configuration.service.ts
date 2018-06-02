@@ -25,11 +25,11 @@ export class ConfigService {
     checkboxes: false,
     resizeColumn: false,
     fixedColumnWidth: false,
-    horizontalScroll: false,
+    horizontalScroll: true,
     pinnedCol: false,
     tableLayout: {
       style: 'normal',
-      borderless: true,
+      borderless: false,
       hover: true,
       striped: false,
     }
