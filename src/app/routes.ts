@@ -32,7 +32,8 @@ import {
   ExportsComponent,
   ResizableComponent,
   ColumnWidthComponent,
-  FixedWidthComponent
+  FixedWidthComponent,
+  CustomizeThemeComponent
 } from './components';
 
 export const routes = [
@@ -67,6 +68,7 @@ export const routes = [
   { path: 'column-resizer', component: ResizableComponent },
   { path: 'column-width', component: ColumnWidthComponent },
   { path: 'fixed-width', component: FixedWidthComponent },
+  { path: 'customize-theme', component: CustomizeThemeComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });

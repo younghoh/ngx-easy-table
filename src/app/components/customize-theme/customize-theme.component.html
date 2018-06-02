@@ -1,0 +1,46 @@
+<h3>Customize theme</h3>
+<div class="mb-2">
+  <a class="btn"
+     href="https://stackblitz.com/edit/ngx-easy-table?file=app%2Fcomponents%2Fdynamic-configuration%2Fdynamic-configuration.component.ts"
+     target="_blank">
+    See code here
+  </a>
+</div>
+<div class="columns">
+  <div class="column col-12">
+    <div class="form-group">
+      <label class="form-checkbox">
+        <input type="checkbox" (change)="borderless()">
+        <i class="form-icon"></i> Borderless
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" [checked]="true" (change)="hoverable()">
+        <i class="form-icon"></i> Hover
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" (change)="striped()">
+        <i class="form-icon"></i> Striped
+      </label>
+      <div class="form-group">
+        <label class="form-radio">
+          <input type="radio" name="style" (change)="setHeight('tiny')">
+          <i class="form-icon"></i> Style tiny
+        </label>
+        <label class="form-radio">
+          <input type="radio" name="style" checked (change)="setHeight('normal')">
+          <i class="form-icon"></i> Style normal
+        </label>
+        <label class="form-radio">
+          <input type="radio" name="style" (change)="setHeight('big')">
+          <i class="form-icon"></i> Style big
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="columns">
+  <div class="column col-12">
+    <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
+    </ngx-table>
+  </div>
+</div>

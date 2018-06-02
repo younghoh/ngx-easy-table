@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CustomizeThemeComponent } from './components/customize-theme/customize-theme.component';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +19,7 @@ export class AppComponent {
     { link: '/many-tables', name: 'Many tables', },
     { link: '/dynamic-row', name: 'Dynamic row', },
     { link: '/horizontal-scroll', name: 'Horizontal scroll', },
-    { link: '/dynamic-conf', name: 'Dynamic configration', },
+    { link: '/dynamic-conf', name: 'Dynamic configuration', },
     { link: '/exports', name: 'Exports', },
     { link: '/column-resizer', name: 'Column resizer', },
     { link: '/column-width', name: 'Column width', },
@@ -33,6 +34,7 @@ export class AppComponent {
     { link: '/collapsed-rows', name: 'Collapsed rows', },
     { link: '/checkboxes', name: 'Checkboxes', },
     { link: '/checkboxes2', name: 'Checkboxes2', },
+    { link: '/customize-theme', name: 'Customize theme', },
   ];
   select = [
     { link: '/select-row', name: 'Select row', },

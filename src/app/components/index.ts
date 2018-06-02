@@ -30,3 +30,4 @@ export * from './exports/exports.component';
 export * from './resizable/resizable.component';
 export * from './column-width/column-width.component';
 export * from './fixed-width/fixed-width.component';
+export * from './customize-theme/customize-theme.component';
