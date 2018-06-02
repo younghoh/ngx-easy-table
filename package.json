@@ -11,10 +11,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "cypress run",
-    "ci:serve": "ng build --prod && http-server dist -p 4200",
+    "ci:serve": "ng build --prod && http-server dist -p 4201",
     "cy:test": "cypress open",
     "cy:run": "cypress run",
-    "cy:ci": "start-server-and-test ci:serve http://localhost:4200 cy:run",
+    "cy:ci": "start-server-and-test ci:serve http://localhost:4201 cy:run",
     "build:lib": "ng-packagr && node-sass src/assets/spectre.scss dist/spectre.css"
   },
   "license": "MIT",
