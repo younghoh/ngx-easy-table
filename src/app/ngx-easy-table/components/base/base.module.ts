@@ -9,6 +9,7 @@ import { PaginationComponent } from '../pagination/pagination.component';
 import { CsvExportComponent } from '../csv-export.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SortPipe } from '../../pipes/sort.pipe';
+import { RenderPipe } from '../../pipes/render-pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SortPipe } from '../../pipes/sort.pipe';
     HeaderComponent,
     PaginationComponent,
     SearchPipe,
+    RenderPipe,
     GlobalSearchPipe,
     SortPipe,
   ],

@@ -131,7 +131,7 @@
                   [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                   [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
               >
-                <div>{{ renderValue(row, column['key']) }}</div>
+                <div>{{ row | render:column['key'] }}</div>
               </td>
             </ng-container>
             <td *ngIf="config.additionalActions || config.detailsTemplate">
@@ -172,7 +172,7 @@
           <ng-container *ngIf="selectedDetailsTemplateRowId.has(rowIndex)">
             <tr *ngFor="let row of group">
               <td *ngFor="let column of columns">
-                {{ renderValue(row, column['key']) }}
+                {{ row | render:column['key'] }}
                 <!-- TODO allow users to add groupRowsTemplateRef -->
               </td>
               <td></td>

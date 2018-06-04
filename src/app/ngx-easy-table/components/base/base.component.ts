@@ -254,12 +254,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.th = undefined;
   }
 
-  renderValue(row: any, key: string): any {
-    const split = key.split('.');
-
-    return FiltersService.getPath(split, row);
-  }
-
   get isLoading(): boolean {
     const rows = document.getElementById('table')['rows'];
     if (rows.length > 3) {
