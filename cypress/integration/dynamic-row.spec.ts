@@ -2,7 +2,7 @@
 
 context('Dynamic row', () => {
   before(() => {
-      cy.visit('http://127.0.0.1:4200/#/dynamic-row');
+      cy.visit('http://127.0.0.1:4201/#/dynamic-row');
     },
   );
 

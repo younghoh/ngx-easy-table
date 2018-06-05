@@ -2,7 +2,7 @@
 
 context('Sort', () => {
   before(() => {
-      cy.visit('http://127.0.0.1:4200/#/sort');
+      cy.visit('http://127.0.0.1:4201/#/sort');
     },
   );
 

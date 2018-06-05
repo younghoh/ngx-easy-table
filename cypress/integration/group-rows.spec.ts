@@ -2,7 +2,7 @@
 
 context('Group rows', () => {
   before(() => {
-      cy.visit('http://127.0.0.1:4200/#/group-rows');
+      cy.visit('http://127.0.0.1:4201/#/group-rows');
     },
   );
 

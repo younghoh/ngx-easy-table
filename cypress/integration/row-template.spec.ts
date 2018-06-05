@@ -2,7 +2,7 @@
 
 context('Row template', () => {
   before(() => {
-      cy.visit('http://127.0.0.1:4200/#/row-template');
+      cy.visit('http://127.0.0.1:4201/#/row-template');
     },
   );
 
