@@ -22,12 +22,10 @@
       <thead>
       <tr class="ngx-table__header" *ngIf="config.headerEnabled">
         <th *ngIf="config.checkboxes">
-          <div class="form-group">
-            <label class="form-checkbox">
-              <input type="checkbox" (change)="onSelectAll()">
-              <i class="form-icon"></i>
-            </label>
-          </div>
+          <label class="ngx-form-checkbox">
+            <input type="checkbox" (change)="onSelectAll()">
+            <i class="ngx-form-icon"></i>
+          </label>
         </th>
         <ng-container *ngFor="let column of columns;let colIndex = index">
           <th class="ngx-table__header-cell"
@@ -115,15 +113,13 @@
                   let rowIndex = index">
           <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
             <td *ngIf="config.checkboxes">
-              <div class="form-group">
-                <label class="form-checkbox">
-                  <input type="checkbox"
-                         id="checkbox-{{rowIndex}}"
-                         [checked]="isSelected"
-                         (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
-                  <i class="form-icon"></i>
-                </label>
-              </div>
+              <label class="ngx-form-checkbox">
+                <input type="checkbox"
+                       id="checkbox-{{rowIndex}}"
+                       [checked]="isSelected"
+                       (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+                <i class="ngx-form-icon"></i>
+              </label>
             </td>
             <ng-container *ngFor="let column of columns; let colIndex = index">
               <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"

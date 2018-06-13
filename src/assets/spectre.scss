@@ -13,6 +13,36 @@
   }
 }
 /*! Spectre.css v0.4.5 | MIT License | github.com/picturepan2/spectre */
+// Core colors
+$primary-color: #3f86ca !default;
+$dark-color: #454d5d !default;
+$light-color: #fff !default;
+$gray-color: lighten($dark-color, 40%) !default;
+$gray-color-dark: darken($gray-color, 25%) !default;
+$gray-color-light: lighten($gray-color, 20%) !default;
+$border-color: lighten($dark-color, 60%) !default;
+$border-color-dark: darken($border-color, 10%) !default;
+$bg-color: lighten($dark-color, 66%) !default;
+$bg-color-dark: darken($bg-color, 3%) !default;
+
+$line-height: 1rem !default;
+
+// Sizes
+$border-radius: .1rem !default;
+$border-width: .05rem !default;
+$border-width-lg: .1rem !default;
+$control-size: 1.8rem !default;
+$control-size-sm: 1.4rem !default;
+$control-size-lg: 2rem !default;
+$control-padding-x: .4rem !default;
+$control-icon-size: .8rem !default;
+
+@mixin control-shadow($color: $primary-color) {
+  box-shadow: 0 0 0 .1rem rgba($color, .2);
+}
+@mixin control-transition() {
+  transition: all .2s ease;
+}
 
 .ngx-container {
   margin-left: auto;
@@ -107,261 +137,8 @@
 .ngx-col-1 {
   width: 8.33333333%;
 }
-.ngx-col-auto {
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  max-width: none;
-  width: auto;
-}
-.ngx-col-mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-.ngx-col-ml-auto {
-  margin-left: auto;
-}
 .ngx-col-mr-auto {
   margin-right: auto;
-}
-@media (max-width: 1280px) {
-  .ngx-col-xl-12, .ngx-col-xl-11, .ngx-col-xl-10, .ngx-col-xl-9, .ngx-col-xl-8, .ngx-col-xl-7, .ngx-col-xl-6, .ngx-col-xl-5, .ngx-col-xl-4, .ngx-col-xl-3, .ngx-col-xl-2, .ngx-col-xl-1 {
-    -ms-flex: none;
-    flex: none;
-  }
-  .ngx-col-xl-12 {
-    width: 100%;
-  }
-  .ngx-col-xl-11 {
-    width: 91.66666667%;
-  }
-  .ngx-col-xl-10 {
-    width: 83.33333333%;
-  }
-  .ngx-col-xl-9 {
-    width: 75%;
-  }
-  .ngx-col-xl-8 {
-    width: 66.66666667%;
-  }
-  .ngx-col-xl-7 {
-    width: 58.33333333%;
-  }
-  .ngx-col-xl-6 {
-    width: 50%;
-  }
-  .ngx-col-xl-5 {
-    width: 41.66666667%;
-  }
-  .ngx-col-xl-4 {
-    width: 33.33333333%;
-  }
-  .ngx-col-xl-3 {
-    width: 25%;
-  }
-  .ngx-col-xl-2 {
-    width: 16.66666667%;
-  }
-  .ngx-col-xl-1 {
-    width: 8.33333333%;
-  }
-  .ngx-hide-xl {
-    display: none !important;
-  }
-  .ngx-show-xl {
-    display: block !important;
-  }
-}
-@media (max-width: 960px) {
-  .ngx-col-lg-12, .ngx-col-lg-11, .ngx-col-lg-10, .ngx-col-lg-9, .ngx-col-lg-8, .ngx-col-lg-7, .ngx-col-lg-6, .ngx-col-lg-5, .ngx-col-lg-4, .ngx-col-lg-3, .ngx-col-lg-2, .ngx-col-lg-1 {
-    -ms-flex: none;
-    flex: none;
-  }
-  .ngx-col-lg-12 {
-    width: 100%;
-  }
-  .ngx-col-lg-11 {
-    width: 91.66666667%;
-  }
-  .ngx-col-lg-10 {
-    width: 83.33333333%;
-  }
-  .ngx-col-lg-9 {
-    width: 75%;
-  }
-  .ngx-col-lg-8 {
-    width: 66.66666667%;
-  }
-  .ngx-col-lg-7 {
-    width: 58.33333333%;
-  }
-  .ngx-col-lg-6 {
-    width: 50%;
-  }
-  .ngx-col-lg-5 {
-    width: 41.66666667%;
-  }
-  .ngx-col-lg-4 {
-    width: 33.33333333%;
-  }
-  .ngx-col-lg-3 {
-    width: 25%;
-  }
-  .ngx-col-lg-2 {
-    width: 16.66666667%;
-  }
-  .ngx-col-lg-1 {
-    width: 8.33333333%;
-  }
-  .ngx-hide-lg {
-    display: none !important;
-  }
-  .ngx-show-lg {
-    display: block !important;
-  }
-}
-@media (max-width: 840px) {
-  .ngx-col-md-12, .ngx-col-md-11, .ngx-col-md-10, .ngx-col-md-9, .ngx-col-md-8, .ngx-col-md-7, .ngx-col-md-6, .ngx-col-md-5, .ngx-col-md-4, .ngx-col-md-3, .ngx-col-md-2, .ngx-col-md-1 {
-    -ms-flex: none;
-    flex: none;
-  }
-  .ngx-col-md-12 {
-    width: 100%;
-  }
-  .ngx-col-md-11 {
-    width: 91.66666667%;
-  }
-  .ngx-col-md-10 {
-    width: 83.33333333%;
-  }
-  .ngx-col-md-9 {
-    width: 75%;
-  }
-  .ngx-col-md-8 {
-    width: 66.66666667%;
-  }
-  .ngx-col-md-7 {
-    width: 58.33333333%;
-  }
-  .ngx-col-md-6 {
-    width: 50%;
-  }
-  .ngx-col-md-5 {
-    width: 41.66666667%;
-  }
-  .ngx-col-md-4 {
-    width: 33.33333333%;
-  }
-  .ngx-col-md-3 {
-    width: 25%;
-  }
-  .ngx-col-md-2 {
-    width: 16.66666667%;
-  }
-  .ngx-col-md-1 {
-    width: 8.33333333%;
-  }
-  .ngx-hide-md {
-    display: none !important;
-  }
-  .ngx-show-md {
-    display: block !important;
-  }
-}
-@media (max-width: 600px) {
-  .ngx-col-sm-12, .ngx-col-sm-11, .ngx-col-sm-10, .ngx-col-sm-9, .ngx-col-sm-8, .ngx-col-sm-7, .ngx-col-sm-6, .ngx-col-sm-5, .ngx-col-sm-4, .ngx-col-sm-3, .ngx-col-sm-2, .ngx-col-sm-1 {
-    -ms-flex: none;
-    flex: none;
-  }
-  .ngx-col-sm-12 {
-    width: 100%;
-  }
-  .ngx-col-sm-11 {
-    width: 91.66666667%;
-  }
-  .ngx-col-sm-10 {
-    width: 83.33333333%;
-  }
-  .ngx-col-sm-9 {
-    width: 75%;
-  }
-  .ngx-col-sm-8 {
-    width: 66.66666667%;
-  }
-  .ngx-col-sm-7 {
-    width: 58.33333333%;
-  }
-  .ngx-col-sm-6 {
-    width: 50%;
-  }
-  .ngx-col-sm-5 {
-    width: 41.66666667%;
-  }
-  .ngx-col-sm-4 {
-    width: 33.33333333%;
-  }
-  .ngx-col-sm-3 {
-    width: 25%;
-  }
-  .ngx-col-sm-2 {
-    width: 16.66666667%;
-  }
-  .ngx-col-sm-1 {
-    width: 8.33333333%;
-  }
-  .ngx-hide-sm {
-    display: none !important;
-  }
-  .ngx-show-sm {
-    display: block !important;
-  }
-}
-@media (max-width: 480px) {
-  .ngx-col-xs-12, .ngx-col-xs-11, .ngx-col-xs-10, .ngx-col-xs-9, .ngx-col-xs-8, .ngx-col-xs-7, .ngx-col-xs-6, .ngx-col-xs-5, .ngx-col-xs-4, .ngx-col-xs-3, .ngx-col-xs-2, .ngx-col-xs-1 {
-    -ms-flex: none;
-    flex: none;
-  }
-  .ngx-col-xs-12 {
-    width: 100%;
-  }
-  .ngx-col-xs-11 {
-    width: 91.66666667%;
-  }
-  .ngx-col-xs-10 {
-    width: 83.33333333%;
-  }
-  .ngx-col-xs-9 {
-    width: 75%;
-  }
-  .ngx-col-xs-8 {
-    width: 66.66666667%;
-  }
-  .ngx-col-xs-7 {
-    width: 58.33333333%;
-  }
-  .ngx-col-xs-6 {
-    width: 50%;
-  }
-  .ngx-col-xs-5 {
-    width: 41.66666667%;
-  }
-  .ngx-col-xs-4 {
-    width: 33.33333333%;
-  }
-  .ngx-col-xs-3 {
-    width: 25%;
-  }
-  .ngx-col-xs-2 {
-    width: 16.66666667%;
-  }
-  .ngx-col-xs-1 {
-    width: 8.33333333%;
-  }
-  .ngx-hide-xs {
-    display: none !important;
-  }
-  .ngx-show-xs {
-    display: block !important;
-  }
 }
 .ngx-dropdown {
   display: inline-block;
@@ -601,4 +378,93 @@
   content: "";
   height: .1rem;
   width: 100%;
+}
+// Forms
+.ngx-form-checkbox,
+.ngx-form-radio,
+.ngx-form-switch {
+  display: inline-block;
+  line-height: $line-height;
+  margin: ($control-size - $control-size-sm) / 2 0;
+  min-height: 1.2rem;
+  padding: (($control-size-sm - $line-height) / 2) $control-padding-x (($control-size-sm - $line-height) / 2) ($control-icon-size + $control-padding-x);
+  position: relative;
+
+  input {
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    &:focus + .ngx-form-icon {
+      @include control-shadow();
+      border-color: $primary-color;
+    }
+    &:checked + .ngx-form-icon {
+      background: $primary-color;
+      border-color: $primary-color;
+    }
+  }
+
+  .ngx-form-icon {
+    @include control-transition();
+    border: $border-width solid $border-color-dark;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+  }
+}
+
+.ngx-form-checkbox,
+.ngx-form-radio {
+  .ngx-form-icon {
+    background: $light-color;
+    height: $control-icon-size;
+    left: 0;
+    top: ($control-size-sm - $control-icon-size) / 2;
+    width: $control-icon-size;
+  }
+
+  input {
+    &:active + .ngx-form-icon {
+      background: $bg-color-dark;
+    }
+  }
+}
+.ngx-form-checkbox {
+  .ngx-form-icon {
+    border-radius: $border-radius;
+  }
+
+  input {
+    &:checked + .ngx-form-icon {
+      &::before {
+        background-clip: padding-box;
+        border: $border-width-lg solid $light-color;
+        border-left-width: 0;
+        border-top-width: 0;
+        content: "";
+        height: 12px;
+        left: 50%;
+        margin-left: -4px;
+        margin-top: -8px;
+        position: absolute;
+        top: 50%;
+        transform: rotate(45deg);
+        width: 8px;
+      }
+    }
+  }
+}
+
+input {
+  &:disabled,
+  &.disabled {
+    & + .ngx-form-icon {
+      background: $bg-color-dark;
+      cursor: not-allowed;
+      opacity: .5;
+    }
+  }
 }
