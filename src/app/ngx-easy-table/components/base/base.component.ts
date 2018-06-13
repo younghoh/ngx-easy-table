@@ -196,7 +196,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   private emitEvent(event, value: Object): void {
-    console.log(Event[event], value);
     this.event.emit({ event: Event[event], value });
   }
 

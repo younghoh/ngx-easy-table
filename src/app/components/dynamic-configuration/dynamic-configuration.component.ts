@@ -25,7 +25,6 @@ export class DynamicConfigurationComponent {
   }
 
   toggle(key: string, isChecked: boolean): void {
-    console.log('key: ', key, isChecked);
     this.checked[key] = isChecked;
     this.configuration[key] = isChecked;
     this.configuration = { ...this.configuration };
