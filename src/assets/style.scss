@@ -3,7 +3,7 @@ $grey-lighter: #f6f7f9;
 $grey-dark: #f3f3f3;
 $dark: #50596c;
 $primary-color: #3f86ca !default;
-$container-padding: 7px;
+$container-padding: 12px;
 $container-margin: 6px;
 /*! Based on Spectre.css v0.4.5 | MIT License | github.com/picturepan2/spectre */
 .ngx {
@@ -24,10 +24,10 @@ $container-margin: 6px;
     width: 100%;
     td {
       border-bottom: 1px solid $grey;
-      padding: $container-padding;
+      padding: $container-padding $container-padding / 2;
     }
     th {
-      padding: $container-padding;
+      padding: $container-padding $container-padding / 2;
       border-bottom: 2px solid $grey;
     }
     &__table-row--selected, &__table-col--selected, &__table-cell--selected {
@@ -67,7 +67,7 @@ $container-margin: 6px;
       color: $dark;
       display: block;
       font-size: .8rem;
-      height: 1.4rem;
+      height: 1.47rem;
       line-height: 1rem;
       max-width: 100%;
       outline: 0;
@@ -123,7 +123,7 @@ $container-margin: 6px;
     &__table--normal > {
       tbody > tr > td, thead > tr > th {
         border-bottom: 1px solid $grey;
-        padding: 6px 8px;
+        padding: $container-padding $container-padding / 2;
       }
     }
     &__table--big > {
@@ -160,11 +160,92 @@ $container-margin: 6px;
     cursor: pointer;
   }
   &__pagination {
+    :host /deep/ pagination-controls > pagination-template > ul > li {
+      border: 1px solid $grey;
+    }
+
+    @media screen and (max-width: 480px) {
+      .pagination-mobile {
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
     display: inline-block;
+    &-range {
+      display: inline-block;
+      float: right;
+    }
+    &-range-dropdown {
+      margin-top: 8px;
+      margin-right: 2px;
+    }
+    &-range-dropdown-button-item {
+      cursor: pointer;
+      color: $primary-color;
+      padding: 4px;
+    }
+    &-range-dropdown-button {
+      color: $primary-color;
+      border: 1px solid $grey;
+      cursor: pointer;
+      padding: 4px;
+    }
   }
-  &__pagination-range {
+  &__form-icon {
+    border-radius: .1rem;
+    background: #fff;
+    height: .9rem;
+    left: 0;
+    top: .2rem;
+    width: .9rem;
+    transition: all .2s ease;
+    border: .05rem solid $grey;
+    cursor: pointer;
     display: inline-block;
-    float: right;
+    position: absolute;
+  }
+  &__form-checkbox {
+    line-height: 1rem;
+    margin: 0.2rem 0;
+    min-height: 1.2rem;
+    padding: 0.2rem .4rem 0.4rem 1.6rem;
+    position: relative;
+    input {
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      position: absolute;
+      width: 1px;
+      &:focus + .ngx__form-icon {
+        box-shadow: 0 0 0 .1rem rgba($primary-color, .2);
+        border-color: $primary-color;
+      }
+      &:checked + .ngx__form-icon {
+        background: $primary-color;
+        border-color: $primary-color;
+      }
+      &:active + .ngx__form-icon {
+        background: #454d5d;
+      }
+      &:checked + .ngx__form-icon {
+        &::before {
+          background-clip: padding-box;
+          border: .1rem solid #fff;
+          border-left-width: 0;
+          border-top-width: 0;
+          content: "";
+          height: 12px;
+          left: 50%;
+          margin-left: -3px;
+          margin-top: -8px;
+          position: absolute;
+          top: 50%;
+          transform: rotate(45deg);
+          width: 4px;
+        }
+      }
+    }
   }
 }
 .ngx-dropdown {
@@ -183,12 +264,8 @@ $container-margin: 6px;
     left: auto;
     right: 0;
   }
-  &.ngx-active .ngx-menu, .ngx-dropdown-toggle:focus + .ngx-menu, .ngx-menu:hover {
+  &.ngx-active .ngx-menu, .ngx-menu:hover {
     display: block;
-  }
-  .ngx-btn-group .ngx-dropdown-toggle:nth-last-child(2) {
-    border-bottom-right-radius: .1rem;
-    border-top-right-radius: .1rem;
   }
 }
 .ngx-icon {
@@ -209,9 +286,6 @@ $container-margin: 6px;
     top: 50%;
     transform: translate(-50%, -50%);
   }
-}
-.ngx-btn .ngx-icon, .ngx-menu .ngx-icon {
-  vertical-align: -10%;
 }
 .ngx-icon-arrow-down::before, .ngx-icon-arrow-right::before, .ngx-icon-arrow-up::before {
   border: .1rem solid currentColor;
@@ -236,92 +310,6 @@ $container-margin: 6px;
   content: "";
   height: .1rem;
   width: 100%;
-}
-// Forms
-.ngx-form-checkbox {
-  display: inline-block;
-  line-height: 1rem;
-  margin: 0.2rem 0;
-  min-height: 1.2rem;
-  padding: 0.2rem .4rem 0.4rem 1.6rem;
-  position: relative;
-
-  input {
-    clip: rect(0, 0, 0, 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    position: absolute;
-    width: 1px;
-    &:focus + .ngx-form-icon {
-      box-shadow: 0 0 0 .1rem rgba($primary-color, .2);
-      border-color: $primary-color;
-    }
-    &:checked + .ngx-form-icon {
-      background: $primary-color;
-      border-color: $primary-color;
-    }
-    &:active + .ngx-form-icon {
-      background: #454d5d;
-    }
-    &:checked + .ngx-form-icon {
-      &::before {
-        background-clip: padding-box;
-        border: .1rem solid #fff;
-        border-left-width: 0;
-        border-top-width: 0;
-        content: "";
-        height: 12px;
-        left: 50%;
-        margin-left: -3px;
-        margin-top: -8px;
-        position: absolute;
-        top: 50%;
-        transform: rotate(45deg);
-        width: 4px;
-      }
-    }
-  }
-
-  .ngx-form-icon {
-    border-radius: .1rem;
-    background: #fff;
-    height: .8rem;
-    left: 0;
-    top: .2rem;
-    width: .8rem;
-    transition: all .2s ease;
-    border: .05rem solid $grey;
-    cursor: pointer;
-    display: inline-block;
-    position: absolute;
-  }
-}
-
-// pagination
-:host /deep/ .ngx__pagination > pagination-controls > pagination-template > ul > li {
-  border: 1px solid $grey;
-}
-.ngx-btn {
-  color: $primary-color;
-  border: 1px solid $grey;
-}
-.ngx-range-dropdown {
-  margin-top: 8px;
-  margin-right: 2px;
-}
-.ngx-range-dropdown-button {
-  cursor: pointer;
-  padding: 4px;
-}
-.ngx-menu {
-  min-width: 55px;
-}
-@media screen and (max-width: 480px) {
-  .pagination-mobile {
-    margin-right: auto;
-    margin-left: auto;
-  }
 }
 @keyframes spin {
   0% {

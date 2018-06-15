@@ -17,10 +17,10 @@
          [class.ngx-table__horizontal-scroll]="config.horizontalScroll && !isLoading">
     <thead>
     <tr class="ngx-table__header" *ngIf="config.headerEnabled">
-      <th *ngIf="config.checkboxes">
-        <label class="ngx-form-checkbox">
+      <th *ngIf="config.checkboxes" width="3%">
+        <label class="ngx__form-checkbox">
           <input type="checkbox" (change)="onSelectAll()">
-          <i class="ngx-form-icon"></i>
+          <i class="ngx__form-icon"></i>
         </label>
       </th>
       <ng-container *ngFor="let column of columns;let colIndex = index">
@@ -110,12 +110,12 @@
                   let rowIndex = index">
         <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <td *ngIf="config.checkboxes">
-            <label class="ngx-form-checkbox">
+            <label class="ngx__form-checkbox">
               <input type="checkbox"
                      id="checkbox-{{rowIndex}}"
                      [checked]="isSelected"
                      (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
-              <i class="ngx-form-icon"></i>
+              <i class="ngx__form-icon"></i>
             </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">

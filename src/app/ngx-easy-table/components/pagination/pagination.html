@@ -9,16 +9,16 @@
   </pagination-controls>
 </div>
 <div class="ngx__pagination-range" *ngIf="config.paginationRangeEnabled">
-  <div class="ngx-dropdown ngx-range-dropdown"
+  <div class="ngx-dropdown ngx__pagination-range-dropdown"
        [class.ngx-active]="showRange"
        id="rowAmount">
     <div class="ngx-btn-group">
-      <div class="ngx-btn ngx-range-dropdown-button"
+      <div class="ngx__pagination-range-dropdown-button"
            (click)="showRange = !showRange">
         {{limit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
       </div>
       <ul class="ngx-menu">
-        <li class="ngx-range-dropdown-button"
+        <li class="ngx__pagination-range-dropdown-button-item"
             (click)="changeLimit(limit)"
             *ngFor="let limit of ranges">
           <span>{{limit}}</span>
