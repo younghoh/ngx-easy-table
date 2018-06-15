@@ -28,7 +28,6 @@ import { UtilsService } from '../../services/utils-service';
   selector: 'ngx-table',
   providers: [LoggerService, ConfigService, UtilsService],
   templateUrl: './base.component.html',
-  styleUrls: ['./base.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges, AfterViewInit {

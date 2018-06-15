@@ -7,7 +7,6 @@ import { Config } from '../../model/config';
 @Component({
   selector: 'pagination',
   templateUrl: './pagination.html',
-  styleUrls: ['./pagination.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
