@@ -26,6 +26,7 @@ export class ConfigService {
     resizeColumn: false,
     fixedColumnWidth: false,
     horizontalScroll: false,
+    draggable: false,
     tableLayout: {
       style: 'normal',
       theme: 'light',

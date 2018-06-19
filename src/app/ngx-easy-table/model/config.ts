@@ -21,6 +21,7 @@ export interface Config {
   resizeColumn: boolean;
   fixedColumnWidth: boolean;
   horizontalScroll: boolean;
+  draggable: boolean;
   tableLayout: {
     style: string,
     theme: string,

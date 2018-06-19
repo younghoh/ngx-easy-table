@@ -3,7 +3,7 @@ import { Config } from '../../ngx-easy-table/model/config';
 
 @Injectable()
 export class ConfigService {
-  public static config: Config = {
+  public static config = {
     searchEnabled: false,
     headerEnabled: true,
     orderEnabled: false,
@@ -26,6 +26,7 @@ export class ConfigService {
     resizeColumn: false,
     fixedColumnWidth: false,
     horizontalScroll: false,
+    draggable: true,
     tableLayout: {
       style: 'normal',
       theme: 'light',
