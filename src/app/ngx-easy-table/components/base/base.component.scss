@@ -22,7 +22,7 @@ $dark: #212529;
     background: 0 !important;
   }
   &table-loader {
-    animation: loading .5s infinite linear;
+    animation: spin .5s infinite linear;
     border: .2rem solid $grey;
     border-radius: 50%;
     border-right-color: $grey-dark;
