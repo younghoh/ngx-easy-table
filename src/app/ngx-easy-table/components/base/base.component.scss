@@ -1,0 +1,102 @@
+$grey: #e7e9ed;
+$grey-lighter: #f6f7f9;
+$grey-dark: #f3f3f3;
+$dark: #212529;
+
+* {
+  font-family: Verdana, serif;
+}
+.ngx-table__ {
+  &table-row--selected, &table-col--selected, &table-cell--selected {
+    background: $grey !important;
+  }
+  &table-no-results {
+    text-align: center;
+  }
+  &table-loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &body-loading:hover {
+    background: 0 !important;
+  }
+  &table-loader {
+    animation: spin .5s infinite linear;
+    border: .2rem solid $grey;
+    border-radius: 50%;
+    border-right-color: $grey-dark;
+    border-top-color: $grey-dark;
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+  &header-cell {
+    position: relative;
+  }
+  &horizontal-scroll {
+    display: block;
+    overflow-x: scroll;
+    white-space: nowrap;
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 3px;
+      height: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: grey;
+    }
+  }
+  &column-resizer {
+    background-color: $grey-dark;
+    cursor: col-resize;
+    display: block;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    padding: 0;
+    right: 0;
+    top: 0;
+    width: 3px;
+  }
+  &table--borderless > {
+    tbody > tr > td, thead > tr > th {
+      border-bottom: 0 !important;
+    }
+  }
+  &table--hoverable > tbody tr:hover {
+    background: $grey-lighter;
+  }
+  &table--striped > tbody tr:nth-of-type(odd) {
+    background: $grey-lighter;
+  }
+  &table--tiny > {
+    tbody > tr > td, thead > tr > th {
+      border-bottom: 1px solid $grey;
+      padding: 4px 7px;
+    }
+  }
+  &table--normal > {
+    tbody > tr > td, thead > tr > th {
+      border-bottom: 1px solid $grey;
+      padding: 6px 8px;
+    }
+  }
+  &table--big > {
+    tbody > tr > td, thead > tr > th {
+      border-bottom: 1px solid $grey;
+      padding: 12px 8px;
+    }
+  }
+  &table--dark {
+    background-color: $dark;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
