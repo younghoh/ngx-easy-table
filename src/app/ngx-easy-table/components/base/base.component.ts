@@ -196,11 +196,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.event.emit({ event: Event[event], value });
   }
 
-  selectRowId(rowIndex): void {
+  collapseRow(rowIndex: number): void {
     if (this.selectedDetailsTemplateRowId.has(rowIndex)) {
       this.selectedDetailsTemplateRowId.delete(rowIndex);
+      this.emitEvent(Event.onRowCollapsedHide, rowIndex);
     } else {
       this.selectedDetailsTemplateRowId.add(rowIndex);
+      this.emitEvent(Event.onRowCollapsedShow, rowIndex);
     }
   }
 
