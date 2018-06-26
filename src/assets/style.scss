@@ -39,17 +39,16 @@ $container-margin: 6px;
     &__table-loader-wrapper {
       display: flex;
       justify-content: center;
-      align-items: center;
+      margin-top: 50px;
     }
     &__body-loading:hover {
       background: 0 !important;
     }
     &__table-loader {
-      animation: loading .5s infinite linear;
-      border: .2rem solid $grey;
+      animation: spin .6s linear infinite;
+      border: 1px solid $grey;
       border-radius: 50%;
-      border-right-color: $grey-dark;
-      border-top-color: $grey-dark;
+      border-top-color: #07d;
       height: 1.8rem;
       width: 1.8rem;
     }
