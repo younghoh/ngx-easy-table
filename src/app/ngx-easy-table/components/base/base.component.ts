@@ -70,9 +70,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (!this.columns) {
       console.error('[columns] property required!');
     }
-    if (!this.data) {
-      console.error('[data] property required!');
-    }
     if (this.configuration) {
       ConfigService.config = this.configuration;
     }
