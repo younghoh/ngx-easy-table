@@ -48,7 +48,7 @@ $container-margin: 6px;
       animation: spin .6s linear infinite;
       border: 1px solid $grey;
       border-radius: 50%;
-      border-top-color: #07d;
+      border-top-color: $primary-color;
       height: 1.8rem;
       width: 1.8rem;
     }
@@ -122,7 +122,7 @@ $container-margin: 6px;
     &__table--normal > {
       tbody > tr > td, thead > tr > th {
         border-bottom: 1px solid $grey;
-        padding: $container-padding $container-padding / 2;
+        padding: 10px 6px;
       }
     }
     &__table--big > {
@@ -133,9 +133,11 @@ $container-margin: 6px;
     }
     &__table--dark {
       background-color: $dark;
+      color: $grey-lighter;
     }
     &__header-title {
       display: inline;
+      cursor: pointer;
     }
   }
   &-global-search {
@@ -158,21 +160,15 @@ $container-margin: 6px;
   &-menu-item {
     cursor: pointer;
   }
-  &__pagination {
-    :host /deep/ pagination-controls > pagination-template > ul > li {
-      border: 1px solid $grey;
-    }
-
-    @media screen and (max-width: 480px) {
-      .pagination-mobile {
-        margin-right: auto;
-        margin-left: auto;
-      }
-    }
+  &-pagination {
+    font-family: Lato, Verdana, serif;
     display: inline-block;
     &-range {
       display: inline-block;
       float: right;
+    }
+    &-steps {
+      display: inline-block;
     }
     &-range-dropdown {
       margin-top: 8px;
@@ -180,17 +176,17 @@ $container-margin: 6px;
     }
     &-range-dropdown-button-item {
       cursor: pointer;
-      color: $primary-color;
+      color: $dark;
       padding: 4px;
     }
     &-range-dropdown-button {
-      color: $primary-color;
+      color: $dark;
       border: 1px solid $grey;
       cursor: pointer;
       padding: 4px;
     }
   }
-  &__form-icon {
+  &-form-icon {
     border-radius: .1rem;
     background: #fff;
     height: .9rem;
@@ -203,7 +199,7 @@ $container-margin: 6px;
     display: inline-block;
     position: absolute;
   }
-  &__form-checkbox {
+  &-form-checkbox {
     line-height: 1rem;
     margin: 0.2rem 0;
     min-height: 1.2rem;
@@ -216,18 +212,18 @@ $container-margin: 6px;
       overflow: hidden;
       position: absolute;
       width: 1px;
-      &:focus + .ngx__form-icon {
+      &:focus + .ngx-form-icon {
         box-shadow: 0 0 0 .1rem rgba($primary-color, .2);
         border-color: $primary-color;
       }
-      &:checked + .ngx__form-icon {
+      &:checked + .ngx-form-icon {
         background: $primary-color;
         border-color: $primary-color;
       }
-      &:active + .ngx__form-icon {
+      &:active + .ngx-form-icon {
         background: #454d5d;
       }
-      &:checked + .ngx__form-icon {
+      &:checked + .ngx-form-icon {
         &::before {
           background-clip: padding-box;
           border: .1rem solid #fff;
@@ -246,69 +242,72 @@ $container-margin: 6px;
       }
     }
   }
-}
-.ngx-dropdown {
-  display: inline-block;
-  position: relative;
-  .ngx-menu {
-    animation: slide-down .15s ease 1;
-    display: none;
-    left: 0;
-    max-height: 50vh;
-    overflow-y: auto;
-    position: absolute;
-    top: 100%;
+  &-icon {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: inherit;
+    font-style: normal;
+    height: 1em;
+    position: relative;
+    text-indent: -9999px;
+    vertical-align: middle;
+    width: 1em;
+    &::before, &::after {
+      display: block;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
-  &.ngx-dropdown-right .ngx-menu {
-    left: auto;
-    right: 0;
+  &-icon-arrow-down::before, &-icon-arrow-right::before, &-icon-arrow-up::before {
+    border: .1rem solid $dark;
+    border-bottom: 0;
+    border-right: 0;
+    content: "";
+    height: .45em;
+    width: .45em;
   }
-  &.ngx-active .ngx-menu, .ngx-menu:hover {
-    display: block;
+  &-icon-arrow-down::before {
+    transform: translate(-50%, -75%) rotate(225deg);
   }
-}
-.ngx-icon {
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: inherit;
-  font-style: normal;
-  height: 1em;
-  position: relative;
-  text-indent: -9999px;
-  vertical-align: middle;
-  width: 1em;
-  &::before, &::after {
-    display: block;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  &-icon-arrow-right::before {
+    transform: translate(-75%, -50%) rotate(135deg);
   }
-}
-.ngx-icon-arrow-down::before, .ngx-icon-arrow-right::before, .ngx-icon-arrow-up::before {
-  border: .1rem solid currentColor;
-  border-bottom: 0;
-  border-right: 0;
-  content: "";
-  height: .65em;
-  width: .65em;
-}
-.ngx-icon-arrow-down::before {
-  transform: translate(-50%, -75%) rotate(225deg);
-}
-.ngx-icon-arrow-right::before {
-  transform: translate(-75%, -50%) rotate(135deg);
-}
-.ngx-icon-arrow-up::before {
-  transform: translate(-50%, -25%) rotate(45deg);
-}
-.ngx-icon-menu::before {
-  background: currentColor;
-  box-shadow: 0 -.35em, 0 .35em;
-  content: "";
-  height: .1rem;
-  width: 100%;
+  &-icon-arrow-up::before {
+    transform: translate(-50%, -25%) rotate(45deg);
+  }
+  &-icon-menu::before {
+    background: $dark;
+    box-shadow: 0 -.35em, 0 .35em;
+    content: "";
+    height: .1rem;
+    width: 100%;
+  }
+  &-dropdown {
+    display: inline-block;
+    position: relative;
+    .ngx-menu {
+      animation: slide-down .15s ease 1;
+      display: none;
+      left: 0;
+      max-height: 50vh;
+      overflow-y: auto;
+      position: absolute;
+      top: 100%;
+    }
+    &.ngx-dropdown-right .ngx-menu {
+      left: auto;
+      right: 0;
+    }
+    &.ngx-active .ngx-menu, .ngx-menu:hover {
+      display: block;
+    }
+  }
+  &-btn-group {
+    display: inline;
+  }
 }
 @keyframes spin {
   0% {

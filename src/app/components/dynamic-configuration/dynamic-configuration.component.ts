@@ -15,7 +15,8 @@ export class DynamicConfigurationComponent {
     'headerEnabled': true,
     'searchEnabled': true,
     'collapseAllRows': false,
-    'isLoading': false
+    'isLoading': false,
+    'checkboxes': false,
   };
   configuration;
   constructor() {
