@@ -21,5 +21,6 @@ export class BasicComponent {
 
   constructor() {
     this.data = data;
+    this.configuration = ConfigService.config;
   }
 }

@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
              id="search_{{ column['key'] }}"
              aria-label="Search"
              placeholder="{{ column['placeholder'] ? column['placeholder'] : column['title'] }}"
-             class="ngx-table__header-search ngx-form-input ngx-input-sm"
+             class="ngx-table__header-search"
              #input
              (input)="update.emit({value: input.value, key: column['key']})"
       >

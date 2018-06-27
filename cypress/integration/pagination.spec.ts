@@ -42,9 +42,9 @@ context('Pagination', () => {
   });
   it('gets correct phone when 25 range clicked', () => {
     cy.get('#rowAmount > div > div')
-      .click()
+      .click({force: true})
       .get('#rowAmount > div > ul > li:nth-child(3)')
-      .click()
+      .click({force: true})
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
       .contains('+1 (949) 527-2108')
       .get('#table > tbody > tr:nth-child(21) > td:nth-child(1) > div')

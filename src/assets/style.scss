@@ -1,0 +1,320 @@
+$grey: #e7e9ed;
+$grey-lighter: #f6f7f9;
+$grey-dark: #f3f3f3;
+$dark: #50596c;
+$primary-color: #3f86ca !default;
+$container-padding: 12px;
+$container-margin: 6px;
+/*! Based on Spectre.css v0.4.5 | MIT License | github.com/picturepan2/spectre */
+.ngx {
+  &-container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: .4rem;
+    padding-right: .4rem;
+    width: 100%;
+  }
+  &-table {
+    color: #50596c;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    font-family: Lato, Verdana, serif;
+    text-align: left;
+    width: 100%;
+    td {
+      border-bottom: 1px solid $grey;
+      padding: $container-padding $container-padding / 2;
+    }
+    th {
+      padding: $container-padding $container-padding / 2;
+      border-bottom: 2px solid $grey;
+    }
+    &__table-row--selected, &__table-col--selected, &__table-cell--selected {
+      background: $grey !important;
+    }
+    &__table-no-results {
+      text-align: center;
+    }
+    &__table-loader-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+    }
+    &__body-loading:hover {
+      background: 0 !important;
+    }
+    &__table-loader {
+      animation: spin .6s linear infinite;
+      border: 1px solid $grey;
+      border-radius: 50%;
+      border-top-color: $primary-color;
+      height: 1.8rem;
+      width: 1.8rem;
+    }
+    &__body-empty {}
+    &__sort-header {}
+    &__table-menu {}
+    &__header {}
+    &__header-cell-additional-actions {}
+    &__header-search {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: #fff none;
+      border: .05rem solid #caced7;
+      border-radius: .1rem;
+      color: $dark;
+      display: block;
+      font-size: .8rem;
+      height: 1.47rem;
+      line-height: 1rem;
+      max-width: 100%;
+      outline: 0;
+      padding: .15rem .3rem;
+      position: relative;
+      width: 97%;
+    }
+    &__header-cell {
+      position: relative;
+    }
+    &__horizontal-scroll {
+      display: block;
+      overflow-x: scroll;
+      white-space: nowrap;
+      &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 3px;
+        height: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: grey;
+      }
+    }
+    &__column-resizer {
+      background-color: $grey-dark;
+      cursor: col-resize;
+      display: block;
+      height: 100%;
+      margin: 0;
+      position: absolute;
+      padding: 0;
+      right: 0;
+      top: 0;
+      width: 3px;
+    }
+    &__table--borderless > {
+      tbody > tr > td, thead > tr > th {
+        border-bottom: 0 !important;
+      }
+    }
+    &__table--hoverable > tbody tr:hover {
+      background: $grey-lighter;
+    }
+    &__table--striped > tbody tr:nth-of-type(odd) {
+      background: $grey-lighter;
+    }
+    &__table--tiny > {
+      tbody > tr > td, thead > tr > th {
+        border-bottom: 1px solid $grey;
+        padding: 4px 7px;
+      }
+    }
+    &__table--normal > {
+      tbody > tr > td, thead > tr > th {
+        border-bottom: 1px solid $grey;
+        padding: 10px 6px;
+      }
+    }
+    &__table--big > {
+      tbody > tr > td, thead > tr > th {
+        border-bottom: 1px solid $grey;
+        padding: 12px 8px;
+      }
+    }
+    &__table--dark {
+      background-color: $dark;
+      color: $grey-lighter;
+    }
+    &__header-title {
+      display: inline;
+      cursor: pointer;
+    }
+  }
+  &-global-search {
+    display: block;
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  &-menu {
+    background: #fff;
+    border-radius: .1rem;
+    box-shadow: 0 0.05rem 0.2rem rgba(69, 77, 93, 0.3);
+    list-style: none;
+    margin: 0;
+    min-width: 180px;
+    padding: .4rem;
+    transform: translateY(0.2rem);
+    z-index: 100;
+  }
+  &-menu-item {
+    cursor: pointer;
+  }
+  &-pagination {
+    font-family: Lato, Verdana, serif;
+    display: inline-block;
+    &-range {
+      display: inline-block;
+      float: right;
+    }
+    &-steps {
+      display: inline-block;
+    }
+    &-range-dropdown {
+      margin-top: 8px;
+      margin-right: 2px;
+    }
+    &-range-dropdown-button-item {
+      cursor: pointer;
+      color: $dark;
+      padding: 4px;
+    }
+    &-range-dropdown-button {
+      color: $dark;
+      border: 1px solid $grey;
+      cursor: pointer;
+      padding: 4px;
+    }
+  }
+  &-form-icon {
+    border-radius: .1rem;
+    background: #fff;
+    height: .9rem;
+    left: 0;
+    top: .2rem;
+    width: .9rem;
+    transition: all .2s ease;
+    border: .05rem solid $grey;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+  }
+  &-form-checkbox {
+    line-height: 1rem;
+    margin: 0.2rem 0;
+    min-height: 1.2rem;
+    padding: 0.2rem .4rem 0.4rem 1.6rem;
+    position: relative;
+    input {
+      clip: rect(0, 0, 0, 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      position: absolute;
+      width: 1px;
+      &:focus + .ngx-form-icon {
+        box-shadow: 0 0 0 .1rem rgba($primary-color, .2);
+        border-color: $primary-color;
+      }
+      &:checked + .ngx-form-icon {
+        background: $primary-color;
+        border-color: $primary-color;
+      }
+      &:active + .ngx-form-icon {
+        background: #454d5d;
+      }
+      &:checked + .ngx-form-icon {
+        &::before {
+          background-clip: padding-box;
+          border: .1rem solid #fff;
+          border-left-width: 0;
+          border-top-width: 0;
+          content: "";
+          height: 12px;
+          left: 50%;
+          margin-left: -3px;
+          margin-top: -8px;
+          position: absolute;
+          top: 50%;
+          transform: rotate(45deg);
+          width: 4px;
+        }
+      }
+    }
+  }
+  &-icon {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: inherit;
+    font-style: normal;
+    height: 1em;
+    position: relative;
+    text-indent: -9999px;
+    vertical-align: middle;
+    width: 1em;
+    &::before, &::after {
+      display: block;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &-icon-arrow-down::before, &-icon-arrow-right::before, &-icon-arrow-up::before {
+    border: .1rem solid $dark;
+    border-bottom: 0;
+    border-right: 0;
+    content: "";
+    height: .45em;
+    width: .45em;
+  }
+  &-icon-arrow-down::before {
+    transform: translate(-50%, -75%) rotate(225deg);
+  }
+  &-icon-arrow-right::before {
+    transform: translate(-75%, -50%) rotate(135deg);
+  }
+  &-icon-arrow-up::before {
+    transform: translate(-50%, -25%) rotate(45deg);
+  }
+  &-icon-menu::before {
+    background: $dark;
+    box-shadow: 0 -.35em, 0 .35em;
+    content: "";
+    height: .1rem;
+    width: 100%;
+  }
+  &-dropdown {
+    display: inline-block;
+    position: relative;
+    .ngx-menu {
+      animation: slide-down .15s ease 1;
+      display: none;
+      left: 0;
+      max-height: 50vh;
+      overflow-y: auto;
+      position: absolute;
+      top: 100%;
+    }
+    &.ngx-dropdown-right .ngx-menu {
+      left: auto;
+      right: 0;
+    }
+    &.ngx-active .ngx-menu, .ngx-menu:hover {
+      display: block;
+    }
+  }
+  &-btn-group {
+    display: inline;
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -20,7 +20,6 @@ import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
-import { FiltersService } from '../../services/filters.service';
 import { Columns } from '../../model/columns';
 import { UtilsService } from '../../services/utils-service';
 
@@ -28,7 +27,6 @@ import { UtilsService } from '../../services/utils-service';
   selector: 'ngx-table',
   providers: [LoggerService, ConfigService, UtilsService],
   templateUrl: './base.component.html',
-  styleUrls: ['./base.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
