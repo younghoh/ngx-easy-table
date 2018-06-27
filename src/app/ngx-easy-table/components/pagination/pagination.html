@@ -1,4 +1,4 @@
-<div class="ngx__pagination">
+<div class="ngx-pagination-steps">
   <pagination-controls
     id="pagination-controls"
     [id]="id"
@@ -8,17 +8,17 @@
     (pageChange)="onPageChange($event)">
   </pagination-controls>
 </div>
-<div class="ngx__pagination-range" *ngIf="config.paginationRangeEnabled">
-  <div class="ngx-dropdown ngx__pagination-range-dropdown"
+<div class="ngx-pagination-range" *ngIf="config.paginationRangeEnabled">
+  <div class="ngx-dropdown ngx-pagination-range-dropdown"
        [class.ngx-active]="showRange"
        id="rowAmount">
     <div class="ngx-btn-group">
-      <div class="ngx__pagination-range-dropdown-button"
+      <div class="ngx-pagination-range-dropdown-button"
            (click)="showRange = !showRange">
         {{limit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
       </div>
       <ul class="ngx-menu">
-        <li class="ngx__pagination-range-dropdown-button-item"
+        <li class="ngx-pagination-range-dropdown-button-item"
             (click)="changeLimit(limit)"
             *ngFor="let limit of ranges">
           <span>{{limit}}</span>

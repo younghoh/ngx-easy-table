@@ -20,7 +20,6 @@ import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
-import { FiltersService } from '../../services/filters.service';
 import { Columns } from '../../model/columns';
 import { UtilsService } from '../../services/utils-service';
 
@@ -68,9 +67,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnInit() {
     if (!this.columns) {
       console.error('[columns] property required!');
-    }
-    if (!this.data) {
-      console.error('[data] property required!');
     }
     if (this.configuration) {
       ConfigService.config = this.configuration;
@@ -198,11 +194,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.event.emit({ event: Event[event], value });
   }
 
-  selectRowId(rowIndex): void {
+  collapseRow(rowIndex: number): void {
     if (this.selectedDetailsTemplateRowId.has(rowIndex)) {
       this.selectedDetailsTemplateRowId.delete(rowIndex);
+      this.emitEvent(Event.onRowCollapsedHide, rowIndex);
     } else {
       this.selectedDetailsTemplateRowId.add(rowIndex);
+      this.emitEvent(Event.onRowCollapsedShow, rowIndex);
     }
   }
 
