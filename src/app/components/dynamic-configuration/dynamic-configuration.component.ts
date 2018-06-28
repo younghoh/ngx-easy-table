@@ -1,10 +1,11 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { ConfigService } from './configuration.service';
 import { data, columns } from '../../../assets/data';
+
 @Component({
   selector: 'app-dynamic-configuration',
   templateUrl: './dynamic-configuration.component.html',
-  styleUrls: ['./dynamic-configuration.component.css']
+  styleUrls: ['./dynamic-configuration.component.css'],
 })
 export class DynamicConfigurationComponent {
   @ViewChild('detailsTemplate') detailsTemplateRef: TemplateRef<any>;
@@ -17,8 +18,11 @@ export class DynamicConfigurationComponent {
     'collapseAllRows': false,
     'isLoading': false,
     'checkboxes': false,
+    'draggable': false,
+    'fixedColumnWidth': false,
   };
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;

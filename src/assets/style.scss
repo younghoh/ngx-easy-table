@@ -329,7 +329,6 @@ $container-margin: 6px;
 .ngx-dnd-item:not(.has-handle):not(.move-disabled),
 .ngx-dnd-item.has-handle [ngxdraghandle],
 .ngx-dnd-item.has-handle [ngxDragHandle] {
-  cursor: move;
   cursor: grab;
   cursor: -webkit-grab; }
 .ngx-dnd-item .ngx-dnd-content {
@@ -343,6 +342,7 @@ $container-margin: 6px;
   margin: 0 !important;
   z-index: 9999 !important;
   opacity: 0.9;
+  width: 100%;
   background-color: #f8f8f8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: alpha(opacity=90); }
