@@ -134,6 +134,9 @@ $container-margin: 6px;
     &__table--dark {
       background-color: $dark;
       color: $grey-lighter;
+      & > tbody tr:hover {
+        color: $dark;
+      }
     }
     &__header-title {
       display: inline;
