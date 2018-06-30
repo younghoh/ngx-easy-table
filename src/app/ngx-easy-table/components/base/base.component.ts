@@ -16,7 +16,6 @@ import {
 
 import { ConfigService } from '../../services/config-service';
 import { Event } from '../../model/event.enum';
-import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
@@ -25,7 +24,7 @@ import { UtilsService } from '../../services/utils-service';
 
 @Component({
   selector: 'ngx-table',
-  providers: [LoggerService, ConfigService, UtilsService],
+  providers: [ConfigService, UtilsService],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -59,8 +58,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor(private cdr: ChangeDetectorRef,
-              private logger: LoggerService) {
+  constructor(private cdr: ChangeDetectorRef) {
     this.id = UtilsService.randomId();
   }
 
@@ -192,6 +190,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
 
   private emitEvent(event, value: Object): void {
     this.event.emit({ event: Event[event], value });
+    if (this.config.logger) {
+      console.log({ event: Event[event], value });
+    }
   }
 
   collapseRow(rowIndex: number): void {

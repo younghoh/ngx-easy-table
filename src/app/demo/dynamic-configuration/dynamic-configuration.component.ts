@@ -20,6 +20,7 @@ export class DynamicConfigurationComponent {
     'checkboxes': false,
     'draggable': false,
     'fixedColumnWidth': false,
+    'logger': false,
   };
   configuration;
 

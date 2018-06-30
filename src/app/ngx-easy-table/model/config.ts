@@ -22,6 +22,7 @@ export interface Config {
   fixedColumnWidth: boolean;
   horizontalScroll: boolean;
   draggable: boolean;
+  logger: boolean;
   tableLayout: {
     style: string,
     theme: string,
