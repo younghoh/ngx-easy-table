@@ -175,7 +175,6 @@
     </ng-container>
     </tbody>
     <tbody *ngIf="data && !config.isLoading && config.draggable"
-           [class.ngx-dnd-container]="config.draggable"
            (drag)="onRowDrag($event)"
            (drop)="onRowDrop($event)"
            ngxDroppable>
@@ -187,15 +186,13 @@
             [class.ngx-dnd-item]="config.draggable"
             ngxDraggable>
           <td *ngIf="config.checkboxes">
-            <div class="form-group">
-              <label class="form-checkbox">
-                <input type="checkbox"
-                       id="checkbox-draggable-{{rowIndex}}"
-                       [checked]="isSelected"
-                       (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
-                <i class="form-icon"></i>
-              </label>
-            </div>
+            <label class="ngx-form-checkbox">
+              <input type="checkbox"
+                     id="checkbox-draggable-{{rowIndex}}"
+                     [checked]="isSelected"
+                     (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+              <i class="ngx-form-icon"></i>
+            </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">
             <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
