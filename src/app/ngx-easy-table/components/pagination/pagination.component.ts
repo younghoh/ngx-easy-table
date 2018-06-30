@@ -1,5 +1,5 @@
 import {
-  ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit
+  ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit,
 } from '@angular/core';
 import { ConfigService } from '../../services/config-service';
 import { Config } from '../../model/config';
@@ -7,8 +7,24 @@ import { Config } from '../../model/config';
 @Component({
   selector: 'pagination',
   templateUrl: './pagination.html',
-  styleUrls: ['./pagination.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styles: [
+      `
+      :host /deep/ #pagination-controls > pagination-template > ul {
+        -webkit-padding-start: 0px;
+        -webkit-margin-before: 7px;
+      }
+      :host /deep/ #pagination-controls > pagination-template > ul > li {
+        border: 1px solid #e7e9ed;
+      }
+      :host /deep/ #pagination-controls > pagination-template > ul > li.current {
+        border: 1px solid #a4c2ff;
+      }
+      :host /deep/ #pagination-controls > pagination-template > ul > li > a {
+        color: #50596c;
+      }
+    `,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class PaginationComponent implements OnInit {
@@ -23,7 +39,7 @@ export class PaginationComponent implements OnInit {
   onPageChange($event) {
     this.updateRange.emit({
       page: $event,
-      limit: this.limit
+      limit: this.limit,
     });
   }
 
@@ -32,7 +48,7 @@ export class PaginationComponent implements OnInit {
     this.limit = limit;
     this.updateRange.emit({
       page: 1,
-      limit: limit
+      limit: limit,
     });
   }
 

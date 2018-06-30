@@ -3,13 +3,14 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-csv-export',
   template: `
-    <a (click)="exportCsv()">
+    <a (click)="exportCsv()" class="ngx-menu-item">
       CSV export
     </a>`
 })
 
 /**
- * Since version 5.0 CsvExportComponent will be moved to CsvExportComponent plugin
+ * From version 5.0 CsvExportComponent will be deprecated,
+ * and from version 6.0 moved to CsvExportComponent plugin
  */
 export class CsvExportComponent {
   @Input() data;

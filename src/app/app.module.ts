@@ -42,7 +42,7 @@ import {
   ColumnWidthComponent,
   FixedWidthComponent,
   CustomizeThemeComponent
-} from './components';
+} from './demo';
 
 @NgModule({
   imports: [

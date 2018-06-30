@@ -34,7 +34,7 @@ import {
   ColumnWidthComponent,
   FixedWidthComponent,
   CustomizeThemeComponent
-} from './components';
+} from './demo';
 
 export const routes = [
   { path: '', component: BasicComponent },
