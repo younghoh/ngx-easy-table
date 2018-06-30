@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Config } from '../model/config';
+import { Config } from '../../ngx-easy-table/model/config';
 
 @Injectable()
 export class ConfigService {
   public static config: Config = {
     searchEnabled: false,
     headerEnabled: true,
-    orderEnabled: true,
+    orderEnabled: false,
     globalSearchEnabled: false,
-    paginationEnabled: true,
+    paginationEnabled: false,
     exportEnabled: false,
-    clickEvent: true,
+    clickEvent: false,
     selectRow: false,
     selectCol: false,
     selectCell: false,
@@ -19,7 +19,7 @@ export class ConfigService {
     serverPagination: false,
     isLoading: false,
     detailsTemplate: false,
-    groupRows: false,
+    groupRows: true,
     paginationRangeEnabled: true,
     collapseAllRows: false,
     checkboxes: false,

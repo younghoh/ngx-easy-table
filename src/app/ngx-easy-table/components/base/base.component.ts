@@ -272,4 +272,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
     return this.config.fixedColumnWidth ? 100 / this.columns.length + '%' : null;
   }
+
+  onRowDrag(event) {
+    this.emitEvent(Event.onRowDrag, event);
+  }
+
+  onRowDrop(event) {
+    this.emitEvent(Event.onRowDrop, event);
+  }
 }

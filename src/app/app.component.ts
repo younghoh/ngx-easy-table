@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CustomizeThemeComponent } from './components/customize-theme/customize-theme.component';
 
 @Component({
   selector: 'app-table',

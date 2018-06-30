@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Config } from '../model/config';
+import { Config } from '../../ngx-easy-table/model/config';
 
 @Injectable()
 export class ConfigService {
@@ -10,13 +10,13 @@ export class ConfigService {
     globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
-    clickEvent: true,
+    clickEvent: false,
     selectRow: false,
     selectCol: false,
     selectCell: false,
     rows: 10,
     additionalActions: false,
-    serverPagination: false,
+    serverPagination: true,
     isLoading: false,
     detailsTemplate: false,
     groupRows: false,
