@@ -41,7 +41,8 @@ import {
   ResizableComponent,
   ColumnWidthComponent,
   FixedWidthComponent,
-  CustomizeThemeComponent
+  CustomizeThemeComponent,
+  StylesComponent
 } from './demo';
 
 @NgModule({
@@ -88,7 +89,8 @@ import {
     ResizableComponent,
     ColumnWidthComponent,
     FixedWidthComponent,
-    CustomizeThemeComponent
+    CustomizeThemeComponent,
+    StylesComponent
   ],
   bootstrap: [AppComponent],
   providers: [],

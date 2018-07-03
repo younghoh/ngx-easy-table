@@ -34,6 +34,7 @@ export class AppComponent {
     { link: '/checkboxes', name: 'Checkboxes', },
     { link: '/checkboxes2', name: 'Checkboxes2', },
     { link: '/customize-theme', name: 'Customize theme', },
+    { link: '/styles', name: 'Styles', },
   ];
   select = [
     { link: '/select-row', name: 'Select row', },

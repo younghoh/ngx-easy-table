@@ -35,6 +35,7 @@ import {
   FixedWidthComponent,
   CustomizeThemeComponent
 } from './demo';
+import { StylesComponent } from './demo/styles/styles.component';
 
 export const routes = [
   { path: '', component: BasicComponent },
@@ -69,6 +70,7 @@ export const routes = [
   { path: 'column-width', component: ColumnWidthComponent },
   { path: 'fixed-width', component: FixedWidthComponent },
   { path: 'customize-theme', component: CustomizeThemeComponent },
+  { path: 'styles', component: StylesComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
