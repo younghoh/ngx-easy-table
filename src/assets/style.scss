@@ -2,9 +2,8 @@ $grey: #e7e9ed;
 $grey-lighter: #f6f7f9;
 $grey-dark: #f3f3f3;
 $dark: #50596c;
-$primary-color: #3f86ca !default;
-$container-padding: 12px;
-$container-margin: 6px;
+$blue: #3f86ca;
+$primary-color: #50596c !default;
 /*! Based on Spectre.css v0.4.5 | MIT License | github.com/picturepan2/spectre */
 .ngx {
   &-container {
@@ -15,7 +14,7 @@ $container-margin: 6px;
     width: 100%;
   }
   &-table {
-    color: #50596c;
+    color: $primary-color;
     border-collapse: collapse;
     border-spacing: 0;
     display: table;
@@ -24,10 +23,10 @@ $container-margin: 6px;
     width: 100%;
     td {
       border-bottom: 1px solid $grey;
-      padding: $container-padding $container-padding / 2;
+      padding: 12px 6px;
     }
     th {
-      padding: $container-padding $container-padding / 2;
+      padding: 12px 6px;
       border-bottom: 2px solid $grey;
     }
     &__table-row--selected, &__table-col--selected, &__table-cell--selected {
@@ -61,9 +60,9 @@ $container-margin: 6px;
       -webkit-appearance: none;
       -moz-appearance: none;
       background: #fff none;
-      border: .05rem solid #caced7;
+      border: .05rem solid $grey;
       border-radius: .1rem;
-      color: $dark;
+      color: $primary-color;
       display: block;
       font-size: .8rem;
       height: 1.47rem;
@@ -137,6 +136,10 @@ $container-margin: 6px;
       & > tbody tr:hover {
         color: $dark;
       }
+      &.ngx-table__table--striped > tbody tr:nth-of-type(odd) {
+        background: $grey-lighter;
+        color: $dark;
+      }
     }
     &__header-title {
       display: inline;
@@ -179,11 +182,11 @@ $container-margin: 6px;
     }
     &-range-dropdown-button-item {
       cursor: pointer;
-      color: $dark;
+      color: $primary-color;
       padding: 4px;
     }
     &-range-dropdown-button {
-      color: $dark;
+      color: $primary-color;
       border: 1px solid $grey;
       cursor: pointer;
       padding: 4px;
@@ -216,12 +219,12 @@ $container-margin: 6px;
       position: absolute;
       width: 1px;
       &:focus + .ngx-form-icon {
-        box-shadow: 0 0 0 .1rem rgba($primary-color, .2);
-        border-color: $primary-color;
+        box-shadow: 0 0 0 .1rem rgba($blue, .2);
+        border-color: $blue;
       }
       &:checked + .ngx-form-icon {
-        background: $primary-color;
-        border-color: $primary-color;
+        background: $blue;
+        border-color: $blue;
       }
       &:active + .ngx-form-icon {
         background: #454d5d;
