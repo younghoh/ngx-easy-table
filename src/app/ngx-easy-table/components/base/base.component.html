@@ -82,8 +82,9 @@
           (click)="onClick($event, row, '', null, rowIndex)"
           (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
           [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
-          <ng-container [ngTemplateOutlet]="rowTemplate"
-                        [ngTemplateOutletContext]="{ $implicit: row }">
+          <ng-container
+            [ngTemplateOutlet]="rowTemplate"
+            [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
           </ng-container>
           <td *ngIf="config.detailsTemplate">
               <span class="ngx-icon"
@@ -98,7 +99,7 @@
           <td [attr.colspan]="columns.length + 1">
             <ng-container
               [ngTemplateOutlet]="detailsTemplate"
-              [ngTemplateOutletContext]="{ $implicit: row }">
+              [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex  }">
             </ng-container>
           </td>
         </tr>
@@ -141,7 +142,7 @@
           <td [attr.colspan]="columns.length + 1">
             <ng-container
               [ngTemplateOutlet]="detailsTemplate"
-              [ngTemplateOutletContext]="{ $implicit: row }">
+              [ngTemplateOutletContext]="{ $implicit: row, index: rowIndex }">
             </ng-container>
           </td>
         </tr>
