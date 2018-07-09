@@ -29,6 +29,7 @@ export class AppComponent {
     { link: '/modal', name: 'Modal', },
     { link: '/live-update', name: 'Live update', },
     { link: '/row-template', name: 'Row details', },
+    { link: '/col-template', name: 'Col template', },
     { link: '/group-rows', name: 'Group rows', },
     { link: '/collapsed-rows', name: 'Collapsed rows', },
     { link: '/checkboxes', name: 'Checkboxes', },

@@ -42,7 +42,8 @@ import {
   ColumnWidthComponent,
   FixedWidthComponent,
   CustomizeThemeComponent,
-  StylesComponent
+  StylesComponent,
+  ColTemplateComponent,
 } from './demo';
 
 @NgModule({
@@ -90,7 +91,8 @@ import {
     ColumnWidthComponent,
     FixedWidthComponent,
     CustomizeThemeComponent,
-    StylesComponent
+    StylesComponent,
+    ColTemplateComponent
   ],
   bootstrap: [AppComponent],
   providers: [],

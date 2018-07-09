@@ -33,9 +33,10 @@ import {
   ResizableComponent,
   ColumnWidthComponent,
   FixedWidthComponent,
-  CustomizeThemeComponent
+  CustomizeThemeComponent,
+  StylesComponent,
+  ColTemplateComponent,
 } from './demo';
-import { StylesComponent } from './demo/styles/styles.component';
 
 export const routes = [
   { path: '', component: BasicComponent },
@@ -71,6 +72,7 @@ export const routes = [
   { path: 'fixed-width', component: FixedWidthComponent },
   { path: 'customize-theme', component: CustomizeThemeComponent },
   { path: 'styles', component: StylesComponent },
+  { path: 'col-template', component: ColTemplateComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
