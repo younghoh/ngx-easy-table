@@ -53,7 +53,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() data: Array<Object>;
   @Input() pagination;
   @Input() groupRowsBy;
-  @Input() detailsTemplate;
+  @Input() detailsTemplate: TemplateRef<any>;
+  @Input() summaryTemplate: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
