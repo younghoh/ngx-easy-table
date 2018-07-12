@@ -6,7 +6,7 @@
 	</a>
 </div>
 <div class="mb-2">
-  <h2>Selected: {{selected.size}} </h2>
+  <h2 id="selected">Selected: {{selected.size}} </h2>
 </div>
 <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
 	<ng-template let-row let-index="index">
