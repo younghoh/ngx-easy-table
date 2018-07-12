@@ -9,7 +9,7 @@
   <h2>Selected: {{selected.size}} </h2>
 </div>
 <ngx-table [configuration]="configuration" [data]="data" [columns]="columns">
-	<ng-template let-row>
+	<ng-template let-row let-index="index">
 		<td>
 			<div class="form-group">
 				<label class="form-checkbox">
@@ -19,7 +19,7 @@
 			</div>
 		</td>
 		<td class="recruitments__table-row-recruitment">
-			<h5 class="color-green font-light">{{row.name}}</h5>
+			<h5 class="color-green font-light">id: {{index}} - {{row.name}}</h5>
 		</td>
 		<td>
 			<div class="font-small">
