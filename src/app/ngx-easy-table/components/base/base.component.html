@@ -246,6 +246,7 @@
     id="pagination"
     *ngIf="config.paginationEnabled"
     [id]="id"
+    [config]="config"
     [pagination]="pagination"
     (updateRange)="onPagination($event)">
   </pagination>

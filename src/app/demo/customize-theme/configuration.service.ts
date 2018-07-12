@@ -20,7 +20,7 @@ export class ConfigService {
     isLoading: false,
     detailsTemplate: false,
     groupRows: false,
-    paginationRangeEnabled: false,
+    paginationRangeEnabled: true,
     collapseAllRows: false,
     checkboxes: false,
     resizeColumn: false,

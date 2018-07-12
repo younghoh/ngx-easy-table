@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit,
 } from '@angular/core';
 import { ConfigService } from '../../services/config-service';
-import { Config } from '../../model/config';
 
 @Component({
   selector: 'pagination',
@@ -10,11 +9,11 @@ import { Config } from '../../model/config';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class PaginationComponent implements OnInit {
+export class PaginationComponent {
   @Input() pagination;
+  @Input() config;
   @Input() id;
   @Output() updateRange = new EventEmitter();
-  public config: Config;
   public ranges = [5, 10, 25, 50, 100];
   public limit = ConfigService.config.rows;
   public showRange = false;
@@ -33,9 +32,5 @@ export class PaginationComponent implements OnInit {
       page: 1,
       limit: limit,
     });
-  }
-
-  ngOnInit() {
-    this.config = ConfigService.config;
   }
 }
