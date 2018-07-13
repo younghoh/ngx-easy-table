@@ -140,6 +140,44 @@ $primary-color: #50596c !default;
         background: $grey-lighter;
         color: $dark;
       }
+      &-pagination {
+        & /deep/ .ngx-pagination .current {
+          background: $grey-lighter;
+          color: $dark;
+        }
+        & /deep/ pagination-template > ul {
+          -webkit-padding-start: 0;
+          -webkit-margin-before: 7px;
+        }
+        & /deep/ pagination-template > ul > li {
+          border: 1px solid $grey;
+          background: $dark;
+        }
+        & /deep/ pagination-template > ul > li.current {
+          border: 1px solid $dark;
+        }
+        & /deep/ pagination-template > ul > li > a {
+          color: $grey-lighter;
+        }
+        &-wrapper {
+          background-color: $dark;
+        }
+        &-range {
+          & > #rowAmount > div > div {
+            color: $grey;
+            border: 1px solid $grey;
+            background-color: $dark;
+          }
+          & > #rowAmount > div > ul {
+            color: $grey;
+            background-color: $dark;
+          }
+          & > #rowAmount > div > ul > li {
+            color: $grey;
+            background-color: $dark;
+          }
+        }
+      }
     }
     &__header-title {
       display: inline;
@@ -176,9 +214,12 @@ $primary-color: #50596c !default;
     &-steps {
       display: inline-block;
     }
+    &-wrapper {
+
+    }
     &-range-dropdown {
-      margin-top: 8px;
-      margin-right: 2px;
+      margin-top: 10px;
+      margin-right: 3px;
     }
     &-range-dropdown-button-item {
       cursor: pointer;
@@ -190,6 +231,24 @@ $primary-color: #50596c !default;
       border: 1px solid $grey;
       cursor: pointer;
       padding: 4px;
+    }
+    &-style {
+      & /deep/ .ngx-pagination .current {
+        background: $blue;
+      }
+      & /deep/ pagination-template > ul {
+        -webkit-padding-start: 0;
+        -webkit-margin-before: 0;
+      }
+      & /deep/ pagination-template > ul > li {
+        border: 1px solid $grey;
+      }
+      & /deep/ pagination-template > ul > li.current {
+        border: 1px solid $dark;
+      }
+      & /deep/ pagination-template > ul > li > a {
+        color: $dark;
+      }
     }
   }
   &-form-icon {
@@ -227,7 +286,7 @@ $primary-color: #50596c !default;
         border-color: $blue;
       }
       &:active + .ngx-form-icon {
-        background: #454d5d;
+        background: $dark;
       }
       &:checked + .ngx-form-icon {
         &::before {

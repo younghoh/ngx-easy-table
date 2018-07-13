@@ -6,7 +6,7 @@ import { FiltersService } from '../services/filters.service';
 })
 
 export class RenderPipe implements PipeTransform {
-  transform(row: any, key: any) {
+  transform(row: any, key: string) {
     const split = key.split('.');
 
     return FiltersService.getPath(split, row);
