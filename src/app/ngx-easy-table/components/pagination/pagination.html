@@ -1,29 +1,37 @@
-<div class="ngx-pagination-steps">
-  <pagination-controls
-    id="pagination-controls"
-    [id]="id"
-    [maxSize]="5"
-    [previousLabel]="''"
-    [nextLabel]="''"
-    (pageChange)="onPageChange($event)">
-  </pagination-controls>
-</div>
-<div class="ngx-pagination-range" *ngIf="config.paginationRangeEnabled">
-  <div class="ngx-dropdown ngx-pagination-range-dropdown"
-       [class.ngx-active]="showRange"
-       id="rowAmount">
-    <div class="ngx-btn-group">
-      <div class="ngx-pagination-range-dropdown-button"
-           (click)="showRange = !showRange">
-        {{limit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
+<div class="ngx-pagination-wrapper"
+     [class.ngx-table__table--dark-pagination-wrapper]="config.tableLayout.theme === 'dark'">
+  <div class="ngx-pagination-steps">
+    <pagination-controls
+      [class.ngx-pagination-style]="config.tableLayout.theme !== 'dark'"
+      [class.ngx-table__table--dark-pagination]="config.tableLayout.theme === 'dark'"
+      id="pagination-controls"
+      [id]="id"
+      [maxSize]="5"
+      [previousLabel]="''"
+      [nextLabel]="''"
+      (pageChange)="onPageChange($event)">
+    </pagination-controls>
+  </div>
+  <div class="ngx-pagination-range"
+       [class.ngx-table__table--dark-pagination-range]="config.tableLayout.theme === 'dark'"
+       *ngIf="config.paginationRangeEnabled">
+    <div class="ngx-dropdown ngx-pagination-range-dropdown"
+         [class.ngx-active]="showRange"
+         id="rowAmount">
+      <div class="ngx-btn-group">
+        <div class="ngx-pagination-range-dropdown-button"
+             (click)="showRange = !showRange">
+          {{limit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
+        </div>
+        <ul class="ngx-menu">
+          <li class="ngx-pagination-range-dropdown-button-item"
+              (click)="changeLimit(limit)"
+              *ngFor="let limit of ranges">
+            <span>{{limit}}</span>
+          </li>
+        </ul>
       </div>
-      <ul class="ngx-menu">
-        <li class="ngx-pagination-range-dropdown-button-item"
-            (click)="changeLimit(limit)"
-            *ngFor="let limit of ranges">
-          <span>{{limit}}</span>
-        </li>
-      </ul>
     </div>
   </div>
+
 </div>

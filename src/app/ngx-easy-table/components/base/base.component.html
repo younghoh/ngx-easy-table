@@ -20,7 +20,7 @@
       <th *ngIf="config.checkboxes" width="3%">
         <label class="ngx-form-checkbox">
           <input type="checkbox" (change)="onSelectAll()">
-          <i class="ngx-form-icon"></i>
+          <i class="ngx-form-icon" id="selectAllCheckbox"></i>
         </label>
       </th>
       <ng-container *ngFor="let column of columns;let colIndex = index">
@@ -233,11 +233,20 @@
       </td>
     </tr>
     </tbody>
+    <tfoot *ngIf="summaryTemplate">
+    <tr>
+      <ng-container
+        [ngTemplateOutlet]="summaryTemplate"
+        [ngTemplateOutletContext]="{ total: data.length, limit: limit, page: page  }">
+      </ng-container>
+    </tr>
+    </tfoot>
   </table>
   <pagination
     id="pagination"
     *ngIf="config.paginationEnabled"
     [id]="id"
+    [config]="config"
     [pagination]="pagination"
     (updateRange)="onPagination($event)">
   </pagination>
