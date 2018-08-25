@@ -140,6 +140,7 @@
           </ng-container>
           <td *ngIf="config.additionalActions || config.detailsTemplate">
               <span class="ngx-icon"
+                    *ngIf="arrowDefinition"
                     [class.ngx-icon-arrow-down]="isRowCollapsed(rowIndex)"
                     [class.ngx-icon-arrow-right]="!isRowCollapsed(rowIndex)"
                     (click)="collapseRow(rowIndex)">
@@ -167,6 +168,7 @@
           </td>
           <td>
             <span class="ngx-icon"
+                  *ngIf="arrowDefinition"
                   [class.ngx-icon-arrow-down]="isRowCollapsed(rowIndex)"
                   [class.ngx-icon-arrow-right]="!isRowCollapsed(rowIndex)"
                   (click)="collapseRow(rowIndex)">
