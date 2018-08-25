@@ -108,11 +108,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   orderBy(column: Columns): void {
-    if (!column.orderEnabled) {
-      return;
-    }
     const key = column.key;
-    if (!ConfigService.config.orderEnabled) {
+    if (!column.orderEnabled || !ConfigService.config.orderEnabled || key === '') {
       return;
     }
     this.sortBy.key = key;
