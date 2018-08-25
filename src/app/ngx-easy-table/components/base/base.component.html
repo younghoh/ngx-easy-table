@@ -84,6 +84,7 @@
               let rowIndex = index">
         <tr
           (click)="onClick($event, row, '', null, rowIndex)"
+          (contextmenu)="onContextMenu($event, row, '', null, rowIndex)"
           (dblclick)="onDoubleClick($event, row, '', null, rowIndex)"
           [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell">
           <ng-container
@@ -126,6 +127,7 @@
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">
             <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
+                (contextmenu)="onContextMenu($event, row, column['key'], colIndex, rowIndex)"
                 (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
                 [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                 [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
@@ -139,12 +141,12 @@
             </td>
           </ng-container>
           <td *ngIf="config.additionalActions || config.detailsTemplate">
-              <span class="ngx-icon"
-                    *ngIf="arrowDefinition"
-                    [class.ngx-icon-arrow-down]="isRowCollapsed(rowIndex)"
-                    [class.ngx-icon-arrow-right]="!isRowCollapsed(rowIndex)"
-                    (click)="collapseRow(rowIndex)">
-              </span>
+            <span class="ngx-icon"
+                  *ngIf="arrowDefinition"
+                  [class.ngx-icon-arrow-down]="isRowCollapsed(rowIndex)"
+                  [class.ngx-icon-arrow-right]="!isRowCollapsed(rowIndex)"
+                  (click)="collapseRow(rowIndex)">
+            </span>
           </td>
         </tr>
         <tr

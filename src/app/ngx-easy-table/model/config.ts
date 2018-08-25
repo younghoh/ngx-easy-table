@@ -24,6 +24,7 @@ export interface Config {
   draggable: boolean;
   logger: boolean;
   showDetailsArrow?: boolean;
+  showContextMenu?: boolean;
   tableLayout: {
     style: string,
     theme: string,
