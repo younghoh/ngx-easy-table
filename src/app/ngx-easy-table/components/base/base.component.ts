@@ -53,6 +53,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() data: Array<Object>;
   @Input() pagination;
   @Input() groupRowsBy;
+  @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
   @Input() columns: Columns[];
@@ -86,6 +87,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const pagination: SimpleChange = changes.pagination;
     const configuration: SimpleChange = changes.configuration;
     const groupRowsBy: SimpleChange = changes.groupRowsBy;
+    this.toggleRowIndex = changes.toggleRowIndex;
     if (data && data.currentValue) {
       this.data = [...data.currentValue];
     }
@@ -98,6 +100,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
     if (groupRowsBy && groupRowsBy.currentValue) {
       this.doGroupRows();
+    }
+    if (this.toggleRowIndex && this.toggleRowIndex.currentValue) {
+      const row = this.toggleRowIndex.currentValue;
+      this.collapseRow(row.index);
     }
   }
 

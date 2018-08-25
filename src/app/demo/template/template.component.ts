@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
 import { data } from '../../../assets/dates';
+
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
@@ -15,10 +16,12 @@ export class TemplateComponent {
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
-    { key: 'address.street', title: 'Street'}
+    { key: 'address.street', title: 'Street' },
   ];
   data = [];
   configuration;
+  toggleRowIndex;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
@@ -28,4 +31,8 @@ export class TemplateComponent {
     console.log('$event', $event);
   }
 
+  onRowClickEvent($event, index: number): void {
+    $event.preventDefault();
+    this.toggleRowIndex = { index: index };
+  }
 }
