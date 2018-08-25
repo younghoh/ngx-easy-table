@@ -107,7 +107,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  orderBy(key: string): void {
+  orderBy(column: Columns): void {
+    if (!column.orderEnabled) {
+      return;
+    }
+    const key = column.key;
     if (!ConfigService.config.orderEnabled) {
       return;
     }

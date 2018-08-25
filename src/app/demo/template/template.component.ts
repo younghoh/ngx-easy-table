@@ -9,14 +9,12 @@ import { data } from '../../../assets/dates';
   providers: [ConfigService],
 })
 export class TemplateComponent {
-
   columns = [
-    { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
-    { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
-    { key: 'isActive', title: 'STATUS' },
-    { key: 'address.street', title: 'Street' },
+    { key: 'phone', title: 'Phone', width: '20%', orderEnabled: true },
+    { key: 'age', title: 'Age', width: '20%', orderEnabled: true },
+    { key: 'company', title: 'Company', width: '20%', orderEnabled: true },
+    { key: 'name', title: 'Name', width: '20%', orderEnabled: false },
+    { key: 'isActive', title: 'STATUS', width: '20%', orderEnabled: false },
   ];
   data = [];
   configuration;

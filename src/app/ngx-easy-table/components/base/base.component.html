@@ -30,7 +30,7 @@
             (mousedown)="onMouseDown($event, th)"
             (mouseup)="onMouseUp($event)"
             (mousemove)="onMouseMove($event)">
-          <div (click)="orderBy(column['key'])">
+          <div (click)="orderBy(column)">
             <div class="ngx-table__header-title">{{ column['title'] }}<span>&nbsp;</span>
               <i *ngIf="sortBy.key === column['key'] && sortBy.order==='asc'"
                  [style.display]="config.orderEnabled?'':'none' "
