@@ -15,8 +15,6 @@
   <ng-template let-row let-index="index">
     <td>
       <h5>{{row.name}}</h5>
-      <button class="btn btn-primary" (click)="onRowClickEvent($event, index)"><i class="icon icon-arrow-left"></i> Expand
-      </button>
     </td>
     <td>
       <span>Age: {{row.age}}</span>
@@ -41,6 +39,10 @@
     </td>
     <td>
       <div>{{row.addres.street}}</div>
+    </td>
+    <td>
+      <button class="btn btn-primary" (click)="onRowClickEvent($event, index)"><i class="icon icon-arrow-left"></i> Expand
+      </button>
     </td>
   </ng-template>
 

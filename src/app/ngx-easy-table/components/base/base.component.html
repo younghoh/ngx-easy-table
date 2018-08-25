@@ -92,6 +92,7 @@
           </ng-container>
           <td *ngIf="config.detailsTemplate">
             <span class="ngx-icon"
+                  *ngIf="arrowDefinition"
                   [class.ngx-icon-arrow-down]="isRowCollapsed(rowIndex)"
                   [class.ngx-icon-arrow-right]="!isRowCollapsed(rowIndex)"
                   (click)="collapseRow(rowIndex)">

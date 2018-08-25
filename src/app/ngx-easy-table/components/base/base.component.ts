@@ -293,4 +293,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   getColumnDefinition(column: Columns): boolean {
     return column.searchEnabled || typeof column.searchEnabled === 'undefined';
   }
+
+  get arrowDefinition(): boolean {
+    return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
+  }
 }
