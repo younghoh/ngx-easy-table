@@ -292,4 +292,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onRowDrop(event) {
     this.emitEvent(Event.onRowDrop, event);
   }
+
+  getColumnDefinition(column: Columns): boolean {
+    return column.searchEnabled || typeof column.searchEnabled === 'undefined';
+  }
 }

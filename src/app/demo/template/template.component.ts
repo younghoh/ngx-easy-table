@@ -10,11 +10,13 @@ import { data } from '../../../assets/dates';
 })
 export class TemplateComponent {
   columns = [
-    { key: 'phone', title: 'Phone', width: '20%', orderEnabled: true },
-    { key: 'age', title: 'Age', width: '20%', orderEnabled: true },
-    { key: 'company', title: 'Company', width: '20%', orderEnabled: true },
-    { key: 'name', title: 'Name', width: '20%', orderEnabled: false },
-    { key: 'isActive', title: 'STATUS', width: '20%', orderEnabled: false },
+    { key: 'name', title: 'Name', width: '15%', orderEnabled: true, searchEnabled: true },
+    { key: 'age', title: 'Age', width: '15%', orderEnabled: true, searchEnabled: false },
+    { key: 'company', title: 'Company', width: '15%', orderEnabled: true },
+    { key: 'name', title: 'Name', width: '15%', orderEnabled: false },
+    { key: 'phone', title: 'Phone', width: '15%', orderEnabled: false },
+    { key: 'addres.street', title: 'Address', width: '15%', orderEnabled: true },
+    { key: '', title: 'Action', width: '5%', orderEnabled: false, searchEnabled: false },
   ];
   data = [];
   configuration;

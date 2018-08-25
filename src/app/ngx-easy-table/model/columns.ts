@@ -7,4 +7,5 @@ export interface Columns {
   width?: string;
   cellTemplate?: TemplateRef<any>;
   orderEnabled?: boolean;
+  searchEnabled?: boolean;
 }
