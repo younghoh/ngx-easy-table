@@ -301,7 +301,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onContextMenu($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+  onContextMenu($event: any, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
     if (typeof this.config.showContextMenu === 'undefined' || !this.config.showContextMenu) {
       return;
     }
