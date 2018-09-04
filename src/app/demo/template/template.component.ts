@@ -15,7 +15,7 @@ export class TemplateComponent {
     { key: 'company', title: 'Company', width: '15%', orderEnabled: true },
     { key: 'name', title: 'Name', width: '15%', orderEnabled: false },
     { key: 'phone', title: 'Phone', width: '15%', orderEnabled: false },
-    { key: 'addres.street', title: 'Address', width: '15%', orderEnabled: true },
+    { key: 'address.street', title: 'Address', width: '15%', orderEnabled: true },
     { key: '', title: 'Action', width: '5%', orderEnabled: false, searchEnabled: false },
   ];
   data: Company[] = [];

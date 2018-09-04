@@ -36,7 +36,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public term;
   public config: Config;
   public globalSearchTerm;
-  grouped = [];
+  grouped: any = [];
   menuActive = false;
   isSelected = false;
   page = 1;
