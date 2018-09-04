@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+import { Company, data } from '../../../assets/data';
 
 @Component({
   selector: 'app-styles',
@@ -19,7 +19,7 @@ export class SummaryFooterComponent implements OnInit {
     { key: 'isActive', title: 'STATUS' },
   ];
 
-  data = [];
+  data: Company[] = [];
 
   constructor() {
     this.configuration = ConfigService.config;

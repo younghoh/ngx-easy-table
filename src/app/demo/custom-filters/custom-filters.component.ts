@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+import { Company, data } from '../../../assets/data';
 @Component({
   selector: 'app-custom-filters',
   templateUrl: './custom-filters.component.html',
@@ -15,8 +15,8 @@ export class CustomFiltersComponent {
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'Active' },
   ];
-  data = [];
-  rows = [];
+  data: Company[] = [];
+  rows: Company[] = [];
   configuration;
   constructor() {
     this.configuration = ConfigService.config;

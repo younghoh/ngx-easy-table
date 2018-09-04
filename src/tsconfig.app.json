@@ -12,6 +12,8 @@
   ],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
     "preserveWhiteSpace": false
   }
 }

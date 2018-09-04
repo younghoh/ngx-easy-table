@@ -1,3 +1,12 @@
+export interface Company {
+  phone: string;
+  age: number;
+  address: { street: string, number: number };
+  company: string;
+  name: string;
+  isActive: boolean;
+}
+
 export const columns = [
   { key: 'phone', title: 'Phone' },
   { key: 'age', title: 'Age' },
