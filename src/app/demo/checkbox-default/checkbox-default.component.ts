@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+import { Company, data } from '../../../assets/data';
 
 @Component({
   selector: 'app-checkbox-default',
@@ -16,7 +16,7 @@ export class CheckboxDefaultComponent {
     { key: 'phone', title: 'Phone' },
   ];
 
-  data = [];
+  data: Company[] = [];
   selected = new Set();
 
   constructor() {

@@ -1,6 +1,7 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data, columns } from '../../../assets/data';
+import { data, columns, Company } from '../../../assets/data';
+import { Columns } from '../../ngx-easy-table/model/columns';
 
 @Component({
   selector: 'app-dynamic-configuration',
@@ -9,8 +10,8 @@ import { data, columns } from '../../../assets/data';
 })
 export class DynamicConfigurationComponent {
   @ViewChild('detailsTemplate') detailsTemplateRef: TemplateRef<any>;
-  columns = [];
-  data = [];
+  columns: Columns[] = [];
+  data: Company[] = [];
   checked = {
     'paginationEnabled': true,
     'headerEnabled': true,

@@ -28,6 +28,8 @@ export class ConfigService {
     horizontalScroll: true,
     draggable: false,
     logger: false,
+    showDetailsArrow: false,
+    showContextMenu: false,
     tableLayout: {
       style: 'normal',
       theme: 'light',

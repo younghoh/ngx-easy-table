@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/dates';
+import { data } from '../../../assets/data';
+import { Company } from '../../../assets/data';
 
 @Component({
   selector: 'app-template',
@@ -18,7 +19,7 @@ export class TemplateComponent {
     { key: 'addres.street', title: 'Address', width: '15%', orderEnabled: true },
     { key: '', title: 'Action', width: '5%', orderEnabled: false, searchEnabled: false },
   ];
-  data = [];
+  data: Company[] = [];
   configuration;
   toggleRowIndex;
 

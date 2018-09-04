@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
+import { Company, data } from '../../../assets/data';
 @Component({
   selector: 'app-click-event',
   templateUrl: './click-event.component.html',
@@ -17,7 +17,7 @@ export class ClickEventComponent {
     { key: 'isActive', title: 'STATUS' },
   ];
   clicked;
-  data = [];
+  data: Company[] = [];
   configuration;
   constructor() {
     this.configuration = ConfigService.config;

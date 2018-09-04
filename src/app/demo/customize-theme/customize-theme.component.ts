@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data, columns } from '../../../assets/data';
+import { data, columns, Company } from '../../../assets/data';
+import { Columns } from '../../ngx-easy-table/model/columns';
 
 @Component({
   selector: 'app-customize-theme',
@@ -8,8 +9,8 @@ import { data, columns } from '../../../assets/data';
   styleUrls: ['./customize-theme.component.css'],
 })
 export class CustomizeThemeComponent {
-  columns = [];
-  data = [];
+  columns: Columns[] = [];
+  data: Company[] = [];
   configuration;
 
   constructor() {

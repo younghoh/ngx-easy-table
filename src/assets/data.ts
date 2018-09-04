@@ -1,13 +1,16 @@
+import { Columns } from '../app/ngx-easy-table/model/columns';
+
 export interface Company {
   phone: string;
   age: number;
-  address: { street: string, number: number };
+  address: { street: string, number?: number, nr?: number };
   company: string;
   name: string;
   isActive: boolean;
+  date?: string;
 }
 
-export const columns = [
+export const columns: Columns[] = [
   { key: 'phone', title: 'Phone' },
   { key: 'age', title: 'Age' },
   { key: 'company', title: 'Company' },

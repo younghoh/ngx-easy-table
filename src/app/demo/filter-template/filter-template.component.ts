@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/dates';
+import { data } from '../../../assets/data';
+import { Company } from '../../../assets/data';
+
 @Component({
   selector: 'app-filter-template',
   templateUrl: './filter-template.component.html',
@@ -14,12 +16,13 @@ export class FilterTemplateComponent {
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },
     { key: 'phone', title: 'Phone' },
-    { key: 'address.street', title: 'Street'}
+    { key: 'address.street', title: 'Street' },
   ];
-  data = [];
-  rows = [];
-  ages = [];
+  data: Company[] = [];
+  rows: Company[] = [];
+  ages: number[] = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;

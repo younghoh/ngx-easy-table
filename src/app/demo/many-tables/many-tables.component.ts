@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationBasicService } from './configuration-basic.service';
 import { ConfigurationAdvancedService } from './configuration-advanced.service';
-import { data } from '../../../assets/data';
+import { Company, data } from '../../../assets/data';
 @Component({
   selector: 'app-many-tables',
   templateUrl: './many-tables.component.html',
@@ -20,7 +20,7 @@ export class ManyTablesComponent implements OnInit {
     { key: 'isActive', title: 'STATUS' },
   ];
 
-  data = [];
+  data: Company[] = [];
 
   constructor() {
     this.configurationBasic = ConfigurationBasicService.config;
