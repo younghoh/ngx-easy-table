@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
-import { data, columns, Company } from '../../../assets/data';
+import { columns, Company, data } from '../../../assets/data';
 import { Columns } from '../../ngx-easy-table/model/columns';
+import { ConfigService } from './configuration.service';
 
 @Component({
   selector: 'app-toggle-column',
@@ -25,6 +25,6 @@ export class ToggleColumnComponent {
 
   toggle(name: string, value: boolean): void {
     value ? this.checked.add(name) : this.checked.delete(name);
-    this.columns = this.columnsCopy.filter(column => this.checked.has(column.key));
+    this.columns = this.columnsCopy.filter((column) => this.checked.has(column.key));
   }
 }

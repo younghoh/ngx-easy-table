@@ -36,7 +36,7 @@ export class ConfigurationBasicService {
       borderless: false,
       hover: true,
       striped: false,
-    }
+    },
   };
 
 }

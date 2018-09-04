@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
+
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html',

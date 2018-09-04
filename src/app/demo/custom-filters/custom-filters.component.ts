@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ConfigService } from './configuration.service';
+import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
+
 @Component({
   selector: 'app-custom-filters',
   templateUrl: './custom-filters.component.html',
-  styleUrls: ['./custom-filters.component.css']
+  styleUrls: ['./custom-filters.component.css'],
 })
 export class CustomFiltersComponent {
 
@@ -18,6 +19,7 @@ export class CustomFiltersComponent {
   data: Company[] = [];
   rows: Company[] = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
@@ -25,15 +27,15 @@ export class CustomFiltersComponent {
   }
 
   onCompanySearch(value): void {
-    this.rows = this.data.filter(_ => _.company.toLowerCase().indexOf(value) > -1);
+    this.rows = this.data.filter((_) => _.company.toLowerCase().indexOf(value) > -1);
   }
 
   onAgeSearch(value): void {
-    this.rows = this.data.filter(_ => _.age > value);
+    this.rows = this.data.filter((_) => _.age > value);
   }
 
   onStatusChange(value): void {
-    this.rows = this.data.filter(_ => _.isActive === (value === 'true'));
+    this.rows = this.data.filter((_) => _.isActive === (value === 'true'));
   }
 
   reset(): void {

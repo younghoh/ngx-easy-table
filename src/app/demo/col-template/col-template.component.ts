@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
 
 @Component({
   selector: 'app-col-template',

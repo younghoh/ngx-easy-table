@@ -14,13 +14,15 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { ConfigService } from '../../services/config-service';
-import { Event } from '../../model/event.enum';
-import { Config } from '../../model/config';
-import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
+import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { Columns } from '../../model/columns';
+import { Config } from '../../model/config';
+import { Event } from '../../model/event.enum';
+import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
+
+type KeyType = string | number | boolean;
 
 @Component({
   selector: 'ngx-table',
@@ -50,7 +52,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   startOffset;
   loadingHeight = '30px';
   @Input() configuration: Config;
-  @Input() data: Array<Object>;
+  @Input() data: any[];
   @Input() pagination;
   @Input() groupRowsBy: string;
   @Input() toggleRowIndex;
@@ -136,7 +138,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: object, row: object, key: string | number | boolean, colIndex: number | null, rowIndex: number): void {
+  onClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     if (ConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -150,8 +152,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (ConfigService.config.clickEvent) {
       const value = {
         event: $event,
-        row: row,
-        key: key,
+        row,
+        key,
         rowId: rowIndex,
         colId: colIndex,
       };
@@ -159,11 +161,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  onDoubleClick($event: object, row: object, key: string | number | boolean, colIndex: number | null, rowIndex: number): void {
+  onDoubleClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     const value = {
       event: $event,
-      row: row,
-      key: key,
+      row,
+      key,
       rowId: rowIndex,
       colId: colIndex,
     };
@@ -173,7 +175,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onCheckboxSelect($event: object, row: object, rowIndex: number): void {
     const value = {
       event: $event,
-      row: row,
+      row,
       rowId: rowIndex,
     };
     this.emitEvent(Event.onCheckboxSelect, value);
@@ -204,7 +206,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onPagination, $event);
   }
 
-  private emitEvent(event, value: Object): void {
+  private emitEvent(event, value: any): void {
     this.event.emit({ event: Event[event], value });
     if (this.config.logger) {
       console.log({ event: Event[event], value });
@@ -224,11 +226,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   private doGroupRows() {
     this.grouped = [];
     from(this.data).pipe(
-      groupBy(row => row[this.groupRowsBy]),
-      flatMap(group => group.pipe(
-        reduce((acc: Array<Object>, curr) => [...acc, curr], []),
+      groupBy((row) => row[this.groupRowsBy]),
+      flatMap((group) => group.pipe(
+        reduce((acc: object[], curr) => [...acc, curr], []),
       )),
-    ).subscribe(row => this.grouped.push(row));
+    ).subscribe((row) => this.grouped.push(row));
   }
 
   isRowCollapsed(rowIndex: number): boolean {
@@ -306,15 +308,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onContextMenu($event: any, row: object, key: string | number | boolean, colIndex: number | null, rowIndex: number): void {
+  onContextMenu($event: any, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     if (typeof this.config.showContextMenu === 'undefined' || !this.config.showContextMenu) {
       return;
     }
     $event.preventDefault();
     const value = {
       event: $event,
-      row: row,
-      key: key,
+      row,
+      key,
       rowId: rowIndex,
       colId: colIndex,
     };

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfigurationBasicService } from './configuration-basic.service';
-import { ConfigurationAdvancedService } from './configuration-advanced.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigurationAdvancedService } from './configuration-advanced.service';
+import { ConfigurationBasicService } from './configuration-basic.service';
+
 @Component({
   selector: 'app-many-tables',
   templateUrl: './many-tables.component.html',
@@ -27,6 +28,7 @@ export class ManyTablesComponent implements OnInit {
     this.configurationAdvanced = ConfigurationAdvancedService.config;
     this.data = data;
   }
+
   ngOnInit() {
   }
 

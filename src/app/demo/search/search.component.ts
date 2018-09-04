@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
   providers: [ConfigService],
 })
-export class SearchComponent  {
+export class SearchComponent {
   columns = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -17,6 +18,7 @@ export class SearchComponent  {
   ];
   data: Company[] = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
 
 @Component({
   selector: 'app-checkbox-default',
   templateUrl: './checkbox-default.component.html',
-  styleUrls: ['./checkbox-default.component.css']
+  styleUrls: ['./checkbox-default.component.css'],
 })
 export class CheckboxDefaultComponent {
   configuration;

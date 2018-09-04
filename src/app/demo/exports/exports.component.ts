@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
+
 // import { json2excel } from 'js2excel';
 
 @Component({
   selector: 'app-exports',
   templateUrl: './exports.component.html',
-  styleUrls: ['./exports.component.css']
+  styleUrls: ['./exports.component.css'],
 })
 export class ExportsComponent {
 
@@ -19,10 +20,12 @@ export class ExportsComponent {
   ];
   data: Company[] = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
   }
+
   exportToExcel() {
     try {
       // json2excel({
@@ -47,7 +50,7 @@ export class ExportsComponent {
     const rows = this.data;
     let csvContent = 'data:text/csv;charset=utf-8,';
     let dataString = '';
-    const x: Array<any> = [];
+    const x: any[] = [];
     const keys = Object.keys(this.data[0]);
     rows.forEach((row, index) => {
       x[index] = [];

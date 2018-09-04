@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
 
 @Component({
   selector: 'app-export',
@@ -19,6 +19,7 @@ export class ExportComponent {
   ];
   data: Company[] = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;

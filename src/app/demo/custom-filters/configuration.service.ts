@@ -36,6 +36,6 @@ export class ConfigService {
       borderless: false,
       hover: false,
       striped: false,
-    }
+    },
   };
 }

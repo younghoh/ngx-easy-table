@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
-import { data, columns, Company } from '../../../assets/data';
+import { columns, Company, data } from '../../../assets/data';
 import { Columns } from '../../ngx-easy-table/model/columns';
+import { ConfigService } from './configuration.service';
 
 @Component({
   selector: 'app-customize-theme',

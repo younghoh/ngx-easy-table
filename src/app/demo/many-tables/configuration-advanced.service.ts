@@ -36,6 +36,6 @@ export class ConfigurationAdvancedService {
       borderless: false,
       hover: true,
       striped: false,
-    }
+    },
   };
 }

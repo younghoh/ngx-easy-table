@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
-import { Company } from '../../../assets/data';
 
 @Component({
   selector: 'app-template',
@@ -34,6 +33,6 @@ export class TemplateComponent {
 
   onRowClickEvent($event, index: number): void {
     $event.preventDefault();
-    this.toggleRowIndex = { index: index };
+    this.toggleRowIndex = { index };
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Company, CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { CompanyService, Company } from '../../services/company.service';
 
 @Component({
   selector: 'app-server-sort',
@@ -73,16 +73,16 @@ export class ServerSortComponent implements OnInit {
     this.getData(params);
   }
 
-  private getData(params: String) {
+  private getData(params: string) {
     this.configuration = ConfigService.config;
     this.companyService.getCompanies(params)
-      .subscribe((response: Array<Company>) => {
+      .subscribe((response: Company[]) => {
           this.data = response;
           // ensure this.pagination.count is set only once and contains count of whole array not just paginated one
           this.pagination.count = (this.pagination.count === -1) ? response.length : this.pagination.count;
           this.pagination = { ...this.pagination };
         },
-        error => {
+        (error) => {
           console.error('ERROR: ', error.message);
         });
   }

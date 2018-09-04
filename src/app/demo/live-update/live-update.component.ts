@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
 
 interface Data {
@@ -51,7 +51,7 @@ export class LiveUpdateComponent implements OnInit, AfterViewInit {
   }
 
   update(array): void {
-    setInterval(function () {
+    setInterval(() => {
       array[LiveUpdateComponent.random(0, 3)]['limit'] = LiveUpdateComponent.random(500, 4000);
       array[LiveUpdateComponent.random(0, 3)]['balance'] = LiveUpdateComponent.random(900, 1100);
       array[LiveUpdateComponent.random(0, 3)]['amount'] = LiveUpdateComponent.random(100, 9100);

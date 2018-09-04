@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
+
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -19,14 +20,17 @@ export class ModalComponent {
   ];
   data: Company[] = [];
   configuration;
+
   constructor() {
     this.configuration = ConfigService.config;
     this.data = data;
   }
+
   onEvent(event) {
     console.log(event);
     this.selected = JSON.stringify(event.value.row, null, 2);
   }
+
   showModal() {
     this.modal = true;
   }

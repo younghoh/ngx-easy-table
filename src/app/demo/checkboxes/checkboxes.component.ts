@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { ConfigService } from './configuration.service';
 import { Company, data } from '../../../assets/data';
+import { ConfigService } from './configuration.service';
+
 @Component({
   selector: 'app-checkboxes',
   templateUrl: './checkboxes.component.html',
-  styleUrls: ['./checkboxes.component.css']
+  styleUrls: ['./checkboxes.component.css'],
 })
 export class CheckboxesComponent {
   configuration;

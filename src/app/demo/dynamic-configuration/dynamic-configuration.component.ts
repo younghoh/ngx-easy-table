@@ -1,7 +1,7 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
-import { ConfigService } from './configuration.service';
-import { data, columns, Company } from '../../../assets/data';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { columns, Company, data } from '../../../assets/data';
 import { Columns } from '../../ngx-easy-table/model/columns';
+import { ConfigService } from './configuration.service';
 
 @Component({
   selector: 'app-dynamic-configuration',
@@ -13,15 +13,15 @@ export class DynamicConfigurationComponent {
   columns: Columns[] = [];
   data: Company[] = [];
   checked = {
-    'paginationEnabled': true,
-    'headerEnabled': true,
-    'searchEnabled': true,
-    'collapseAllRows': false,
-    'isLoading': false,
-    'checkboxes': false,
-    'draggable': false,
-    'fixedColumnWidth': false,
-    'logger': false,
+    paginationEnabled: true,
+    headerEnabled: true,
+    searchEnabled: true,
+    collapseAllRows: false,
+    isLoading: false,
+    checkboxes: false,
+    draggable: false,
+    fixedColumnWidth: false,
+    logger: false,
   };
   configuration;
 

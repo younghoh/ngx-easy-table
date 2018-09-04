@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
+import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { data } from '../../../assets/data';
-import { Company } from '../../../assets/data';
 
 @Component({
   selector: 'app-filter-template',
@@ -27,7 +26,7 @@ export class FilterTemplateComponent {
     this.configuration = ConfigService.config;
     this.data = data;
     this.rows = data;
-    data.map(row => row.age).forEach(age => {
+    data.map((row) => row.age).forEach((age) => {
       if (this.ages.indexOf(age) === -1) {
         this.ages.push(age);
       }
@@ -43,12 +42,12 @@ export class FilterTemplateComponent {
     if (value === '') {
       this.rows = this.data;
     } else {
-      this.rows = this.data.filter(_ => _.age.toString() === value);
+      this.rows = this.data.filter((_) => _.age.toString() === value);
     }
   }
 
   onCompanySearch(value): void {
-    this.rows = this.data.filter(_ => _.company.toLowerCase().indexOf(value) > -1);
+    this.rows = this.data.filter((_) => _.company.toLowerCase().indexOf(value) > -1);
   }
 
 }
