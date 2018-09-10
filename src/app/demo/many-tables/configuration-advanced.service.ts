@@ -30,6 +30,7 @@ export class ConfigurationAdvancedService {
     logger: false,
     showDetailsArrow: false,
     showContextMenu: false,
+    persistState: false,
     tableLayout: {
       style: 'normal',
       theme: 'light',

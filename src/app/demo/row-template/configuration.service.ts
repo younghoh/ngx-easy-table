@@ -30,6 +30,7 @@ export class ConfigService {
     logger: false,
     showDetailsArrow: true,
     showContextMenu: false,
+    persistState: false,
     tableLayout: {
       style: 'normal',
       theme: 'light',

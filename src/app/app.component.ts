@@ -23,6 +23,7 @@ export class AppComponent {
     { link: '/column-resizer', name: 'Column resizer' },
     { link: '/column-width', name: 'Column width' },
     { link: '/fixed-width', name: 'Fixed width' },
+    { link: '/persist-state', name: 'Persist state' },
   ];
   templates = [
     { link: '/template', name: 'Basic template' },

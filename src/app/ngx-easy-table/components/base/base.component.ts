@@ -21,6 +21,7 @@ import { Config } from '../../model/config';
 import { Event } from '../../model/event.enum';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
+import { PaginationObject } from '../pagination/pagination.component';
 
 type KeyType = string | number | boolean;
 
@@ -82,6 +83,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
       this.doGroupRows();
+    }
+    if (this.config.persistState) {
+      const pagination = localStorage.getItem('pagination');
+      if (pagination) {
+        this.onPagination(JSON.parse(pagination));
+      }
     }
   }
 
@@ -209,10 +216,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onGlobalSearch, $event);
   }
 
-  onPagination($event): void {
-    this.page = $event.page;
-    this.limit = $event.limit;
-    this.emitEvent(Event.onPagination, $event);
+  onPagination(pagination: PaginationObject): void {
+    this.page = pagination.page;
+    this.limit = pagination.limit;
+    if (this.config.persistState) {
+      const persistObj = { page: this.page, limit: this.limit };
+      localStorage.setItem('pagination', JSON.stringify(persistObj));
+    }
+    this.emitEvent(Event.onPagination, pagination);
   }
 
   private emitEvent(event, value: any): void {

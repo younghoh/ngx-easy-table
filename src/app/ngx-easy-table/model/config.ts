@@ -26,6 +26,7 @@ export interface Config {
   logger: boolean;
   showDetailsArrow?: boolean;
   showContextMenu?: boolean;
+  persistState?: boolean;
   tableLayout: {
     style: string,
     theme: string,

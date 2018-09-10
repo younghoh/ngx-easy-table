@@ -26,6 +26,7 @@ import {
   ManyTablesComponent,
   ModalComponent,
   PaginationComponent,
+  PersistStateComponent,
   ResizableComponent,
   RowTemplateComponent,
   SearchComponent,
@@ -79,6 +80,7 @@ export const routes = [
   { path: 'summary-footer', component: SummaryFooterComponent },
   { path: 'filter-template', component: FilterTemplateComponent },
   { path: 'custom-intable-sort', component: CustomIntableSortComponent },
+  { path: 'persist-state', component: PersistStateComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
