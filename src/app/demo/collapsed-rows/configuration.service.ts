@@ -28,12 +28,15 @@ export class ConfigService {
     horizontalScroll: false,
     draggable: false,
     logger: false,
+    showDetailsArrow: false,
+    showContextMenu: false,
+    persistState: false,
     tableLayout: {
       style: 'normal',
       theme: 'light',
       borderless: false,
       hover: true,
       striped: false,
-    }
+    },
   };
 }

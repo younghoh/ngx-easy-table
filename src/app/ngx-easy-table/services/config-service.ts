@@ -7,6 +7,7 @@ export class ConfigService {
     searchEnabled: false,
     headerEnabled: true,
     orderEnabled: true,
+    orderEventOnly: false,
     globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
@@ -28,12 +29,15 @@ export class ConfigService {
     horizontalScroll: false,
     draggable: false,
     logger: false,
+    showDetailsArrow: false,
+    showContextMenu: false,
+    persistState: false,
     tableLayout: {
       style: 'normal',
       theme: 'light',
       borderless: false,
       hover: true,
       striped: false,
-    }
+    },
   };
 }

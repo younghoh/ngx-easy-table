@@ -2,6 +2,7 @@ export interface Config {
   searchEnabled: boolean;
   headerEnabled: boolean;
   orderEnabled: boolean;
+  orderEventOnly?: boolean;
   globalSearchEnabled: boolean;
   paginationEnabled: boolean;
   exportEnabled: boolean;
@@ -23,6 +24,9 @@ export interface Config {
   horizontalScroll: boolean;
   draggable: boolean;
   logger: boolean;
+  showDetailsArrow?: boolean;
+  showContextMenu?: boolean;
+  persistState?: boolean;
   tableLayout: {
     style: string,
     theme: string,

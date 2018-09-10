@@ -14,13 +14,16 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { ConfigService } from '../../services/config-service';
-import { Event } from '../../model/event.enum';
-import { Config } from '../../model/config';
-import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { from } from 'rxjs';
+import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { Columns } from '../../model/columns';
+import { Config } from '../../model/config';
+import { Event } from '../../model/event.enum';
+import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
+import { PaginationObject } from '../pagination/pagination.component';
+
+type KeyType = string | number | boolean;
 
 @Component({
   selector: 'ngx-table',
@@ -34,7 +37,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public term;
   public config: Config;
   public globalSearchTerm;
-  grouped = [];
+  grouped: any = [];
   menuActive = false;
   isSelected = false;
   page = 1;
@@ -44,17 +47,23 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     key: '',
     order: 'asc',
   };
+  sortByIcon = {
+    key: '',
+    order: 'asc',
+  };
   selectedDetailsTemplateRowId = new Set();
   id;
-  th = undefined;
+  th;
   startOffset;
   loadingHeight = '30px';
   @Input() configuration: Config;
-  @Input() data: Array<Object>;
+  @Input() data: any[];
   @Input() pagination;
-  @Input() groupRowsBy;
+  @Input() groupRowsBy: string;
+  @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
+  @Input() filtersTemplate: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
@@ -75,6 +84,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.groupRowsBy) {
       this.doGroupRows();
     }
+    if (this.config.persistState) {
+      const pagination = localStorage.getItem('pagination');
+      if (pagination) {
+        this.onPagination(JSON.parse(pagination));
+      }
+    }
   }
 
   ngAfterViewInit(): void {
@@ -86,6 +101,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const pagination: SimpleChange = changes.pagination;
     const configuration: SimpleChange = changes.configuration;
     const groupRowsBy: SimpleChange = changes.groupRowsBy;
+    this.toggleRowIndex = changes.toggleRowIndex;
     if (data && data.currentValue) {
       this.data = [...data.currentValue];
     }
@@ -99,44 +115,61 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (groupRowsBy && groupRowsBy.currentValue) {
       this.doGroupRows();
     }
+    if (this.toggleRowIndex && this.toggleRowIndex.currentValue) {
+      const row = this.toggleRowIndex.currentValue;
+      this.collapseRow(row.index);
+    }
   }
 
-  orderBy(key: string): void {
-    if (!ConfigService.config.orderEnabled) {
+  orderBy(column: Columns): void {
+    if (typeof column.orderEnabled !== 'undefined' && !column.orderEnabled) {
       return;
     }
-    this.sortBy.key = key;
-    if (this.sortBy.order === 'asc') {
-      this.sortBy.order = 'desc';
-    } else {
-      this.sortBy.order = 'asc';
+    const key = column.key;
+    if (!ConfigService.config.orderEnabled || key === '') {
+      return;
     }
-    const value = {
-      key,
-      order: this.sortBy.order,
-    };
+
+    this.sortByIcon.key = key;
+    if (this.sortByIcon.order === 'asc') {
+      this.sortByIcon.order = 'desc';
+    } else {
+      this.sortByIcon.order = 'asc';
+    }
+
+    if (!ConfigService.config.orderEventOnly && !column.orderEventOnly) {
+      this.sortBy.key = this.sortByIcon.key;
+      this.sortBy.order = this.sortByIcon.order;
+    } else {
+      this.sortBy.key = '';
+      this.sortBy.order = '';
+    }
     if (!ConfigService.config.serverPagination) {
       this.data = [...this.data];
     }
+    const value = {
+      key,
+      order: this.sortByIcon.order,
+    };
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+  onClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     if (ConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
-    if (ConfigService.config.selectCol) {
+    if (ConfigService.config.selectCol && colIndex) {
       this.selectedCol = colIndex;
     }
-    if (ConfigService.config.selectCell) {
+    if (ConfigService.config.selectCell && colIndex) {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
     if (ConfigService.config.clickEvent) {
       const value = {
         event: $event,
-        row: row,
-        key: key,
+        row,
+        key,
         rowId: rowIndex,
         colId: colIndex,
       };
@@ -144,11 +177,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  onDoubleClick($event: object, row: object, key: string | number | boolean, colIndex: number, rowIndex: number): void {
+  onDoubleClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     const value = {
       event: $event,
-      row: row,
-      key: key,
+      row,
+      key,
       rowId: rowIndex,
       colId: colIndex,
     };
@@ -158,7 +191,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onCheckboxSelect($event: object, row: object, rowIndex: number): void {
     const value = {
       event: $event,
-      row: row,
+      row,
       rowId: rowIndex,
     };
     this.emitEvent(Event.onCheckboxSelect, value);
@@ -183,13 +216,17 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onGlobalSearch, $event);
   }
 
-  onPagination($event): void {
-    this.page = $event.page;
-    this.limit = $event.limit;
-    this.emitEvent(Event.onPagination, $event);
+  onPagination(pagination: PaginationObject): void {
+    this.page = pagination.page;
+    this.limit = pagination.limit;
+    if (this.config.persistState) {
+      const persistObj = { page: this.page, limit: this.limit };
+      localStorage.setItem('pagination', JSON.stringify(persistObj));
+    }
+    this.emitEvent(Event.onPagination, pagination);
   }
 
-  private emitEvent(event, value: Object): void {
+  private emitEvent(event, value: any): void {
     this.event.emit({ event: Event[event], value });
     if (this.config.logger) {
       console.log({ event: Event[event], value });
@@ -209,11 +246,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   private doGroupRows() {
     this.grouped = [];
     from(this.data).pipe(
-      groupBy(row => row[this.groupRowsBy]),
-      flatMap(group => group.pipe(
-        reduce((acc: Array<Object>, curr) => [...acc, curr], []),
+      groupBy((row) => row[this.groupRowsBy]),
+      flatMap((group) => group.pipe(
+        reduce((acc: object[], curr) => [...acc, curr], []),
       )),
-    ).subscribe(row => this.grouped.push(row));
+    ).subscribe((row) => this.grouped.push(row));
   }
 
   isRowCollapsed(rowIndex: number): boolean {
@@ -236,7 +273,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (!this.config.resizeColumn) {
       return;
     }
-    if (this.th) {
+    if (this.th && this.th.style) {
       this.th.style.width = this.startOffset + event.pageX + 'px';
       this.th.style.cursor = 'col-resize';
       this.th.style['user-select'] = 'none';
@@ -253,9 +290,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   get isLoading(): boolean {
-    const rows = document.getElementById('table')['rows'];
-    if (rows.length > 3) {
-      this.getLoadingHeight(rows);
+    const table = document.getElementById('table');
+    if (table && table['rows'] && table['rows'].length > 3) {
+      this.getLoadingHeight(table['rows']);
     }
     return this.config.isLoading;
   }
@@ -268,7 +305,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.loadingHeight = (rows.length - searchEnabled - headerEnabled) * (rows[3].offsetHeight - borderTrHeight) - borderDivHeight + 'px';
   }
 
-  getColumnWidth(column: any): string {
+  getColumnWidth(column: any): string | null {
     if (column.width) {
       return column.width;
     }
@@ -281,5 +318,28 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
 
   onRowDrop(event) {
     this.emitEvent(Event.onRowDrop, event);
+  }
+
+  getColumnDefinition(column: Columns): boolean {
+    return column.searchEnabled || typeof column.searchEnabled === 'undefined';
+  }
+
+  get arrowDefinition(): boolean {
+    return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
+  }
+
+  onContextMenu($event: any, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+    if (typeof this.config.showContextMenu === 'undefined' || !this.config.showContextMenu) {
+      return;
+    }
+    $event.preventDefault();
+    const value = {
+      event: $event,
+      row,
+      key,
+      rowId: rowIndex,
+      colId: colIndex,
+    };
+    this.emitEvent(Event.onRowContextMenu, value);
   }
 }
