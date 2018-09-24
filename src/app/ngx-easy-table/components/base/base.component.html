@@ -66,7 +66,7 @@
     <tr *ngIf="config.searchEnabled && !filtersTemplate"
       class="ngx-table__sort-header">
       <th *ngIf="config.checkboxes"></th>
-      <ng-container *ngFor="let column of columns; let colIndex = index">
+      <ng-container *ngFor="let column of columns">
         <th>
           <table-header
             *ngIf="getColumnDefinition(column)"
