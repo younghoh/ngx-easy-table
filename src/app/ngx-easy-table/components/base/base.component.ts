@@ -16,9 +16,7 @@ import {
 
 import { from } from 'rxjs';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
-import { Columns } from '../../model/columns';
-import { Config } from '../../model/config';
-import { Event } from '../../model/event.enum';
+import { Columns, Config, Event } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationObject } from '../pagination/pagination.component';

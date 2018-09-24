@@ -8,7 +8,6 @@ export enum Event {
   onCheckboxSelect = 'onCheckboxSelect',
   onSelectAll = 'onSelectAll',
   onColumnResizeMouseDown = 'onColumnResizeMouseDown',
-  onColumnResizeMouseMove = 'onColumnResizeMouseMove',
   onColumnResizeMouseUp = 'onColumnResizeMouseUp',
   onRowDrag = 'onRowDrag',
   onRowDrop = 'onRowDrop',

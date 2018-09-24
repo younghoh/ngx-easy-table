@@ -1,4 +1,4 @@
-import { Columns } from '../app/ngx-easy-table/model/columns';
+import { Columns } from '../app/ngx-easy-table';
 
 export interface Company {
   phone: string;
