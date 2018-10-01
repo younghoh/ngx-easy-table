@@ -138,12 +138,12 @@
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
     "no-input-rename": true,
-    "no-unused-variable": true,
     "no-output-rename": true,
     "use-life-cycle-interface": true,
+    "no-misleading-array-reverse": false,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "cognitive-complexity": [true, 12]
+    "cognitive-complexity": [true, 11]
   }
 }
