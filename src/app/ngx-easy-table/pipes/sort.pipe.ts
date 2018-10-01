@@ -12,10 +12,10 @@ export class SortPipe implements PipeTransform {
   private static compare(a: any[], b: any[], key: string): number {
     const split = key.split('.');
     const aPath = FiltersService.getPath(split, a);
-    const bV = FiltersService.getPath(split, b);
+    const bPath = FiltersService.getPath(split, b);
     const aValue = (aPath + '').toLowerCase();
-    const bValue = (bV + '').toLowerCase();
-    if (SortPipe.isNaN(aPath, bV)) {
+    const bValue = (bPath + '').toLowerCase();
+    if (SortPipe.isNaN(aPath, bPath)) {
       if (aValue < bValue) {
         return -1;
       }
@@ -23,10 +23,10 @@ export class SortPipe implements PipeTransform {
         return 1;
       }
     } else {
-      if (parseFloat(aPath) < parseFloat(bV)) {
+      if (parseFloat(aPath) < parseFloat(bPath)) {
         return -1;
       }
-      if (parseFloat(aPath) > parseFloat(bV)) {
+      if (parseFloat(aPath) > parseFloat(bPath)) {
         return 1;
       }
     }
