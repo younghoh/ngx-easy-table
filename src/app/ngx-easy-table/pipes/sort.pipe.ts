@@ -5,22 +5,28 @@ import { FiltersService } from '../services/filters.service';
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
+  private static isNaN(aV, bV) {
+    return (isNaN(parseFloat(aV)) || !isFinite(aV)) || (isNaN(parseFloat(bV)) || !isFinite(bV));
+  }
+
   private static compare(a: any[], b: any[], key: string): number {
     const split = key.split('.');
-    const aV = FiltersService.getPath(split, a);
+    const aPath = FiltersService.getPath(split, a);
     const bV = FiltersService.getPath(split, b);
-    if ((isNaN(parseFloat(aV)) || !isFinite(aV)) || (isNaN(parseFloat(bV)) || !isFinite(bV))) {
-      if ((aV + '').toLowerCase() < (bV + '').toLowerCase()) {
+    const aValue = (aPath + '').toLowerCase();
+    const bValue = (bV + '').toLowerCase();
+    if (SortPipe.isNaN(aPath, bV)) {
+      if (aValue < bValue) {
         return -1;
       }
-      if ((aV + '').toLowerCase() > (bV + '').toLowerCase()) {
+      if (aValue > bValue) {
         return 1;
       }
     } else {
-      if (parseFloat(aV) < parseFloat(bV)) {
+      if (parseFloat(aPath) < parseFloat(bV)) {
         return -1;
       }
-      if (parseFloat(aV) > parseFloat(bV)) {
+      if (parseFloat(aPath) > parseFloat(bV)) {
         return 1;
       }
     }
