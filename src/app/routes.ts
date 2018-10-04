@@ -26,6 +26,7 @@ import {
   ManyTablesComponent,
   ModalComponent,
   PaginationComponent,
+  PaginationRangeComponent,
   PersistStateComponent,
   ResizableComponent,
   RowTemplateComponent,
@@ -81,6 +82,7 @@ export const routes = [
   { path: 'filter-template', component: FilterTemplateComponent },
   { path: 'custom-intable-sort', component: CustomIntableSortComponent },
   { path: 'persist-state', component: PersistStateComponent },
+  { path: 'pagination-range', component: PaginationRangeComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });

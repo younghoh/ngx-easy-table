@@ -6,7 +6,7 @@
       [class.ngx-table__table--dark-pagination]="config.tableLayout.theme === 'dark'"
       id="pagination-controls"
       [id]="id"
-      [maxSize]="5"
+      [maxSize]="config.paginationMaxSize || 5"
       [previousLabel]="''"
       [nextLabel]="''"
       (pageChange)="onPageChange($event)">

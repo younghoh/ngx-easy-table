@@ -140,9 +140,14 @@
     "no-input-rename": true,
     "no-output-rename": true,
     "use-life-cycle-interface": true,
+    "no-misleading-array-reverse": false,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "cognitive-complexity": [true, 12]
+    "cognitive-complexity": [true, 10],
+    "no-useless-cast": true,
+    "no-variable-usage-before-declaration": true,
+    "no-big-function": [true, 40],
+    "no-same-line-conditional": true
   }
 }

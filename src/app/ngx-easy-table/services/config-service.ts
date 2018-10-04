@@ -32,6 +32,7 @@ export class ConfigService {
     showDetailsArrow: false,
     showContextMenu: false,
     persistState: false,
+    paginationMaxSize: 5,
     tableLayout: {
       style: 'normal',
       theme: 'light',

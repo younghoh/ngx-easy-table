@@ -16,9 +16,7 @@ import {
 
 import { from } from 'rxjs';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
-import { Columns } from '../../model/columns';
-import { Config } from '../../model/config';
-import { Event } from '../../model/event.enum';
+import { Columns, Config, Event } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationObject } from '../pagination/pagination.component';
@@ -84,12 +82,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (this.groupRowsBy) {
       this.doGroupRows();
     }
-    if (this.config.persistState) {
-      const pagination = localStorage.getItem('pagination');
-      if (pagination) {
-        this.onPagination(JSON.parse(pagination));
-      }
-    }
+    this.doDecodePersistedState();
   }
 
   ngAfterViewInit(): void {
@@ -219,17 +212,16 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onPagination(pagination: PaginationObject): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
-    if (this.config.persistState) {
-      const persistObj = { page: this.page, limit: this.limit };
-      localStorage.setItem('pagination', JSON.stringify(persistObj));
-    }
     this.emitEvent(Event.onPagination, pagination);
   }
 
-  private emitEvent(event, value: any): void {
-    this.event.emit({ event: Event[event], value });
+  private emitEvent(event: string, value: any): void {
+    this.event.emit({ event, value });
+    if (this.config.persistState) {
+      localStorage.setItem(event, JSON.stringify(value));
+    }
     if (this.config.logger) {
-      console.log({ event: Event[event], value });
+      console.log({ event, value });
     }
   }
 
@@ -240,6 +232,27 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     } else {
       this.selectedDetailsTemplateRowId.add(rowIndex);
       this.emitEvent(Event.onRowCollapsedShow, rowIndex);
+    }
+  }
+
+  private doDecodePersistedState() {
+    if (!this.config.persistState) {
+      return;
+    }
+    const pagination = localStorage.getItem(Event.onPagination);
+    const sort = localStorage.getItem(Event.onOrder);
+    const search = localStorage.getItem(Event.onSearch);
+    if (pagination) {
+      this.onPagination(JSON.parse(pagination));
+    }
+    if (sort) {
+      const { key, order } = JSON.parse(sort);
+      this.sortBy.key = key;
+      this.sortBy.order = order;
+      this.data = [...this.data];
+    }
+    if (search) {
+      this.term = JSON.parse(search);
     }
   }
 

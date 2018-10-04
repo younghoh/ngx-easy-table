@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Columns } from '../../model/columns';
+import { Columns } from '../..';
 
 @Component({
   selector: 'table-header',

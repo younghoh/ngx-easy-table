@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
+import { Event } from '../../ngx-easy-table';
 import { ConfigService } from './configuration.service';
 
 @Component({
@@ -22,9 +23,9 @@ export class CustomIntableSortComponent {
   configuration;
   levels = {
     '': 0,
-    'low': 1,
-    'medium': 2,
-    'high': 3,
+    'Low': 1,
+    'Medium': 2,
+    'High': 3,
   };
 
   constructor() {
@@ -33,7 +34,6 @@ export class CustomIntableSortComponent {
   }
 
   sortByLastName(asc: boolean): void {
-    /* tslint:disable-next-line */
     this.data = [...this.data.sort((a, b) => {
       const nameA = a.name.toLowerCase().split(' ')[1];
       const nameB = b.name.toLowerCase().split(' ')[1];
@@ -48,12 +48,9 @@ export class CustomIntableSortComponent {
   }
 
   sortByLevel(asc: boolean): void {
-    /* tslint:disable-next-line */
     this.data = [...this.data.sort((a, b) => {
-      const aData = a.level || '';
-      const bData = b.level || '';
-      const levelA = this.levels[aData.toLowerCase()];
-      const levelB = this.levels[bData.toLowerCase()];
+      const levelA = this.levels[a.level];
+      const levelB = this.levels[b.level];
       if (levelA < levelB) {
         return asc ? -1 : 1;
       }
@@ -65,7 +62,7 @@ export class CustomIntableSortComponent {
   }
 
   eventEmitted($event) {
-    if ($event.event === 'onOrder') {
+    if ($event.event === Event.onOrder) {
       if ($event.value.key === 'level') {
         this.sortByLevel($event.value.order === 'asc');
       } else if ($event.value.key === 'name') {
