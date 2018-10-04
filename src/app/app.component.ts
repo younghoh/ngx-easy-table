@@ -7,19 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   showMenu = false;
-  selected = { link: '', name: 'Basic' };
+  selected = { link: 'basic', name: 'Basic' };
   menu = {
     basic: [
-      { link: '', name: 'Basic' },
+      { link: 'basic', name: 'Basic' },
       { link: 'pagination', name: 'Pagination' },
       { link: 'server-pagination', name: 'Server pagination' },
       { link: 'server-sort', name: 'Server sort' },
-      { link: 'export-csv', name: 'Export to CSV' },
+      { link: 'export', name: 'Export to CSV' },
       { link: 'click-event', name: 'Click event' },
       { link: 'many-tables', name: 'Many tables' },
       { link: 'dynamic-row', name: 'Dynamic row' },
       { link: 'horizontal-scroll', name: 'Horizontal scroll' },
-      { link: 'dynamic-conf', name: 'Dynamic configuration' },
+      { link: 'dynamic-configuration', name: 'Dynamic configuration' },
       { link: 'exports', name: 'Exports' },
       { link: 'resizable', name: 'Column resizer' },
       { link: 'column-width', name: 'Column width' },
@@ -35,7 +35,7 @@ export class AppComponent {
       { link: 'group-rows', name: 'Group rows' },
       { link: 'collapsed-rows', name: 'Collapsed rows' },
       { link: 'checkboxes', name: 'Checkboxes' },
-      { link: 'checkboxes2', name: 'Checkboxes2' },
+      { link: 'checkbox-default', name: 'Checkboxes template' },
       { link: 'customize-theme', name: 'Customize theme' },
       { link: 'styles', name: 'Styles' },
       { link: 'summary-footer', name: 'Summary footer' },
