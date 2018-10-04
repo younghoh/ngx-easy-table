@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { TableModule } from './ngx-easy-table/table.module';
-
 import { routing } from './routes';
 
 import {
@@ -49,6 +48,7 @@ import {
   TemplateComponent,
   ToggleColumnComponent,
 } from './demo';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   imports: [
@@ -101,6 +101,7 @@ import {
     CustomIntableSortComponent,
     PersistStateComponent,
     PaginationRangeComponent,
+    WelcomeComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

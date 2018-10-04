@@ -6,11 +6,28 @@
   </div>
 
   <div id="sidebar" class="docs-sidebar off-canvas-sidebar" [class.active]="showMenu">
-    <a href="https://github.com/ssuperczynski/ngx-easy-table" target="_blank" class="btn btn-primary">GitHub</a>
+    <a href="https://github.com/ssuperczynski/ngx-easy-table" target="_blank" rel="noreferrer" class="btn btn-primary">GitHub</a>
     <div class="docs-nav">
       <div class="accordion-container">
+        <div class="accordion">
+          <input type="checkbox" title="Welcome" name="docs-accordion-checkbox"
+                 hidden
+                 checked>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li class="divider" data-content="Welcome"></li>
+              <li class="menu-item">
+                <a href="#" [routerLink]="['/']"
+                  id="welcome">
+                  <i class="icon icon-link"></i> Welcome
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div class="accordion" *ngFor="let position of menu | keyvalue">
-          <input type="checkbox" title="{{position.key}}" id="docs-accordion-0" name="docs-accordion-checkbox" hidden
+          <input type="checkbox" title="{{position.key}}" id="accordion-{{position.key}}" name="accordion-{{position.key}}"
+                 hidden
                  checked>
           <div class="accordion-body">
             <ul class="menu menu-nav">
@@ -35,13 +52,16 @@
 
   <div id="content" class="docs-content off-canvas-content">
     <div class="container">
-      <h3>{{selected.name}}</h3>
-      <div class="mb-2">
-        <a class="btn"
-          href="https://github.com/ssuperczynski/ngx-easy-table/tree/master/src/app/demo/{{selected.link}}/{{selected.link}}.component.ts"
-           target="_blank">
-          See code here
-        </a>
+      <div *ngIf="selected">
+        <h3>{{selected.name}}</h3>
+        <div class="mb-2">
+          <a class="btn"
+             rel="noreferrer"
+            href="https://github.com/ssuperczynski/ngx-easy-table/tree/master/src/app/demo/{{selected.link}}/{{selected.link}}.component.ts"
+             target="_blank">
+            See code here
+          </a>
+        </div>
       </div>
       <router-outlet></router-outlet>
     </div>

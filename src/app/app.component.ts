@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   showMenu = false;
-  selected = { link: 'basic', name: 'Basic' };
+  selected;
   menu = {
     basic: [
       { link: 'basic', name: 'Basic' },

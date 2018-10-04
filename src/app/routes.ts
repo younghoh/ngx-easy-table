@@ -42,8 +42,10 @@ import {
   TemplateComponent,
   ToggleColumnComponent,
 } from './demo';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 export const routes = [
+  { path: '', component: WelcomeComponent },
   { path: 'basic', component: BasicComponent },
   { path: 'search', component: SearchComponent },
   { path: 'pagination', component: PaginationComponent },
