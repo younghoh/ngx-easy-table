@@ -1,15 +1,15 @@
 [![npm version](https://badge.fury.io/js/ngx-easy-table.svg)](https://badge.fury.io/js/ngx-easy-table)
 [![Build Status](https://travis-ci.org/ssuperczynski/ngx-easy-table.svg?branch=master)](https://travis-ci.org/ssuperczynski/ngx-easy-table)
 
-### Live edit
-<a href="https://stackblitz.com/github/ssuperczynski/ngx-easy-table?embed=1&file=app/components/basic/basic.component.ts" target="_blank">
-<img width="187" src="https://github.com/gothinkster/realworld/raw/master/media/edit_on_blitz.png?raw=true" style="max-width:100%;">
+### Code Examples
+<a href="https://github.com/ssuperczynski/ngx-easy-table/tree/master/src/app/demo" target="_blank">
+https://github.com/ssuperczynski/ngx-easy-table/tree/master/src/app/demo
 </a>
 
-### Interactive demo
+### Demo
 
-<a href="https://stackblitz.com/github/ssuperczynski/ngx-easy-table/">
-<img width="187" src="https://github.com/gothinkster/realworld/raw/master/media/edit_on_blitz.png?raw=true" style="max-width:100%;">
+<a href="https://ngx-easy-table.eu">
+https://ngx-easy-table.eu
 </a>
 
 # Installation
@@ -21,4 +21,4 @@
 See https://github.com/ssuperczynski/ngx-easy-table/wiki
 
 
-[![Imgur](http://i.imgur.com/qbbb6ah.png)](http://espeo.eu/)
+http://espeo.eu

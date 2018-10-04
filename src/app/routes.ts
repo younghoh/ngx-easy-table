@@ -72,7 +72,7 @@ export const routes = [
   { path: 'toggle-column', component: ToggleColumnComponent },
   { path: 'dynamic-conf', component: DynamicConfigurationComponent },
   { path: 'exports', component: ExportsComponent },
-  { path: 'column-resizer', component: ResizableComponent },
+  { path: 'resizable', component: ResizableComponent },
   { path: 'column-width', component: ColumnWidthComponent },
   { path: 'fixed-width', component: FixedWidthComponent },
   { path: 'customize-theme', component: CustomizeThemeComponent },
@@ -83,6 +83,7 @@ export const routes = [
   { path: 'custom-intable-sort', component: CustomIntableSortComponent },
   { path: 'persist-state', component: PersistStateComponent },
   { path: 'pagination-range', component: PaginationRangeComponent },
+  { path: '**', component: BasicComponent },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
