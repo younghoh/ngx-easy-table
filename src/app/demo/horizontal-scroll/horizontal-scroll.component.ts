@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { data } from '../../../assets/many-columns';
+import * as faker from 'faker';
 import { ConfigService } from './configuration.service';
 
 @Component({
@@ -27,19 +27,35 @@ export class HorizontalScrollComponent {
     { key: 'company10', title: 'Company10' },
     { key: 'company11', title: 'Company11' },
     { key: 'company12', title: 'Company12' },
-    { key: 'company13', title: 'Company13' },
-    { key: 'company14', title: 'Company14' },
-    { key: 'company15', title: 'Company15' },
-    { key: 'company16', title: 'Company16' },
-    { key: 'company18', title: 'Company17' },
-    { key: 'company18', title: 'Company18' },
-    { key: 'company19', title: 'Company19' },
   ];
 
   configuration;
 
   constructor() {
     this.configuration = ConfigService.config;
-    this.data = data;
+    this.data = HorizontalScrollComponent.generateData();
+  }
+
+  private static generateData() {
+    return Array(30).fill('').map(() => {
+      return {
+        phone: faker.phone.phoneNumberFormat(),
+        age: faker.random.number({ min: 15, max: 70 }).toString(),
+        company: faker.company.companyName(),
+        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        isActive: faker.random.boolean(),
+        company2: faker.company.companyName(),
+        company3: faker.company.companyName(),
+        company4: faker.company.companyName(),
+        company5: faker.company.companyName(),
+        company6: faker.company.companyName(),
+        company7: faker.company.companyName(),
+        company8: faker.company.companyName(),
+        company9: faker.company.companyName(),
+        company10: faker.company.companyName(),
+        company11: faker.company.companyName(),
+        company12: faker.company.companyName(),
+      };
+    });
   }
 }
