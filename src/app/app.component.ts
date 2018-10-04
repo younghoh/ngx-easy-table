@@ -40,6 +40,7 @@ export class AppComponent {
       { link: '/styles', name: 'Styles' },
       { link: '/summary-footer', name: 'Summary footer' },
       { link: '/filter-template', name: 'Filter template' },
+      { link: '/pagination-range', name: 'Pagination range' },
     ],
     select: [
       { link: '/select-row', name: 'Select row' },

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy, Component, EventEmitter, Input, Output,
 } from '@angular/core';
+import { Config } from '../..';
 import { ConfigService } from '../../services/config-service';
 
 export interface PaginationObject {
@@ -16,7 +17,7 @@ export interface PaginationObject {
 
 export class PaginationComponent {
   @Input() pagination;
-  @Input() config;
+  @Input() config: Config;
   @Input() id;
   @Output() updateRange: EventEmitter<PaginationObject> = new EventEmitter();
   public ranges = [5, 10, 25, 50, 100];

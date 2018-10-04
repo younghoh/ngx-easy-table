@@ -27,6 +27,7 @@ export interface Config {
   showDetailsArrow?: boolean;
   showContextMenu?: boolean;
   persistState?: boolean;
+  paginationMaxSize?: number;
   tableLayout: {
     style: string,
     theme: string,
