@@ -10,6 +10,7 @@ import { ConfigService } from './configuration.service';
 })
 export class GroupRowsComponent {
   configuration;
+  toggleRowIndex;
   ageSummary = 0;
   columns = [];
   data = [];
@@ -45,5 +46,10 @@ export class GroupRowsComponent {
 
   showCount(group, key: string) {
     return group.map((row) => row[key]).reduce((acc, cur) => cur + acc , 0);
+  }
+
+  onRowClickEvent($event, index: number): void {
+    $event.preventDefault();
+    this.toggleRowIndex = { index };
   }
 }

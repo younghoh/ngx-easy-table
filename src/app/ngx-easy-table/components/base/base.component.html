@@ -177,7 +177,13 @@
           <ng-container
             *ngIf="groupRowsHeaderTemplate"
             [ngTemplateOutlet]="groupRowsHeaderTemplate"
-            [ngTemplateOutletContext]="{ total: group.length, key: groupRowsBy, value: group[0][groupRowsBy], group: group }">
+            [ngTemplateOutletContext]="{
+              total: group.length,
+              key: groupRowsBy,
+              value: group[0][groupRowsBy],
+              group: group,
+              index: rowIndex
+            }">
           </ng-container>
           <td>
             <span class="ngx-icon"

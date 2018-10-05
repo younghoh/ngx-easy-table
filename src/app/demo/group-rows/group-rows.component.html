@@ -20,6 +20,7 @@
       [configuration]="configuration"
       [data]="data"
       [summaryTemplate]="summaryTemplateRef"
+      [toggleRowIndex]="toggleRowIndex"
       [groupRowsHeaderTemplate]="groupRowsHeaderTemplateRef"
       [columns]="columns"
       [groupRowsBy]="groupBy">
@@ -40,16 +41,27 @@
   <th></th>
   <th></th>
 </ng-template>
-<ng-template #groupRowsHeaderTemplateRef let-total="total" let-group="group" let-key="key" let-value="value">
-  <td>
+<ng-template #groupRowsHeaderTemplateRef
+             let-total="total"
+             let-group="group"
+             let-key="key"
+             let-value="value"
+             let-index="index">
+  <td class="bg-secondary">
     Total items: {{ total }} ({{value}})
   </td>
-  <td>
+  <td class="bg-secondary">
     SUM: {{ showCount(group, 'amount') }}
   </td>
-  <td>
+  <td class="bg-secondary">
     SUM: {{ showCount(group, 'debit') }}
   </td>
-  <td></td>
-  <td></td>
+  <td class="bg-secondary"></td>
+  <td class="bg-secondary"></td>
+  <td class="bg-secondary">
+    <button class="btn btn-primary"
+            (click)="onRowClickEvent($event, index)">
+      <i class="icon icon-arrow-left"></i> Expand
+    </button>
+  </td>
 </ng-template>
