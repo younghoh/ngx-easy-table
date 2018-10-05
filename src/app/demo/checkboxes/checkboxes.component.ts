@@ -10,10 +10,10 @@ import { ConfigService } from './configuration.service';
 export class CheckboxesComponent {
   configuration;
   columns = [
-    { key: 'name', title: '' },
+    { key: '', title: '', searchEnabled: false },
     { key: 'name', title: 'Name' },
     { key: 'company', title: 'Company' },
-    { key: 'name', title: 'Name' },
+    { key: 'name', title: 'Supervisor' },
     { key: 'phone', title: 'Phone' },
   ];
 
