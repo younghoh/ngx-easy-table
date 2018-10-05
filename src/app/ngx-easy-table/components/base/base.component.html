@@ -169,9 +169,16 @@
       <ng-container
         *ngFor="let group of grouped; let rowIndex = index">
         <tr>
-          <td [attr.colspan]="columns.length">
-            <div>{{group[0][groupRowsBy]}} ({{group.length}})</div>
-          </td>
+          <ng-container *ngIf="!groupRowsHeaderTemplate">
+            <td [attr.colspan]="columns.length">
+              <div>{{group[0][groupRowsBy]}} ({{group.length}})</div>
+            </td>
+          </ng-container>
+          <ng-container
+            *ngIf="groupRowsHeaderTemplate"
+            [ngTemplateOutlet]="groupRowsHeaderTemplate"
+            [ngTemplateOutletContext]="{ total: group.length, key: groupRowsBy, value: group[0][groupRowsBy], group: group }">
+          </ng-container>
           <td>
             <span class="ngx-icon"
               *ngIf="arrowDefinition"

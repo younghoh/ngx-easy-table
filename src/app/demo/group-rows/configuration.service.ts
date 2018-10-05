@@ -28,7 +28,7 @@ export class ConfigService {
     horizontalScroll: false,
     draggable: false,
     logger: false,
-    showDetailsArrow: false,
+    showDetailsArrow: true,
     showContextMenu: false,
     persistState: false,
     tableLayout: {
