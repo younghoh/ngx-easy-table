@@ -15,6 +15,7 @@ export class SearchComponent {
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
+    { key: 'address.street', title: 'Street' },
   ];
   data: Company[] = [];
   configuration;

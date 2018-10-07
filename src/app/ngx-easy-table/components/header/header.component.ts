@@ -4,9 +4,9 @@ import { Columns } from '../..';
 @Component({
   selector: 'table-header',
   template: `
-    <label for="search_{{ column.key }}">
+    <label for="search_{{ unifyKey(column.key) }}">
       <input type="text"
-             id="search_{{ column.key }}"
+             id="search_{{ unifyKey(column.key) }}"
              aria-label="Search"
              placeholder="{{ column.placeholder ? column.placeholder : column.title }}"
              class="ngx-table__header-search"
@@ -19,4 +19,8 @@ import { Columns } from '../..';
 export class HeaderComponent {
   @Input() column: Columns;
   @Output() update = new EventEmitter();
+
+  unifyKey(key: string): string {
+    return key.replace('.', '_');
+  }
 }

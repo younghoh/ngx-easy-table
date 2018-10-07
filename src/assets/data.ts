@@ -3,7 +3,7 @@ import { Columns } from '../app/ngx-easy-table';
 export interface Company {
   phone: string;
   age: number;
-  address: { street: string, number?: number };
+  address?: { street: string, number?: number };
   company: string;
   name: string;
   isActive: boolean;
