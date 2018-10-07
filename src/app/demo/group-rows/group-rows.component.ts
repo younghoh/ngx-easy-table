@@ -29,13 +29,13 @@ export class GroupRowsComponent {
   }
 
   private static generateData() {
-    return Array(30).fill('').map(() => {
+    return Array(31).fill('').map((val, key) => {
       return {
-        amount: faker.random.number({ min: 15, max: 70 }),
-        debit: faker.random.number({ min: 15, max: 70 }),
+        amount: 200,
+        debit: 300,
         company: faker.company.companyName(),
         name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-        isActive: faker.random.boolean(),
+        isActive: key % 2 === 1,
       };
     });
   }
@@ -45,7 +45,7 @@ export class GroupRowsComponent {
   }
 
   showCount(group, key: string) {
-    return group.map((row) => row[key]).reduce((acc, cur) => cur + acc , 0);
+    return group.map((row) => row[key]).reduce((acc, cur) => cur + acc, 0);
   }
 
   onRowClickEvent($event, index: number): void {
