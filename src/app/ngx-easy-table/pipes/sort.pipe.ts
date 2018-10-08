@@ -16,12 +16,7 @@ export class SortPipe implements PipeTransform {
     const aValue = (aPath + '').toLowerCase();
     const bValue = (bPath + '').toLowerCase();
     if (SortPipe.isNaN(aPath, bPath)) {
-      if (aValue < bValue) {
-        return -1;
-      }
-      if (aValue > bValue) {
-        return 1;
-      }
+      return aValue.localeCompare(bValue);
     } else {
       if (parseFloat(aPath) < parseFloat(bPath)) {
         return -1;
@@ -34,7 +29,7 @@ export class SortPipe implements PipeTransform {
     return 0;
   }
 
-  transform(value: any, args: any): any {
+  transform(value: any, args: any): any[] {
     if (!args.key || args.key === '') {
       return value;
     }

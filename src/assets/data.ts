@@ -89,7 +89,7 @@ export const data = [
     age: 31,
     address: { street: 'Ontario street', number: 12 },
     company: 'OMNIGOG',
-    name: 'Angelique Frazier',
+    name: 'Monica Frazier',
     isActive: true,
     level: 'High',
   }, {
@@ -209,7 +209,7 @@ export const data = [
     age: 40,
     address: { street: 'King street', number: 12 },
     company: 'ARCHITAX',
-    name: 'Chandra Blair',
+    name: 'Myles Blair',
     isActive: true,
     level: 'High',
   }, {
@@ -337,7 +337,7 @@ export const data = [
     age: 23,
     address: { street: '16th', number: 12 },
     company: 'SUREMAX',
-    name: 'Blankenship Glover',
+    name: 'Mónica Glover',
     isActive: false,
     level: 'Low',
   }];

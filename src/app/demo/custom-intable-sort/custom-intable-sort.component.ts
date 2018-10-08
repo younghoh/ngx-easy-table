@@ -37,13 +37,10 @@ export class CustomIntableSortComponent {
     this.data = [...this.data.sort((a, b) => {
       const nameA = a.name.toLowerCase().split(' ')[1];
       const nameB = b.name.toLowerCase().split(' ')[1];
-      if (nameA < nameB) {
-        return asc ? -1 : 1;
+      if (asc) {
+        return nameA.localeCompare(nameB);
       }
-      if (nameA > nameB) {
-        return asc ? 1 : -1;
-      }
-      return 0;
+      return nameB.localeCompare(nameA);
     })];
   }
 

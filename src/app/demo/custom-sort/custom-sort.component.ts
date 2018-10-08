@@ -30,32 +30,18 @@ export class CustomSortComponent implements OnInit {
   }
 
   sortByNameAsc(): void {
-    /* tslint:disable-next-line */
     this.data = [...this.data.sort((a, b) => {
       const nameA = a.name.toLowerCase();
       const nameB = b.name.toLowerCase();
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
+      return nameA.localeCompare(nameB);
     })];
   }
 
   sortByNameDesc(): void {
-    /* tslint:disable-next-line */
     this.data = [...this.data.sort((a, b) => {
       const nameA = a.name.toLowerCase();
       const nameB = b.name.toLowerCase();
-      if (nameB < nameA) {
-        return -1;
-      }
-      if (nameB > nameA) {
-        return 1;
-      }
-      return 0;
+      return nameB.localeCompare(nameA);
     })];
   }
 
