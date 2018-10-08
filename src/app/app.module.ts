@@ -49,7 +49,6 @@ import {
   TemplateComponent,
   ToggleColumnComponent,
 } from './demo';
-import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   imports: [
@@ -102,7 +101,6 @@ import { WelcomeComponent } from './welcome/welcome.component';
     CustomIntableSortComponent,
     PersistStateComponent,
     PaginationRangeComponent,
-    WelcomeComponent,
     AsyncComponent,
   ],
   bootstrap: [AppComponent],

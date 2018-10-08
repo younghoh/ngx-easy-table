@@ -9,22 +9,6 @@
     <a href="https://github.com/ssuperczynski/ngx-easy-table" target="_blank" rel="noreferrer" class="btn btn-primary">GitHub</a>
     <div class="docs-nav">
       <div class="accordion-container">
-        <div class="accordion">
-          <input type="checkbox" title="Welcome" name="docs-accordion-checkbox"
-                 hidden
-                 checked>
-          <div class="accordion-body">
-            <ul class="menu menu-nav">
-              <li class="divider" data-content="Welcome"></li>
-              <li class="menu-item">
-                <a href="#" [routerLink]="['/']"
-                  id="welcome">
-                  <i class="icon icon-link"></i> Welcome
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
         <div class="accordion" *ngFor="let position of menu | keyvalue">
           <input type="checkbox" title="{{position.key}}" id="accordion-{{position.key}}" name="accordion-{{position.key}}"
                  hidden
@@ -52,7 +36,7 @@
 
   <div id="content" class="docs-content off-canvas-content">
     <div class="container">
-      <div *ngIf="selected">
+      <div *ngIf="selected && selected.link !== 'basic'">
         <h3>{{selected.name}}</h3>
         <div class="mb-2">
           <a class="btn"
