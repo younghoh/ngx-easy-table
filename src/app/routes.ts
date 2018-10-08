@@ -2,6 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import {
+  AsyncComponent,
   BasicComponent,
   CheckboxDefaultComponent,
   CheckboxesComponent,
@@ -85,6 +86,7 @@ export const routes = [
   { path: 'custom-intable-sort', component: CustomIntableSortComponent },
   { path: 'persist-state', component: PersistStateComponent },
   { path: 'pagination-range', component: PaginationRangeComponent },
+  { path: 'async', component: AsyncComponent },
   { path: '**', component: BasicComponent },
 ];
 
