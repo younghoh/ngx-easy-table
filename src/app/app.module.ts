@@ -7,6 +7,7 @@ import { TableModule } from './ngx-easy-table/table.module';
 import { routing } from './routes';
 
 import {
+  AsyncComponent,
   BasicComponent,
   CheckboxDefaultComponent,
   CheckboxesComponent,
@@ -102,6 +103,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
     PersistStateComponent,
     PaginationRangeComponent,
     WelcomeComponent,
+    AsyncComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

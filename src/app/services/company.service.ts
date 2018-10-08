@@ -8,7 +8,7 @@ export class CompanyService {
   constructor(private http: HttpClient) {
   }
 
-  getCompanies(params): Observable<Company[]> {
+  getCompanies(params: string): Observable<Company[]> {
     return this.http
       .get<Company[]>(`https://simply-server.eu/company?${params}`);
   }

@@ -11,6 +11,7 @@ export class AppComponent {
   menu = {
     basic: [
       { link: 'basic', name: 'Basic' },
+      { link: 'async', name: 'Async resource' },
       { link: 'pagination', name: 'Pagination' },
       { link: 'server-pagination', name: 'Server pagination' },
       { link: 'server-sort', name: 'Server sort' },

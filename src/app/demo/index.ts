@@ -38,3 +38,4 @@ export * from './filter-template/filter-template.component';
 export * from './custom-intable-sort/custom-intable-sort.component';
 export * from './persist-state/persist-state.component';
 export * from './pagination-range/pagination-range.component';
+export * from './async/async.component';
