@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Company, data } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Observable } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { Company } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
+import { ConfigService } from './configuration.service';
 
 @Component({
   selector: 'app-async',
