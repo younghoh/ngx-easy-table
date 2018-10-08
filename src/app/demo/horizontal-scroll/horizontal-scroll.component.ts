@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import * as faker from 'faker';
 import { ConfigService } from './configuration.service';
 
@@ -8,8 +8,9 @@ import { ConfigService } from './configuration.service';
   styleUrls: ['./horizontal-scroll.component.css'],
   providers: [ConfigService],
 })
-export class HorizontalScrollComponent {
+export class HorizontalScrollComponent implements OnInit {
   data;
+  configuration;
   columns = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -26,18 +27,14 @@ export class HorizontalScrollComponent {
     { key: 'company9', title: 'Company9' },
     { key: 'company10', title: 'Company10' },
     { key: 'company11', title: 'Company11' },
-    { key: 'company12', title: 'Company12' },
   ];
 
-  configuration;
-
-  constructor() {
+  constructor(private zone: NgZone) {
     this.configuration = ConfigService.config;
-    this.data = HorizontalScrollComponent.generateData();
   }
 
   private static generateData() {
-    return Array(30).fill('').map(() => {
+    return Array(20).fill('').map(() => {
       return {
         phone: faker.phone.phoneNumberFormat(),
         age: faker.random.number({ min: 15, max: 70 }).toString(),
@@ -54,8 +51,13 @@ export class HorizontalScrollComponent {
         company9: faker.company.companyName(),
         company10: faker.company.companyName(),
         company11: faker.company.companyName(),
-        company12: faker.company.companyName(),
       };
+    });
+  }
+
+  ngOnInit(): void {
+    this.zone.runOutsideAngular(() => {
+      this.data = HorizontalScrollComponent.generateData();
     });
   }
 }
