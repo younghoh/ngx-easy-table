@@ -95,15 +95,20 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const configuration: SimpleChange = changes.configuration;
     const groupRowsBy: SimpleChange = changes.groupRowsBy;
     this.toggleRowIndex = changes.toggleRowIndex;
+    if (configuration && configuration.currentValue) {
+      this.config = configuration.currentValue;
+      this.cdr.markForCheck();
+    }
     if (data && data.currentValue) {
+      this.columns.forEach((column) => {
+        if (column.orderBy) {
+          this.orderBy(column);
+        }
+      });
       this.data = [...data.currentValue];
     }
     if (pagination && pagination.currentValue) {
       this.count = pagination.currentValue.count;
-    }
-    if (configuration && configuration.currentValue) {
-      this.config = configuration.currentValue;
-      this.cdr.markForCheck();
     }
     if (groupRowsBy && groupRowsBy.currentValue) {
       this.doGroupRows();

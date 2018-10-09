@@ -12,7 +12,7 @@ export class SortComponent implements OnInit {
 
   columns = [
     { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
+    { key: 'age', title: 'Age', orderBy: 'asc' },
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
