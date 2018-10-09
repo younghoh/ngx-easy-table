@@ -1,7 +1,5 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ContentChild,
   EventEmitter,
@@ -29,7 +27,7 @@ type KeyType = string | number | boolean;
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
+export class BaseComponent implements OnInit, OnChanges {
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -66,7 +64,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor() {
     this.id = UtilsService.randomId();
   }
 
@@ -85,10 +83,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.doDecodePersistedState();
   }
 
-  ngAfterViewInit(): void {
-    this.cdr.detectChanges();
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     const data: SimpleChange = changes.data;
     const pagination: SimpleChange = changes.pagination;
@@ -97,7 +91,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.toggleRowIndex = changes.toggleRowIndex;
     if (configuration && configuration.currentValue) {
       this.config = configuration.currentValue;
-      this.cdr.markForCheck();
     }
     if (data && data.currentValue) {
       this.columns.forEach((column) => {
