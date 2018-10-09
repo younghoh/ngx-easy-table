@@ -198,7 +198,7 @@ export const data = [
     level: 'Low',
   }, {
     phone: '+1 (802) 562-2467',
-    age: 39,
+    age: 35,
     address: { street: 'Queen street', number: 12 },
     company: 'EARTHPURE',
     name: 'Trudy Camacho',
@@ -206,7 +206,7 @@ export const data = [
     level: 'Medium',
   }, {
     phone: '+1 (873) 421-3625',
-    age: 40,
+    age: 38,
     address: { street: 'King street', number: 12 },
     company: 'ARCHITAX',
     name: 'Myles Blair',

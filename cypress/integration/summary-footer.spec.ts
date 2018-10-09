@@ -10,8 +10,8 @@ context('Summary footer', () => {
     cy.get('#table2 > div > #table > tfoot > tr > th:nth-child(1)')
       .contains('Total items: 40');
   });
-  it('has 1206 items in the second th', () => {
+  it('has 1200 items in the second th', () => {
     cy.get('#table2 > div > #table > tfoot > tr > th:nth-child(2)')
-      .contains('Summary: 1206');
+      .contains('Summary: 1200');
   });
 });

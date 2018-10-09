@@ -1,5 +1,7 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   EventEmitter,
@@ -27,7 +29,7 @@ type KeyType = string | number | boolean;
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseComponent implements OnInit, OnChanges {
+export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -39,11 +41,11 @@ export class BaseComponent implements OnInit, OnChanges {
   page = 1;
   count = null;
   limit;
-  sortBy = {
+  sortBy: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
-  sortByIcon = {
+  sortByIcon: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
@@ -64,7 +66,7 @@ export class BaseComponent implements OnInit, OnChanges {
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor() {
+  constructor(private cdr: ChangeDetectorRef) {
     this.id = UtilsService.randomId();
   }
 
@@ -83,6 +85,10 @@ export class BaseComponent implements OnInit, OnChanges {
     this.doDecodePersistedState();
   }
 
+  ngAfterViewInit(): void {
+    this.cdr.detectChanges();
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     const data: SimpleChange = changes.data;
     const pagination: SimpleChange = changes.pagination;
@@ -91,14 +97,10 @@ export class BaseComponent implements OnInit, OnChanges {
     this.toggleRowIndex = changes.toggleRowIndex;
     if (configuration && configuration.currentValue) {
       this.config = configuration.currentValue;
+      this.cdr.markForCheck();
     }
     if (data && data.currentValue) {
-      this.columns.forEach((column) => {
-        if (column.orderBy) {
-          this.orderBy(column);
-        }
-      });
-      this.data = [...data.currentValue];
+      this.doApplyData(data);
     }
     if (pagination && pagination.currentValue) {
       this.count = pagination.currentValue.count;
@@ -352,5 +354,16 @@ export class BaseComponent implements OnInit, OnChanges {
       colId: colIndex,
     };
     this.emitEvent(Event.onRowContextMenu, value);
+  }
+
+  private doApplyData(data) {
+    const column = this.columns.find((c) => !!c.orderBy);
+    if (column) {
+      this.sortByIcon.order = (column.orderBy === 'asc') ? 'desc' : 'asc';
+      console.log('column', this.sortByIcon.order);
+      this.orderBy(column);
+    } else {
+      this.data = [...data.currentValue];
+    }
   }
 }
