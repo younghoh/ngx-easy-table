@@ -6,15 +6,20 @@ context('Sort', () => {
     },
   );
 
+  it('gets correct default order by "Age" descending when nothing clicked', () => {
+    cy
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (948) 492-2881')
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('CENTICE')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div').contains('+1 (835) 551-3617')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(3) > div').contains('CORPORANA')
+    ;
+  });
+
   it('gets correct company name when "Company" clicked', () => {
-    cy.get('#table > thead > tr > th:nth-child(3)')
-      .click()
-      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-      .contains('+1 (934) 551-2224')
-      .get('#table > thead > tr > th:nth-child(3)')
-      .click()
-      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div')
-      .contains('ARCHITAX');
+    cy
+      .get('#table > thead > tr > th:nth-child(3)').click()
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (873) 421-3625')
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('ARCHITAX');
   });
   it('gets correct name sorted by locale when "Name" clicked', () => {
     cy

@@ -41,11 +41,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   page = 1;
   count = null;
   limit;
-  sortBy = {
+  sortBy: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
-  sortByIcon = {
+  sortByIcon: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
@@ -95,15 +95,15 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     const configuration: SimpleChange = changes.configuration;
     const groupRowsBy: SimpleChange = changes.groupRowsBy;
     this.toggleRowIndex = changes.toggleRowIndex;
-    if (data && data.currentValue) {
-      this.data = [...data.currentValue];
-    }
-    if (pagination && pagination.currentValue) {
-      this.count = pagination.currentValue.count;
-    }
     if (configuration && configuration.currentValue) {
       this.config = configuration.currentValue;
       this.cdr.markForCheck();
+    }
+    if (data && data.currentValue) {
+      this.doApplyData(data);
+    }
+    if (pagination && pagination.currentValue) {
+      this.count = pagination.currentValue.count;
     }
     if (groupRowsBy && groupRowsBy.currentValue) {
       this.doGroupRows();
@@ -354,5 +354,16 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       colId: colIndex,
     };
     this.emitEvent(Event.onRowContextMenu, value);
+  }
+
+  private doApplyData(data) {
+    const column = this.columns.find((c) => !!c.orderBy);
+    if (column) {
+      this.sortByIcon.order = (column.orderBy === 'asc') ? 'desc' : 'asc';
+      console.log('column', this.sortByIcon.order);
+      this.orderBy(column);
+    } else {
+      this.data = [...data.currentValue];
+    }
   }
 }

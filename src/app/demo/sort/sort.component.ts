@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 
@@ -8,11 +8,11 @@ import { ConfigService } from './configuration.service';
   providers: [ConfigService],
   styles: [],
 })
-export class SortComponent implements OnInit {
+export class SortComponent {
 
   columns = [
     { key: 'phone', title: 'Phone' },
-    { key: 'age', title: 'Age' },
+    { key: 'age', title: 'Age', orderBy: 'desc' },
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
@@ -24,8 +24,4 @@ export class SortComponent implements OnInit {
     this.configuration = ConfigService.config;
     this.data = data;
   }
-
-  ngOnInit() {
-  }
-
 }

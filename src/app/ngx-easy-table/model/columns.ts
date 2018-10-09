@@ -9,4 +9,5 @@ export interface Columns {
   orderEnabled?: boolean;
   orderEventOnly?: boolean;
   searchEnabled?: boolean;
+  orderBy?: string;
 }
