@@ -33,7 +33,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
   public term;
-  public config: Config;
   public globalSearchTerm;
   grouped: any = [];
   menuActive = false;
@@ -54,7 +53,17 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   th;
   startOffset;
   loadingHeight = '30px';
-  @Input() configuration: Config;
+  public config: Config;
+
+  @Input('configuration')
+  set configuration(value: Config) {
+    this.config = value;
+  }
+
+  get configuration(): Config {
+    return this.config;
+  }
+
   @Input() data: any[];
   @Input() pagination;
   @Input() groupRowsBy: string;
@@ -92,13 +101,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     const data: SimpleChange = changes.data;
     const pagination: SimpleChange = changes.pagination;
-    const configuration: SimpleChange = changes.configuration;
     const groupRowsBy: SimpleChange = changes.groupRowsBy;
     this.toggleRowIndex = changes.toggleRowIndex;
-    if (configuration && configuration.currentValue) {
-      this.config = configuration.currentValue;
-      this.cdr.markForCheck();
-    }
     if (data && data.currentValue) {
       this.doApplyData(data);
     }
