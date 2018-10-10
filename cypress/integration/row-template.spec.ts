@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-context('Row template', () => {
+context('Row details template', () => {
   before(() => {
       cy.visit('http://127.0.0.1:4201/#/row-template');
     },
