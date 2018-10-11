@@ -118,6 +118,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
+  isOrderEnabled(column: Columns) {
+    const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
+    return ConfigService.config.orderEnabled && columnOrderEnabled;
+  }
+
   orderBy(column: Columns): void {
     if (typeof column.orderEnabled !== 'undefined' && !column.orderEnabled) {
       return;
