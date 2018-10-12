@@ -29,13 +29,13 @@
 </div>
 <ng-template #summaryTemplateRef let-total="total" let-limit="limit" let-page="page">
   <th>
+    Amount: {{ amountSummary }}
+  </th>
+  <th>
+    Debit: {{ debitSummary }}
+  </th>
+  <th>
     Total items: {{ total }}
-  </th>
-  <th>
-    Summary: {{ ageSummary }}
-  </th>
-  <th>
-    page: {{ page }}
   </th>
   <th></th>
   <th></th>

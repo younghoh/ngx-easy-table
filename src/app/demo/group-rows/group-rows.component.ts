@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as faker from 'faker';
 import { ConfigService } from './configuration.service';
 
@@ -11,7 +11,8 @@ import { ConfigService } from './configuration.service';
 export class GroupRowsComponent {
   configuration;
   toggleRowIndex;
-  ageSummary = 0;
+  amountSummary = 0;
+  debitSummary = 0;
   columns = [];
   data = [];
   groupBy = 'isActive';
@@ -26,18 +27,18 @@ export class GroupRowsComponent {
       { key: 'name', title: 'Name' },
       { key: 'isActive', title: 'Active' },
     ];
+    this.amountSummary = this.data.map((_) => _.amount).reduce((acc, cur) => cur + acc, 0);
+    this.debitSummary = this.data.map((_) => _.debit).reduce((acc, cur) => cur + acc, 0);
   }
 
   private static generateData() {
-    return Array(31).fill('').map((val, key) => {
-      return {
-        amount: 200,
-        debit: 300,
-        company: faker.company.companyName(),
-        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-        isActive: key % 2 === 1,
-      };
-    });
+    return Array(31).fill('').map((val, key) => ({
+      amount: 200,
+      debit: 300,
+      company: faker.company.companyName(),
+      name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      isActive: key % 2 === 1,
+    }));
   }
 
   onChange(name): void {
