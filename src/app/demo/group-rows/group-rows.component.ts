@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { columns, Company, data } from '../../../assets/data';
-import { Columns } from '../../ngx-easy-table';
+import * as faker from 'faker';
 import { ConfigService } from './configuration.service';
 
 @Component({
@@ -11,17 +10,46 @@ import { ConfigService } from './configuration.service';
 })
 export class GroupRowsComponent {
   configuration;
-  columns: Columns[] = [];
-  data: Company[] = [];
-  groupBy = 'age';
+  toggleRowIndex;
+  ageSummary = 0;
+  columns = [];
+  data = [];
+  groupBy = 'isActive';
 
   constructor() {
     this.configuration = ConfigService.config;
-    this.data = data;
-    this.columns = columns;
+    this.data = GroupRowsComponent.generateData();
+    this.columns = [
+      { key: 'amount', title: 'Amount' },
+      { key: 'debit', title: 'Debit' },
+      { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'isActive', title: 'Active' },
+    ];
+  }
+
+  private static generateData() {
+    return Array(31).fill('').map((val, key) => {
+      return {
+        amount: 200,
+        debit: 300,
+        company: faker.company.companyName(),
+        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        isActive: key % 2 === 1,
+      };
+    });
   }
 
   onChange(name): void {
     this.groupBy = name;
+  }
+
+  showCount(group, key: string) {
+    return group.map((row) => row[key]).reduce((acc, cur) => cur + acc, 0);
+  }
+
+  onRowClickEvent($event, index: number): void {
+    $event.preventDefault();
+    this.toggleRowIndex = { index };
   }
 }
