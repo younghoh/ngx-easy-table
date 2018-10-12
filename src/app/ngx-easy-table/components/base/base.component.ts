@@ -33,7 +33,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
   public term;
-  public config: Config;
   public globalSearchTerm;
   grouped: any = [];
   menuActive = false;
@@ -41,11 +40,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   page = 1;
   count = null;
   limit;
-  sortBy = {
+  sortBy: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
-  sortByIcon = {
+  sortByIcon: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
@@ -54,13 +53,24 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   th;
   startOffset;
   loadingHeight = '30px';
-  @Input() configuration: Config;
+  public config: Config;
+
+  @Input('configuration')
+  set configuration(value: Config) {
+    this.config = value;
+  }
+
+  get configuration(): Config {
+    return this.config;
+  }
+
   @Input() data: any[];
   @Input() pagination;
   @Input() groupRowsBy: string;
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
+  @Input() groupRowsHeaderTemplate: TemplateRef<any>;
   @Input() filtersTemplate: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() event = new EventEmitter();
@@ -92,18 +102,13 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     const data: SimpleChange = changes.data;
     const pagination: SimpleChange = changes.pagination;
-    const configuration: SimpleChange = changes.configuration;
     const groupRowsBy: SimpleChange = changes.groupRowsBy;
     this.toggleRowIndex = changes.toggleRowIndex;
     if (data && data.currentValue) {
-      this.data = [...data.currentValue];
+      this.doApplyData(data);
     }
     if (pagination && pagination.currentValue) {
       this.count = pagination.currentValue.count;
-    }
-    if (configuration && configuration.currentValue) {
-      this.config = configuration.currentValue;
-      this.cdr.markForCheck();
     }
     if (groupRowsBy && groupRowsBy.currentValue) {
       this.doGroupRows();
@@ -112,6 +117,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       const row = this.toggleRowIndex.currentValue;
       this.collapseRow(row.index);
     }
+  }
+
+  isOrderEnabled(column: Columns) {
+    const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
+    return ConfigService.config.orderEnabled && columnOrderEnabled;
   }
 
   orderBy(column: Columns): void {
@@ -354,5 +364,16 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       colId: colIndex,
     };
     this.emitEvent(Event.onRowContextMenu, value);
+  }
+
+  private doApplyData(data) {
+    const column = this.columns.find((c) => !!c.orderBy);
+    if (column) {
+      this.sortByIcon.order = (column.orderBy === 'asc') ? 'desc' : 'asc';
+      console.log('column', this.sortByIcon.order);
+      this.orderBy(column);
+    } else {
+      this.data = [...data.currentValue];
+    }
   }
 }

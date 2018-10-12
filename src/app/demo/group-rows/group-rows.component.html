@@ -1,24 +1,16 @@
-<small>Click <i class="icon icon-arrow-right"></i> arrow on the right table side, to get row details</small><br><br>
+<small>Click "Expand" button to get row details</small><br><br>
 <div class="form-group">
   <label class="form-label">Group by:</label>
-  <label class="form-radio">
-    <input type="radio" name="group" (change)="onChange('phone')">
-    <i class="form-icon"></i> Phone
+  <label class="form-radio form-inline">
+    <input type="radio" name="group" id="checkbox-amount" (change)="onChange('amount')">
+    <i class="form-icon"></i> Amount
   </label>
-  <label class="form-radio">
-    <input type="radio" name="group" id="checkbox-age" (change)="onChange('age')" checked>
-    <i class="form-icon"></i> Age
+  <label class="form-radio form-inline">
+    <input type="radio" name="group" id="checkbox-debit" (change)="onChange('debit')">
+    <i class="form-icon"></i> Debit
   </label>
-  <label class="form-radio">
-    <input type="radio" name="group" (change)="onChange('company')">
-    <i class="form-icon"></i> Company
-  </label>
-  <label class="form-radio">
-    <input type="radio" name="group" (change)="onChange('name')">
-    <i class="form-icon"></i> Name
-  </label>
-  <label class="form-radio">
-    <input type="radio" name="group" (change)="onChange('isActive')">
+  <label class="form-radio form-inline">
+    <input type="radio" name="group" (change)="onChange('isActive')" checked>
     <i class="form-icon"></i> Active
   </label>
 </div>
@@ -27,8 +19,49 @@
     <ngx-table
       [configuration]="configuration"
       [data]="data"
+      [summaryTemplate]="summaryTemplateRef"
+      [toggleRowIndex]="toggleRowIndex"
+      [groupRowsHeaderTemplate]="groupRowsHeaderTemplateRef"
       [columns]="columns"
       [groupRowsBy]="groupBy">
     </ngx-table>
   </div>
 </div>
+<ng-template #summaryTemplateRef let-total="total" let-limit="limit" let-page="page">
+  <th>
+    Amount: {{ amountSummary }}
+  </th>
+  <th>
+    Debit: {{ debitSummary }}
+  </th>
+  <th>
+    Total items: {{ total }}
+  </th>
+  <th></th>
+  <th></th>
+  <th></th>
+</ng-template>
+<ng-template #groupRowsHeaderTemplateRef
+             let-total="total"
+             let-group="group"
+             let-key="key"
+             let-value="value"
+             let-index="index">
+  <td class="bg-secondary">
+    Total items: {{ total }} ({{value}})
+  </td>
+  <td class="bg-secondary">
+    SUM: {{ showCount(group, 'amount') }}
+  </td>
+  <td class="bg-secondary">
+    SUM: {{ showCount(group, 'debit') }}
+  </td>
+  <td class="bg-secondary"></td>
+  <td class="bg-secondary"></td>
+  <td class="bg-secondary">
+    <button class="btn btn-primary"
+            (click)="onRowClickEvent($event, index)">
+      <i class="icon icon-arrow-left"></i> Expand
+    </button>
+  </td>
+</ng-template>

@@ -6,25 +6,27 @@ import { FiltersService } from '../services/filters.service';
 })
 
 export class SearchPipe implements PipeTransform {
-  transform(value: any, filter?: { value: string, key: string }): any {
-    if (typeof value === 'undefined') {
+  filters: { [key: string]: string } = {};
+
+  transform(array: any[], filter?: { value: string, key: string }): any[] {
+    if (typeof array === 'undefined') {
       return;
     }
-
-    if (typeof filter === 'undefined' || Object.keys(filter).length === 0 || filter.value === '') {
-      return value;
+    if (typeof filter === 'undefined') {
+      return array;
     }
-
-    const split = filter.key.split('.');
-    return value.filter((item) => {
-      let element = '';
-      const val = FiltersService.getPath(split, item);
-      if (typeof val === 'object') {
-        element = JSON.stringify(val);
-      } else {
-        element = val.toString().toLocaleLowerCase();
-      }
-      return element.indexOf(filter.value.toLocaleLowerCase()) !== -1;
+    this.filters[filter.key] = filter.value.toString().toLocaleLowerCase();
+    if (Object.keys(filter).length === 0 || filter.value === '') {
+      delete this.filters[filter.key];
+    }
+    return array.filter((obj) => {
+      return Object.keys(this.filters)
+        .every((c) => {
+          const split = c.split('.');
+          const val = FiltersService.getPath(split, obj);
+          const element = (typeof val === 'object') ? JSON.stringify(val) : val.toString().toLocaleLowerCase();
+          return element.indexOf(this.filters[c]) > -1;
+        });
     });
   }
 }

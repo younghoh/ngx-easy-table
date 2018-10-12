@@ -181,7 +181,9 @@ $primary-color: #50596c !default;
     }
     &__header-title {
       display: inline;
-      cursor: pointer;
+      &.pointer {
+        cursor: pointer;
+      }
     }
   }
   &-global-search {

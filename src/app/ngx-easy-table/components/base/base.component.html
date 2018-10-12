@@ -31,7 +31,7 @@
           (mouseup)="onMouseUp($event)"
           (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)">
-            <div class="ngx-table__header-title">{{ column['title'] }}<span>&nbsp;</span>
+            <div class="ngx-table__header-title" [class.pointer]="isOrderEnabled(column)">{{ column['title'] }}<span>&nbsp;</span>
               <i *ngIf="sortByIcon.key === column['key'] && sortByIcon.order==='asc'"
                 [style.display]="config.orderEnabled?'':'none' "
                 class="ngx-icon ngx-icon-arrow-up">
@@ -169,9 +169,22 @@
       <ng-container
         *ngFor="let group of grouped; let rowIndex = index">
         <tr>
-          <td [attr.colspan]="columns.length">
-            <div>{{group[0][groupRowsBy]}} ({{group.length}})</div>
-          </td>
+          <ng-container *ngIf="!groupRowsHeaderTemplate">
+            <td [attr.colspan]="columns.length">
+              <div>{{group[0][groupRowsBy]}} ({{group.length}})</div>
+            </td>
+          </ng-container>
+          <ng-container
+            *ngIf="groupRowsHeaderTemplate"
+            [ngTemplateOutlet]="groupRowsHeaderTemplate"
+            [ngTemplateOutletContext]="{
+              total: group.length,
+              key: groupRowsBy,
+              value: group[0][groupRowsBy],
+              group: group,
+              index: rowIndex
+            }">
+          </ng-container>
           <td>
             <span class="ngx-icon"
               *ngIf="arrowDefinition"

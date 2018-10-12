@@ -6,16 +6,14 @@ context('Group rows', () => {
     },
   );
 
-  it('group rows by active status', () => {
-    cy.get('#content > div > app-group-rows > div.form-group > label:nth-child(6)')
-      .click()
-      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-      .contains('true (21)')
-      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div')
-      .contains('false (19)')
-      .get('#content > div > app-group-rows > div.form-group > label:nth-child(3)')
-      .click()
-      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div')
-      .contains('36 (4)');
+  it('group rows by "Active" status', () => {
+    cy
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1)').contains('Total items: 16 (false)')
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(2)').contains('SUM: 3200')
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3)').contains('SUM: 4800')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1)').contains('Total items: 15 (true)')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(2)').contains('SUM: 3000')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(3)').contains('SUM: 4500')
+    ;
   });
 });
