@@ -1,9 +1,7 @@
 <div class="ngx-container">
-  <div class="ngx-global-search">
-    <global-search
-      *ngIf="config.globalSearchEnabled"
-      (globalUpdate)="onGlobalSearch($event)">
-    </global-search>
+  <div class="ngx-global-search"
+       *ngIf="config.globalSearchEnabled">
+    <global-search (globalUpdate)="onGlobalSearch($event)"></global-search>
   </div>
   <table id="table"
          class="ngx-table"
