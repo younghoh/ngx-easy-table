@@ -75,6 +75,9 @@ $primary-color: #50596c !default;
     }
     &__header-cell {
       position: relative;
+      .pointer {
+        cursor: pointer;
+      }
     }
     &__horizontal-scroll {
       display: block;
@@ -181,9 +184,6 @@ $primary-color: #50596c !default;
     }
     &__header-title {
       display: inline;
-      &.pointer {
-        cursor: pointer;
-      }
     }
   }
   &-global-search {
