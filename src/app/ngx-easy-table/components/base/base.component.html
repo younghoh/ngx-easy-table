@@ -1,9 +1,7 @@
 <div class="ngx-container">
-  <div class="ngx-global-search">
-    <global-search
-      *ngIf="config.globalSearchEnabled"
-      (globalUpdate)="onGlobalSearch($event)">
-    </global-search>
+  <div class="ngx-global-search"
+       *ngIf="config.globalSearchEnabled">
+    <global-search (globalUpdate)="onGlobalSearch($event)"></global-search>
   </div>
   <table id="table"
          class="ngx-table"
@@ -30,8 +28,8 @@
           (mousedown)="onMouseDown($event, th)"
           (mouseup)="onMouseUp($event)"
           (mousemove)="onMouseMove($event)">
-          <div (click)="orderBy(column)">
-            <div class="ngx-table__header-title" [class.pointer]="isOrderEnabled(column)">{{ column['title'] }}<span>&nbsp;</span>
+          <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
+            <div class="ngx-table__header-title">{{ column['title'] }}<span>&nbsp;</span>
               <i *ngIf="sortByIcon.key === column['key'] && sortByIcon.order==='asc'"
                 [style.display]="config.orderEnabled?'':'none' "
                 class="ngx-icon ngx-icon-arrow-up">
