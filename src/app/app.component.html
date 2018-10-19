@@ -7,6 +7,7 @@
 
   <div id="sidebar" class="docs-sidebar off-canvas-sidebar" [class.active]="showMenu">
     <a href="https://github.com/ssuperczynski/ngx-easy-table" target="_blank" rel="noreferrer" class="btn btn-primary">GitHub</a>
+    <span class="d-inline mx-2">Version: {{version}}</span>
     <div class="docs-nav">
       <div class="accordion-container">
         <div class="accordion" *ngFor="let position of menu | keyvalue">
