@@ -368,7 +368,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
 
   private doApplyData(data) {
     const column = this.columns.find((c) => !!c.orderBy);
-    if (column && !this.config.serverPagination) {
+    if (column) {
       this.sortByIcon.order = (column.orderBy === 'asc') ? 'desc' : 'asc';
       this.orderBy(column);
     } else {
