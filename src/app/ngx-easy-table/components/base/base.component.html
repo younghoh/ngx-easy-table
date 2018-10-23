@@ -208,7 +208,7 @@
       <ng-container
         *ngFor="let row of data | sort:sortBy | search:term | global:globalSearchTerm | paginate: { itemsPerPage: limit, currentPage: page, totalItems: count, id: id };
                   let rowIndex = index">
-        <tr [class.ngx-table__table-row--selected]="rowIndex == selectedRow && !config.selectCell" cdkDrag>
+        <tr class="ngx-draggable-row" cdkDrag>
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"
