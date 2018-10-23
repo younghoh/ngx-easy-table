@@ -28,6 +28,7 @@ export class ClickEventComponent {
 
   eventEmitted($event) {
     this.clicked = JSON.stringify($event, null, 2);
+    // tslint:disable-next-line:no-console
     console.log('$event', $event);
   }
 }

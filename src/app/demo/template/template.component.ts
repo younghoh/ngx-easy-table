@@ -27,10 +27,6 @@ export class TemplateComponent {
     this.data = data;
   }
 
-  eventEmitted($event) {
-    console.log('$event', $event);
-  }
-
   onRowClickEvent($event, index: number): void {
     $event.preventDefault();
     this.toggleRowIndex = { index };

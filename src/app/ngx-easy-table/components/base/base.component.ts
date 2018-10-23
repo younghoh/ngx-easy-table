@@ -231,6 +231,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       localStorage.setItem(event, JSON.stringify(value));
     }
     if (this.config.logger) {
+      // tslint:disable-next-line:no-console
       console.log({ event, value });
     }
   }

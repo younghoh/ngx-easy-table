@@ -27,7 +27,6 @@ export class ModalComponent {
   }
 
   onEvent(event) {
-    console.log(event);
     this.selected = JSON.stringify(event.value.row, null, 2);
   }
 

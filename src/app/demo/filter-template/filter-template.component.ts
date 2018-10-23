@@ -34,10 +34,6 @@ export class FilterTemplateComponent {
     this.ages.sort();
   }
 
-  eventEmitted($event) {
-    console.log('$event', $event);
-  }
-
   onAgeSearch(value): void {
     if (value === '') {
       this.rows = this.data;
