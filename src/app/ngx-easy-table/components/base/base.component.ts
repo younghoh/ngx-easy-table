@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -13,7 +14,6 @@ import {
   SimpleChanges,
   TemplateRef,
 } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { from } from 'rxjs';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
