@@ -28,6 +28,5 @@ export class CheckboxesComponent {
   onChange(row) {
     const index = this.data.indexOf(row);
     this.selected.add(index);
-    console.log(index, row);
   }
 }

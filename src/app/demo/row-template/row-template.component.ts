@@ -25,8 +25,4 @@ export class RowTemplateComponent {
     this.data = data;
   }
 
-  eventEmitted($event) {
-    console.log('$event', $event);
-  }
-
 }
