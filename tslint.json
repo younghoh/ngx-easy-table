@@ -148,6 +148,22 @@
     "no-useless-cast": true,
     "no-variable-usage-before-declaration": true,
     "no-big-function": [true, 40],
-    "no-same-line-conditional": true
+    "no-same-line-conditional": true,
+    "angular-whitespace": [true, "check-semicolon"],
+    "banana-in-box": true,
+    "templates-no-negated-async": true,
+    "max-inline-declarations": true,
+    "no-life-cycle-call": true,
+    "no-conflicting-life-cycle-hooks": true,
+    "enforce-component-selector": true,
+    "no-queries-parameter": true,
+    "prefer-inline-decorator": true,
+    "use-view-encapsulation": true,
+    "no-attribute-parameter-decorator": true,
+    "no-output-named-after-standard-event": true,
+    "no-forward-ref": true,
+    "contextual-life-cycle": true,
+    "pipe-impure": true,
+    "template-conditional-complexity": [true, 10]
   }
 }
