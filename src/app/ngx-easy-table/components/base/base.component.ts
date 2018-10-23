@@ -13,6 +13,7 @@ import {
   SimpleChanges,
   TemplateRef,
 } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { from } from 'rxjs';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
@@ -20,7 +21,6 @@ import { Columns, Config, Event } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationObject } from '../pagination/pagination.component';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 type KeyType = string | number | boolean;
 
