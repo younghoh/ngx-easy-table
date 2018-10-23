@@ -20,6 +20,7 @@ import { Columns, Config, Event } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationObject } from '../pagination/pagination.component';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 type KeyType = string | number | boolean;
 
@@ -375,5 +376,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     } else {
       this.data = [...data.currentValue];
     }
+  }
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 }

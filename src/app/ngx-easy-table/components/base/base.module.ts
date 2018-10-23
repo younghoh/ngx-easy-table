@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -13,7 +14,6 @@ import { RenderPipe } from '../../pipes/render-pipe';
 import { SearchPipe } from '../../pipes/search-pipe';
 import { SortPipe } from '../../pipes/sort.pipe';
 
-import { NgxDnDModule } from '@swimlane/ngx-dnd';
 import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
@@ -31,7 +31,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     CommonModule,
     NgxPaginationModule,
-    NgxDnDModule,
+    DragDropModule,
   ],
   exports: [BaseComponent],
 })
