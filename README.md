@@ -23,6 +23,3 @@ https://stackoverflow.com/questions/tagged/ngx-easy-table
 ## Available config settings:
 
 See https://github.com/ssuperczynski/ngx-easy-table/wiki
-
-
-http://espeo.eu
