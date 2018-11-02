@@ -9,6 +9,6 @@
     }
   },
   "whitelistedNonPeerDependencies": [
-    "ngx-pagination",
+    "ngx-pagination"
   ]
 }
