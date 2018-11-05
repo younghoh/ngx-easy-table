@@ -124,7 +124,7 @@
               <input type="checkbox"
                 id="checkbox-{{rowIndex}}"
                 [checked]="isSelected"
-                (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+                (change)="onCheckboxSelect($event, row, rowIndex)">
               <i class="ngx-form-icon"></i>
             </label>
           </td>
@@ -220,7 +220,7 @@
               <input type="checkbox"
                 id="checkbox-draggable-{{rowIndex}}"
                 [checked]="isSelected"
-                (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+                (change)="onCheckboxSelect($event, row, rowIndex)">
               <i class="ngx-form-icon"></i>
             </label>
           </td>
