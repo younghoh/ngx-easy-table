@@ -17,12 +17,6 @@ https://ngx-easy-table.eu
 
 `npm install ngx-easy-table --save`
 
-## Questions
-https://stackoverflow.com/questions/tagged/ngx-easy-table
-
 ## Available config settings:
 
 See https://github.com/ssuperczynski/ngx-easy-table/wiki
-
-
-http://espeo.eu
