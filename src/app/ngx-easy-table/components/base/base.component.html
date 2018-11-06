@@ -122,9 +122,9 @@
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"
-                     id="checkbox-{{rowIndex}}"
-                     [checked]="isSelected"
-                     (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+                id="checkbox-{{rowIndex}}"
+                [checked]="isSelected"
+                (change)="onCheckboxSelect($event, row, rowIndex)">
               <i class="ngx-form-icon"></i>
             </label>
           </td>
@@ -212,9 +212,9 @@
           <td *ngIf="config.checkboxes">
             <label class="ngx-form-checkbox">
               <input type="checkbox"
-                     id="checkbox-draggable-{{rowIndex}}"
-                     [checked]="isSelected"
-                     (change)="onCheckboxSelect($event.target.value, row, rowIndex)">
+                id="checkbox-draggable-{{rowIndex}}"
+                [checked]="isSelected"
+                (change)="onCheckboxSelect($event, row, rowIndex)">
               <i class="ngx-form-icon"></i>
             </label>
           </td>
