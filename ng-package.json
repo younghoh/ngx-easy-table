@@ -1,6 +1,5 @@
 {
   "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-  "src": "./",
   "dest": "dist",
   "workingDirectory": ".ng_build",
   "lib": {
@@ -10,8 +9,6 @@
     }
   },
   "whitelistedNonPeerDependencies": [
-    "ngx-pagination",
-    "@swimlane/dragula",
-    "@swimlane/ngx-dnd"
+    "ngx-pagination"
   ]
 }
