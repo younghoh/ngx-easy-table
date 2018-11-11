@@ -44,6 +44,7 @@ export class AppComponent {
       { link: 'summary-footer', name: 'Summary footer' },
       { link: 'filter-template', name: 'Filter template' },
       { link: 'pagination-range', name: 'Pagination range' },
+      { link: 'select-all-template', name: 'Select All template' },
     ],
     select: [
       { link: 'select-row', name: 'Select row' },
