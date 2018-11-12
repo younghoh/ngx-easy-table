@@ -337,14 +337,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.fixedColumnWidth ? 100 / this.columns.length + '%' : null;
   }
 
-  onRowDrag(event) {
-    this.emitEvent(Event.onRowDrag, event);
-  }
-
-  onRowDrop(event) {
-    this.emitEvent(Event.onRowDrop, event);
-  }
-
   getColumnDefinition(column: Columns): boolean {
     return column.searchEnabled || typeof column.searchEnabled === 'undefined';
   }
@@ -379,6 +371,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
+    this.emitEvent(Event.onRowDrop, event);
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 }
