@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "7.0.0",
+  "version": "7.0.2",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
@@ -34,11 +34,11 @@
     }
   },
   "dependencies": {
-    "ngx-pagination": "^3.2.1"
+    "ngx-pagination": "^3.2.1",
+    "@angular/cdk": "^7.0.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.5",
-    "@angular/cdk": "^7.0.3",
     "@angular/cli": "^7.0.5",
     "@angular/common": "^7.0.3",
     "@angular/compiler": "^7.0.3",
