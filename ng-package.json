@@ -9,6 +9,7 @@
     }
   },
   "whitelistedNonPeerDependencies": [
-    "ngx-pagination"
+    "ngx-pagination",
+    "@angular/cdk"
   ]
 }
