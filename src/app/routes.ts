@@ -26,6 +26,7 @@ import {
   LiveUpdateComponent,
   ManyTablesComponent,
   ModalComponent,
+  NoResultsTemplateComponent,
   PaginationComponent,
   PaginationRangeComponent,
   PersistStateComponent,
@@ -88,6 +89,7 @@ export const routes = [
   { path: 'pagination-range', component: PaginationRangeComponent },
   { path: 'async', component: AsyncComponent },
   { path: 'select-all-template', component: SelectAllTemplateComponent },
+  { path: 'no-results-template', component: NoResultsTemplateComponent },
   { path: '**', component: BasicComponent },
 ];
 

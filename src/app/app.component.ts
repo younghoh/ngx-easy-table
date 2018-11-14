@@ -45,6 +45,7 @@ export class AppComponent {
       { link: 'filter-template', name: 'Filter template' },
       { link: 'pagination-range', name: 'Pagination range' },
       { link: 'select-all-template', name: 'Select All template' },
+      { link: 'no-results-template', name: 'No Results template' },
     ],
     select: [
       { link: 'select-row', name: 'Select row' },
