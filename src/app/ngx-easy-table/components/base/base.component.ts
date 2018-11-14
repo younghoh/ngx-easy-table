@@ -35,25 +35,25 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedCol: number;
   public term;
   public globalSearchTerm;
-  grouped: any = [];
-  menuActive = false;
-  isSelected = false;
-  page = 1;
-  count = null;
-  limit;
-  sortBy: { key: string } & { order: string } = {
+  public grouped: any = [];
+  public menuActive = false;
+  public isSelected = false;
+  public page = 1;
+  public count = null;
+  public limit;
+  public sortBy: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
-  sortByIcon: { key: string } & { order: string } = {
+  public sortByIcon: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
-  selectedDetailsTemplateRowId = new Set();
-  id;
-  th;
-  startOffset;
-  loadingHeight = '30px';
+  public selectedDetailsTemplateRowId = new Set();
+  public id;
+  public th;
+  public startOffset;
+  public loadingHeight = '30px';
   public config: Config;
 
   @Input('configuration')
@@ -77,7 +77,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor(private readonly cdr: ChangeDetectorRef) {
     this.id = UtilsService.randomId();
   }
 
