@@ -73,6 +73,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() summaryTemplate: TemplateRef<any>;
   @Input() groupRowsHeaderTemplate: TemplateRef<any>;
   @Input() filtersTemplate: TemplateRef<any>;
+  @Input() noResultsTemplate: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;

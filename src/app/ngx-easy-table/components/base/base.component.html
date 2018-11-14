@@ -233,7 +233,11 @@
     </tbody>
     <tbody *ngIf="!data || (data && data.length < 1)">
     <tr class="ngx-table__body-empty">
-      <td [attr.colspan]="columns && columns.length + 1">
+      <ng-container
+        *ngIf="noResultsTemplate"
+        [ngTemplateOutlet]="noResultsTemplate">
+      </ng-container>
+      <td [attr.colspan]="columns && columns.length + 1" *ngIf="!noResultsTemplate">
         <div class="ngx-table__table-no-results">
           No results
         </div>
