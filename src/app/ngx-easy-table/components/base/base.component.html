@@ -236,7 +236,7 @@
       </ng-container>
     </ng-container>
     </tbody>
-    <tbody *ngIf="!data || (data && data.length < 1)">
+    <tbody *ngIf="!isLoading && (!data || (data && data.length < 1))">
     <tr class="ngx-table__body-empty">
       <ng-container
         *ngIf="noResultsTemplate"
