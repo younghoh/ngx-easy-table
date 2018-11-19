@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 
 export class GlobalSearchPipe implements PipeTransform {
-  transform(dataArr: any, filter?: any) {
+  transform(dataArr: any[], filter?: any) {
     if (typeof dataArr === 'undefined') {
       return;
     }
@@ -13,7 +13,7 @@ export class GlobalSearchPipe implements PipeTransform {
       return dataArr;
     }
     return dataArr.filter((row) => {
-      const element = JSON.stringify(row);
+      const element = JSON.stringify(Object.values(row));
       return element.toLocaleLowerCase().indexOf(filter.value.toLocaleLowerCase()) !== -1;
     });
   }
