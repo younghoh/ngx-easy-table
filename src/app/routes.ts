@@ -26,12 +26,14 @@ import {
   LiveUpdateComponent,
   ManyTablesComponent,
   ModalComponent,
+  NoResultsTemplateComponent,
   PaginationComponent,
   PaginationRangeComponent,
   PersistStateComponent,
   ResizableComponent,
   RowTemplateComponent,
   SearchComponent,
+  SelectAllTemplateComponent,
   SelectCellComponent,
   SelectColComponent,
   SelectRowComponent,
@@ -86,6 +88,8 @@ export const routes = [
   { path: 'persist-state', component: PersistStateComponent },
   { path: 'pagination-range', component: PaginationRangeComponent },
   { path: 'async', component: AsyncComponent },
+  { path: 'select-all-template', component: SelectAllTemplateComponent },
+  { path: 'no-results-template', component: NoResultsTemplateComponent },
   { path: '**', component: BasicComponent },
 ];
 
