@@ -145,12 +145,21 @@
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "cognitive-complexity": [true, 10],
+    "cognitive-complexity": [
+      true,
+      10
+    ],
     "no-useless-cast": true,
     "no-variable-usage-before-declaration": true,
-    "no-big-function": [true, 40],
+    "no-big-function": [
+      true,
+      40
+    ],
     "no-same-line-conditional": true,
-    "angular-whitespace": [true, "check-semicolon"],
+    "angular-whitespace": [
+      true,
+      "check-semicolon"
+    ],
     "banana-in-box": true,
     "templates-no-negated-async": true,
     "max-inline-declarations": true,
@@ -165,6 +174,10 @@
     "no-forward-ref": true,
     "contextual-life-cycle": true,
     "pipe-impure": true,
-    "template-conditional-complexity": [true, 10]
+    "template-conditional-complexity": [
+      true,
+      10
+    ],
+    "no-duplicate-string": false
   }
 }
