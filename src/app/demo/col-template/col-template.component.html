@@ -9,4 +9,7 @@
 </div>
 <ng-template #phoneTpl let-row>
   <div class="phone">Phone: {{row.phone}}</div>
+  <div>
+    <img [src]="row.imgUrl" alt="">
+  </div>
 </ng-template>
