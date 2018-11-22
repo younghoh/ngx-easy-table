@@ -318,9 +318,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   get isLoading(): boolean {
-    const table = document.getElementById('table');
-    if (table && table['rows'] && table['rows'].length > 3) {
-      this.getLoadingHeight(table['rows']);
+    const table = document.getElementById('table') as HTMLTableElement;
+    if (table && table.rows && table.rows.length > 3) {
+      this.getLoadingHeight(table.rows);
     }
     return this.config.isLoading;
   }

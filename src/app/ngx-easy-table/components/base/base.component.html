@@ -34,12 +34,12 @@
             (mouseup)="onMouseUp($event)"
             (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
-            <div class="ngx-table__header-title">{{ column['title'] }}<span>&nbsp;</span>
-              <i *ngIf="sortByIcon.key === column['key'] && sortByIcon.order==='asc'"
+            <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
+              <i *ngIf="sortByIcon.key === column.key && sortByIcon.order==='asc'"
                  [style.display]="config.orderEnabled?'':'none' "
                  class="ngx-icon ngx-icon-arrow-up">
               </i>
-              <i *ngIf="sortByIcon.key === column['key'] && sortByIcon.order==='desc'"
+              <i *ngIf="sortByIcon.key === column.key && sortByIcon.order==='desc'"
                  [style.display]="config.orderEnabled?'':'none' "
                  class="ngx-icon ngx-icon-arrow-down">
               </i>
@@ -134,9 +134,9 @@
             </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">
-            <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
-                (contextmenu)="onContextMenu($event, row, column['key'], colIndex, rowIndex)"
-                (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
+            <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
+                (contextmenu)="onContextMenu($event, row, column.key, colIndex, rowIndex)"
+                (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
                 [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                 [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
             >
@@ -224,8 +224,8 @@
             </label>
           </td>
           <ng-container *ngFor="let column of columns; let colIndex = index">
-            <td (click)="onClick($event, row, column['key'], colIndex, rowIndex)"
-                (dblclick)="onDoubleClick($event, row, column['key'], colIndex, rowIndex)"
+            <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
+                (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
                 [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                 [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
             >

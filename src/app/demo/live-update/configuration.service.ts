@@ -14,7 +14,7 @@ export class ConfigService {
     selectRow: true,
     selectCol: false,
     selectCell: false,
-    rows: 5,
+    rows: 10,
     additionalActions: false,
     serverPagination: false,
     isLoading: false,
@@ -32,7 +32,7 @@ export class ConfigService {
     showContextMenu: false,
     persistState: false,
     tableLayout: {
-      style: 'normal',
+      style: 'tiny',
       theme: 'light',
       borderless: false,
       hover: true,
