@@ -70,6 +70,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() pagination;
   @Input() groupRowsBy: string;
   @Input() toggleRowIndex;
+  @Input() dblClickTemplate: TemplateRef<any>;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
   @Input() groupRowsHeaderTemplate: TemplateRef<any>;
@@ -192,6 +193,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       rowId: rowIndex,
       colId: colIndex,
     };
+    this.data = [...this.data.map((val, key) => {
+      if (rowIndex === key) {
+        val.dblClicked = true;
+        return val;
+      }
+      val.dblClicked = false;
+      return val;
+    })];
     this.emitEvent(Event.onDoubleClick, value);
   }
 
@@ -369,7 +378,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       this.sortByIcon.order = (column.orderBy === 'asc') ? 'desc' : 'asc';
       this.orderBy(column);
     } else {
-      this.data = [...data.currentValue];
+      this.data = [...data.currentValue.map((val) => {
+        return Object.assign(val, {'dblClicked': false});
+      })];
     }
   }
 

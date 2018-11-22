@@ -146,6 +146,11 @@
                 [ngTemplateOutlet]="column.cellTemplate"
                 [ngTemplateOutletContext]="{ $implicit: row }">
               </ng-container>
+              <ng-container
+                *ngIf="row.dblClicked"
+                [ngTemplateOutlet]="dblClickTemplate"
+                [ngTemplateOutletContext]="{ $implicit: row }">
+              </ng-container>
             </td>
           </ng-container>
           <td *ngIf="config.additionalActions || config.detailsTemplate">
