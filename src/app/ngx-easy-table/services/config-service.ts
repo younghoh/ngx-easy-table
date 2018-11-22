@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Config } from '../model/config';
+import { Config, STYLE, THEME } from '..';
 
 @Injectable()
 export class ConfigService {
@@ -34,8 +34,8 @@ export class ConfigService {
     persistState: false,
     paginationMaxSize: 5,
     tableLayout: {
-      style: 'normal',
-      theme: 'light',
+      style: STYLE.NORMAL,
+      theme: THEME.LIGHT,
       borderless: false,
       hover: true,
       striped: false,

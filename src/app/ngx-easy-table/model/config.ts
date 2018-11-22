@@ -29,10 +29,21 @@ export interface Config {
   persistState?: boolean;
   paginationMaxSize?: number;
   tableLayout: {
-    style: string,
-    theme: string,
+    style: STYLE,
+    theme: THEME,
     borderless: boolean,
     hover: boolean,
     striped: boolean,
   };
+}
+
+export enum STYLE {
+  TINY = 'tiny',
+  BIG = 'big',
+  NORMAL = 'normal',
+}
+
+export enum THEME {
+  LIGHT = 'light',
+  DARK = 'dark',
 }
