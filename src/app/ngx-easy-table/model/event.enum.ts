@@ -9,7 +9,6 @@ export enum Event {
   onSelectAll = 'onSelectAll',
   onColumnResizeMouseDown = 'onColumnResizeMouseDown',
   onColumnResizeMouseUp = 'onColumnResizeMouseUp',
-  onRowDrag = 'onRowDrag',
   onRowDrop = 'onRowDrop',
   onRowCollapsedShow = 'onRowCollapsedShow',
   onRowCollapsedHide = 'onRowCollapsedHide',

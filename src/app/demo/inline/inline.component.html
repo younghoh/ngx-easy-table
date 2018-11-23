@@ -1,5 +1,10 @@
 <div class="columns">
   <div class="column col-12">
+    <small>Double click cell to edit value</small>
+  </div>
+</div>
+<div class="columns">
+  <div class="column col-12">
     <ngx-table
       [configuration]="configuration"
       [data]="data"
@@ -12,10 +17,9 @@
   <div class="phone" *ngIf="edit !== rowIndex">Phone: {{row.phone}}</div>
   <div *ngIf="edit === rowIndex">
     <input type="text"
-           placeholder="input"
+           placeholder="Phone"
            (blur)="update($event)"
            class="form-label"
-           [value]="row.phone"
-    >
+           [value]="row.phone">
   </div>
 </ng-template>

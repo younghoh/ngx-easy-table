@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Event } from '../../ngx-easy-table';
 
 @Component({
   selector: 'app-inline',
@@ -31,7 +32,7 @@ export class InlineComponent implements OnInit {
   }
 
   eventEmitted($event) {
-    if ($event.event === 'onDoubleClick') {
+    if ($event.event === Event.onDoubleClick) {
       this.edit = $event.value.rowId;
     }
   }
