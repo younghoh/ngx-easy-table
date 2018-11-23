@@ -11,17 +11,8 @@
   </div>
   <div class="columns">
     <div class="column col-12">
-      <ngx-table [configuration]="configuration"
-                 [data]="data"
-                 [dblClickTemplate]="dblClickTemplateRef"
-                 [columns]="columns"
-                 (event)="eventEmitted($event)">
+      <ngx-table [configuration]="configuration" [data]="data" [columns]="columns" (event)="eventEmitted($event)">
       </ngx-table>
     </div>
   </div>
 </div>
-<ng-template #dblClickTemplateRef let-row>
-  <td>
-    <input type="text" placeholder="input" value="{{row.name}}">
-  </td>
-</ng-template>

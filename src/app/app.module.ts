@@ -50,6 +50,7 @@ import {
   SummaryFooterComponent,
   TemplateComponent,
   ToggleColumnComponent,
+  InlineComponent,
 } from './demo';
 
 @NgModule({
@@ -106,6 +107,7 @@ import {
     AsyncComponent,
     SelectAllTemplateComponent,
     NoResultsTemplateComponent,
+    InlineComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],
