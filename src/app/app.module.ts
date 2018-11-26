@@ -51,6 +51,7 @@ import {
   TemplateComponent,
   ToggleColumnComponent,
   InlineComponent,
+  InlineRowComponent,
 } from './demo';
 
 @NgModule({
@@ -108,6 +109,7 @@ import {
     SelectAllTemplateComponent,
     NoResultsTemplateComponent,
     InlineComponent,
+    InlineRowComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],
