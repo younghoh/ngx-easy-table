@@ -40,6 +40,7 @@ export class AppComponent {
       { link: 'checkboxes', name: 'Checkboxes' },
       { link: 'checkbox-default', name: 'Checkboxes template' },
       { link: 'customize-theme', name: 'Customize theme' },
+      { link: 'inline', name: 'Inline' },
       { link: 'styles', name: 'Styles' },
       { link: 'summary-footer', name: 'Summary footer' },
       { link: 'filter-template', name: 'Filter template' },

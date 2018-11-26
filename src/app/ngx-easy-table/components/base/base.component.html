@@ -144,7 +144,7 @@
               <ng-container
                 *ngIf="column.cellTemplate"
                 [ngTemplateOutlet]="column.cellTemplate"
-                [ngTemplateOutletContext]="{ $implicit: row }">
+                [ngTemplateOutletContext]="{ $implicit: row, rowIndex: rowIndex }">
               </ng-container>
             </td>
           </ng-container>

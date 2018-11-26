@@ -1,0 +1,25 @@
+<div class="columns">
+  <div class="column col-12">
+    <small>Double click cell to edit value</small>
+  </div>
+</div>
+<div class="columns">
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      (event)="eventEmitted($event)"
+      [columns]="columns">
+    </ngx-table>
+  </div>
+</div>
+<ng-template #phoneTpl let-row let-rowIndex="rowIndex">
+  <div class="phone" *ngIf="edit !== rowIndex">Phone: {{row.phone}}</div>
+  <div *ngIf="edit === rowIndex">
+    <input type="text"
+           placeholder="Phone"
+           (blur)="update($event)"
+           class="form-label"
+           [value]="row.phone">
+  </div>
+</ng-template>
