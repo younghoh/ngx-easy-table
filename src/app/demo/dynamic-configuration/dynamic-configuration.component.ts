@@ -1,6 +1,6 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { columns, Company, data } from '../../../assets/data';
-import { Columns } from '../../ngx-easy-table';
+import { Columns } from '../../../../projects/lib/src/lib';
 import { ConfigService } from './configuration.service';
 
 @Component({

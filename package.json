@@ -16,7 +16,8 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",
-    "build:lib": "ng-packagr && node-sass src/assets/style.scss dist/style.css && cp src/assets/style.scss dist/style.scss"
+    "publish:lib": "cd dist/my-lib && npm publish",
+    "build:lib": "ng build lib && node-sass projects/lib/assets/style.scss dist/lib/style.css && cp projects/lib/assets/style.scss dist/lib/style.scss"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -25,7 +26,6 @@
     "@angular/core": ">=5.0.0",
     "@angular/platform-browser": ">=5.0.0",
     "@angular/platform-browser-dynamic": ">=5.0.0",
-    "ngx-pagination": "^3.1.1",
     "rxjs": "^6.1.0"
   },
   "husky": {
@@ -33,12 +33,9 @@
       "pre-push": "ng lint"
     }
   },
-  "dependencies": {
-    "ngx-pagination": "^3.2.1",
-    "@angular/cdk": "^7.1.0"
-  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.10.6",
+    "@angular-devkit/build-ng-packagr": "~0.11.0",
     "@angular/cli": "^7.1.0",
     "@angular/common": "^7.1.0",
     "@angular/compiler": "^7.1.0",
@@ -73,6 +70,7 @@
     "start-server-and-test": "^1.7.11",
     "ts-node": "^7.0.1",
     "tsickle": "^0.34.0",
+    "tslib": "^1.9.0",
     "tslint": "^5.10.0",
     "tslint-sonarts": "^1.7.0",
     "typescript": "^3.1.6",

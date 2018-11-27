@@ -11,7 +11,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/ngx-easy-table",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
@@ -21,7 +21,7 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/assets/style.scss"
+              "projects/lib/assets/style.scss"
             ],
             "scripts": []
           },
@@ -42,11 +42,13 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "budgets": [{
-                "type": "initial",
-                "maximumWarning": "2mb",
-                "maximumError": "3mb"
-              }]
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
+                }
+              ]
             }
           }
         },
@@ -76,7 +78,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/assets/style.scss"
+              "projects/lib/assets/style.scss"
             ],
             "assets": [
               "src/assets",
@@ -92,6 +94,33 @@
               "src/tsconfig.spec.json"
             ],
             "exclude": []
+          }
+        }
+      }
+    },
+    "lib": {
+      "root": "projects/lib",
+      "sourceRoot": "projects/lib/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/lib/tsconfig.lib.json",
+            "project": "projects/lib/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lib/tsconfig.lib.json",
+              "projects/lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
