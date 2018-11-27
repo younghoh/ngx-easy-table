@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 @Component({
   selector: 'app-table',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public version: string = environment.VERSION;
