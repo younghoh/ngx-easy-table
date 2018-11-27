@@ -16,6 +16,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",
+    "watch:table": "ng build ngx-easy-table --watch",
     "publish:lib": "cd dist/ngx-easy-table && npm publish",
     "build:lib": "ng build ngx-easy-table && node-sass projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.css && cp projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.scss"
   },
@@ -102,7 +103,7 @@
   ],
   "author": "Sebastian Superczynski <s.superczynski@gmail.com> (https://espeo.eu/)",
   "dependencies": {
-    "ngx-easy-table": "^7.2.0",
+    "ngx-easy-table": "^8.0.0-alpha.1",
     "spectre.css": "^0.5.7"
   }
 }
