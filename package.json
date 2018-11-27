@@ -70,7 +70,7 @@
     "ng-packagr": "4.4.0",
     "node-sass": "^4.10.0",
     "rxjs": "^6.3.3",
-    "start-server-and-test": "^1.7.4",
+    "start-server-and-test": "^1.7.11",
     "ts-node": "^7.0.1",
     "tsickle": "^0.34.0",
     "tslint": "^5.10.0",
