@@ -17,17 +17,16 @@
       "dom"
     ],
     "paths": {
-      "lib": [
-        "dist/lib"
+      "ngx-easy-table": [
+        "dist/ngx-easy-table"
       ],
-      "lib/*": [
-        "dist/lib/*"
+      "ngx-easy-table/*": [
+        "dist/ngx-easy-table/*"
       ]
     }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "enableResourceInlining": true,
     "preserveWhiteSpace": false
   }
 }

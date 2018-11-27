@@ -1,21 +1,23 @@
 {
   "name": "ngx-easy-table",
-  "version": "8.0.0-rc0",
+  "version": "8.0.0-alpha-1",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
   "license": "MIT",
   "peerDependencies": {
+    "@angular/cdk": "^7.1.0",
     "@angular/common": ">=5.0.0",
     "@angular/compiler": ">=5.0.0",
     "@angular/core": ">=5.0.0",
-    "rxjs": "^6.1.0",
-    "typescript": ">=3.0.0",
-    "zone.js": "^0.8.26",
     "core-js": "^2.5.6",
+    "ngx-pagination": "^3.2.1",
+    "rxjs": "^6.1.0",
     "ts-node": "^7.0.0",
     "tsickle": "^0.34.0",
-    "tslib": "^1.9.0"
+    "tslib": "^1.9.0",
+    "typescript": ">=3.0.0",
+    "zone.js": "^0.8.26"
   },
   "dependencies": {
     "ngx-pagination": "^3.2.1",

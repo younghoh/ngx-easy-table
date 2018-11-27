@@ -52,7 +52,7 @@ import {
   InlineComponent,
   InlineRowComponent,
 } from './demo';
-import { TableModule } from '../../projects/lib/src/lib/table.module';
+import { TableModule } from '../../projects/ngx-easy-table/src/lib/table.module';
 
 @NgModule({
   imports: [

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { columns, Company, data } from '../../../assets/data';
-import { Columns } from '../../../../projects/lib/src/lib';
+import { Columns } from '../../../../projects/ngx-easy-table/src/lib';
 import { ConfigService } from './configuration.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Event } from '../../../../projects/lib/src/lib';
+import { Event } from '../../../../projects/ngx-easy-table/src/lib';
 import { ConfigService } from './configuration.service';
 
 @Component({
