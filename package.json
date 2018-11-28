@@ -1,5 +1,5 @@
 {
-  "name": "ngx-easy-table",
+  "name": "ngx-easy-table-demo",
   "version": "7.2.0",
   "description": "Angular easy table",
   "typings": "index.ts",
@@ -11,12 +11,14 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "npm run cy:ci",
-    "cy:serve": "ng build --prod && http-server dist -p 4201",
+    "cy:serve": "ng build --prod && http-server dist/demo -p 4201",
     "cy:test": "cypress open",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",
-    "build:lib": "ng-packagr && node-sass src/assets/style.scss dist/style.css && cp src/assets/style.scss dist/style.scss"
+    "watch:table": "ng build ngx-easy-table --watch",
+    "publish:lib": "cd dist/ngx-easy-table && npm publish",
+    "build:lib": "ng build ngx-easy-table && node-sass projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.css && cp projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.scss"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -25,7 +27,6 @@
     "@angular/core": ">=5.0.0",
     "@angular/platform-browser": ">=5.0.0",
     "@angular/platform-browser-dynamic": ">=5.0.0",
-    "ngx-pagination": "^3.1.1",
     "rxjs": "^6.1.0"
   },
   "husky": {
@@ -33,13 +34,10 @@
       "pre-push": "ng lint"
     }
   },
-  "dependencies": {
-    "ngx-pagination": "^3.2.1",
-    "@angular/cdk": "^7.1.0"
-  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.10.6",
-    "@angular/cli": "^7.0.6",
+    "@angular-devkit/build-ng-packagr": "~0.11.0",
+    "@angular/cli": "^7.1.0",
     "@angular/common": "^7.1.0",
     "@angular/compiler": "^7.1.0",
     "@angular/compiler-cli": "^7.1.0",
@@ -70,9 +68,10 @@
     "ng-packagr": "4.4.0",
     "node-sass": "^4.10.0",
     "rxjs": "^6.3.3",
-    "start-server-and-test": "^1.7.4",
+    "start-server-and-test": "^1.7.11",
     "ts-node": "^7.0.1",
     "tsickle": "^0.34.0",
+    "tslib": "^1.9.0",
     "tslint": "^5.10.0",
     "tslint-sonarts": "^1.7.0",
     "typescript": "^3.1.6",
@@ -102,5 +101,9 @@
     "ng2-easy-table",
     "ngx-easy-table"
   ],
-  "author": "Sebastian Superczynski <s.superczynski@gmail.com> (https://espeo.eu/)"
+  "author": "Sebastian Superczynski <s.superczynski@gmail.com> (https://espeo.eu/)",
+  "dependencies": {
+    "ngx-easy-table": "^8.0.0-alpha.1",
+    "spectre.css": "^0.5.7"
+  }
 }

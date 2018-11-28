@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { Event } from '../../ngx-easy-table';
+import { Event } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-inline',

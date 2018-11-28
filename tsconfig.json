@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "baseUrl": "./",
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -14,7 +15,15 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-easy-table": [
+        "dist/ngx-easy-table"
+      ],
+      "ngx-easy-table/*": [
+        "dist/ngx-easy-table/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

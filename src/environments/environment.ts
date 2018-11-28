@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  VERSION: require('../../package.json').version,
+  VERSION: require('../../projects/ngx-easy-table/package.json').version,
 };

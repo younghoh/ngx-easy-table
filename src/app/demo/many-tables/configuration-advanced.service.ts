@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Config, STYLE, THEME } from '../../ngx-easy-table';
+import { Config, STYLE, THEME } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Injectable()
 export class ConfigurationAdvancedService {
