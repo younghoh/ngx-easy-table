@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "npm run cy:ci",
-    "cy:serve": "ng build --prod && http-server dist/ngx-easy-table -p 4201",
+    "cy:serve": "ng build --prod && http-server dist/demo -p 4201",
     "cy:test": "cypress open",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
