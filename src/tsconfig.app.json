@@ -8,10 +8,7 @@
       "node"
     ]
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ],
+  "exclude": [],
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictFunctionTypes": true,
