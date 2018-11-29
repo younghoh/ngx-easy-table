@@ -83,8 +83,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "src/tsconfig.app.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -110,8 +109,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ngx-easy-table/tsconfig.lib.json",
-              "projects/ngx-easy-table/tsconfig.spec.json"
+              "projects/ngx-easy-table/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
