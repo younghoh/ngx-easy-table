@@ -69,5 +69,6 @@ export class AppComponent {
 
   select(selected) {
     this.selected = selected;
+    this.showMenu = !this.showMenu;
   }
 }
