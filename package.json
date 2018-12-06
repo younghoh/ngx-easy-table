@@ -17,6 +17,7 @@
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",
     "watch:table": "ng build ngx-easy-table --watch",
     "publish:lib": "cd dist/ngx-easy-table && npm publish",
+    "prepublish:lib": "cd dist/ngx-easy-table && npm publish --tag next",
     "build:lib": "ng build ngx-easy-table && node-sass projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.css && cp projects/ngx-easy-table/assets/style.scss dist/ngx-easy-table/style.scss"
   },
   "license": "MIT",
