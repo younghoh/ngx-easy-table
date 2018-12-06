@@ -29,8 +29,8 @@ export interface Config {
   persistState?: boolean;
   paginationMaxSize?: number;
   tableLayout: {
-    style: STYLE,
-    theme: THEME,
+    style: STYLE | string,
+    theme: THEME | string,
     borderless: boolean,
     hover: boolean,
     striped: boolean,
