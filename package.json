@@ -27,7 +27,7 @@
     }
   },
   "dependencies": {
-    "ngx-easy-table": "^8.0.0-alpha.3",
+    "ngx-easy-table": "^8.0.1",
     "spectre.css": "^0.5.7",
     "typeface-lato": "0.0.54"
   },
