@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Config, STYLE, THEME } from '../../ngx-easy-table';
+import { Config, STYLE, THEME } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Injectable()
 export class ConfigService {
@@ -11,7 +11,7 @@ export class ConfigService {
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: false,
-    selectRow: true,
+    selectRow: false,
     selectCol: false,
     selectCell: false,
     rows: 10,
@@ -35,7 +35,7 @@ export class ConfigService {
       style: STYLE.NORMAL,
       theme: THEME.LIGHT,
       borderless: false,
-      hover: true,
+      hover: false,
       striped: false,
     },
   };

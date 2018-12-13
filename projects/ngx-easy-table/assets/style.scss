@@ -69,6 +69,10 @@ $primary-color: #50596c !default;
     &__table-menu {
     }
 
+    &__table-row-context-menu {
+      position: absolute;
+    }
+
     &__header {
     }
 
@@ -272,8 +276,7 @@ $primary-color: #50596c !default;
     }
 
     &-range-dropdown {
-      margin-top: 10px;
-      margin-right: 3px;
+      margin-top: 8px;
     }
 
     &-range-dropdown-button-item {
@@ -453,6 +456,7 @@ $primary-color: #50596c !default;
   &-btn-group {
     display: inline;
   }
+
   &-draggable-row {
     cursor: pointer;
   }

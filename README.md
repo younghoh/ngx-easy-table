@@ -9,13 +9,17 @@ https://github.com/ssuperczynski/ngx-easy-table/tree/master/src/app/demo
 
 ## Demo
 
-<a href="https://ngx-easy-table.eu">
+<a href="https://ngx-easy-table.eu" target="_blank">
 https://ngx-easy-table.eu
 </a>
 
 ## Installation
 
 `npm install ngx-easy-table --save`
+
+Library requires `@angular/cdk`, please install it as well.
+
+`npm install @angular/cdk --save`
 
 ## Available config settings:
 

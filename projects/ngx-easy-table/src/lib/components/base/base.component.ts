@@ -15,14 +15,22 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { from } from 'rxjs';
+import { from, Subject } from 'rxjs';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
 import { Columns, Config, Event } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationObject } from '../pagination/pagination.component';
+import { Pagination } from '../../model/pagination';
+import { API, ApiType } from '../../model/api';
 
 type KeyType = string | number | boolean;
+
+interface RowContextMenuPosition {
+  top: string | null;
+  left: string | null;
+  value: any | null;
+}
 
 @Component({
   selector: 'ngx-table',
@@ -40,6 +48,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public isSelected = false;
   public page = 1;
   public count = null;
+  public rowContextMenuPosition: RowContextMenuPosition = {
+    top: null,
+    left: null,
+    value: null,
+  };
   public limit;
   public sortBy: { key: string } & { order: string } = {
     key: '',
@@ -66,8 +79,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config;
   }
 
+  @Input() api: Subject<ApiType>;
   @Input() data: any[];
-  @Input() pagination;
+  @Input() pagination: Pagination;
   @Input() groupRowsBy: string;
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
@@ -76,8 +90,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() filtersTemplate: TemplateRef<any>;
   @Input() selectAllTemplate: TemplateRef<any>;
   @Input() noResultsTemplate: TemplateRef<any>;
+  @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
-  @Output() event = new EventEmitter();
+  @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
   constructor(private readonly cdr: ChangeDetectorRef) {
@@ -92,6 +107,9 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       ConfigService.config = this.configuration;
     }
     this.config = ConfigService.config;
+    if (this.api) {
+      this.bindApi();
+    }
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
       this.doGroupRows();
@@ -161,7 +179,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onClick($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     if (ConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -184,7 +202,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  onDoubleClick($event: object, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onDoubleClick($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
     const value = {
       event: $event,
       row,
@@ -209,14 +227,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
-  onSearch($event): void {
+  onSearch($event: string): void {
     if (!ConfigService.config.serverPagination) {
       this.term = $event;
     }
     this.emitEvent(Event.onSearch, $event);
   }
 
-  onGlobalSearch($event): void {
+  onGlobalSearch($event: string): void {
     if (!ConfigService.config.serverPagination) {
       this.globalSearchTerm = $event;
     }
@@ -348,8 +366,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onContextMenu($event: any, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
-    if (typeof this.config.showContextMenu === 'undefined' || !this.config.showContextMenu) {
+  onRowContextMenu($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+    if (!this.config.showContextMenu) {
       return;
     }
     $event.preventDefault();
@@ -360,6 +378,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       rowId: rowIndex,
       colId: colIndex,
     };
+    this.rowContextMenuPosition = {
+      top: `${$event.y - 10}px`,
+      left: `${$event.x - 10}px`,
+      value,
+    };
+
     this.emitEvent(Event.onRowContextMenu, value);
   }
 
@@ -376,5 +400,24 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   onDrop(event: CdkDragDrop<string[]>) {
     this.emitEvent(Event.onRowDrop, event);
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
+  }
+
+  private bindApi() {
+    this.api.subscribe((event) => {
+      switch (event.type) {
+        case API.rowContextMenuClicked:
+          this.rowContextMenuPosition = {
+            top: null,
+            left: null,
+            value: null,
+          };
+          break;
+        case API.toolPanelClicked:
+          // TODO
+          break;
+        default:
+          console.warn('unrecognized API value');
+      }
+    });
   }
 }

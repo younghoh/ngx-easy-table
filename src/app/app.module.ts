@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { TableModule } from './ngx-easy-table/table.module';
 import { routing } from './routes';
 
 import {
@@ -50,7 +49,11 @@ import {
   SummaryFooterComponent,
   TemplateComponent,
   ToggleColumnComponent,
+  InlineComponent,
+  InlineRowComponent,
+  ContextMenuComponent,
 } from './demo';
+import { TableModule } from 'ngx-easy-table';
 
 @NgModule({
   imports: [
@@ -106,6 +109,9 @@ import {
     AsyncComponent,
     SelectAllTemplateComponent,
     NoResultsTemplateComponent,
+    InlineComponent,
+    InlineRowComponent,
+    ContextMenuComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

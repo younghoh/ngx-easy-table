@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 @Component({
   selector: 'app-table',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   public version: string = environment.VERSION;
@@ -28,6 +28,7 @@ export class AppComponent {
       { link: 'column-width', name: 'Column width' },
       { link: 'fixed-width', name: 'Fixed width' },
       { link: 'persist-state', name: 'Persist state' },
+      { link: 'context-menu', name: 'Context menu' },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },
@@ -40,6 +41,8 @@ export class AppComponent {
       { link: 'checkboxes', name: 'Checkboxes' },
       { link: 'checkbox-default', name: 'Checkboxes template' },
       { link: 'customize-theme', name: 'Customize theme' },
+      { link: 'inline-cell', name: 'Inline cell' },
+      { link: 'inline-row', name: 'Inline row' },
       { link: 'styles', name: 'Styles' },
       { link: 'summary-footer', name: 'Summary footer' },
       { link: 'filter-template', name: 'Filter template' },
@@ -67,5 +70,6 @@ export class AppComponent {
 
   select(selected) {
     this.selected = selected;
+    this.showMenu = !this.showMenu;
   }
 }
