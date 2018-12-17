@@ -285,7 +285,7 @@
     </tfoot>
   </table>
   <pagination
-    id="pagination"
+    [attr.id]="'pagination' + id"
     *ngIf="config.paginationEnabled"
     [id]="id"
     [config]="config"
