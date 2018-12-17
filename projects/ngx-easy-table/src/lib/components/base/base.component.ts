@@ -170,6 +170,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (!ConfigService.config.serverPagination) {
       this.data = [...this.data];
     }
+    this.sortBy = {...this.sortBy};
     const value = {
       key,
       order: this.sortByIcon.order,

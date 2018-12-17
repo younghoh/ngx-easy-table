@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { FiltersService } from '../services/filters.service';
+import { Config } from '..';
 
 @Pipe({
   name: 'sort',
@@ -29,14 +30,20 @@ export class SortPipe implements PipeTransform {
     return 0;
   }
 
-  transform(value: any, args: any): any[] {
-    if (!args.key || args.key === '') {
-      return value;
+  transform(array: any[], filter?: { order: string, key: string }, config?: Config): any[] {
+    if (!filter.key || filter.key === '') {
+      return array;
     }
-    if (args.order === 'asc') {
-      return value.sort((a, b) => SortPipe.compare(a, b, args.key));
+    if (filter.order === 'asc') {
+      if (config && config.groupRows) {
+        return array.map((arr) => arr.sort((a, b) => SortPipe.compare(a, b, filter.key)));
+      }
+      return array.sort((a, b) => SortPipe.compare(a, b, filter.key));
     } else {
-      return value.sort((a, b) => SortPipe.compare(b, a, args.key));
+      if (config && config.groupRows) {
+        return array.map((arr) => arr.sort((a, b) => SortPipe.compare(b, a, filter.key)));
+      }
+      return array.sort((a, b) => SortPipe.compare(b, a, filter.key));
     }
   }
 }
