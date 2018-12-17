@@ -15,14 +15,14 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { from, Subject } from 'rxjs';
-import { flatMap, groupBy, reduce } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import {
   Columns, Config, Event, API, ApiType, Pagination, ColumnKeyType, TableMouseEvent,
 } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationObject } from '../pagination/pagination.component';
+import { GroupRowsService } from '../../services/group-rows.service';
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -32,7 +32,7 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [ConfigService, UtilsService],
+  providers: [ConfigService, UtilsService, GroupRowsService],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -110,7 +110,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
-      this.doGroupRows();
+      this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
     }
     this.doDecodePersistedState();
   }
@@ -131,7 +131,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       this.count = pagination.currentValue.count;
     }
     if (groupRowsBy && groupRowsBy.currentValue) {
-      this.doGroupRows();
+      this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
     }
     if (this.toggleRowIndex && this.toggleRowIndex.currentValue) {
       const row = this.toggleRowIndex.currentValue;
@@ -285,16 +285,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (search) {
       this.term = JSON.parse(search);
     }
-  }
-
-  private doGroupRows() {
-    this.grouped = [];
-    from(this.data).pipe(
-      groupBy((row) => row[this.groupRowsBy]),
-      flatMap((group) => group.pipe(
-        reduce((acc: object[], curr) => [...acc, curr], []),
-      )),
-    ).subscribe((row) => this.grouped.push(row));
   }
 
   isRowCollapsed(rowIndex: number): boolean {
