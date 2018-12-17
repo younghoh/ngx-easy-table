@@ -3,4 +3,7 @@ export enum API {
   toolPanelClicked,
 }
 
-export type ApiType = { type: API } & { value?: any | null};
+export interface ApiType {
+  type: API;
+  value?: any | null;
+}

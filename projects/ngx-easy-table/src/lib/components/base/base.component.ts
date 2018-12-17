@@ -17,14 +17,12 @@ import {
 
 import { from, Subject } from 'rxjs';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
-import { Columns, Config, Event } from '../..';
+import {
+  Columns, Config, Event, API, ApiType, Pagination, ColumnKeyType, TableMouseEvent,
+} from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationObject } from '../pagination/pagination.component';
-import { Pagination } from '../../model/pagination';
-import { API, ApiType } from '../../model/api';
-
-type KeyType = string | number | boolean;
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -179,7 +177,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
     if (ConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -191,7 +189,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       this.selectedCol = colIndex;
     }
     if (ConfigService.config.clickEvent) {
-      const value = {
+      const value: TableMouseEvent = {
         event: $event,
         row,
         key,
@@ -202,8 +200,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  onDoubleClick($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
-    const value = {
+  onDoubleClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
+    const value: TableMouseEvent = {
       event: $event,
       row,
       key,
@@ -366,12 +364,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onRowContextMenu($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onRowContextMenu($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
     if (!this.config.showContextMenu) {
       return;
     }
     $event.preventDefault();
-    const value = {
+    const value: TableMouseEvent = {
       event: $event,
       row,
       key,
