@@ -1,4 +1,4 @@
-import { Columns } from '../../projects/ngx-easy-table/src/lib';
+import { Columns } from 'ngx-easy-table';
 
 export interface Company {
   phone: string;
