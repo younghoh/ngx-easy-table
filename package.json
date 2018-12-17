@@ -62,7 +62,7 @@
     "tslib": "^1.9.0",
     "tslint": "^5.10.0",
     "tslint-sonarts": "^1.7.0",
-    "typescript": "^3.1.6",
+    "typescript": "~3.1.6",
     "zone.js": "^0.8.26"
   },
   "engines": {
