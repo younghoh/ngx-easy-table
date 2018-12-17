@@ -23,7 +23,7 @@
              (click)="showRange = !showRange">
           {{limit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
         </div>
-        <ul class="ngx-menu">
+        <ul class="ngx-menu" *ngIf="showRange">
           <li class="ngx-pagination-range-dropdown-button-item"
               (click)="changeLimit(limit)"
               *ngFor="let limit of ranges">
@@ -33,5 +33,4 @@
       </div>
     </div>
   </div>
-
 </div>
