@@ -1,0 +1,45 @@
+<div class="columns">
+  <div class="column col-12">
+    <button class="btn btn-primary" (click)="setPhone()">Set phone input</button>
+    <button class="btn btn-primary mx-1" (click)="setAge()">Set age input</button>
+    <button class="btn btn-primary mx-1" (click)="resetSearchInput()">Reset inputs</button>
+  </div>
+  <div class="column col-12">
+    <ngx-table [data]="data"
+               [configuration]="configuration"
+               [api]="api"
+               [columns]="columns">
+    </ngx-table>
+  </div>
+</div>
+<div class="columns">
+  <div class="column col-12">
+    <h3>Documentation</h3>
+    <p>Table has functionality to control it's content outside component. It means by using API you can control table behaviour as you want</p>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Value</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><code>API.setInputValue</code></td>
+        <td>Set input value</td>
+        <td>
+          <pre>
+            this.api.next(/
+            type: API.setInputValue,
+            value: [
+                / name: 'age', value: '32' },
+              ],
+            });
+          </pre>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

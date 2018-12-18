@@ -1,9 +1,26 @@
 export enum API {
-  rowContextMenuClicked,
-  toolPanelClicked,
+  rowContextMenuClicked = 'rowContextMenuClicked',
+  setInputValue = 'setInputValue',
+  toolPanelClicked = 'toolPanelClicked',
 }
 
-export interface ApiType {
-  type: API;
-  value?: any | null;
+interface RowContextMenuClicked {
+  type: API.rowContextMenuClicked;
 }
+
+interface SetInputValue {
+  type: API.setInputValue;
+  value: Array<{
+    name: string,
+    value: string,
+  }>;
+}
+
+interface ToolPanelClicked {
+  type: API.toolPanelClicked;
+}
+
+export type ApiType = RowContextMenuClicked
+  | SetInputValue
+  | ToolPanelClicked
+  ;

@@ -170,7 +170,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (!ConfigService.config.serverPagination) {
       this.data = [...this.data];
     }
-    this.sortBy = {...this.sortBy};
+    this.sortBy = { ...this.sortBy };
     const value = {
       key,
       order: this.sortByIcon.order,
@@ -226,7 +226,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
-  onSearch($event: string): void {
+  onSearch($event: { key: string, value: string }): void {
     if (!ConfigService.config.serverPagination) {
       this.term = $event;
     }
@@ -404,8 +404,16 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
         case API.toolPanelClicked:
           // TODO
           break;
+        case API.setInputValue:
+          event.value.forEach((input) => {
+            const phone = document.getElementById(`search_${input.name}`) as HTMLInputElement;
+            phone.value = input.value;
+            this.onSearch({ key: input.name, value: input.value });
+            this.cdr.markForCheck();
+          });
+          break;
         default:
-          console.warn('unrecognized API value');
+          console.warn('Unrecognized API value');
       }
     });
   }

@@ -47,6 +47,7 @@ import {
   InlineComponent,
   InlineRowComponent,
   ContextMenuComponent,
+  ApiComponent,
 } from './demo';
 
 export const routes = [
@@ -96,6 +97,7 @@ export const routes = [
   { path: 'inline-cell', component: InlineComponent },
   { path: 'inline-row', component: InlineRowComponent },
   { path: 'context-menu', component: ContextMenuComponent },
+  { path: 'api', component: ApiComponent },
   { path: '**', component: BasicComponent },
 ];
 

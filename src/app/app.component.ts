@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
 import { environment } from '../environments/environment';
 
+interface Link {
+  link: string;
+  name: string;
+}
+
 @Component({
   selector: 'app-table',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public version: string = environment.VERSION;
-  showMenu = false;
-  selected;
-  menu = {
+  public readonly version = environment.VERSION;
+  public showMenu = false;
+  public selected: Link;
+  public readonly menu = {
     basic: [
       { link: 'basic', name: 'Basic' },
       { link: 'async', name: 'Async resource' },
@@ -68,7 +73,7 @@ export class AppComponent {
     ],
   };
 
-  select(selected) {
+  select(selected: Link): void {
     this.selected = selected;
     this.showMenu = !this.showMenu;
   }

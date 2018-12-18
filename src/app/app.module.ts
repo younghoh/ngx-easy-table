@@ -52,6 +52,7 @@ import {
   InlineComponent,
   InlineRowComponent,
   ContextMenuComponent,
+  ApiComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -112,6 +113,7 @@ import { TableModule } from 'ngx-easy-table';
     InlineComponent,
     InlineRowComponent,
     ContextMenuComponent,
+    ApiComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

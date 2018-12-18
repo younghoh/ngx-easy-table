@@ -27,6 +27,23 @@
             </ul>
           </div>
         </div>
+        <div class="accordion">
+          <input type="checkbox" title="API" id="accordion-api" name="accordion-api"
+                 hidden
+                 checked>
+          <div class="accordion-body">
+            <ul class="menu menu-nav">
+              <li class="divider" [attr.data-content]="'API'"></li>
+              <li class="menu-item">
+                <a href="#" [routerLink]="['api']"
+                   (click)="select({ link: 'api', name: 'API' })"
+                   id="api">
+                  <i class="icon icon-link"></i> API
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
