@@ -19,25 +19,25 @@
     <table class="table">
       <thead>
       <tr>
-        <th>Type</th>
-        <th>Description</th>
+        <th width="20%">Type</th>
+        <th width="20%">Description</th>
         <th>Value</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td><code>API.setInputValue</code></td>
-        <td>Set input value</td>
+        <td>API.setInputValue</td>
         <td>
-          <pre>
-            this.api.next(/
-            type: API.setInputValue,
-            value: [
-                / name: 'age', value: '32' },
-              ],
-            });
-          </pre>
+            <pre><code [highlight]="setInputValueCode"></code></pre>
         </td>
+        <td>Set input value</td>
+      </tr>
+      <tr>
+        <td>API.rowContextMenuClicked</td>
+        <td>
+          <pre><code [highlight]="rowContextMenuClickedCode"></code></pre>
+        </td>
+        <td>Emit event to close context menu</td>
       </tr>
       </tbody>
     </table>

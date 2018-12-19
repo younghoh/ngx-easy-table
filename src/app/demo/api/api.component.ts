@@ -15,7 +15,19 @@ export class ApiComponent implements OnInit {
   public columns;
   public data: Company[] = [];
   public configuration;
-  public api = new Subject<ApiType>();
+  public readonly api = new Subject<ApiType>();
+  public readonly setInputValueCode = `public readonly api = new Subject<ApiType>();
+this.api.next({
+  type: API.setInputValue,
+  value: [
+      { name: 'age', value: '32' },
+    ],
+});`;
+
+  public readonly rowContextMenuClickedCode = `public readonly api = new Subject<ApiType>();
+this.api.next({
+  type: API.rowContextMenuClicked,
+});`;
 
   ngOnInit(): void {
     this.configuration = ConfigService.config;
