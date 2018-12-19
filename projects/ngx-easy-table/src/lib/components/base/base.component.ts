@@ -226,7 +226,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
-  onSearch($event: { key: string, value: string }): void {
+  onSearch($event: Array<{ key: string; value: string }>): void {
     if (!ConfigService.config.serverPagination) {
       this.term = $event;
     }
@@ -405,15 +405,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
           // TODO
           break;
         case API.setInputValue:
-          event.value.forEach((input) => {
-            const phone = document.getElementById(`search_${input.name}`) as HTMLInputElement;
-            phone.value = input.value;
-            this.onSearch({ key: input.name, value: input.value });
-            this.cdr.markForCheck();
-          });
+          event.value.map((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
+          this.onSearch(event.value);
+          this.cdr.markForCheck();
           break;
         default:
-          console.warn('Unrecognized API value');
+          console.error('Unrecognized API value');
       }
     });
   }

@@ -20,7 +20,7 @@ export class ApiComponent implements OnInit {
 this.api.next({
   type: API.setInputValue,
   value: [
-      { name: 'age', value: '32' },
+      { key: 'age', value: '32' },
     ],
 });`;
 
@@ -45,8 +45,9 @@ this.api.next({
     this.api.next({
       type: API.setInputValue,
       value: [
-        { name: 'phone', value: '' },
-        { name: 'age', value: '' },
+        { key: 'phone', value: '' },
+        { key: 'age', value: '' },
+        { key: 'company', value: '' },
       ],
     });
   }
@@ -55,7 +56,7 @@ this.api.next({
     this.api.next({
       type: API.setInputValue,
       value: [
-        { name: 'phone', value: '527' },
+        { key: 'phone', value: '527' },
       ],
     });
   }
@@ -64,7 +65,7 @@ this.api.next({
     this.api.next({
       type: API.setInputValue,
       value: [
-        { name: 'age', value: '32' },
+        { key: 'age', value: '32' },
       ],
     });
   }

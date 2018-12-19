@@ -11,7 +11,7 @@ interface RowContextMenuClicked {
 interface SetInputValue {
   type: API.setInputValue;
   value: Array<{
-    name: string,
+    key: string,
     value: string,
   }>;
 }

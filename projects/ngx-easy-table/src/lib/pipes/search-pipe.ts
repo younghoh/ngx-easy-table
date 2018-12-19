@@ -9,17 +9,19 @@ import { Config } from '..';
 export class SearchPipe implements PipeTransform {
   private filters: { [key: string]: string } = {};
 
-  transform(array: any[], filter?: { value: string, key: string }, config?: Config): any[] {
+  transform(array: any[], filter?: Array<{ value: string, key: string }>, config?: Config): any[] {
     if (typeof array === 'undefined') {
       return;
     }
     if (typeof filter === 'undefined') {
       return array;
     }
-    this.filters[filter.key] = filter.value.toString().toLocaleLowerCase();
-    if (Object.keys(filter).length === 0 || filter.value === '') {
-      delete this.filters[filter.key];
-    }
+    filter.forEach((f) => {
+      this.filters[f.key] = f.value.toString().toLocaleLowerCase();
+      if (Object.keys(f).length === 0 || f.value === '') {
+        delete this.filters[f.key];
+      }
+    });
     if (config && config.groupRows) {
       return array.map((arr) => this.filterGroup(arr));
     }
