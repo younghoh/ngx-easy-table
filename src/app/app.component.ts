@@ -71,10 +71,17 @@ export class AppComponent {
       { link: 'custom-sort', name: 'Custom sort' },
       { link: 'custom-intable-sort', name: 'Custom in-table sort' },
     ],
+    tableApi: [
+      { link: 'api', name: 'API' },
+    ],
   };
 
   select(selected: Link): void {
     this.selected = selected;
     this.showMenu = !this.showMenu;
+  }
+
+  get excludedLinks() {
+    return ['basic', 'api-doc', 'doc'].indexOf(this.selected.link) !== -1;
   }
 }

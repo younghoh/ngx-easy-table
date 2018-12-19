@@ -48,6 +48,7 @@ import {
   InlineRowComponent,
   ContextMenuComponent,
   ApiComponent,
+  ApiDocComponent,
 } from './demo';
 
 export const routes = [
@@ -98,6 +99,7 @@ export const routes = [
   { path: 'inline-row', component: InlineRowComponent },
   { path: 'context-menu', component: ContextMenuComponent },
   { path: 'api', component: ApiComponent },
+  { path: 'api-doc', component: ApiDocComponent },
   { path: '**', component: BasicComponent },
 ];
 

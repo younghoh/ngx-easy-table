@@ -45,3 +45,4 @@ export * from './inline/inline.component';
 export * from './inline-row/inline-row.component';
 export * from './context-menu/context-menu.component';
 export * from './api/api.component';
+export * from './api-doc/api-doc.component';

@@ -1,4 +1,7 @@
 <div class="columns">
+  <div class="column col-12 my-1">
+    <button class="btn" [routerLink]="['/api-doc']">See API doc</button>
+  </div>
   <div class="column col-12">
     <button class="btn btn-primary" (click)="setPhone()">Set phone input</button>
     <button class="btn btn-primary mx-1" (click)="setAge()">Set age input</button>
@@ -10,36 +13,5 @@
                [api]="api"
                [columns]="columns">
     </ngx-table>
-  </div>
-</div>
-<div class="columns">
-  <div class="column col-12">
-    <h3>Documentation</h3>
-    <p>Table has functionality to control it's content outside component. It means by using API you can control table's behaviour as you want</p>
-    <table class="table">
-      <thead>
-      <tr>
-        <th width="20%">Type</th>
-        <th width="20%">Description</th>
-        <th>Value</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>API.setInputValue</td>
-        <td>
-            <pre><code [highlight]="setInputValueCode"></code></pre>
-        </td>
-        <td>Set input value</td>
-      </tr>
-      <tr>
-        <td>API.rowContextMenuClicked</td>
-        <td>
-          <pre><code [highlight]="rowContextMenuClickedCode"></code></pre>
-        </td>
-        <td>Emit event to close context menu</td>
-      </tr>
-      </tbody>
-    </table>
   </div>
 </div>
