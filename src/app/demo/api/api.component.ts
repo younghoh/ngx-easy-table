@@ -49,6 +49,7 @@ export class ApiComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line:no-identical-functions
   setAge() {
     this.api.next({
       type: API.setInputValue,

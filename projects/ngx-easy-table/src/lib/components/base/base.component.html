@@ -1,8 +1,4 @@
 <div class="ngx-container">
-  <div class="ngx-global-search"
-       *ngIf="config.globalSearchEnabled">
-    <global-search (globalUpdate)="onGlobalSearch($event)"></global-search>
-  </div>
   <table id="table"
          class="ngx-table"
          [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"

@@ -7,7 +7,6 @@ export class ConfigurationAdvancedService {
     searchEnabled: true,
     headerEnabled: true,
     orderEnabled: true,
-    globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: false,

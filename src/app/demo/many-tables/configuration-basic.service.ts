@@ -7,7 +7,6 @@ export class ConfigurationBasicService {
     searchEnabled: false,
     headerEnabled: true,
     orderEnabled: false,
-    globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: false,

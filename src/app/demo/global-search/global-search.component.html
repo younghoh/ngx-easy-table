@@ -1,9 +1,23 @@
-<small>This is build in global search. It means search works on all available columns.</small><br>
+<small>This is global search using Table's API feature. It means that search works on all the available columns.</small><br>
 <div class="columns">
+  <div class="column col-12">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <div class="col-3 col-sm-12 col-ml-auto">
+          <input class="form-input"
+                 type="text"
+                 id="globalSearch"
+                 (input)="onChange($event.target.value)"
+                 placeholder="Search">
+        </div>
+      </div>
+    </form>
+  </div>
   <div class="column col-12">
     <ngx-table
       [configuration]="configuration"
       [data]="data"
+      [api]="api"
       [columns]="columns">
     </ngx-table>
   </div>

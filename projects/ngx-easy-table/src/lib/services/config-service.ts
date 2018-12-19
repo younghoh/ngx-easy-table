@@ -8,7 +8,6 @@ export class ConfigService {
     headerEnabled: true,
     orderEnabled: true,
     orderEventOnly: false,
-    globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: true,

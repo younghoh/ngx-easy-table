@@ -3,7 +3,6 @@ export interface Config {
   headerEnabled: boolean;
   orderEnabled: boolean;
   orderEventOnly?: boolean;
-  globalSearchEnabled: boolean;
   paginationEnabled: boolean;
   exportEnabled: boolean;
   clickEvent: boolean;

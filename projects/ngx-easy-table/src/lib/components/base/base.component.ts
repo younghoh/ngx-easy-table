@@ -40,7 +40,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
   public term;
-  public globalSearchTerm;
+  public globalSearchTerm: string;
   public grouped: any = [];
   public menuActive = false;
   public isSelected = false;
@@ -233,11 +233,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onSearch, $event);
   }
 
-  onGlobalSearch($event: string): void {
+  onGlobalSearch(value: string): void {
     if (!ConfigService.config.serverPagination) {
-      this.globalSearchTerm = $event;
+      this.globalSearchTerm = value;
     }
-    this.emitEvent(Event.onGlobalSearch, $event);
+    this.emitEvent(Event.onGlobalSearch, value);
   }
 
   onPagination(pagination: PaginationObject): void {
@@ -405,8 +405,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
           // TODO
           break;
         case API.setInputValue:
-          event.value.map((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
+          event.value.forEach((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
           this.onSearch(event.value);
+          this.cdr.markForCheck();
+          break;
+        case API.onGlobalSearch:
+          this.onGlobalSearch(event.value);
           this.cdr.markForCheck();
           break;
         default:

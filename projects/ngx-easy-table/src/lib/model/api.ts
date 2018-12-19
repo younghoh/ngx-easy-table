@@ -2,6 +2,7 @@ export enum API {
   rowContextMenuClicked = 'rowContextMenuClicked',
   setInputValue = 'setInputValue',
   toolPanelClicked = 'toolPanelClicked',
+  onGlobalSearch = 'onGlobalSearch',
 }
 
 interface RowContextMenuClicked {
@@ -20,7 +21,13 @@ interface ToolPanelClicked {
   type: API.toolPanelClicked;
 }
 
+interface OnGlobalSearch {
+  type: API.onGlobalSearch;
+  value: string;
+}
+
 export type ApiType = RowContextMenuClicked
   | SetInputValue
   | ToolPanelClicked
+  | OnGlobalSearch
   ;
