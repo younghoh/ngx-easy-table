@@ -6,6 +6,9 @@
     <button class="btn btn-primary" (click)="setPhone()">Set phone input</button>
     <button class="btn btn-primary mx-1" (click)="setAge()">Set age input</button>
     <button class="btn btn-primary mx-1" (click)="resetSearchInput()">Reset inputs</button>
+    <button class="btn btn-primary mx-1" (click)="setPagination(2)">Set pagination on 2</button>
+    <button class="btn btn-primary mx-1" (click)="setPagination(3)">Set pagination on 3</button>
+    <button class="btn btn-primary mx-1" (click)="setPagination(4)">Set pagination on 4</button>
   </div>
   <div class="column col-12">
     <ngx-table [data]="data"

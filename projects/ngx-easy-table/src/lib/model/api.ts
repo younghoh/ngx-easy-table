@@ -3,31 +3,23 @@ export enum API {
   setInputValue = 'setInputValue',
   toolPanelClicked = 'toolPanelClicked',
   onGlobalSearch = 'onGlobalSearch',
+  setPaginationCurrentPage = 'setPaginationCurrentPage',
 }
 
-interface RowContextMenuClicked {
-  type: API.rowContextMenuClicked;
-}
-
-interface SetInputValue {
-  type: API.setInputValue;
-  value: Array<{
-    key: string,
-    value: string,
-  }>;
-}
-
-interface ToolPanelClicked {
-  type: API.toolPanelClicked;
-}
-
-interface OnGlobalSearch {
-  type: API.onGlobalSearch;
-  value: string;
-}
-
-export type ApiType = RowContextMenuClicked
-  | SetInputValue
-  | ToolPanelClicked
-  | OnGlobalSearch
+export type ApiType =
+  { type: API.rowContextMenuClicked; }
+  |
+  {
+    type: API.setInputValue;
+    value: Array<{
+      key: string,
+      value: string,
+    }>;
+  }
+  |
+  { type: API.toolPanelClicked; }
+  |
+  { type: API.onGlobalSearch; value: string; }
+  |
+  { type: API.setPaginationCurrentPage; value: number; }
   ;

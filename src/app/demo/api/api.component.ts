@@ -58,4 +58,11 @@ export class ApiComponent implements OnInit {
       ],
     });
   }
+
+  setPagination(page: number) {
+    this.api.next({
+      type: API.setPaginationCurrentPage,
+      value: page,
+    });
+  }
 }

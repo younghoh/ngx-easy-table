@@ -21,7 +21,7 @@ import {
 } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
-import { PaginationObject } from '../pagination/pagination.component';
+import { PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
 
 interface RowContextMenuPosition {
@@ -240,7 +240,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onGlobalSearch, value);
   }
 
-  onPagination(pagination: PaginationObject): void {
+  onPagination(pagination: PaginationRange): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
     this.emitEvent(Event.onPagination, pagination);
@@ -414,7 +414,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
           this.cdr.markForCheck();
           break;
         default:
-          console.error('Unrecognized API value');
       }
     });
   }

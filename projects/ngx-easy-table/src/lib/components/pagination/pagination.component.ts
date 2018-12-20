@@ -1,10 +1,18 @@
 import {
-  ChangeDetectionStrategy, Component, EventEmitter, Input, Output,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
 } from '@angular/core';
-import { Config } from '../..';
+import { API, ApiType, Config } from '../..';
 import { ConfigService } from '../../services/config-service';
+import { PaginationControlsDirective } from 'ngx-pagination';
+import { Subject } from 'rxjs';
 
-export interface PaginationObject {
+export interface PaginationRange {
   page: number;
   limit: number;
 }
@@ -15,11 +23,13 @@ export interface PaginationObject {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class PaginationComponent {
+export class PaginationComponent implements OnInit {
+  @ViewChild('paginationDirective') paginationDirective: PaginationControlsDirective;
   @Input() pagination;
   @Input() config: Config;
   @Input() id;
-  @Output() readonly updateRange: EventEmitter<PaginationObject> = new EventEmitter();
+  @Input() api: Subject<ApiType>;
+  @Output() readonly updateRange: EventEmitter<PaginationRange> = new EventEmitter();
   public ranges = [5, 10, 25, 50, 100];
   public limit: number = ConfigService.config.rows;
   public showRange = false;
@@ -29,6 +39,12 @@ export class PaginationComponent {
   public previousLabel = '';
   public nextLabel = '';
   public directionLinks = true;
+
+  ngOnInit() {
+    if (this.api) {
+      this.bindApi();
+    }
+  }
 
   onPageChange(page: number): void {
     this.updateRange.emit({
@@ -43,6 +59,17 @@ export class PaginationComponent {
     this.updateRange.emit({
       page: 1,
       limit,
+    });
+  }
+
+  private bindApi() {
+    this.api.subscribe((event) => {
+      switch (event.type) {
+        case API.setPaginationCurrentPage:
+          this.paginationDirective.setCurrent(event.value);
+          break;
+        default:
+      }
     });
   }
 }
