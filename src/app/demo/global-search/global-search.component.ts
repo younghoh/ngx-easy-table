@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { Subject } from 'rxjs';
-import { ApiType, API } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, TableAPI } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-global-search',
@@ -11,7 +10,7 @@ import { ApiType, API } from '../../../../projects/ngx-easy-table/src/lib';
   styles: [],
 })
 export class GlobalSearchComponent implements OnInit {
-  public api = new Subject<ApiType>();
+  public readonly api = new TableAPI();
   public columns = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -28,7 +27,7 @@ export class GlobalSearchComponent implements OnInit {
   }
 
   onChange(name: string): void {
-    this.api.next({
+    this.api.set({
       type: API.onGlobalSearch, value: name,
     });
   }

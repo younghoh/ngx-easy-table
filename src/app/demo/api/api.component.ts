@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { Subject } from 'rxjs';
-import { API, ApiType } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, TableAPI } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-api',
@@ -15,7 +14,7 @@ export class ApiComponent implements OnInit {
   public columns;
   public data: Company[] = [];
   public configuration;
-  public readonly api = new Subject<ApiType>();
+  public readonly api = new TableAPI();
 
   ngOnInit(): void {
     this.configuration = ConfigService.config;
@@ -30,7 +29,7 @@ export class ApiComponent implements OnInit {
   }
 
   resetSearchInput() {
-    this.api.next({
+    this.api.set({
       type: API.setInputValue,
       value: [
         { key: 'phone', value: '' },
@@ -41,7 +40,7 @@ export class ApiComponent implements OnInit {
   }
 
   setPhone() {
-    this.api.next({
+    this.api.set({
       type: API.setInputValue,
       value: [
         { key: 'phone', value: '527' },
@@ -51,7 +50,7 @@ export class ApiComponent implements OnInit {
 
   // tslint:disable-next-line:no-identical-functions
   setAge() {
-    this.api.next({
+    this.api.set({
       type: API.setInputValue,
       value: [
         { key: 'age', value: '32' },
@@ -60,7 +59,7 @@ export class ApiComponent implements OnInit {
   }
 
   setPagination(page: number) {
-    this.api.next({
+    this.api.set({
       type: API.setPaginationCurrentPage,
       value: page,
     });

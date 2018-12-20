@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./api-doc.component.css'],
 })
 export class ApiDocComponent {
-  public readonly apiDefinitionCode = `public readonly api = new Subject<ApiType>();`;
+  public readonly apiDefinitionCode = `public readonly api = new TableAPI();`;
   public readonly setInputValueCode = `this.api.next({
   type: API.setInputValue,
   value: [

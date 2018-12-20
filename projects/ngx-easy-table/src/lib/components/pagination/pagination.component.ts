@@ -7,10 +7,9 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { API, ApiType, Config } from '../..';
+import { API, Config, TableAPI } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { PaginationControlsDirective } from 'ngx-pagination';
-import { Subject } from 'rxjs';
 
 export interface PaginationRange {
   page: number;
@@ -28,7 +27,7 @@ export class PaginationComponent implements OnInit {
   @Input() pagination;
   @Input() config: Config;
   @Input() id;
-  @Input() api: Subject<ApiType>;
+  @Input() api: TableAPI;
   @Output() readonly updateRange: EventEmitter<PaginationRange> = new EventEmitter();
   public ranges = [5, 10, 25, 50, 100];
   public limit: number = ConfigService.config.rows;

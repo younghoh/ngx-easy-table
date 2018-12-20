@@ -15,9 +15,8 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { Subject } from 'rxjs';
 import {
-  Columns, Config, Event, API, ApiType, Pagination, ColumnKeyType, TableMouseEvent,
+  Columns, Config, Event, API, Pagination, ColumnKeyType, TableMouseEvent, TableAPI,
 } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
@@ -77,7 +76,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config;
   }
 
-  @Input() api: Subject<ApiType>;
+  @Input() api: TableAPI;
   @Input() data: any[];
   @Input() pagination: Pagination;
   @Input() groupRowsBy: string;

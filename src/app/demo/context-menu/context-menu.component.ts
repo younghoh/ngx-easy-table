@@ -2,8 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { Subject } from 'rxjs';
-import { API, ApiType, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, TableAPI, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-context-menu',
@@ -16,7 +15,7 @@ export class ContextMenuComponent implements OnInit {
   public columns;
   public data: Company[] = [];
   public configuration;
-  public api = new Subject<ApiType>();
+  public readonly api = new TableAPI();
   public edit: number;
 
   ngOnInit(): void {
@@ -43,12 +42,12 @@ export class ContextMenuComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-    this.api.next({ type: API.rowContextMenuClicked });
+    this.api.set({ type: API.rowContextMenuClicked });
   }
 
   editCell($event: any = null, object: TableMouseEvent) {
     this.edit = object.rowId;
-    this.api.next({ type: API.rowContextMenuClicked });
+    this.api.set({ type: API.rowContextMenuClicked });
   }
 
   update($event) {
