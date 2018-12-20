@@ -32,7 +32,7 @@
               "node_modules/spectre.css/dist/spectre-icons.css",
               "node_modules/typeface-lato/index.css",
               "node_modules/highlight.js/styles/github.css",
-              "node_modules/ngx-easy-table/style.scss"
+              "projects/ngx-easy-table/assets/style.scss"
             ],
             "scripts": []
           },

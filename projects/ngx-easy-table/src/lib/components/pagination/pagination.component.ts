@@ -23,6 +23,12 @@ export class PaginationComponent {
   public ranges = [5, 10, 25, 50, 100];
   public limit: number = ConfigService.config.rows;
   public showRange = false;
+  public screenReaderPaginationLabel = 'Pagination';
+  public screenReaderPageLabel = 'page';
+  public screenReaderCurrentLabel = 'You are on page';
+  public previousLabel = '';
+  public nextLabel = '';
+  public directionLinks = true;
 
   onPageChange(page: number): void {
     this.updateRange.emit({
