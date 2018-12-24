@@ -10,6 +10,9 @@ export enum API {
   getPaginationCurrentPage = 'getPaginationCurrentPage',
   getPaginationTotalItems = 'getPaginationTotalItems',
   getPaginationLastPage = 'getPaginationLastPage',
+  setPaginationRange = 'setPaginationRange',
+  setPaginationPreviousLabel = 'setPaginationPreviousLabel',
+  setPaginationNextLabel = 'setPaginationNextLabel',
 }
 
 export type ApiType = { type: API.rowContextMenuClicked; }
@@ -20,6 +23,9 @@ export type ApiType = { type: API.rowContextMenuClicked; }
   | { type: API.getPaginationCurrentPage; }
   | { type: API.getPaginationTotalItems; }
   | { type: API.getPaginationLastPage; }
+  | { type: API.setPaginationRange; value: number[]; }
+  | { type: API.setPaginationPreviousLabel; value: string; }
+  | { type: API.setPaginationNextLabel; value: string; }
   ;
 
 export class TableAPI {
@@ -30,7 +36,7 @@ export class TableAPI {
     return this.api.subscribe(event);
   }
 
-  set(event: ApiType): Observable<boolean | number | void> {
+  set(event: ApiType): Observable<boolean | number> {
     switch (event.type) {
       case API.getPaginationCurrentPage:
         return of(this.paginationComponent.getCurrent());
@@ -39,12 +45,17 @@ export class TableAPI {
       case API.getPaginationLastPage:
         return of(this.paginationComponent.getLastPage());
       case API.setPaginationCurrentPage:
-        return of(this.paginationComponent.setCurrent(event.value));
+        this.paginationComponent.setCurrent(event.value);
+        return of(true);
       case API.rowContextMenuClicked:
       case API.setInputValue:
       case API.toolPanelClicked:
       case API.onGlobalSearch:
-        return of(this.api.next(event));
+      case API.setPaginationRange:
+      case API.setPaginationPreviousLabel:
+      case API.setPaginationNextLabel:
+        this.api.next(event);
+        return of(true);
       default:
         console.error('Unrecognized API event');
     }

@@ -29,7 +29,7 @@ export class PaginationComponent implements OnInit {
   @Input() id;
   @Input() api: TableAPI;
   @Output() readonly updateRange: EventEmitter<PaginationRange> = new EventEmitter();
-  public ranges = [5, 10, 25, 50, 100];
+  public ranges: number[] = [5, 10, 25, 50, 100];
   public limit: number = ConfigService.config.rows;
   public showRange = false;
   public screenReaderPaginationLabel = 'Pagination';
@@ -67,6 +67,15 @@ export class PaginationComponent implements OnInit {
       switch (event.type) {
         case API.setPaginationCurrentPage:
           this.paginationDirective.setCurrent(event.value);
+          break;
+        case API.setPaginationRange:
+          this.ranges = event.value;
+          break;
+        case API.setPaginationPreviousLabel:
+          this.previousLabel = event.value;
+          break;
+        case API.setPaginationNextLabel:
+          this.nextLabel = event.value;
           break;
         default:
       }
