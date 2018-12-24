@@ -7,14 +7,14 @@ import { Component } from '@angular/core';
 })
 export class ApiDocComponent {
   public readonly apiDefinitionCode = `public readonly api = new TableAPI();`;
-  public readonly setInputValueCode = `this.api.next({
+  public readonly setInputValueCode = `this.api.set({
   type: API.setInputValue,
   value: [
       { key: 'age', value: '32' },
     ],
 });`;
 
-  public readonly setInputValueCode2 = `this.api.next({
+  public readonly setInputValueCode2 = `this.api.set({
   type: API.setInputValue,
   value: [
       { key: 'age', value: '32' },
@@ -22,7 +22,7 @@ export class ApiDocComponent {
     ],
 });`;
 
-  public readonly setInputValueCode3 = `this.api.next({
+  public readonly setInputValueCode3 = `this.api.set({
   type: API.setInputValue,
   value: [
       { key: 'age', value: '' },
@@ -30,11 +30,11 @@ export class ApiDocComponent {
     ],
 });`;
 
-  public readonly rowContextMenuClickedCode = `this.api.next({
+  public readonly rowContextMenuClickedCode = `this.api.set({
   type: API.rowContextMenuClicked,
 });`;
 
-  public readonly toolPanelClickedCode = `this.api.next({
+  public readonly toolPanelClickedCode = `this.api.set({
   type: API.toolPanelClicked,
 });`;
 }

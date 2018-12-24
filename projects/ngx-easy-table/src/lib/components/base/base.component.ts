@@ -404,6 +404,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
           // TODO
           break;
         case API.setInputValue:
+          if (!this.config.searchEnabled) {
+            console.error('Can\'t set API.setInputValue because config.searchEnabled is set to false ');
+            return;
+          }
           event.value.forEach((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
           this.onSearch(event.value);
           this.cdr.markForCheck();

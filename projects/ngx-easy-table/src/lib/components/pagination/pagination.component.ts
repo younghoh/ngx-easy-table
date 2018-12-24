@@ -42,6 +42,7 @@ export class PaginationComponent implements OnInit {
   ngOnInit() {
     if (this.api) {
       this.bindApi();
+      this.api.paginationComponent = this.paginationDirective;
     }
   }
 
