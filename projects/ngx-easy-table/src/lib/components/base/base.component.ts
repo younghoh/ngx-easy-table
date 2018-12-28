@@ -49,6 +49,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
   public term;
+  public tableClass = '';
   public globalSearchTerm: string;
   public grouped: any = [];
   public menuActive = false;
@@ -454,6 +455,10 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
             break;
           }
           StyleService.setCellStyle(event.value);
+          break;
+        case API.setTableClass:
+          this.tableClass = event.value;
+          this.cdr.markForCheck();
           break;
         default:
       }

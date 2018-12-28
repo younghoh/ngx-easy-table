@@ -73,6 +73,7 @@ export class AppComponent {
     ],
     tableApi: [
       { link: 'api', name: 'API' },
+      { link: 'bootstrap', name: 'Bootstrap' },
     ],
   };
 

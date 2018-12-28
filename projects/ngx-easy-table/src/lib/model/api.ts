@@ -13,6 +13,7 @@ export enum API {
   setPaginationRange = 'setPaginationRange',
   setPaginationPreviousLabel = 'setPaginationPreviousLabel',
   setPaginationNextLabel = 'setPaginationNextLabel',
+  setTableClass = 'setTableClass',
   setRowClass = 'setRowClass',
   setCellClass = 'setCellClass',
   setRowStyle = 'setRowStyle',
@@ -36,6 +37,7 @@ export type ApiType =
   | { type: API.setPaginationRange; value: number[]; }
   | { type: API.setPaginationPreviousLabel; value: string; }
   | { type: API.setPaginationNextLabel; value: string; }
+  | { type: API.setTableClass; value: string; }
   | { type: API.setRowClass; value: rowClass | rowClass[] }
   | { type: API.setCellClass; value: cellClass | cellClass[] }
   | { type: API.setRowStyle; value: rowStyle | rowStyle[] }
@@ -72,6 +74,7 @@ export class TableAPI {
       case API.setRowStyle:
       case API.setCellClass:
       case API.setCellStyle:
+      case API.setTableClass:
         this.api.next(event);
         return of(true);
       default:

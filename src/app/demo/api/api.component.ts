@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
 import { API, TableAPI } from '../../../../projects/ngx-easy-table/src/lib';
 
@@ -8,7 +7,7 @@ import { API, TableAPI } from '../../../../projects/ngx-easy-table/src/lib';
   selector: 'app-api',
   templateUrl: './api.component.html',
   styleUrls: ['./api.component.css'],
-  providers: [ConfigService, CompanyService],
+  providers: [ConfigService],
 })
 export class ApiComponent implements OnInit {
   public columns;
