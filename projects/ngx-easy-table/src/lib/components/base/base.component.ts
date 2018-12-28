@@ -16,12 +16,22 @@ import {
 } from '@angular/core';
 
 import {
-  Columns, Config, Event, API, Pagination, ColumnKeyType, TableMouseEvent, TableAPI,
+  Columns,
+  Config,
+  Event,
+  API,
+  Pagination,
+  ColumnKeyType,
+  TableMouseEvent,
+  TableAPI,
+  rowStyle,
+  rowClass,
 } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
+import { StyleService } from '../../services/style.service';
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -31,7 +41,7 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [ConfigService, UtilsService, GroupRowsService],
+  providers: [ConfigService, UtilsService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -390,6 +400,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
+  // tslint:disable:no-big-function cognitive-complexity
   private bindApi() {
     this.api.subscribe((event) => {
       switch (event.type) {
@@ -415,6 +426,20 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
         case API.onGlobalSearch:
           this.onGlobalSearch(event.value);
           this.cdr.markForCheck();
+          break;
+        case API.setRowClass:
+          if (Array.isArray(event.value)) {
+            event.value.forEach((val) => StyleService.setRowClass(val));
+            break;
+          }
+          StyleService.setRowClass(event.value);
+          break;
+        case API.setRowStyle:
+          if (Array.isArray(event.value)) {
+            event.value.forEach((val) => StyleService.setRowStyle(val));
+            break;
+          }
+          StyleService.setRowStyle(event.value);
           break;
         default:
       }

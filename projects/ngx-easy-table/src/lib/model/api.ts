@@ -13,9 +13,15 @@ export enum API {
   setPaginationRange = 'setPaginationRange',
   setPaginationPreviousLabel = 'setPaginationPreviousLabel',
   setPaginationNextLabel = 'setPaginationNextLabel',
+  setRowClass = 'setRowClass',
+  setRowStyle = 'setRowStyle',
 }
 
-export type ApiType = { type: API.rowContextMenuClicked; }
+export type rowClass = { row: number, className: string };
+export type rowStyle = { row: number, attr: string, value: string };
+
+export type ApiType =
+    { type: API.rowContextMenuClicked; }
   | { type: API.setInputValue; value: Array<{ key: string, value: string }>; }
   | { type: API.toolPanelClicked; }
   | { type: API.onGlobalSearch; value: string; }
@@ -26,6 +32,8 @@ export type ApiType = { type: API.rowContextMenuClicked; }
   | { type: API.setPaginationRange; value: number[]; }
   | { type: API.setPaginationPreviousLabel; value: string; }
   | { type: API.setPaginationNextLabel; value: string; }
+  | { type: API.setRowClass; value: rowClass | rowClass[] }
+  | { type: API.setRowStyle; value: rowStyle | rowStyle[] }
   ;
 
 export class TableAPI {
@@ -54,6 +62,8 @@ export class TableAPI {
       case API.setPaginationRange:
       case API.setPaginationPreviousLabel:
       case API.setPaginationNextLabel:
+      case API.setRowClass:
+      case API.setRowStyle:
         this.api.next(event);
         return of(true);
       default:

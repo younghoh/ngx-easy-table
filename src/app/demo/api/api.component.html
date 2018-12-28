@@ -1,16 +1,67 @@
 <div class="columns">
   <div class="column col-12 my-1">
-    <button class="btn" [routerLink]="['/api-doc']">See API doc</button>
+    <button class="btn"
+            [routerLink]="['/api-doc']">See API doc</button>
   </div>
-  <div class="column col-12">
-    <button class="btn btn-primary" (click)="setPhone()">Set phone input</button>
-    <button class="btn btn-primary mx-1" (click)="setAge()">Set age input</button>
-    <button class="btn btn-primary mx-1" (click)="resetSearchInput()">Reset inputs</button>
-    <button class="btn btn-primary mx-1" (click)="setPagination(2)">Set pagination on 2</button>
-    <button class="btn btn-primary mx-1" (click)="setPagination(3)">Set pagination on 3</button>
-    <button class="btn btn-primary mx-1" (click)="setPagination(4)">Set pagination on 4</button>
+  <div class="column col-6 col-md-12">
+    <div class="accordion">
+      <input id="accordion-1"
+             type="radio"
+             name="accordion-radio"
+             hidden=""
+             checked="">
+      <label class="accordion-header c-hand"
+             for="accordion-1"><i class="icon icon-arrow-right mr-1"></i>Inputs
+      </label>
+      <div class="accordion-body">
+        <button class="btn btn-primary mx-1"
+                (click)="setPagination(2)">Set pagination on 2</button>
+        <button class="btn btn-primary mx-1"
+                (click)="setPagination(3)">Set pagination on 3</button>
+        <button class="btn btn-primary mx-1"
+                (click)="setPagination(4)">Set pagination on 4</button>
+      </div>
+    </div>
+    <div class="accordion">
+      <input id="accordion-2"
+             type="radio"
+             name="accordion-radio"
+             hidden="">
+      <label class="accordion-header c-hand"
+             for="accordion-2"><i class="icon icon-arrow-right mr-1"></i>Row
+      </label>
+      <div class="accordion-body">
+        <button class="btn mx-1"
+                (click)="setRowClass(1, 'pink')">Row pink</button>
+        <button class="btn mx-1"
+                (click)="setRowClass(2, 'blue')">Row blue</button>
+        <button class="btn mx-1"
+                (click)="setRowClass(3, 'green')">Row green</button>
+        <button class="btn mx-1"
+                (click)="setRowClasses()">Many rows</button>
+        <button class="btn mx-1"
+                (click)="setRowStyle()">Set row style</button>
+      </div>
+    </div>
+    <div class="accordion">
+      <input id="accordion-3"
+             type="radio"
+             name="accordion-radio"
+             hidden="">
+      <label class="accordion-header c-hand"
+             for="accordion-3"><i class="icon icon-arrow-right mr-1"></i>Pagination
+      </label>
+      <div class="accordion-body">
+        <button class="btn btn-primary"
+                (click)="setPhone()">Set phone input</button>
+        <button class="btn btn-primary mx-1"
+                (click)="setAge()">Set age input</button>
+        <button class="btn btn-primary mx-1"
+                (click)="resetSearchInput()">Reset inputs</button>
+      </div>
+    </div>
   </div>
-  <div class="column col-12">
+  <div class="column col-12 my-1">
     <ngx-table [data]="data"
                [configuration]="configuration"
                [api]="api"

@@ -64,4 +64,38 @@ export class ApiComponent implements OnInit {
       value: page,
     });
   }
+
+  setRowClass(row: number, className: string): void {
+    this.api.set({
+      type: API.setRowClass,
+      value: { row, className },
+    });
+  }
+
+  setRowStyle(): void {
+    this.api.set({
+      type: API.setRowStyle,
+      value: { row: 1, attr: 'background', value: '#fd5e5ed4' },
+    });
+  }
+
+  setRowClasses(): void {
+    this.api.set({
+      type: API.setRowClass,
+      value: [
+        {
+          row: 1,
+          className: 'gray',
+        },
+        {
+          row: 2,
+          className: 'pink',
+        },
+        {
+          row: 4,
+          className: 'yellow',
+        },
+      ],
+    });
+  }
 }
