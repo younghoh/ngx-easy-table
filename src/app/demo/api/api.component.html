@@ -8,8 +8,7 @@
       <input id="accordion-1"
              type="radio"
              name="accordion-radio"
-             hidden=""
-             checked="">
+             hidden="">
       <label class="accordion-header c-hand"
              for="accordion-1"><i class="icon icon-arrow-right mr-1"></i>Inputs
       </label>
@@ -43,6 +42,27 @@
                 (click)="setRowStyle()">Set row style</button>
       </div>
     </div>
+    <div class="accordion">
+        <input id="accordion-cell"
+               type="radio"
+               name="accordion-cell"
+               hidden="">
+        <label class="accordion-header c-hand"
+               for="accordion-cell"><i class="icon icon-arrow-right mr-1"></i>Cell
+        </label>
+        <div class="accordion-body">
+          <button class="btn mx-1"
+                  (click)="setCellClass(1, 3, 'pink')">Cell pink</button>
+          <button class="btn mx-1"
+                  (click)="setCellClass(2, 5, 'blue')">Cell blue</button>
+          <button class="btn mx-1"
+                  (click)="setCellClass(3, 2, 'green')">Cell green</button>
+          <button class="btn mx-1"
+                  (click)="setCellClasses()">Many cells</button>
+          <button class="btn mx-1"
+                  (click)="setCellStyle()">Set cell style</button>
+        </div>
+      </div>
     <div class="accordion">
       <input id="accordion-3"
              type="radio"

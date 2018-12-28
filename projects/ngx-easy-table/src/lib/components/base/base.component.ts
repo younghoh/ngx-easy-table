@@ -434,12 +434,26 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
           }
           StyleService.setRowClass(event.value);
           break;
+        case API.setCellClass:
+          if (Array.isArray(event.value)) {
+            event.value.forEach((val) => StyleService.setCellClass(val));
+            break;
+          }
+          StyleService.setCellClass(event.value);
+          break;
         case API.setRowStyle:
           if (Array.isArray(event.value)) {
             event.value.forEach((val) => StyleService.setRowStyle(val));
             break;
           }
           StyleService.setRowStyle(event.value);
+          break;
+        case API.setCellStyle:
+          if (Array.isArray(event.value)) {
+            event.value.forEach((val) => StyleService.setCellStyle(val));
+            break;
+          }
+          StyleService.setCellStyle(event.value);
           break;
         default:
       }

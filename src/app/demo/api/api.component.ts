@@ -72,10 +72,24 @@ export class ApiComponent implements OnInit {
     });
   }
 
+  setCellClass(row: number, cell: number, className: string): void {
+    this.api.set({
+      type: API.setCellClass,
+      value: { row, cell, className },
+    });
+  }
+
   setRowStyle(): void {
     this.api.set({
       type: API.setRowStyle,
       value: { row: 1, attr: 'background', value: '#fd5e5ed4' },
+    });
+  }
+
+  setCellStyle(): void {
+    this.api.set({
+      type: API.setCellStyle,
+      value: { row: 1, cell: 3, attr: 'background', value: '#fd5e5ed4' },
     });
   }
 
@@ -93,6 +107,29 @@ export class ApiComponent implements OnInit {
         },
         {
           row: 4,
+          className: 'yellow',
+        },
+      ],
+    });
+  }
+
+  setCellClasses(): void {
+    this.api.set({
+      type: API.setCellClass,
+      value: [
+        {
+          row: 1,
+          cell: 2,
+          className: 'gray',
+        },
+        {
+          row: 4,
+          cell: 6,
+          className: 'pink',
+        },
+        {
+          row: 4,
+          cell: 3,
           className: 'yellow',
         },
       ],
