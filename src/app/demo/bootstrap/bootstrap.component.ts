@@ -32,7 +32,7 @@ export class BootstrapComponent implements OnInit {
   setBootstrap() {
     this.api.set({
       type: API.setTableClass,
-      value: 'table table-bordered table-dark',
+      value: 'table table-bordered table-striped table-sm',
     });
   }
 
