@@ -49,7 +49,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   public selectedRow: number;
   public selectedCol: number;
   public term;
-  public tableClass = '';
+  public tableClass = null;
   public globalSearchTerm: string;
   public grouped: any = [];
   public menuActive = false;

@@ -1,7 +1,6 @@
 <div class="ngx-container">
   <table id="table"
-         class="ngx-table"
-         [ngClass]="tableClass"
+         [ngClass]="tableClass ? tableClass : 'ngx-table'"
          [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
          [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
          [class.ngx-table__table--big]="config.tableLayout.style === 'big'"

@@ -3,39 +3,19 @@
     <button class="btn"
             [routerLink]="['/api-doc']">See API doc</button>
   </div>
-  <div class="column col-md-12">
-    <div class="accordion">
-      <input id="accordion-2"
-             type="radio"
-             name="accordion-radio"
-             hidden="">
-      <label class="accordion-header c-hand"
-             for="accordion-2"><i class="icon icon-arrow-right mr-1"></i>Bootstrap Row
-      </label>
-      <div class="accordion-body">
-        <button class="btn mx-1"
-                (click)="setRowClass(1, 'table-primary')">Row primary</button>
-        <button class="btn mx-1"
-                (click)="setRowClass(2, 'table-secondary')">Row secondary</button>
-        <button class="btn mx-1"
-                (click)="setRowClass(3, 'table-danger')">Row danger</button>
-      </div>
-    </div>
-    <div class="accordion">
-      <input id="accordion-3"
-             type="radio"
-             name="accordion-radio"
-             hidden="">
-      <label class="accordion-header c-hand"
-             for="accordion-3"><i class="icon icon-arrow-right mr-1"></i>Table style
-      </label>
-      <div class="accordion-body">
-        <button class="btn btn-primary"
-                (click)="setNormal()">Spectre.css table</button>
-        <button class="btn btn-primary mx-1"
-                (click)="setBootstrap()">Bootstrap table</button>
-      </div>
-    </div>
+  <div class="column col-12">
+    <button class="btn mx-1"
+            (click)="setRowClass(1, 'table-primary')">Row primary</button>
+    <button class="btn mx-1"
+            (click)="setRowClass(2, 'table-secondary')">Row secondary</button>
+    <button class="btn mx-1"
+            (click)="setRowClass(3, 'table-danger')">Row danger</button>
+  </div>
+  <div class="column col-12 my-2">
+    <button class="btn btn-primary"
+            (click)="setNormal()">Spectre.css table</button>
+    <button class="btn btn-primary mx-1"
+            (click)="setBootstrap()">Bootstrap table</button>
   </div>
   <div class="column col-12 my-1">
     <ngx-table [data]="data"

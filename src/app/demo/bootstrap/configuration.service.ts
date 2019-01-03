@@ -31,11 +31,11 @@ export class ConfigService {
     showContextMenu: false,
     persistState: false,
     tableLayout: {
-      style: STYLE.NORMAL,
-      theme: THEME.LIGHT,
-      borderless: false,
-      hover: false,
-      striped: false,
+      style: null,
+      theme: null,
+      borderless: null,
+      hover: null,
+      striped: null,
     },
   };
 }
