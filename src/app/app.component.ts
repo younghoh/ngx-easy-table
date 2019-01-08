@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 interface Link {
   link: string;
   name: string;
+  experimental?: boolean;
 }
 
 @Component({
@@ -72,8 +73,8 @@ export class AppComponent {
       { link: 'custom-intable-sort', name: 'Custom in-table sort' },
     ],
     tableApi: [
-      { link: 'api', name: 'API' },
-      { link: 'bootstrap', name: 'Bootstrap' },
+      { link: 'api', name: 'API', experimental: true },
+      { link: 'bootstrap', name: 'Bootstrap', experimental: true },
     ],
   };
 

@@ -6,15 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./api-doc.component.css'],
 })
 export class ApiDocComponent {
-  public readonly apiDefinitionCode = `public readonly api = new TableAPI();`;
-  public readonly setInputValueCode = `this.api.set({
+  public readonly apiDefinitionCode = `@ViewChild('table') table: BaseComponent;`;
+  public readonly setInputValueCode = `this.table.set({
   type: API.setInputValue,
   value: [
       { key: 'age', value: '32' },
     ],
 });`;
 
-  public readonly setInputValueCode2 = `this.api.set({
+  public readonly setInputValueCode2 = `this.table.apiEvent({
   type: API.setInputValue,
   value: [
       { key: 'age', value: '32' },
@@ -22,7 +22,7 @@ export class ApiDocComponent {
     ],
 });`;
 
-  public readonly setInputValueCode3 = `this.api.set({
+  public readonly setInputValueCode3 = `this.table.apiEvent({
   type: API.setInputValue,
   value: [
       { key: 'age', value: '' },
@@ -30,11 +30,11 @@ export class ApiDocComponent {
     ],
 });`;
 
-  public readonly rowContextMenuClickedCode = `this.api.set({
+  public readonly rowContextMenuClickedCode = `this.table.apiEvent({
   type: API.rowContextMenuClicked,
 });`;
 
-  public readonly toolPanelClickedCode = `this.api.set({
+  public readonly toolPanelClickedCode = `this.table.apiEvent({
   type: API.toolPanelClicked,
 });`;
 }

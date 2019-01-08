@@ -10,7 +10,7 @@
              name="accordion-radio"
              hidden="">
       <label class="accordion-header c-hand"
-             for="accordion-1"><i class="icon icon-arrow-right mr-1"></i>Inputs
+             for="accordion-1"><i class="icon icon-arrow-right mr-1"></i>Pagination
       </label>
       <div class="accordion-body">
         <button class="btn btn-primary mx-1"
@@ -19,6 +19,9 @@
                 (click)="setPagination(3)">Set pagination on 3</button>
         <button class="btn btn-primary mx-1"
                 (click)="setPagination(4)">Set pagination on 4</button>
+        <button class="btn btn-primary mx-1"
+                (click)="getTotal()">Get total
+        </button> <div class="d-inline" *ngIf="total">Total: {{total}}</div>
       </div>
     </div>
     <div class="accordion">
@@ -45,7 +48,7 @@
     <div class="accordion">
         <input id="accordion-cell"
                type="radio"
-               name="accordion-cell"
+               name="accordion-radio"
                hidden="">
         <label class="accordion-header c-hand"
                for="accordion-cell"><i class="icon icon-arrow-right mr-1"></i>Cell
@@ -69,7 +72,7 @@
              name="accordion-radio"
              hidden="">
       <label class="accordion-header c-hand"
-             for="accordion-3"><i class="icon icon-arrow-right mr-1"></i>Pagination
+             for="accordion-3"><i class="icon icon-arrow-right mr-1"></i>Inputs
       </label>
       <div class="accordion-body">
         <button class="btn btn-primary"
@@ -83,8 +86,8 @@
   </div>
   <div class="column col-12 my-1">
     <ngx-table [data]="data"
+               #table
                [configuration]="configuration"
-               [api]="api"
                [columns]="columns">
     </ngx-table>
   </div>

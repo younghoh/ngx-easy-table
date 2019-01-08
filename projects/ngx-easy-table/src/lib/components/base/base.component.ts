@@ -1,6 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -13,6 +12,7 @@ import {
   SimpleChange,
   SimpleChanges,
   TemplateRef,
+  ViewChild,
 } from '@angular/core';
 
 import {
@@ -23,13 +23,11 @@ import {
   Pagination,
   ColumnKeyType,
   TableMouseEvent,
-  TableAPI,
-  rowStyle,
-  rowClass,
+  ApiType,
 } from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
-import { PaginationRange } from '../pagination/pagination.component';
+import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
 
@@ -45,7 +43,9 @@ interface RowContextMenuPosition {
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
+export class BaseComponent implements OnInit, OnChanges {
+  @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
+  @ViewChild('th') private th;
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -72,7 +72,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   };
   public selectedDetailsTemplateRowId = new Set();
   public id;
-  public th;
   public startOffset;
   public loadingHeight = '30px';
   public config: Config;
@@ -87,7 +86,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config;
   }
 
-  @Input() api: TableAPI;
   @Input() data: any[];
   @Input() pagination: Pagination;
   @Input() groupRowsBy: string;
@@ -115,18 +113,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       ConfigService.config = this.configuration;
     }
     this.config = ConfigService.config;
-    if (this.api) {
-      this.bindApi();
-    }
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
       this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
     }
     this.doDecodePersistedState();
-  }
-
-  ngAfterViewInit(): void {
-    this.cdr.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -402,66 +393,84 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   // tslint:disable:no-big-function cognitive-complexity
-  private bindApi() {
-    this.api.subscribe((event) => {
-      switch (event.type) {
-        case API.rowContextMenuClicked:
-          this.rowContextMenuPosition = {
-            top: null,
-            left: null,
-            value: null,
-          };
+  apiEvent(event: ApiType): void | number {
+    return this.bindApi(event);
+  }
+
+  private bindApi(event: ApiType): void | number {
+    switch (event.type) {
+      case API.rowContextMenuClicked:
+        this.rowContextMenuPosition = {
+          top: null,
+          left: null,
+          value: null,
+        };
+        break;
+      case API.toolPanelClicked:
+        // TODO
+        break;
+      case API.setInputValue:
+        if (!this.config.searchEnabled) {
+          console.error('Can\'t set API.setInputValue because config.searchEnabled is set to false ');
+          return;
+        }
+        event.value.forEach((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
+        this.onSearch(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.onGlobalSearch:
+        this.onGlobalSearch(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.setRowClass:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setRowClass(val));
           break;
-        case API.toolPanelClicked:
-          // TODO
+        }
+        StyleService.setRowClass(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.setCellClass:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setCellClass(val));
           break;
-        case API.setInputValue:
-          if (!this.config.searchEnabled) {
-            console.error('Can\'t set API.setInputValue because config.searchEnabled is set to false ');
-            return;
-          }
-          event.value.forEach((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
-          this.onSearch(event.value);
-          this.cdr.markForCheck();
+        }
+        StyleService.setCellClass(event.value);
+        break;
+      case API.setRowStyle:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setRowStyle(val));
           break;
-        case API.onGlobalSearch:
-          this.onGlobalSearch(event.value);
-          this.cdr.markForCheck();
+        }
+        StyleService.setRowStyle(event.value);
+        break;
+      case API.setCellStyle:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setCellStyle(val));
           break;
-        case API.setRowClass:
-          if (Array.isArray(event.value)) {
-            event.value.forEach((val) => StyleService.setRowClass(val));
-            break;
-          }
-          StyleService.setRowClass(event.value);
-          break;
-        case API.setCellClass:
-          if (Array.isArray(event.value)) {
-            event.value.forEach((val) => StyleService.setCellClass(val));
-            break;
-          }
-          StyleService.setCellClass(event.value);
-          break;
-        case API.setRowStyle:
-          if (Array.isArray(event.value)) {
-            event.value.forEach((val) => StyleService.setRowStyle(val));
-            break;
-          }
-          StyleService.setRowStyle(event.value);
-          break;
-        case API.setCellStyle:
-          if (Array.isArray(event.value)) {
-            event.value.forEach((val) => StyleService.setCellStyle(val));
-            break;
-          }
-          StyleService.setCellStyle(event.value);
-          break;
-        case API.setTableClass:
-          this.tableClass = event.value;
-          this.cdr.markForCheck();
-          break;
-        default:
-      }
-    });
+        }
+        StyleService.setCellStyle(event.value);
+        break;
+      case API.setTableClass:
+        this.tableClass = event.value;
+        this.cdr.detectChanges();
+        break;
+      case API.getPaginationTotalItems:
+        return this.paginationComponent.paginationDirective.getTotalItems();
+      case API.setPaginationCurrentPage:
+        this.paginationComponent.paginationDirective.setCurrent(event.value);
+        break;
+      case API.setPaginationRange:
+        this.paginationComponent.ranges = event.value;
+        break;
+      case API.setPaginationPreviousLabel:
+        this.paginationComponent.previousLabel = event.value;
+        break;
+      case API.setPaginationNextLabel:
+        this.paginationComponent.nextLabel = event.value;
+        break;
+      default:
+        break;
+    }
   }
 }

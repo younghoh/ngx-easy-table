@@ -1,6 +1,6 @@
 <div class="ngx-container">
   <table id="table"
-         [ngClass]="tableClass ? tableClass : 'ngx-table'"
+         [ngClass]="(tableClass === null || tableClass === '') ? 'ngx-table' : tableClass"
          [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
          [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
          [class.ngx-table__table--big]="config.tableLayout.style === 'big'"
@@ -284,9 +284,9 @@
     [attr.id]="'pagination' + id"
     *ngIf="config.paginationEnabled"
     [id]="id"
+    #paginationComponent
     [config]="config"
     [pagination]="pagination"
-    [api]="api"
     (updateRange)="onPagination($event)">
   </pagination>
 </div>

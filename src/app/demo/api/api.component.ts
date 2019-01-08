@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { API, TableAPI } from '../../../../projects/ngx-easy-table/src/lib';
+import { API } from '../../../../projects/ngx-easy-table/src/lib';
+import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/components/base/base.component';
 
 @Component({
   selector: 'app-api',
@@ -9,11 +10,12 @@ import { API, TableAPI } from '../../../../projects/ngx-easy-table/src/lib';
   styleUrls: ['./api.component.css'],
   providers: [ConfigService],
 })
-export class ApiComponent implements OnInit {
+export class ApiComponent implements OnInit, AfterViewInit {
+  @ViewChild('table') table: BaseComponent;
   public columns;
   public data: Company[] = [];
   public configuration;
-  public readonly api = new TableAPI();
+  public total;
 
   ngOnInit(): void {
     this.configuration = ConfigService.config;
@@ -27,8 +29,12 @@ export class ApiComponent implements OnInit {
     this.data = data;
   }
 
+  ngAfterViewInit(): void {
+    this.setPhone();
+  }
+
   resetSearchInput() {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setInputValue,
       value: [
         { key: 'phone', value: '' },
@@ -38,8 +44,8 @@ export class ApiComponent implements OnInit {
     });
   }
 
-  setPhone() {
-    this.api.set({
+  private setPhone() {
+    this.table.apiEvent({
       type: API.setInputValue,
       value: [
         { key: 'phone', value: '527' },
@@ -49,7 +55,7 @@ export class ApiComponent implements OnInit {
 
   // tslint:disable-next-line:no-identical-functions
   setAge() {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setInputValue,
       value: [
         { key: 'age', value: '32' },
@@ -58,42 +64,48 @@ export class ApiComponent implements OnInit {
   }
 
   setPagination(page: number) {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setPaginationCurrentPage,
       value: page,
     });
   }
 
+  getTotal() {
+    this.total = this.table.apiEvent({
+      type: API.getPaginationTotalItems,
+    });
+  }
+
   setRowClass(row: number, className: string): void {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setRowClass,
       value: { row, className },
     });
   }
 
   setCellClass(row: number, cell: number, className: string): void {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setCellClass,
       value: { row, cell, className },
     });
   }
 
   setRowStyle(): void {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setRowStyle,
       value: { row: 1, attr: 'background', value: '#fd5e5ed4' },
     });
   }
 
   setCellStyle(): void {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setCellStyle,
       value: { row: 1, cell: 3, attr: 'background', value: '#fd5e5ed4' },
     });
   }
 
   setRowClasses(): void {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setRowClass,
       value: [
         {
@@ -113,7 +125,7 @@ export class ApiComponent implements OnInit {
   }
 
   setCellClasses(): void {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setCellClass,
       value: [
         {

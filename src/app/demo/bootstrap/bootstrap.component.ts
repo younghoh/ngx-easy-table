@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { API, TableAPI } from '../../../../projects/ngx-easy-table/src/lib';
+import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/components/base/base.component';
+import { API } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-bootstrap',
@@ -12,10 +13,10 @@ import { API, TableAPI } from '../../../../projects/ngx-easy-table/src/lib';
   providers: [ConfigService],
 })
 export class BootstrapComponent implements OnInit {
+  @ViewChild('table') table: BaseComponent;
   public columns;
   public data: Company[] = [];
   public configuration;
-  public readonly api = new TableAPI();
 
   ngOnInit(): void {
     this.configuration = ConfigService.config;
@@ -30,7 +31,7 @@ export class BootstrapComponent implements OnInit {
   }
 
   setBootstrap() {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setTableClass,
       value: 'table table-bordered table-striped table-sm',
     });
@@ -38,23 +39,16 @@ export class BootstrapComponent implements OnInit {
 
   // tslint:disable-next-line:no-identical-functions
   setNormal() {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setTableClass,
       value: '',
     });
   }
 
   setRowClass(row: number, className: string): void {
-    this.api.set({
+    this.table.apiEvent({
       type: API.setRowClass,
       value: { row, className },
-    });
-  }
-
-  setCellClass(row: number, cell: number, className: string): void {
-    this.api.set({
-      type: API.setCellClass,
-      value: { row, cell, className },
     });
   }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { API, TableAPI, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
+import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/components/base/base.component';
 
 @Component({
   selector: 'app-context-menu',
@@ -12,10 +13,10 @@ import { API, TableAPI, TableMouseEvent } from '../../../../projects/ngx-easy-ta
 })
 export class ContextMenuComponent implements OnInit {
   @ViewChild('phoneTpl') phoneTpl: TemplateRef<any>;
+  @ViewChild('table') table: BaseComponent;
   public columns;
   public data: Company[] = [];
   public configuration;
-  public readonly api = new TableAPI();
   public edit: number;
 
   ngOnInit(): void {
@@ -42,12 +43,12 @@ export class ContextMenuComponent implements OnInit {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
-    this.api.set({ type: API.rowContextMenuClicked });
+    this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
   editCell($event: any = null, object: TableMouseEvent) {
     this.edit = object.rowId;
-    this.api.set({ type: API.rowContextMenuClicked });
+    this.table.apiEvent({ type: API.rowContextMenuClicked });
   }
 
   update($event) {

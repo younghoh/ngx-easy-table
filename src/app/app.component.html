@@ -47,6 +47,10 @@
                    (click)="select(row)"
                    id="{{row.link}}">
                   <i class="icon icon-link"></i> {{row.name}}
+                  <span *ngIf="row.experimental"
+                        class="text-error d-inline tooltip"
+                        data-tooltip="Experimental"
+                        title="Experimental"><b>E</b></span>
                 </a>
               </li>
             </ul>
