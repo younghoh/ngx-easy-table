@@ -83,6 +83,29 @@
                 (click)="resetSearchInput()">Reset inputs</button>
       </div>
     </div>
+    <div class="accordion">
+      <input id="accordion-5"
+             type="radio"
+             name="accordion-radio"
+             hidden="">
+      <label class="accordion-header c-hand"
+             for="accordion-5"><i class="icon icon-arrow-right mr-1"></i>Sort
+      </label>
+      <div class="accordion-body">
+        <button class="btn btn-primary mx-1"
+                (click)="sortBy('name', 'asc')">Sort by name asc
+        </button>
+        <button class="btn btn-primary mx-1"
+                (click)="sortBy('name', 'desc')">Sort by name desc
+        </button>
+        <button class="btn btn-primary mx-1"
+                (click)="sortBy('phone', 'asc')">Sort by phone asc
+        </button>
+        <button class="btn btn-primary mx-1"
+                (click)="sortBy('phone', 'desc')">Sort by phone desc
+        </button>
+      </div>
+    </div>
   </div>
   <div class="column col-12 my-1">
     <ngx-table [data]="data"
