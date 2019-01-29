@@ -1,6 +1,6 @@
 <small>Click "Expand" button to get row details</small><br><br>
-<div class="form-group">
-  <label class="form-label">Group by:</label>
+<div class="form-group" id="selectors">
+  Group by:
   <label class="form-radio form-inline">
     <input type="radio" name="group" id="checkbox-amount" (change)="onChange('amount')">
     <i class="form-icon"></i> Amount
@@ -43,21 +43,22 @@
 </ng-template>
 <ng-template #groupRowsHeaderTemplateRef
              let-total="total"
-             let-group="group"
              let-key="key"
              let-value="value"
+             let-group="group"
              let-index="index">
   <td class="bg-secondary">
-    Total items: {{ total }} ({{value}})
+    Total items: {{ total }}
   </td>
   <td class="bg-secondary">
-    SUM: {{ showCount(group, 'amount') }}
+    Amount summary: {{ showCount(group, 'amount') }}
   </td>
   <td class="bg-secondary">
-    SUM: {{ showCount(group, 'debit') }}
+    Debit summary: {{ showCount(group, 'debit') }}
   </td>
-  <td class="bg-secondary"></td>
-  <td class="bg-secondary"></td>
+  <td class="bg-secondary">
+    Grouped value: <strong>{{value}}</strong>
+  </td>
   <td class="bg-secondary">
     <button class="btn btn-primary"
             (click)="onRowClickEvent($event, index)">

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { API } from '../../../../projects/ngx-easy-table/src/lib';
+import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/components/base/base.component';
 
 @Component({
   selector: 'app-global-search',
@@ -8,20 +10,26 @@ import { ConfigService } from './configuration.service';
   providers: [ConfigService],
   styles: [],
 })
-export class GlobalSearchComponent {
-
-  columns = [
+export class GlobalSearchComponent implements OnInit {
+  @ViewChild('table') table: BaseComponent;
+  public columns = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
     { key: 'isActive', title: 'STATUS' },
   ];
-  data: Company[] = [];
-  configuration;
+  public data: Company[] = [];
+  public configuration;
 
-  constructor() {
+  ngOnInit(): void {
     this.configuration = ConfigService.config;
     this.data = data;
+  }
+
+  onChange(name: string): void {
+    this.table.apiEvent({
+      type: API.onGlobalSearch, value: name,
+    });
   }
 }

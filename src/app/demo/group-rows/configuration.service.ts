@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Config, STYLE, THEME } from '../../../../projects/ngx-easy-table/src/lib';
+import { Config, STYLE, THEME } from 'ngx-easy-table';
 
 @Injectable()
 export class ConfigService {
   public static config: Config = {
-    searchEnabled: false,
+    searchEnabled: true,
     headerEnabled: true,
-    orderEnabled: false,
-    globalSearchEnabled: false,
+    orderEnabled: true,
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: false,

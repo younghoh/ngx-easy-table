@@ -1,0 +1,49 @@
+<div class="columns">
+  <div class="column col-12">
+    <h3>Documentation</h3>
+    <p>Table has functionality to control it's content outside component. It means by using API you can control table's
+      behaviour as you want.</p>
+    <p>To define API object use code snippet defined below:</p>
+    <div class="col-6 col-sm-12">
+      <pre><code [highlight]="apiDefinitionCode"></code></pre>
+    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th width="20%">Type</th>
+        <th width="20%">Code</th>
+        <th width="10%">Returns</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>API.setInputValue</td>
+        <td>
+          <pre><code [highlight]="setInputValueCode"></code></pre>
+          <pre><code [highlight]="setInputValueCode2"></code></pre>
+          <pre><code [highlight]="setInputValueCode3"></code></pre>
+        </td>
+        <td>void</td>
+        <td>Set input value. You can set array of values.</td>
+      </tr>
+      <tr>
+        <td>API.rowContextMenuClicked</td>
+        <td>
+          <pre><code [highlight]="rowContextMenuClickedCode"></code></pre>
+        </td>
+        <td>void</td>
+        <td>Emit event to close context menu</td>
+      </tr>
+      <tr>
+        <td>API.toolPanelClicked</td>
+        <td>
+          <pre><code [highlight]="toolPanelClickedCode"></code></pre>
+        </td>
+        <td>void</td>
+        <td>Emit event to close tool panel menu</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="columns">
+  <div class="column col-12">
+    <small>To disable default table layout use solution provided in <code>setBootstrap()</code> method</small>. <br>
+    <small>NOTE: this feature is experimental, and might have some issues, but feel free to test it.</small>
+  </div>
+  <div class="column col-12 my-1">
+    <button class="btn"
+            [routerLink]="['/api-doc']">See API doc
+    </button>
+  </div>
+  <div class="column col-12">
+    <button class="btn mx-1"
+            (click)="setRowClass(1, 'table-primary')">Bootstrap row primary
+    </button>
+    <button class="btn mx-1"
+            (click)="setRowClass(2, 'table-secondary')">Bootstrap row secondary
+    </button>
+    <button class="btn mx-1"
+            (click)="setRowClass(3, 'table-danger')">Bootstrap row danger
+    </button>
+  </div>
+  <div class="column col-12 my-2">
+    <button class="btn btn-primary"
+            (click)="setNormal()">Spectre.css table
+    </button>
+    <button class="btn btn-primary mx-1"
+            (click)="setBootstrap()">Bootstrap table
+    </button>
+  </div>
+  <div class="column col-12 my-1">
+    <ngx-table [data]="data"
+               #table
+               [configuration]="configuration"
+               [columns]="columns">
+    </ngx-table>
+  </div>
+</div>

@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { BaseComponent } from './base.component';
 
 import { CsvExportComponent } from '../csv-export.component';
-import { GlobalSearchComponent } from '../global-search/global-search.component';
 import { HeaderComponent } from '../header/header.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 
@@ -19,7 +18,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     BaseComponent,
-    GlobalSearchComponent,
     CsvExportComponent,
     HeaderComponent,
     PaginationComponent,

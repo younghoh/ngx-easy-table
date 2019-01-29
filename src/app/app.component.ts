@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
 import { environment } from '../environments/environment';
 
+interface Link {
+  link: string;
+  name: string;
+  experimental?: boolean;
+}
+
 @Component({
   selector: 'app-table',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public version: string = environment.VERSION;
-  showMenu = false;
-  selected;
-  menu = {
+  public readonly version = environment.VERSION;
+  public showMenu = false;
+  public selected: Link;
+  public readonly menu = {
     basic: [
       { link: 'basic', name: 'Basic' },
       { link: 'async', name: 'Async resource' },
@@ -66,10 +72,18 @@ export class AppComponent {
       { link: 'custom-sort', name: 'Custom sort' },
       { link: 'custom-intable-sort', name: 'Custom in-table sort' },
     ],
+    tableApi: [
+      { link: 'api', name: 'API', experimental: true },
+      { link: 'bootstrap', name: 'Bootstrap', experimental: true },
+    ],
   };
 
-  select(selected) {
+  select(selected: Link): void {
     this.selected = selected;
     this.showMenu = !this.showMenu;
+  }
+
+  get excludedLinks() {
+    return ['basic', 'api-doc', 'doc'].indexOf(this.selected.link) !== -1;
   }
 }

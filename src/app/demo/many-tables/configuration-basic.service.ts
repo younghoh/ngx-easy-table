@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Config, STYLE, THEME } from '../../../../projects/ngx-easy-table/src/lib';
+import { Config, STYLE, THEME } from 'ngx-easy-table';
 
 @Injectable()
 export class ConfigurationBasicService {
@@ -7,7 +7,6 @@ export class ConfigurationBasicService {
     searchEnabled: false,
     headerEnabled: true,
     orderEnabled: false,
-    globalSearchEnabled: false,
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: false,

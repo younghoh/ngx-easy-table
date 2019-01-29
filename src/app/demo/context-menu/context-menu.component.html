@@ -1,20 +1,30 @@
 <div class="columns">
   <div class="column col-12">
     <ngx-table [data]="data"
+               #table
                [configuration]="configuration"
                [rowContextMenu]="rowContextMenu"
-               [api]="api"
                [columns]="columns">
     </ngx-table>
   </div>
 </div>
-<ng-template #rowContextMenu let-row>
+<ng-template #rowContextMenu let-object>
   <ul class="menu">
     <li class="menu-item">
-      <div class="c-hand" (click)="copyRow(row)">Copy row</div>
-      <div class="c-hand" (click)="copyRow(row)">Edit</div>
+      <div class="c-hand" (click)="editCell($event, object)">Edit cell</div>
+      <div class="c-hand" (click)="copyCell($event, object)">Copy cell</div>
       <div class="divider"></div>
-      <div class="c-hand" (click)="copyRow(row)">Print</div>
+      <div>Version: 1.2.3</div>
     </li>
   </ul>
+</ng-template>
+<ng-template #phoneTpl let-row let-rowIndex="rowIndex">
+  <div class="phone" *ngIf="edit !== rowIndex">Phone: {{row.phone}}</div>
+  <div *ngIf="edit === rowIndex">
+    <input type="text"
+           placeholder="Phone"
+           (blur)="update($event)"
+           class="form-label"
+           [value]="row.phone">
+  </div>
 </ng-template>

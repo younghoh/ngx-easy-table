@@ -10,17 +10,14 @@ import { ConfigService } from './configuration.service';
   providers: [ConfigService, CompanyService],
 })
 export class AsyncComponent implements OnInit {
-  configuration;
-  data;
-  columns = [
-    { key: 'id', title: 'id' },
-    { key: 'email', title: 'email' },
-    { key: 'company', title: 'Company' },
-    { key: 'eyeColor', title: 'eyeColor' },
+  public configuration;
+  public data;
+  public columns = [
+    { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
-    { key: 'balance', title: 'balance' },
-    { key: 'surname', title: 'surname' },
+    { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
+    { key: 'isActive', title: 'STATUS' },
   ];
 
   constructor(private companyService: CompanyService) {

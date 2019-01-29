@@ -1,6 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
@@ -13,18 +12,24 @@ import {
   SimpleChange,
   SimpleChanges,
   TemplateRef,
+  ViewChild,
 } from '@angular/core';
 
-import { from, Subject } from 'rxjs';
-import { flatMap, groupBy, reduce } from 'rxjs/operators';
-import { Columns, Config, Event } from '../..';
+import {
+  Columns,
+  Config,
+  Event,
+  API,
+  Pagination,
+  ColumnKeyType,
+  TableMouseEvent,
+  ApiType,
+} from '../..';
 import { ConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
-import { PaginationObject } from '../pagination/pagination.component';
-import { Pagination } from '../../model/pagination';
-import { API, ApiType } from '../../model/api';
-
-type KeyType = string | number | boolean;
+import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
+import { GroupRowsService } from '../../services/group-rows.service';
+import { StyleService } from '../../services/style.service';
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -34,15 +39,18 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [ConfigService, UtilsService],
+  providers: [ConfigService, UtilsService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
+export class BaseComponent implements OnInit, OnChanges {
+  @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
+  @ViewChild('th') private th;
   public selectedRow: number;
   public selectedCol: number;
   public term;
-  public globalSearchTerm;
+  public tableClass = null;
+  public globalSearchTerm: string;
   public grouped: any = [];
   public menuActive = false;
   public isSelected = false;
@@ -64,7 +72,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   };
   public selectedDetailsTemplateRowId = new Set();
   public id;
-  public th;
   public startOffset;
   public loadingHeight = '30px';
   public config: Config;
@@ -79,7 +86,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config;
   }
 
-  @Input() api: Subject<ApiType>;
   @Input() data: any[];
   @Input() pagination: Pagination;
   @Input() groupRowsBy: string;
@@ -107,18 +113,11 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       ConfigService.config = this.configuration;
     }
     this.config = ConfigService.config;
-    if (this.api) {
-      this.bindApi();
-    }
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
-      this.doGroupRows();
+      this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
     }
     this.doDecodePersistedState();
-  }
-
-  ngAfterViewInit(): void {
-    this.cdr.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -133,7 +132,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       this.count = pagination.currentValue.count;
     }
     if (groupRowsBy && groupRowsBy.currentValue) {
-      this.doGroupRows();
+      this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
     }
     if (this.toggleRowIndex && this.toggleRowIndex.currentValue) {
       const row = this.toggleRowIndex.currentValue;
@@ -172,6 +171,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (!ConfigService.config.serverPagination) {
       this.data = [...this.data];
     }
+    this.sortBy = { ...this.sortBy };
     const value = {
       key,
       order: this.sortByIcon.order,
@@ -179,7 +179,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onOrder, value);
   }
 
-  onClick($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
     if (ConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
@@ -191,7 +191,7 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       this.selectedCol = colIndex;
     }
     if (ConfigService.config.clickEvent) {
-      const value = {
+      const value: TableMouseEvent = {
         event: $event,
         row,
         key,
@@ -202,8 +202,8 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     }
   }
 
-  onDoubleClick($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
-    const value = {
+  onDoubleClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
+    const value: TableMouseEvent = {
       event: $event,
       row,
       key,
@@ -227,21 +227,21 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     this.emitEvent(Event.onSelectAll, this.isSelected);
   }
 
-  onSearch($event: string): void {
+  onSearch($event: Array<{ key: string; value: string }>): void {
     if (!ConfigService.config.serverPagination) {
       this.term = $event;
     }
     this.emitEvent(Event.onSearch, $event);
   }
 
-  onGlobalSearch($event: string): void {
+  onGlobalSearch(value: string): void {
     if (!ConfigService.config.serverPagination) {
-      this.globalSearchTerm = $event;
+      this.globalSearchTerm = value;
     }
-    this.emitEvent(Event.onGlobalSearch, $event);
+    this.emitEvent(Event.onGlobalSearch, value);
   }
 
-  onPagination(pagination: PaginationObject): void {
+  onPagination(pagination: PaginationRange): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
     this.emitEvent(Event.onPagination, pagination);
@@ -287,16 +287,6 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     if (search) {
       this.term = JSON.parse(search);
     }
-  }
-
-  private doGroupRows() {
-    this.grouped = [];
-    from(this.data).pipe(
-      groupBy((row) => row[this.groupRowsBy]),
-      flatMap((group) => group.pipe(
-        reduce((acc: object[], curr) => [...acc, curr], []),
-      )),
-    ).subscribe((row) => this.grouped.push(row));
   }
 
   isRowCollapsed(rowIndex: number): boolean {
@@ -366,12 +356,12 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     return this.config.showDetailsArrow || typeof this.config.showDetailsArrow === 'undefined';
   }
 
-  onRowContextMenu($event: MouseEvent, row: object, key: KeyType, colIndex: number | null, rowIndex: number): void {
+  onRowContextMenu($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
     if (!this.config.showContextMenu) {
       return;
     }
     $event.preventDefault();
-    const value = {
+    const value: TableMouseEvent = {
       event: $event,
       row,
       key,
@@ -402,22 +392,90 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
-  private bindApi() {
-    this.api.subscribe((event) => {
-      switch (event.type) {
-        case API.rowContextMenuClicked:
-          this.rowContextMenuPosition = {
-            top: null,
-            left: null,
-            value: null,
-          };
+  // tslint:disable:no-big-function cognitive-complexity
+  apiEvent(event: ApiType): void | number {
+    return this.bindApi(event);
+  }
+
+  private bindApi(event: ApiType): void | number {
+    switch (event.type) {
+      case API.rowContextMenuClicked:
+        this.rowContextMenuPosition = {
+          top: null,
+          left: null,
+          value: null,
+        };
+        break;
+      case API.toolPanelClicked:
+        // TODO
+        break;
+      case API.setInputValue:
+        if (!this.config.searchEnabled) {
+          console.error('Can\'t set API.setInputValue because config.searchEnabled is set to false ');
+          return;
+        }
+        event.value.forEach((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
+        this.onSearch(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.onGlobalSearch:
+        this.onGlobalSearch(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.setRowClass:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setRowClass(val));
           break;
-        case API.toolPanelClicked:
-          // TODO
+        }
+        StyleService.setRowClass(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.setCellClass:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setCellClass(val));
           break;
-        default:
-          console.warn('unrecognized API value');
-      }
-    });
+        }
+        StyleService.setCellClass(event.value);
+        break;
+      case API.setRowStyle:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setRowStyle(val));
+          break;
+        }
+        StyleService.setRowStyle(event.value);
+        break;
+      case API.setCellStyle:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setCellStyle(val));
+          break;
+        }
+        StyleService.setCellStyle(event.value);
+        break;
+      case API.setTableClass:
+        this.tableClass = event.value;
+        this.cdr.detectChanges();
+        break;
+      case API.getPaginationTotalItems:
+        return this.paginationComponent.paginationDirective.getTotalItems();
+      case API.setPaginationCurrentPage:
+        this.paginationComponent.paginationDirective.setCurrent(event.value);
+        break;
+      case API.setPaginationRange:
+        this.paginationComponent.ranges = event.value;
+        break;
+      case API.setPaginationPreviousLabel:
+        this.paginationComponent.previousLabel = event.value;
+        break;
+      case API.setPaginationNextLabel:
+        this.paginationComponent.nextLabel = event.value;
+        break;
+      case API.sortBy:
+        const column: Columns = { title: '', key: event.value.column, orderBy: event.value.order };
+        this.orderBy(column);
+        this.cdr.detectChanges();
+        break;
+      default:
+        break;
+    }
   }
 }

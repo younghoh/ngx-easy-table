@@ -4,6 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { routing } from './routes';
+import { HighlightModule } from 'ngx-highlightjs';
+import typescript from 'highlight.js/lib/languages/typescript';
+
+export function hljsLanguages() {
+  return [
+    { name: 'typescript', func: typescript },
+  ];
+}
 
 import {
   AsyncComponent,
@@ -52,6 +60,9 @@ import {
   InlineComponent,
   InlineRowComponent,
   ContextMenuComponent,
+  ApiComponent,
+  ApiDocComponent,
+  BootstrapComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -62,6 +73,9 @@ import { TableModule } from 'ngx-easy-table';
     FormsModule,
     TableModule,
     routing,
+    HighlightModule.forRoot({
+      languages: hljsLanguages,
+    }),
     // TrendModule,
   ],
   declarations: [
@@ -112,6 +126,9 @@ import { TableModule } from 'ngx-easy-table';
     InlineComponent,
     InlineRowComponent,
     ContextMenuComponent,
+    ApiComponent,
+    ApiDocComponent,
+    BootstrapComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

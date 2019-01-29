@@ -29,7 +29,7 @@
       true,
       "never-prefix"
     ],
-    "interface-over-type-literal": true,
+    "interface-over-type-literal": false,
     "label-position": true,
     "max-line-length": [
       true,
@@ -189,6 +189,14 @@
     "no-collapsible-if": true,
     "no-empty-nested-blocks": true,
     "no-return-type-any": true,
-    "parameters-max-number": [true, 5]
+    "parameters-max-number": [
+      true,
+      5
+    ],
+    "ban-ts-ignore": true,
+    "function-constructor": true,
+    "increment-decrement": true,
+    "unnecessary-constructor": true,
+    "unnecessary-bind": true
   }
 }

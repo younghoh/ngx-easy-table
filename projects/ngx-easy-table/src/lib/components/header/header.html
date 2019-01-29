@@ -5,6 +5,6 @@
          placeholder="{{ column.placeholder ? column.placeholder : column.title }}"
          class="ngx-table__header-search"
          #input
-         (input)="update.emit({value: input.value, key: column.key})"
+         (input)="onSearch(input)"
   >
 </label>

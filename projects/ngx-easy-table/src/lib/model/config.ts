@@ -3,7 +3,6 @@ export interface Config {
   headerEnabled: boolean;
   orderEnabled: boolean;
   orderEventOnly?: boolean;
-  globalSearchEnabled: boolean;
   paginationEnabled: boolean;
   exportEnabled: boolean;
   clickEvent: boolean;
@@ -29,11 +28,11 @@ export interface Config {
   persistState?: boolean;
   paginationMaxSize?: number;
   tableLayout: {
-    style: STYLE | string,
-    theme: THEME | string,
-    borderless: boolean,
-    hover: boolean,
-    striped: boolean,
+    style: STYLE | string | null,
+    theme: THEME | string | null,
+    borderless: boolean | null,
+    hover: boolean | null,
+    striped: boolean | null,
   };
 }
 

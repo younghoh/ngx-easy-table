@@ -190,7 +190,7 @@ $primary-color: #50596c !default;
 
         & /deep/ pagination-template > ul {
           -webkit-padding-start: 0;
-          -webkit-margin-before: 7px;
+          -webkit-margin-before: 0;
         }
 
         & /deep/ pagination-template > ul > li {
@@ -235,13 +235,6 @@ $primary-color: #50596c !default;
     }
   }
 
-  &-global-search {
-    display: block;
-    float: right;
-    margin-bottom: 20px;
-    margin-right: 20px;
-  }
-
   &-menu {
     background: #fff;
     border-radius: .1rem;
@@ -256,64 +249,6 @@ $primary-color: #50596c !default;
 
   &-menu-item {
     cursor: pointer;
-  }
-
-  &-pagination {
-    font-family: Lato, Verdana, serif;
-    display: inline-block;
-
-    &-range {
-      display: inline-block;
-      float: right;
-    }
-
-    &-steps {
-      display: inline-block;
-    }
-
-    &-wrapper {
-
-    }
-
-    &-range-dropdown {
-      margin-top: 8px;
-    }
-
-    &-range-dropdown-button-item {
-      cursor: pointer;
-      color: $primary-color;
-      padding: 4px;
-    }
-
-    &-range-dropdown-button {
-      color: $primary-color;
-      border: 1px solid $grey;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    &-style {
-      & /deep/ .ngx-pagination .current {
-        background: $blue;
-      }
-
-      & /deep/ pagination-template > ul {
-        -webkit-padding-start: 0;
-        -webkit-margin-before: 0;
-      }
-
-      & /deep/ pagination-template > ul > li {
-        border: 1px solid $grey;
-      }
-
-      & /deep/ pagination-template > ul > li.current {
-        border: 1px solid $dark;
-      }
-
-      & /deep/ pagination-template > ul > li > a {
-        color: $dark;
-      }
-    }
   }
 
   &-form-icon {
@@ -484,6 +419,134 @@ $primary-color: #50596c !default;
   opacity: 0;
 }
 
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+.ngx-pagination {
+  font-family: Lato, Verdana, serif;
+  display: inline-block;
+  margin-left: 0;
+  margin-bottom: 1rem;
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
+}
+
+.ngx-pagination::before, .ngx-pagination::after {
+  content: ' ';
+  display: table;
+}
+
+.ngx-pagination::after {
+  clear: both;
+}
+
+.ngx-pagination li {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  margin-right: 0.0625rem;
+  border-radius: 0;
+  border: 1px solid $grey;
+}
+
+.ngx-pagination li.current {
+  border: 1px solid $dark;
+}
+
+.ngx-pagination li {
+  display: inline-block;
+}
+
+.ngx-pagination a,
+.ngx-pagination button {
+  color: $dark;
+  display: block;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 0;
+}
+
+.ngx-pagination a:hover,
+.ngx-pagination button:hover {
+  background: #e6e6e6;
+}
+
+.ngx-pagination .current {
+  padding: 0.1875rem 0.625rem;
+  background: $blue;
+  color: #fefefe;
+  cursor: default;
+}
+
+.ngx-pagination .disabled {
+  padding: 0.1875rem 0.625rem;
+  color: #cacaca;
+  cursor: default;
+}
+
+.ngx-pagination .disabled:hover {
+  background: transparent;
+}
+
+.ngx-pagination a, .ngx-pagination button {
+  cursor: pointer;
+}
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before {
+  content: '«';
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+  content: '»';
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+.ngx-pagination .show-for-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.ngx-pagination .small-screen {
+  display: none;
+}
+
+.ngx-pagination-range {
+  display: inline-block;
+  float: right;
+}
+
+.ngx-pagination-steps {
+  display: inline-block;
+}
+
+.ngx-pagination-range-dropdown {
+  margin-top: 8px;
+}
+
+.ngx-pagination-range-dropdown-button-item {
+  cursor: pointer;
+  color: $primary-color;
+  padding: 4px;
+}
+
+.ngx-pagination-range-dropdown-button {
+  color: $primary-color;
+  border: 1px solid $grey;
+  cursor: pointer;
+  padding: 4px;
+}
+
+@media screen and (max-width: 601px) {
+  .ngx-pagination.responsive .small-screen {
+    display: inline-block;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 0;
+  }
+  .ngx-pagination.responsive li:not(.small-screen):not(.pagination-previous):not(.pagination-next) {
+    display: none;
+  }
 }
