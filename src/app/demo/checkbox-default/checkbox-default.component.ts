@@ -34,7 +34,7 @@ export class CheckboxDefaultComponent {
         }
         break;
       case 'onSelectAll':
-        this.data.forEach((val, key) => {
+        this.data.forEach((_, key) => {
           if (this.selected.has(key)) {
             this.selected.delete(key);
           } else {

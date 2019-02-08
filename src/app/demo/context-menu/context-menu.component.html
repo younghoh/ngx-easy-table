@@ -11,8 +11,8 @@
 <ng-template #rowContextMenu let-object>
   <ul class="menu">
     <li class="menu-item">
-      <div class="c-hand" (click)="editCell($event, object)">Edit cell</div>
-      <div class="c-hand" (click)="copyCell($event, object)">Copy cell</div>
+      <div class="c-hand" (click)="editCell(object)">Edit cell</div>
+      <div class="c-hand" (click)="copyCell(object)">Copy cell</div>
       <div class="divider"></div>
       <div>Version: 1.2.3</div>
     </li>
