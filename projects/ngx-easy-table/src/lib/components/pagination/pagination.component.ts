@@ -20,7 +20,6 @@ export interface PaginationRange {
   templateUrl: './pagination.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class PaginationComponent {
   @ViewChild('paginationDirective') paginationDirective: PaginationControlsDirective;
   @Input() pagination;
@@ -53,7 +52,4 @@ export class PaginationComponent {
     });
   }
 
-  private bindApi() {
-
-  }
 }
