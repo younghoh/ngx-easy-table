@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import * as faker from 'faker';
-import { Company } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 
 @Component({

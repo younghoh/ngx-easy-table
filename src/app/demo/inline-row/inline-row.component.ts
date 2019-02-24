@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { Company, data } from '../../../assets/data';
+import { data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 
 @Component({
