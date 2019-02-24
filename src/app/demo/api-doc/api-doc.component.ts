@@ -34,7 +34,46 @@ export class ApiDocComponent {
   type: API.rowContextMenuClicked,
 });`;
 
-  public readonly toolPanelClickedCode = `this.table.apiEvent({
-  type: API.toolPanelClicked,
+  public readonly setRowClassCode = `this.table.apiEvent({
+  type: API.setRowClass,
+  value: { row: 1, className: 'red' },
+});`;
+
+  public readonly setCellClassCode = `this.table.apiEvent({
+  type: API.setCellClass,
+  value: { row: 1, cell: 1, className: 'red' },
+});`;
+
+  public readonly setRowStyleCode = `this.table.apiEvent({
+  type: API.setRowStyle,
+  value: { row: 1, attr: 'background', value: '#fd5e5ed4' },
+});`;
+
+  public readonly setCellStyleCode = `this.table.apiEvent({
+  type: API.setCellStyle,
+  value: { row: 1, cell: 3, attr: 'background', value: '#fd5e5ed4' },
+});`;
+
+  public readonly setTableClassCode = `this.table.apiEvent({
+  type: API.setTableClass,
+  value: 'table table-bordered table-striped table-sm',
+});`;
+
+  public readonly setPaginationCode = `this.table.apiEvent({
+  type: API.setPaginationCurrentPage,
+  value: 2,
+});`;
+
+  public readonly getPaginationTotalCode = `this.table.apiEvent({
+  type: API.getPaginationTotalItems,
+});`;
+
+  public readonly getPaginationCurrentPageCode = `this.table.apiEvent({
+  type: API.getPaginationCurrentPage,
+});`;
+
+  public readonly setSortByCode = `this.table.apiEvent({
+  type: API.sortBy,
+  value: { column: 'phone', order: 'asc' },
 });`;
 }

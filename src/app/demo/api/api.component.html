@@ -20,6 +20,8 @@
         <button class="btn btn-primary mx-1"
                 (click)="setPagination(4)">Set pagination on 4</button>
         <button class="btn btn-primary mx-1"
+                (click)="getPaginationCurrent()">Get pagination current</button>
+        <button class="btn btn-primary mx-1"
                 (click)="getTotal()">Get total
         </button> <div class="d-inline" *ngIf="total">Total: {{total}}</div>
       </div>
