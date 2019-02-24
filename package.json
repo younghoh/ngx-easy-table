@@ -7,10 +7,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build ngx-easy-table",
     "lint": "ng lint",
     "e2e": "npm run cy:ci",
-    "cy:serve": "ng build --prod && http-server dist/demo -p 4201",
+    "cy:serve": "ng build ngx-easy-table && http-server dist/demo -p 4201",
     "cy:test": "cypress open",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
