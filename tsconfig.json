@@ -7,7 +7,6 @@
     "moduleResolution": "node",
     "strictFunctionTypes": true,
     "strictBindCallApply": true,
-    "noImplicitReturns": true,
     "noImplicitThis": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
