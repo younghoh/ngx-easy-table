@@ -70,6 +70,12 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getPaginationCurrent() {
+    this.table.apiEvent({
+      type: API.getPaginationCurrentPage,
+    });
+  }
+
   getTotal() {
     this.total = this.table.apiEvent({
       type: API.getPaginationTotalItems,

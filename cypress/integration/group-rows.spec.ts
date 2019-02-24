@@ -30,7 +30,7 @@ context('Group rows', () => {
     cy
       .get('#selectors > label:nth-child(1)')
       .click()
-      .get('#pagination-controls > pagination-template > ul > li:nth-child(4) > a')
+      .get('#pagination-controls > ul > li:nth-child(4) > a')
       .click()
       .get('#table > tbody > tr:nth-child(1)').should('be.visible')
       .get('#table > tbody > tr:nth-child(2)').should('be.visible')

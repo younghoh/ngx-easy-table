@@ -4,7 +4,7 @@
             [routerLink]="['/api-doc']">See API doc</button>
   </div>
   <div class="column col-md-12">
-    <div class="accordion">
+    <div class="accordion" id="accordionHeaderPagination">
       <input id="accordion-1"
              type="radio"
              name="accordion-radio"
@@ -14,17 +14,21 @@
       </label>
       <div class="accordion-body">
         <button class="btn btn-primary mx-1"
+                id="buttonSetPagination2"
                 (click)="setPagination(2)">Set pagination on 2</button>
         <button class="btn btn-primary mx-1"
+                id="buttonSetPagination3"
                 (click)="setPagination(3)">Set pagination on 3</button>
         <button class="btn btn-primary mx-1"
                 (click)="setPagination(4)">Set pagination on 4</button>
+        <button class="btn btn-primary mx-1"
+                (click)="getPaginationCurrent()">Get pagination current</button>
         <button class="btn btn-primary mx-1"
                 (click)="getTotal()">Get total
         </button> <div class="d-inline" *ngIf="total">Total: {{total}}</div>
       </div>
     </div>
-    <div class="accordion">
+    <div class="accordion" id="accordionHeaderRow">
       <input id="accordion-2"
              type="radio"
              name="accordion-radio"
@@ -34,8 +38,10 @@
       </label>
       <div class="accordion-body">
         <button class="btn mx-1"
+                id="buttonPinkRow"
                 (click)="setRowClass(1, 'pink')">Row pink</button>
         <button class="btn mx-1"
+                id="buttonBlueRow"
                 (click)="setRowClass(2, 'blue')">Row blue</button>
         <button class="btn mx-1"
                 (click)="setRowClass(3, 'green')">Row green</button>
@@ -45,7 +51,7 @@
                 (click)="setRowStyle()">Set row style</button>
       </div>
     </div>
-    <div class="accordion">
+    <div class="accordion" id="accordionHeaderCell">
         <input id="accordion-cell"
                type="radio"
                name="accordion-radio"
@@ -66,7 +72,7 @@
                   (click)="setCellStyle()">Set cell style</button>
         </div>
       </div>
-    <div class="accordion">
+    <div class="accordion" id="accordionHeaderInputs">
       <input id="accordion-3"
              type="radio"
              name="accordion-radio"
@@ -80,10 +86,11 @@
         <button class="btn btn-primary mx-1"
                 (click)="setAge()">Set age input</button>
         <button class="btn btn-primary mx-1"
+                id="buttonClearAllInputs"
                 (click)="resetSearchInput()">Reset inputs</button>
       </div>
     </div>
-    <div class="accordion">
+    <div class="accordion" id="accordionHeaderSort">
       <input id="accordion-5"
              type="radio"
              name="accordion-radio"
