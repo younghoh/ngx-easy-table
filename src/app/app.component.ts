@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
+import { NavigationEnd, Router } from '@angular/router';
 
 interface Link {
   link: string;
@@ -12,7 +13,11 @@ interface Link {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  constructor(private router: Router) {
+
+  }
+
   public readonly version = environment.VERSION;
   public showMenu = false;
   public selected: Link;
@@ -77,6 +82,22 @@ export class AppComponent {
       { link: 'bootstrap', name: 'Bootstrap', experimental: true },
     ],
   };
+
+  ngOnInit(): void {
+    this.router.events.subscribe((route) => {
+      if (route instanceof NavigationEnd) {
+        const url = route.url.replace('/', '');
+        Object.values(this.menu).forEach((value) => value.forEach((entry) => {
+          if (entry.link === url) {
+            this.select({
+              link: url,
+              name: entry.name,
+            });
+          }
+        }));
+      }
+    });
+  }
 
   select(selected: Link): void {
     this.selected = selected;
