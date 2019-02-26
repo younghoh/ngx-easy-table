@@ -43,7 +43,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private setPhone() {
+  setPhone() {
     this.table.apiEvent({
       type: API.setInputValue,
       value: [

@@ -11,7 +11,7 @@ import { API, APIDefinition } from 'ngx-easy-table';
 
 @ViewChild('table') table: APIDefinition;
 `;
-  public readonly setInputValueCode = `this.table.set({
+  public readonly setInputValueCode = `this.table.apiEvent({
   type: API.setInputValue,
   value: [
       { key: 'age', value: '32' },
