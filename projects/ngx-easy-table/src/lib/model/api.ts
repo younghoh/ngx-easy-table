@@ -42,3 +42,7 @@ export type ApiType =
   | { type: API.setCellStyle; value: cellStyle | cellStyle[] }
   | { type: API.sortBy; value: { column: string, order: string } }
   ;
+
+export interface APIDefinition {
+  apiEvent(event: ApiType): void | number;
+}

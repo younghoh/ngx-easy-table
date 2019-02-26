@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { API } from '../../../../projects/ngx-easy-table/src/lib';
-import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/components/base/base.component';
+import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-global-search',
@@ -11,7 +10,7 @@ import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/compo
   styles: [],
 })
 export class GlobalSearchComponent implements OnInit {
-  @ViewChild('table') table: BaseComponent;
+  @ViewChild('table') table: APIDefinition;
   public columns = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },

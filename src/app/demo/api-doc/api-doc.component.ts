@@ -6,7 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./api-doc.component.css'],
 })
 export class ApiDocComponent {
-  public readonly apiDefinitionCode = `@ViewChild('table') table: BaseComponent;`;
+  public readonly apiDefinitionCode = `
+import { API, APIDefinition } from 'ngx-easy-table';
+
+@ViewChild('table') table: APIDefinition;
+`;
   public readonly setInputValueCode = `this.table.set({
   type: API.setInputValue,
   value: [

@@ -1,8 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { API } from '../../../../projects/ngx-easy-table/src/lib';
-import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/components/base/base.component';
+import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-api',
@@ -11,7 +10,7 @@ import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/compo
   providers: [ConfigService],
 })
 export class ApiComponent implements OnInit, AfterViewInit {
-  @ViewChild('table') table: BaseComponent;
+  @ViewChild('table') table: APIDefinition;
   public columns;
   public data: Company[] = [];
   public configuration;

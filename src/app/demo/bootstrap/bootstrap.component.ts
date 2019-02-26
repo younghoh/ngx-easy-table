@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/components/base/base.component';
-import { API } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-bootstrap',
@@ -13,7 +12,7 @@ import { API } from '../../../../projects/ngx-easy-table/src/lib';
   providers: [ConfigService],
 })
 export class BootstrapComponent implements OnInit {
-  @ViewChild('table') table: BaseComponent;
+  @ViewChild('table') table: APIDefinition;
   public columns;
   public data: Company[] = [];
   public configuration;

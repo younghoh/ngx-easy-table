@@ -392,11 +392,11 @@ export class BaseComponent implements OnInit, OnChanges {
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
-  // tslint:disable:no-big-function cognitive-complexity
   apiEvent(event: ApiType): void | number {
     return this.bindApi(event);
   }
 
+  // tslint:disable:no-big-function cognitive-complexity
   private bindApi(event: ApiType): void | number {
     switch (event.type) {
       case API.rowContextMenuClicked:

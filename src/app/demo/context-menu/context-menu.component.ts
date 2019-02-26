@@ -2,8 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { API, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
-import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/components/base/base.component';
+import { API, APIDefinition, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-context-menu',
@@ -13,7 +12,7 @@ import { BaseComponent } from '../../../../projects/ngx-easy-table/src/lib/compo
 })
 export class ContextMenuComponent implements OnInit {
   @ViewChild('phoneTpl') phoneTpl: TemplateRef<any>;
-  @ViewChild('table') table: BaseComponent;
+  @ViewChild('table') table: APIDefinition;
   public columns;
   public data: Company[] = [];
   public configuration;
