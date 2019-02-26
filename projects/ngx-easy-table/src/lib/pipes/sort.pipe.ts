@@ -6,6 +6,8 @@ import { Config } from '..';
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
+  private defaultArray: any[] = [];
+
   private static isNaN(aV, bV) {
     return (isNaN(parseFloat(aV)) || !isFinite(aV)) || (isNaN(parseFloat(bV)) || !isFinite(bV));
   }
@@ -32,18 +34,21 @@ export class SortPipe implements PipeTransform {
 
   transform(array: any[], filter?: { order: string, key: string }, config?: Config): any[] {
     if (!filter.key || filter.key === '') {
+      this.defaultArray = array;
       return array;
+    }
+    if (filter.order === '') {
+      return this.defaultArray;
     }
     if (filter.order === 'asc') {
       if (config && config.groupRows) {
         return array.map((arr) => arr.sort((a, b) => SortPipe.compare(a, b, filter.key)));
       }
       return array.sort((a, b) => SortPipe.compare(a, b, filter.key));
-    } else {
-      if (config && config.groupRows) {
-        return array.map((arr) => arr.sort((a, b) => SortPipe.compare(b, a, filter.key)));
-      }
-      return array.sort((a, b) => SortPipe.compare(b, a, filter.key));
     }
+    if (config && config.groupRows) {
+      return array.map((arr) => arr.sort((a, b) => SortPipe.compare(b, a, filter.key)));
+    }
+    return array.sort((a, b) => SortPipe.compare(b, a, filter.key));
   }
 }

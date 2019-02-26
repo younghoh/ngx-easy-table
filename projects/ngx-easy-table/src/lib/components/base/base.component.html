@@ -22,7 +22,7 @@
           <i class="ngx-form-icon" id="selectAllCheckbox"></i>
         </label>
       </th>
-      <ng-container *ngFor="let column of columns; let colIndex = index">
+      <ng-container *ngFor="let column of columns;">
         <th class="ngx-table__header-cell"
             #th
             [attr.width]="getColumnWidth(column)"
@@ -31,12 +31,15 @@
             (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
             <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
-              <i *ngIf="sortByIcon.key === column.key && sortByIcon.order==='asc'"
-                 [style.display]="config.orderEnabled?'':'none' "
+              <span *ngIf="sortByIcon.key === column.key && sortByIcon.order === ''"
+                    [style.display]="config.orderEnabled ? '' : 'none' "> -
+              </span>
+              <i *ngIf="sortByIcon.key === column.key && sortByIcon.order === 'asc'"
+                 [style.display]="config.orderEnabled ? '' : 'none' "
                  class="ngx-icon ngx-icon-arrow-up">
               </i>
-              <i *ngIf="sortByIcon.key === column.key && sortByIcon.order==='desc'"
-                 [style.display]="config.orderEnabled?'':'none' "
+              <i *ngIf="sortByIcon.key === column.key && sortByIcon.order === 'desc'"
+                 [style.display]="config.orderEnabled ? '' : 'none' "
                  class="ngx-icon ngx-icon-arrow-down">
               </i>
             </div>

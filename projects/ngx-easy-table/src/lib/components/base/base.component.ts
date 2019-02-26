@@ -155,11 +155,7 @@ export class BaseComponent implements OnInit, OnChanges {
     }
 
     this.sortByIcon.key = key;
-    if (this.sortByIcon.order === 'asc') {
-      this.sortByIcon.order = 'desc';
-    } else {
-      this.sortByIcon.order = 'asc';
-    }
+    this.sortByIcon.order = this.getColumnOrder(this.sortByIcon.order);
 
     if (!ConfigService.config.orderEventOnly && !column.orderEventOnly) {
       this.sortBy.key = this.sortByIcon.key;
@@ -392,6 +388,7 @@ export class BaseComponent implements OnInit, OnChanges {
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
+  // DO NOT REMOVE. It is called from parent component. See src/app/demo/api-doc/api-doc.component.ts
   apiEvent(event: ApiType): void | number {
     return this.bindApi(event);
   }
@@ -476,6 +473,17 @@ export class BaseComponent implements OnInit, OnChanges {
         break;
       default:
         break;
+    }
+  }
+
+  private getColumnOrder(order: string): string {
+    switch (order) {
+      case '':
+        return 'asc';
+      case 'asc':
+        return 'desc';
+      case 'desc':
+        return '';
     }
   }
 }
