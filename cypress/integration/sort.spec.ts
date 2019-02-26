@@ -17,14 +17,14 @@ context('Sort', () => {
 
   it('gets correct company name when "Company" clicked', () => {
     cy
-      .get('#table > thead > tr > th:nth-child(3)').click()
+      .get('#table > thead > tr.ngx-table__header > th:nth-child(3)').click()
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (873) 421-3625')
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('ARCHITAX');
   });
   it('gets correct name sorted by locale when "Name" clicked', () => {
     cy
-      .get('#table > thead > tr > th:nth-child(4)').click()
-      .get('#table > thead > tr > th:nth-child(4)').click()
+      .get('#table > thead > tr.ngx-table__header > th:nth-child(4)').click()
+      .get('#table > thead > tr.ngx-table__header > th:nth-child(4)').click()
       .get('#pagination-controls > ul > li:nth-child(5)').click()
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(4) > div').contains('Monica Frazier')
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(4) > div').contains('Mónica Glover')
