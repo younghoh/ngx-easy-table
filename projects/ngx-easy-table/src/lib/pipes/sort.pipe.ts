@@ -33,8 +33,10 @@ export class SortPipe implements PipeTransform {
   }
 
   transform(array: any[], filter?: { order: string, key: string }, config?: Config): any[] {
-    if (!filter.key || filter.key === '') {
+    if (this.defaultArray.length === 0) {
       this.defaultArray = array;
+    }
+    if (!filter.key || filter.key === '') {
       return array;
     }
     if (filter.order === '') {
