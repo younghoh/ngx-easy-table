@@ -23,7 +23,7 @@ export class ConfigService {
     collapseAllRows: false,
     checkboxes: false,
     resizeColumn: false,
-    fixedColumnWidth: false,
+    fixedColumnWidth: true,
     horizontalScroll: false,
     draggable: false,
     logger: false,
