@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-global-search',
@@ -11,7 +12,7 @@ import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib'
 })
 export class GlobalSearchComponent implements OnInit {
   @ViewChild('table') table: APIDefinition;
-  public columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },

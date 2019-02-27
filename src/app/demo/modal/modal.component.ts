@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-modal',
@@ -11,7 +12,7 @@ import { ConfigService } from './configuration.service';
 export class ModalComponent {
   modal = false;
   selected;
-  columns = [
+  public columns: Columns[] = [
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },

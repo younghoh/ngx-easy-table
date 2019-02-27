@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-template',
@@ -9,7 +10,7 @@ import { ConfigService } from './configuration.service';
   providers: [ConfigService],
 })
 export class TemplateComponent {
-  columns = [
+  public columns: Columns[] = [
     { key: 'name', title: 'Name', width: '15%', orderEnabled: true, searchEnabled: true },
     { key: 'age', title: 'Age', width: '15%', orderEnabled: true, searchEnabled: false },
     { key: 'company', title: 'Company', width: '15%', orderEnabled: true },

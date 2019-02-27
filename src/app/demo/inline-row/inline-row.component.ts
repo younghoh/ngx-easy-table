@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-inline-row',
@@ -19,7 +20,7 @@ export class InlineRowComponent implements OnInit {
   @ViewChild('age') age: ElementRef<any>;
   @ViewChild('company') company: ElementRef<any>;
   @ViewChild('name') name: ElementRef<any>;
-  columns;
+  public columns: Columns[];
   data = [];
   configuration;
   editRow: number;

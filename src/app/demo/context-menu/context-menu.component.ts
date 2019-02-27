@@ -3,6 +3,7 @@ import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
 import { API, APIDefinition, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-context-menu',
@@ -13,7 +14,7 @@ import { API, APIDefinition, TableMouseEvent } from '../../../../projects/ngx-ea
 export class ContextMenuComponent implements OnInit {
   @ViewChild('phoneTpl') phoneTpl: TemplateRef<any>;
   @ViewChild('table') table: APIDefinition;
-  public columns;
+  public columns: Columns[];
   public data: Company[] = [];
   public configuration;
   public edit: number;

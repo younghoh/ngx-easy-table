@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConfigService } from './configuration.service';
 import { interval } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Columns } from 'ngx-easy-table';
 
 interface Data {
   status: string;
@@ -28,7 +29,7 @@ export class LiveUpdateComponent implements OnInit {
     { status: 'ACTIVE', amount: 66, company: 'Lorem', limit: 6400, balance: 1700 },
     { status: 'INACTIVE', amount: 888, company: 'Ipsum', limit: 6060, balance: 1100 },
   ];
-  columns = [
+  public columns: Columns[] = [
     { key: 'status', title: 'Is active' },
     { key: 'amount', title: 'Amount' },
     { key: 'company', title: 'Company' },

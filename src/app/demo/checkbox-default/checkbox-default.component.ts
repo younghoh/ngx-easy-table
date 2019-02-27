@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-checkbox-default',
@@ -9,7 +10,7 @@ import { ConfigService } from './configuration.service';
 })
 export class CheckboxDefaultComponent {
   configuration;
-  columns = [
+  public columns: Columns[] = [
     { key: 'name', title: 'Name' },
     { key: 'company', title: 'Company' },
     { key: 'name', title: 'Name' },
