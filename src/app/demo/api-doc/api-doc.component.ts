@@ -80,4 +80,8 @@ import { API, APIDefinition } from 'ngx-easy-table';
   type: API.sortBy,
   value: { column: 'phone', order: 'asc' },
 });`;
+  public readonly setPaginationDisplayLimitCode = `this.table.apiEvent({
+  type: API.setPaginationDisplayLimit,
+  value: 10,
+});`;
 }

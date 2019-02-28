@@ -465,6 +465,9 @@ export class BaseComponent implements OnInit, OnChanges {
       case API.setPaginationNextLabel:
         this.paginationComponent.nextLabel = event.value;
         break;
+      case API.setPaginationDisplayLimit:
+        this.paginationComponent.changeLimit(event.value, true);
+        break;
       case API.sortBy:
         const column: Columns = { title: '', key: event.value.column, orderBy: event.value.order };
         this.orderBy(column);

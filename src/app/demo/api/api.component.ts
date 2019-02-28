@@ -30,7 +30,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.setPhone();
+    this.setRowStyle();
   }
 
   resetSearchInput() {
@@ -157,6 +157,13 @@ export class ApiComponent implements OnInit, AfterViewInit {
     this.table.apiEvent({
       type: API.sortBy,
       value: { column, order },
+    });
+  }
+
+  setPaginationDisplayLimit(limit: number) {
+    this.table.apiEvent({
+      type: API.setPaginationDisplayLimit,
+      value: limit,
     });
   }
 }
