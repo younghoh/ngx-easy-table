@@ -33,4 +33,15 @@ context('API', () => {
       .get('#table > tbody > tr:nth-child(1)').contains('+1 (882) 527-2652')
     ;
   });
+  it('uses API to set given amount of visible rows', () => {
+    cy
+      .get('#accordionHeaderPagination').click()
+      .get('#buttonSetPaginationDisplayLimit3').click()
+      .get('#table > tbody > tr:nth-child(1)').contains('+1 (949) 527-2108')
+      .get('#table > tbody > tr:nth-child(4)').should('not.be.visible')
+      .get('#buttonSetPaginationDisplayLimit10').click()
+      .get('#table > tbody > tr:nth-child(1)').contains('+1 (949) 527-2108')
+      .get('#table > tbody > tr:nth-child(4)').should('be.visible')
+    ;
+  });
 });
