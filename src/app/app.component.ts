@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
       { link: 'column-width', name: 'Column width' },
       { link: 'fixed-width', name: 'Fixed width' },
       { link: 'persist-state', name: 'Persist state' },
-      { link: 'context-menu', name: 'Context menu' },
+      { link: 'context-menu', name: 'Context menu', experimental: true },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },
@@ -105,6 +105,6 @@ export class AppComponent implements OnInit {
   }
 
   get excludedLinks() {
-    return ['basic', 'api-doc', 'doc'].indexOf(this.selected.link) !== -1;
+    return ['basic', 'api-doc', 'doc', 'installation'].indexOf(this.selected.link) !== -1;
   }
 }

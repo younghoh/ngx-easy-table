@@ -47,3 +47,5 @@ export * from './context-menu/context-menu.component';
 export * from './api/api.component';
 export * from './api-doc/api-doc.component';
 export * from './bootstrap/bootstrap.component';
+export * from './doc/doc.component';
+export * from './installation/installation.component';

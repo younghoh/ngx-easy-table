@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-async',
@@ -11,7 +12,7 @@ import { ConfigService } from './configuration.service';
 export class AsyncComponent implements OnInit {
   public configuration;
   public data;
-  public columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },
