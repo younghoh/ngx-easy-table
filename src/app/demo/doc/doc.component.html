@@ -1,5 +1,9 @@
 <div class="columns">
   <div class="column col-12">
+    <h2>Documentation</h2>
+    <p>For the API doc navigate to
+      <button class="btn btn-primary btn-sm" [routerLink]="['/api-doc']">API doc</button>
+    </p>
     <h2>Table options:</h2>
     <table class="table">
       <thead>
@@ -27,7 +31,7 @@
       </tr>
       <tr>
         <td>orderEventOnly? <small>(optional)</small></td>
-        <td>TODO</td>
+        <td>You can define your own sort action, for example by Lastname if you display First and Last name. Click <a href="#" [routerLink]="['/custom-intable-sort']">here</a> for the details.</td>
         <td>boolean</td>
       </tr>
       <tr>
@@ -57,13 +61,13 @@
       </tr>
       <tr>
         <td>rows</td>
-        <td>TODO?</td>
+        <td>Set how many table rows is visible when table is rendered</td>
         <td>number</td>
       </tr>
       <tr>
-        <td>additionalActions</td>
-        <td>TODO?</td>
-        <td>number</td>
+        <td>additionalActions <small>(experimental)</small></td>
+        <td>For now it is just placeholder, that add additional column on the right side of the table. Additional features there will be added in  the next releases (started from 10.0)</td>
+        <td>bool</td>
       </tr>
       <tr>
         <td>serverPagination</td>
@@ -82,7 +86,7 @@
       </tr>
       <tr>
         <td>groupRows</td>
-        <td>Enable row grouping. See <a href="https://ngx-easy-table.eu/#/group-rows">https://ngx-easy-table.eu/#/group-rows</a> for more details.</td>
+        <td>Enable row grouping. See <a href="#" [routerLink]="['/group-rows']">https://ngx-easy-table.eu/#/group-rows</a> for more details.</td>
         <td>boolean</td>
       </tr>
       <tr>
@@ -245,5 +249,16 @@
       </tr>
       </tbody>
     </table>
+
+    <h2 class="heading">Styles:</h2>
+    <p>For the examples how to define table styles please navigate to
+      <button class="btn btn-primary btn-sm" [routerLink]="['/styles']">Styles</button>
+    </p>
+    <p>
+      Table from version 9.1 has Montserrat as a default font. Previously it was Lato font. <br>
+      If you would like to change table font, add new font to the package.json, include it in angular.json and
+      define in your style.scss:
+    </p>
+    <pre><code [highlight]="tableFontCode"></code></pre>
   </div>
 </div>

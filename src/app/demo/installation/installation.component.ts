@@ -35,7 +35,8 @@ export class AppModule {
 `;
   public readonly appComponentTsCode = `
 import { Component } from '@angular/core';
-import {ConfigurationService} from './configuration.service';
+import { ConfigurationService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'my-app',
@@ -44,8 +45,8 @@ import {ConfigurationService} from './configuration.service';
   providers: [ConfigurationService],
 })
 export class AppComponent  {
-  configuration;
-  columns = [
+  public configuration;
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },
@@ -53,7 +54,7 @@ export class AppComponent  {
     { key: 'isActive', title: 'STATUS' },
   ];
 
-  data = [{
+  public data = [{
     phone: '+1 (934) 551-2224',
     age: 20,
     address: { street: 'North street', number: 12 },
@@ -68,7 +69,7 @@ export class AppComponent  {
     name: 'Heidi Duncan',
     isActive: true,
   }];
-  constructor() {}
+
   ngOnInit() {
     this.configuration = ConfigService.config;
     this.data = data;
@@ -125,10 +126,15 @@ export class ConfigService {
 
   public readonly angularJsonCode = `
 "styles": [
-  "../node_modules/ngx-easy-table/style.css",
+  "node_modules/ngx-easy-table/style.css",
+  "node_modules/typeface-montserrat/index.css",
 ],
 `;
   public readonly styleScssCode = `
 @import "~ngx-easy-table/style.scss";
+`;
+  public readonly tableFontCode = `:host /deep/ #table {
+  font-family: 'Montserrat', sans-serif;
+}
 `;
 }

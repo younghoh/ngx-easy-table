@@ -31,7 +31,7 @@
     "ngx-easy-table": "^8.0.1",
     "ngx-highlightjs": "^3.0.0",
     "spectre.css": "^0.5.8",
-    "typeface-lato": "0.0.54"
+    "typeface-montserrat": "0.0.54"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.3",

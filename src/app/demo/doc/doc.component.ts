@@ -63,4 +63,8 @@ public columns: Columns[] = [
     { key: 'phone', title: 'Phone', orderBy: 'phone' },
 ];
 `;
+  public readonly tableFontCode = `:host /deep/ #table {
+  font-family: 'Montserrat', sans-serif;
+}
+`;
 }
