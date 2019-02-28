@@ -8,6 +8,7 @@ context('API', () => {
   it('clears all the inputs', () => {
     cy
       .get('#accordionHeaderInputs').click()
+      .getInput('phone').type('527')
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (949) 527-2108')
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div').contains('+1 (882) 527-2652')
       .get('#buttonClearAllInputs').click({ force: true })
