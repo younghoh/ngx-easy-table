@@ -34,7 +34,8 @@ export class SearchPipe implements PipeTransform {
         const split = c.split('.');
         const val = FiltersService.getPath(split, obj);
         const element = (typeof val === 'object') ? JSON.stringify(val) : val.toString().toLocaleLowerCase();
-        return element.indexOf(this.filters[c]) > -1;
+        const strings = this.filters[c].split(',');
+        return strings.some((string) => element.indexOf(string.trim()) > -1);
       });
     });
   }

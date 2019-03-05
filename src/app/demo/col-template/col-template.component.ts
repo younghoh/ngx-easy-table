@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-col-template',
@@ -10,7 +11,7 @@ import { ConfigService } from './configuration.service';
 })
 export class ColTemplateComponent implements OnInit {
   @ViewChild('phoneTpl') phoneTpl: TemplateRef<any>;
-  columns;
+  public columns: Columns[];
   data: Company[] = [];
   configuration;
 

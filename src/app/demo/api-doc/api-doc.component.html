@@ -1,8 +1,8 @@
 <div class="columns">
   <div class="column col-12">
-    <h3>Documentation</h3>
+    <h3>API Documentation</h3>
     <p>Table has functionality to control it's content outside component. It means by using API you can control table's
-      behaviour as you want.</p>
+      behaviour from the parent component.</p>
     <p>To define API object use code snippet defined below:</p>
     <div class="col-6 col-sm-12">
       <pre><code [highlight]="apiDefinitionCode"></code></pre>
@@ -106,6 +106,14 @@
         </td>
         <td>void</td>
         <td>Set sort by column</td>
+      </tr>
+      <tr>
+        <td>API.setPaginationDisplayLimit</td>
+        <td>
+          <pre><code [highlight]="setPaginationDisplayLimitCode"></code></pre>
+        </td>
+        <td>void</td>
+        <td>Set amount of row displayed.</td>
       </tr>
       </tbody>
     </table>

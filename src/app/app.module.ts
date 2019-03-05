@@ -63,6 +63,8 @@ import {
   ApiComponent,
   ApiDocComponent,
   BootstrapComponent,
+  DocComponent,
+  InstallationComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -129,6 +131,8 @@ import { TableModule } from 'ngx-easy-table';
     ApiComponent,
     ApiDocComponent,
     BootstrapComponent,
+    DocComponent,
+    InstallationComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

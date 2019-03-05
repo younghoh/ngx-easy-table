@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 // import { json2excel } from 'js2excel';
 
@@ -11,7 +12,7 @@ import { ConfigService } from './configuration.service';
 })
 export class ExportsComponent {
 
-  columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },

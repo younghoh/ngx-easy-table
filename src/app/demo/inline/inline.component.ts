@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { Event } from 'ngx-easy-table';
+import { Columns, Event } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-inline',
@@ -11,7 +11,7 @@ import { Event } from 'ngx-easy-table';
 })
 export class InlineComponent implements OnInit {
   @ViewChild('phoneTpl') phoneTpl: TemplateRef<any>;
-  columns;
+  public columns: Columns[];
   data: Company[] = [];
   configuration;
   edit: number;

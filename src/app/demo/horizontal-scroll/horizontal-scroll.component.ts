@@ -1,6 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import * as faker from 'faker';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-horizontal-scroll',
@@ -11,7 +12,7 @@ import { ConfigService } from './configuration.service';
 export class HorizontalScrollComponent implements OnInit {
   data;
   configuration;
-  columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },

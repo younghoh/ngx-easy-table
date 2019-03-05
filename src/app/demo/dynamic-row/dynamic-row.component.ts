@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-dynamic-row',
@@ -10,7 +11,7 @@ import { ConfigService } from './configuration.service';
 export class DynamicRowComponent implements OnInit {
   @ViewChild('actionTpl') actionTpl: TemplateRef<any>;
   public data;
-  public columns;
+  public columns: Columns[];
   public configuration;
 
   ngOnInit(): void {

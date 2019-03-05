@@ -1,6 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-row-template',
@@ -10,7 +11,7 @@ import { ConfigService } from './configuration.service';
 })
 export class RowTemplateComponent {
   @ViewChild('detailsTemplate') detailsTemplateRef: TemplateRef<any>;
-  columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },

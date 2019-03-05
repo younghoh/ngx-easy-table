@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-select-all-template',
@@ -10,7 +11,7 @@ import { ConfigService } from './configuration.service';
 })
 export class SelectAllTemplateComponent {
 
-  columns = [
+  public columns: Columns[] = [
     { key: 'name', title: 'Name' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },

@@ -19,7 +19,7 @@ $primary-color: #50596c !default;
     border-collapse: collapse;
     border-spacing: 0;
     display: table;
-    font-family: Lato, Verdana, serif;
+    font-family: Montserrat, Verdana, serif;
     text-align: left;
     width: 100%;
 
@@ -393,7 +393,7 @@ $primary-color: #50596c !default;
   }
 
   &-draggable-row {
-    cursor: pointer;
+    cursor: move;
   }
 }
 
@@ -420,7 +420,7 @@ $primary-color: #50596c !default;
 }
 
 .ngx-pagination {
-  font-family: Lato, Verdana, serif;
+  font-family: Montserrat, Verdana, serif;
   display: inline-block;
   margin-left: 0;
   margin-bottom: 1rem;
