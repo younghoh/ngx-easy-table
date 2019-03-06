@@ -18,8 +18,15 @@ context('Sort', () => {
   it('gets correct company name when "Company" clicked', () => {
     cy
       .get('#table > thead > tr.ngx-table__header > th:nth-child(3)').click()
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (934) 551-2224')
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('ZILLANET')
+      .get('#table > thead > tr.ngx-table__header > th:nth-child(3)').click()
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (873) 421-3625')
-      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('ARCHITAX');
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('ARCHITAX')
+      .get('#table > thead > tr.ngx-table__header > th:nth-child(3)').click()
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (948) 492-2881')
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(3) > div').contains('CENTICE')
+    ;
   });
   it('gets correct name sorted by locale when "Name" clicked', () => {
     cy
