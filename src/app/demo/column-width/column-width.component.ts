@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-column-width',
@@ -9,7 +10,7 @@ import { ConfigService } from './configuration.service';
   providers: [ConfigService],
 })
 export class ColumnWidthComponent {
-  columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone', placeholder: 'Search', width: '15%' },
     { key: 'age', title: 'Age', placeholder: 'Søg', width: '10%' },
     { key: 'company', title: 'Company', placeholder: 'Pesquisa', width: '15%' },

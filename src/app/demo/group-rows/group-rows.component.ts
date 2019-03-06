@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import * as faker from 'faker';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-group-rows',
@@ -13,7 +14,7 @@ export class GroupRowsComponent {
   toggleRowIndex;
   amountSummary = 0;
   debitSummary = 0;
-  columns = [];
+  public columns: Columns[] = [];
   data = [];
   groupBy = 'isActive';
 

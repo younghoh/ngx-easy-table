@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-persist-state',
@@ -10,7 +11,7 @@ import { ConfigService } from './configuration.service';
 export class PersistStateComponent {
 
   configuration;
-  columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },

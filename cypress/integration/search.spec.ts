@@ -45,4 +45,24 @@ context('Search', () => {
       .tableRow(2, 3).contains('CALCULA')
     ;
   });
+  it('gets two rows when applied string with comma separator', () => {
+    cy
+      .getInput('company').type('{selectall}{backspace}')
+      .getInput('age').type('{selectall}{backspace}')
+      .getInput('name').type('{selectall}{backspace}')
+      .getInput('address_street').type('{selectall}{backspace}')
+      .getInput('company').type('kon,iso')
+      .tableRow(1, 3).contains('KONGENE')
+      .tableRow(2, 3).contains('ISOSWITCH')
+    ;
+  });
+  it('gets two rows when applied string with comma separator and some spaces', () => {
+    cy
+      .getInput('company').type('{selectall}{backspace}')
+      .getInput('age').type('{selectall}{backspace}')
+      .getInput('company').type('kon, iso ')
+      .tableRow(1, 3).contains('KONGENE')
+      .tableRow(2, 3).contains('ISOSWITCH')
+    ;
+  });
 });

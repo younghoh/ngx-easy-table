@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-resizable',
@@ -8,7 +9,7 @@ import { ConfigService } from './configuration.service';
   styleUrls: ['./resizable.component.css'],
 })
 export class ResizableComponent {
-  columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },

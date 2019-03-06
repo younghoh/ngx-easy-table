@@ -50,6 +50,8 @@ import {
   ApiComponent,
   ApiDocComponent,
   BootstrapComponent,
+  DocComponent,
+  InstallationComponent,
 } from './demo';
 
 export const routes = [
@@ -101,7 +103,9 @@ export const routes = [
   { path: 'context-menu', component: ContextMenuComponent },
   { path: 'api', component: ApiComponent },
   { path: 'bootstrap', component: BootstrapComponent },
+  { path: 'doc', component: DocComponent },
   { path: 'api-doc', component: ApiDocComponent },
+  { path: 'installation', component: InstallationComponent },
   { path: '**', component: BasicComponent },
 ];
 

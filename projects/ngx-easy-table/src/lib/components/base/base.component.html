@@ -65,7 +65,7 @@
         </div>
       </th>
     </tr>
-    <tr *ngIf="config.searchEnabled && !filtersTemplate"
+    <tr [style.display]="config.searchEnabled && !filtersTemplate ? 'table-row' : 'none'"
         class="ngx-table__sort-header">
       <th *ngIf="config.checkboxes"></th>
       <ng-container *ngFor="let column of columns">

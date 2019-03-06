@@ -43,8 +43,10 @@ export class PaginationComponent {
     });
   }
 
-  changeLimit(limit: number): void {
-    this.showRange = !this.showRange;
+  changeLimit(limit: number, callFromAPI: boolean): void {
+    if (!callFromAPI) {
+      this.showRange = !this.showRange;
+    }
     this.limit = limit;
     this.updateRange.emit({
       page: 1,

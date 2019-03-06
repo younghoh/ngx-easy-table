@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Company } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-no-results-template',
@@ -10,7 +11,7 @@ import { ConfigService } from './configuration.service';
 })
 export class NoResultsTemplateComponent {
 
-  columns = [
+  public columns: Columns[] = [
     { key: 'name', title: 'Name' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },

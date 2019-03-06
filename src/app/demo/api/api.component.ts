@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-api',
@@ -11,7 +12,7 @@ import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib'
 })
 export class ApiComponent implements OnInit, AfterViewInit {
   @ViewChild('table') table: APIDefinition;
-  public columns;
+  public columns: Columns[];
   public data: Company[] = [];
   public configuration;
   public total;
@@ -29,7 +30,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.setPhone();
+    this.setRowStyle();
   }
 
   resetSearchInput() {
@@ -156,6 +157,13 @@ export class ApiComponent implements OnInit, AfterViewInit {
     this.table.apiEvent({
       type: API.sortBy,
       value: { column, order },
+    });
+  }
+
+  setPaginationDisplayLimit(limit: number) {
+    this.table.apiEvent({
+      type: API.setPaginationDisplayLimit,
+      value: limit,
     });
   }
 }

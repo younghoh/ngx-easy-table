@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
+import { Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-styles',
@@ -11,7 +12,7 @@ export class SummaryFooterComponent implements OnInit {
 
   configuration;
   ageSummary = 0;
-  columns = [
+  public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
     { key: 'company', title: 'Company' },
