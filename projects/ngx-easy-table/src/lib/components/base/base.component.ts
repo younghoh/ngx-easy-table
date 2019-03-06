@@ -56,6 +56,7 @@ export class BaseComponent implements OnInit, OnChanges {
   public isSelected = false;
   public page = 1;
   public count = null;
+  private sortState = new Map();
   public rowContextMenuPosition: RowContextMenuPosition = {
     top: null,
     left: null,
@@ -154,8 +155,9 @@ export class BaseComponent implements OnInit, OnChanges {
       return;
     }
 
+    this.setColumnOrder(key);
     this.sortByIcon.key = key;
-    this.sortByIcon.order = this.getColumnOrder(this.sortByIcon.order);
+    this.sortByIcon.order = this.sortState.get(key);
 
     if (!ConfigService.config.orderEventOnly && !column.orderEventOnly) {
       this.sortBy.key = this.sortByIcon.key;
@@ -475,14 +477,23 @@ export class BaseComponent implements OnInit, OnChanges {
     }
   }
 
-  private getColumnOrder(order: string): string {
-    switch (order) {
+  private setColumnOrder(key: string): void {
+    switch (this.sortState.get(key)) {
       case '':
-        return 'asc';
+      case undefined:
+        this.sortState.set(key, 'desc');
+        break;
       case 'asc':
-        return 'desc';
+        this.sortState.set(key, '');
+        break;
       case 'desc':
-        return '';
+        this.sortState.set(key, 'asc');
+        break;
+    }
+    if (this.sortState.size > 1) {
+      const temp = this.sortState.get(key);
+      this.sortState.clear();
+      this.sortState.set(key, temp);
     }
   }
 }
