@@ -16,6 +16,40 @@ context('API', () => {
       .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div').contains('+1 (878) 515-3653')
     ;
   });
+  it('sets column value and uses filter by column when search row is removed from the DOM', () => {
+    cy
+      .get('#content > div > app-api > div:nth-child(2) > div > div > label:nth-child(3)').click()
+      .get('#buttonClearAllInputs').click({ force: true })
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (949) 527-2108')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div').contains('+1 (878) 515-3653')
+      .get('#buttonSetAge').click({ force: true })
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (878) 515-3653')
+      .get('#table > tbody > tr:nth-child(2)').should('not.be.visible')
+      .get('#buttonClearAllInputs').click({ force: true })
+      .get('#buttonSetPhone').click({ force: true })
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (949) 527-2108')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div').contains('+1 (882) 527-2652')
+      .get('#table > tbody > tr:nth-child(3)').should('not.be.visible')
+      .get('#buttonClearAllInputs').click({ force: true })
+    ;
+  });
+  it('sets column value and uses filter by column when search row is present in the DOM', () => {
+    cy
+      .get('#content > div > app-api > div:nth-child(2) > div > div > label:nth-child(3)').click()
+      .get('#buttonClearAllInputs').click({ force: true })
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (949) 527-2108')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div').contains('+1 (878) 515-3653')
+      .get('#buttonSetAge').click({ force: true })
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (878) 515-3653')
+      .get('#table > tbody > tr:nth-child(2)').should('not.be.visible')
+      .get('#buttonClearAllInputs').click({ force: true })
+      .get('#buttonSetPhone').click({ force: true })
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1) > div').contains('+1 (949) 527-2108')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(1) > div').contains('+1 (882) 527-2652')
+      .get('#table > tbody > tr:nth-child(3)').should('not.be.visible')
+      .get('#buttonClearAllInputs').click({ force: true })
+    ;
+  });
   it('changes styles of the row', () => {
     cy
       .get('#accordionHeaderRow').click()

@@ -410,7 +410,16 @@ export class BaseComponent implements OnInit, OnChanges {
         // TODO
         break;
       case API.setInputValue:
-        event.value.forEach((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
+        if (this.config.searchEnabled) {
+          event.value.forEach((input) => {
+            const element = (document.getElementById(`search_${input.key}`) as HTMLInputElement);
+            if (!element) {
+              console.error(`Column '${input.key}' not available in the DOM. Have you misspelled a name?`);
+            } else {
+              element.value = input.value;
+            }
+          });
+        }
         this.onSearch(event.value);
         this.cdr.detectChanges();
         break;
