@@ -3,7 +3,35 @@
     <button class="btn"
             [routerLink]="['/api-doc']">See API doc</button>
   </div>
-  <div class="column col-md-12">
+</div>
+<div class="columns">
+  <div class="column col-12">
+    <div class="form-group">
+      <label class="form-checkbox form-inline">
+        <input type="checkbox" [checked]="true" (change)="toggle('paginationEnabled', $event.target.checked)">
+        <i class="form-icon"></i> Pagination
+      </label>
+      <label class="form-checkbox form-inline">
+        <input type="checkbox" [checked]="true" (change)="toggle('headerEnabled', $event.target.checked)">
+        <i class="form-icon"></i> Column names
+      </label>
+      <label class="form-checkbox form-inline">
+        <input type="checkbox" [checked]="true" (change)="toggle('searchEnabled', $event.target.checked)">
+        <i class="form-icon"></i> Search
+      </label>
+      <label class="form-checkbox form-inline">
+        <input type="checkbox" id="checkbox-is-loading" (change)="toggle('isLoading', $event.target.checked)">
+        <i class="form-icon"></i> Is loading
+      </label>
+      <label class="form-checkbox form-inline">
+        <input type="checkbox" id="checkbox-checkboxes" (change)="toggle('checkboxes', $event.target.checked)">
+        <i class="form-icon"></i> Checkboxes
+      </label>
+    </div>
+  </div>
+</div>
+<div class="columns">
+  <div class="column col-12">
     <div class="accordion" id="accordionHeaderPagination">
       <input id="accordion-1"
              type="radio"
@@ -90,8 +118,10 @@
       </label>
       <div class="accordion-body">
         <button class="btn btn-primary"
+                id="buttonSetPhone"
                 (click)="setPhone()">Set phone input</button>
         <button class="btn btn-primary mx-1"
+                id="buttonSetAge"
                 (click)="setAge()">Set age input</button>
         <button class="btn btn-primary mx-1"
                 id="buttonClearAllInputs"
