@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Config } from '../..';
-import { ConfigService } from '../../services/config-service';
+import { DefaultConfigService } from '../../services/config-service';
 import { PaginationControlsDirective } from 'ngx-pagination';
 
 export interface PaginationRange {
@@ -27,7 +27,7 @@ export class PaginationComponent {
   @Input() id;
   @Output() readonly updateRange: EventEmitter<PaginationRange> = new EventEmitter();
   public ranges: number[] = [5, 10, 25, 50, 100];
-  public limit: number = ConfigService.config.rows;
+  public limit: number = DefaultConfigService.config.rows;
   public showRange = false;
   public screenReaderPaginationLabel = 'Pagination';
   public screenReaderPageLabel = 'page';
