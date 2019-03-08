@@ -56,6 +56,8 @@ export class BaseComponent implements OnInit, OnChanges {
   public isSelected = false;
   public page = 1;
   public count = null;
+  public sortState = new Map();
+  public sortKey = null;
   public rowContextMenuPosition: RowContextMenuPosition = {
     top: null,
     left: null,
@@ -63,10 +65,6 @@ export class BaseComponent implements OnInit, OnChanges {
   };
   public limit;
   public sortBy: { key: string } & { order: string } = {
-    key: '',
-    order: 'asc',
-  };
-  public sortByIcon: { key: string } & { order: string } = {
     key: '',
     order: 'asc',
   };
@@ -149,21 +147,15 @@ export class BaseComponent implements OnInit, OnChanges {
     if (typeof column.orderEnabled !== 'undefined' && !column.orderEnabled) {
       return;
     }
-    const key = column.key;
-    if (!DefaultConfigService.config.orderEnabled || key === '') {
+    this.sortKey = column.key;
+    if (!DefaultConfigService.config.orderEnabled || this.sortKey === '') {
       return;
     }
 
-    this.sortByIcon.key = key;
-    if (this.sortByIcon.order === 'asc') {
-      this.sortByIcon.order = 'desc';
-    } else {
-      this.sortByIcon.order = 'asc';
-    }
-
+    this.setColumnOrder(this.sortKey);
     if (!DefaultConfigService.config.orderEventOnly && !column.orderEventOnly) {
-      this.sortBy.key = this.sortByIcon.key;
-      this.sortBy.order = this.sortByIcon.order;
+      this.sortBy.key = this.sortKey;
+      this.sortBy.order = this.sortState.get(this.sortKey);
     } else {
       this.sortBy.key = '';
       this.sortBy.order = '';
@@ -173,8 +165,8 @@ export class BaseComponent implements OnInit, OnChanges {
     }
     this.sortBy = { ...this.sortBy };
     const value = {
-      key,
-      order: this.sortByIcon.order,
+      key: this.sortKey,
+      order: this.sortState.get(this.sortKey),
     };
     this.emitEvent(Event.onOrder, value);
   }
@@ -380,7 +372,7 @@ export class BaseComponent implements OnInit, OnChanges {
   private doApplyData(data) {
     const column = this.columns.find((c) => !!c.orderBy);
     if (column) {
-      this.sortByIcon.order = (column.orderBy === 'asc') ? 'desc' : 'asc';
+      this.sortState.set(this.sortKey, (column.orderBy === 'asc') ? 'desc' : 'asc');
       this.orderBy(column);
     } else {
       this.data = [...data.currentValue];
@@ -392,6 +384,7 @@ export class BaseComponent implements OnInit, OnChanges {
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
+  // DO NOT REMOVE. It is called from parent component. See src/app/demo/api-doc/api-doc.component.ts
   apiEvent(event: ApiType): void | number {
     return this.bindApi(event);
   }
@@ -484,6 +477,26 @@ export class BaseComponent implements OnInit, OnChanges {
         break;
       default:
         break;
+    }
+  }
+
+  private setColumnOrder(key: string): void {
+    switch (this.sortState.get(key)) {
+      case '':
+      case undefined:
+        this.sortState.set(key, 'desc');
+        break;
+      case 'asc':
+        this.sortState.set(key, '');
+        break;
+      case 'desc':
+        this.sortState.set(key, 'asc');
+        break;
+    }
+    if (this.sortState.size > 1) {
+      const temp = this.sortState.get(key);
+      this.sortState.clear();
+      this.sortState.set(key, temp);
     }
   }
 }

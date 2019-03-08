@@ -67,4 +67,11 @@ public columns: Columns[] = [
   font-family: 'Montserrat', sans-serif;
 }
 `;
+  public readonly columnOrderEventCode = `
+import { Columns } from 'ngx-easy-table';
+
+public columns: Columns[] = [
+    { key: 'phone', title: 'Phone', orderEventOnly: true },
+];
+`;
 }
