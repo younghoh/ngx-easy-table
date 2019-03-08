@@ -25,7 +25,7 @@ import {
   TableMouseEvent,
   ApiType,
 } from '../..';
-import { ConfigService } from '../../services/config-service';
+import { DefaultConfigService } from '../../services/config-service';
 import { UtilsService } from '../../services/utils-service';
 import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
@@ -39,7 +39,7 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [ConfigService, UtilsService, GroupRowsService, StyleService],
+  providers: [DefaultConfigService, UtilsService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -108,9 +108,9 @@ export class BaseComponent implements OnInit, OnChanges {
       console.error('[columns] property required!');
     }
     if (this.configuration) {
-      ConfigService.config = this.configuration;
+      DefaultConfigService.config = this.configuration;
     }
-    this.config = ConfigService.config;
+    this.config = DefaultConfigService.config;
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
       this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
@@ -140,7 +140,7 @@ export class BaseComponent implements OnInit, OnChanges {
 
   isOrderEnabled(column: Columns) {
     const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
-    return ConfigService.config.orderEnabled && columnOrderEnabled;
+    return DefaultConfigService.config.orderEnabled && columnOrderEnabled;
   }
 
   orderBy(column: Columns): void {
@@ -148,19 +148,19 @@ export class BaseComponent implements OnInit, OnChanges {
       return;
     }
     this.sortKey = column.key;
-    if (!ConfigService.config.orderEnabled || this.sortKey === '') {
+    if (!DefaultConfigService.config.orderEnabled || this.sortKey === '') {
       return;
     }
 
     this.setColumnOrder(this.sortKey);
-    if (!ConfigService.config.orderEventOnly && !column.orderEventOnly) {
+    if (!DefaultConfigService.config.orderEventOnly && !column.orderEventOnly) {
       this.sortBy.key = this.sortKey;
       this.sortBy.order = this.sortState.get(this.sortKey);
     } else {
       this.sortBy.key = '';
       this.sortBy.order = '';
     }
-    if (!ConfigService.config.serverPagination) {
+    if (!DefaultConfigService.config.serverPagination) {
       this.data = [...this.data];
     }
     this.sortBy = { ...this.sortBy };
@@ -172,17 +172,17 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
-    if (ConfigService.config.selectRow) {
+    if (DefaultConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
-    if (ConfigService.config.selectCol && colIndex) {
+    if (DefaultConfigService.config.selectCol && colIndex) {
       this.selectedCol = colIndex;
     }
-    if (ConfigService.config.selectCell && colIndex) {
+    if (DefaultConfigService.config.selectCell && colIndex) {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
-    if (ConfigService.config.clickEvent) {
+    if (DefaultConfigService.config.clickEvent) {
       const value: TableMouseEvent = {
         event: $event,
         row,
@@ -220,14 +220,14 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   onSearch($event: Array<{ key: string; value: string }>): void {
-    if (!ConfigService.config.serverPagination) {
+    if (!DefaultConfigService.config.serverPagination) {
       this.term = $event;
     }
     this.emitEvent(Event.onSearch, $event);
   }
 
   onGlobalSearch(value: string): void {
-    if (!ConfigService.config.serverPagination) {
+    if (!DefaultConfigService.config.serverPagination) {
       this.globalSearchTerm = value;
     }
     this.emitEvent(Event.onGlobalSearch, value);
@@ -403,7 +403,16 @@ export class BaseComponent implements OnInit, OnChanges {
         // TODO
         break;
       case API.setInputValue:
-        event.value.forEach((i) => (document.getElementById(`search_${i.key}`) as HTMLInputElement).value = i.value);
+        if (this.config.searchEnabled) {
+          event.value.forEach((input) => {
+            const element = (document.getElementById(`search_${input.key}`) as HTMLInputElement);
+            if (!element) {
+              console.error(`Column '${input.key}' not available in the DOM. Have you misspelled a name?`);
+            } else {
+              element.value = input.value;
+            }
+          });
+        }
         this.onSearch(event.value);
         this.cdr.detectChanges();
         break;

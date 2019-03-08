@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Config, STYLE, THEME } from '..';
+import { Config, STYLE, THEME } from '../model/config';
 
 @Injectable()
-export class ConfigService {
+export class DefaultConfigService {
   public static config: Config = {
     searchEnabled: false,
     headerEnabled: true,

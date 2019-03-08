@@ -16,6 +16,14 @@ export class ApiComponent implements OnInit, AfterViewInit {
   public data: Company[] = [];
   public configuration;
   public total;
+  public checked = {
+    paginationEnabled: true,
+    headerEnabled: true,
+    searchEnabled: true,
+    collapseAllRows: false,
+    isLoading: false,
+    checkboxes: false,
+  };
 
   ngOnInit(): void {
     this.configuration = ConfigService.config;
@@ -31,6 +39,12 @@ export class ApiComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.setRowStyle();
+  }
+
+  toggle(key: string, isChecked: boolean): void {
+    this.checked[key] = isChecked;
+    this.configuration[key] = isChecked;
+    this.configuration = { ...this.configuration };
   }
 
   resetSearchInput() {
