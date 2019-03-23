@@ -37,7 +37,7 @@ export class AppModule {
   public readonly appComponentTsCode = `
 import { Component } from '@angular/core';
 import { ConfigurationService } from './configuration.service';
-import { Columns, DefaultConfigService } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfigService } from 'ngx-easy-table';
 
 @Component({
   selector: 'my-app',
@@ -46,7 +46,7 @@ import { Columns, DefaultConfigService } from 'ngx-easy-table';
   providers: [ConfigurationService],
 })
 export class AppComponent  {
-  public configuration;
+  public configuration: Config;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
