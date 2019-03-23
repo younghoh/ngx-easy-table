@@ -5,8 +5,10 @@
         <input type="checkbox" [checked]="true" (change)="toggle('phone', $event.target.checked)">
         <i class="form-icon"></i> phone
       </label>
-      <label class="form-checkbox form-inline">
-        <input type="checkbox" [checked]="true" (change)="toggle('age', $event.target.checked)">
+      <label class="form-checkbox form-inline" for="ageCheckbox">
+        <input type="checkbox" [checked]="true"
+               id="ageCheckbox"
+               (change)="toggle('age', $event.target.checked)">
         <i class="form-icon"></i> age
       </label>
       <label class="form-checkbox form-inline">

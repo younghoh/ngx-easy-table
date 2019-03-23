@@ -7,11 +7,11 @@ import { Component } from '@angular/core';
 })
 export class InstallationComponent {
   public readonly appModuleCode = `
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import {AppComponent} from './app.component';
-import {TableModule} from 'ngx-easy-table';
+import { AppComponent } from './app.component';
+import { TableModule } from 'ngx-easy-table';
 
 @NgModule({
   declarations: [
@@ -30,13 +30,14 @@ export class AppModule {
   public readonly appComponentHtmlCode = `
 <ngx-table [configuration]="configuration"
            [data]="data"
+           [id]="'table'" <!-- use this property when you have more tables at one page -->
            [columns]="columns">
 </ngx-table>
 `;
   public readonly appComponentTsCode = `
 import { Component } from '@angular/core';
 import { ConfigurationService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, DefaultConfigService } from 'ngx-easy-table';
 
 @Component({
   selector: 'my-app',
@@ -70,8 +71,19 @@ export class AppComponent  {
     isActive: true,
   }];
 
+  // version 9.1 and below
   ngOnInit() {
     this.configuration = ConfigService.config;
+    this.data = data;
+  }
+
+  // since version 9.2 you can skip injecting ConfigService
+  // instead just do like below (you can still use previous version)
+  // this one is just shorter, produces less code and is easier, especially when you have many tables in the project
+  ngOnInit() {
+    this.configuration = DefaultConfigService.config;
+    this.configuration.orderEnabled = false;
+    // ... etc.
     this.data = data;
   }
 }
@@ -113,6 +125,7 @@ export class ConfigService {
     showContextMenu: false,
     persistState: false,
     paginationMaxSize: 5,
+    threeWaySort: false,
     tableLayout: {
       style: STYLE.NORMAL, // or STYLE.BIG or STYLE.TINY
       theme: THEME.LIGHT, // or THEME.DARK

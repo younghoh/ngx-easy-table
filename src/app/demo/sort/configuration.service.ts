@@ -30,6 +30,7 @@ export class ConfigService {
     showDetailsArrow: false,
     showContextMenu: false,
     persistState: false,
+    threeWaySort: true,
     tableLayout: {
       style: STYLE.NORMAL,
       theme: THEME.LIGHT,

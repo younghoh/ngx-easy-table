@@ -12,7 +12,10 @@ context('Custom intable sort', () => {
       .contains('Kristen Whitehead')
       .get('#table > thead > .ngx-table__header > th:nth-child(4)').click()
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(4) > div')
-      .contains('Merrill Allen');
+      .contains('Merrill Allen')
+      .get('#table > thead > .ngx-table__header > th:nth-child(4)').click()
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(4) > div')
+      .contains('Kristen Whitehead');
   });
   it('gets sorted results by level', () => {
     cy.get('#table > thead > .ngx-table__header > th:nth-child(6)').click()
@@ -20,6 +23,10 @@ context('Custom intable sort', () => {
       .contains('High')
       .get('#table > thead > .ngx-table__header > th:nth-child(6)').click()
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(6) > div')
-      .contains('Low');
+      .contains('Low')
+      .get('#table > thead > .ngx-table__header > th:nth-child(6)').click()
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(6) > div')
+      .contains('High')
+    ;
   });
 });

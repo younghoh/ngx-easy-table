@@ -7,11 +7,11 @@ context('Summary footer', () => {
   );
 
   it('has 40 items in the first th', () => {
-    cy.get('#table2 > div > #table > tfoot > tr > th:nth-child(1)')
+    cy.get('#table2 > tfoot > tr > th:nth-child(1)')
       .contains('Total items: 40');
   });
   it('has 1200 items in the second th', () => {
-    cy.get('#table2 > div > #table > tfoot > tr > th:nth-child(2)')
+    cy.get('#table2 > tfoot > tr > th:nth-child(2)')
       .contains('Summary: 1200');
   });
 });

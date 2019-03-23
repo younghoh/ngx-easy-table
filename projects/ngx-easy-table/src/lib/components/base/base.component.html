@@ -1,5 +1,5 @@
 <div class="ngx-container">
-  <table id="table"
+  <table [id]="id"
          [ngClass]="(tableClass === null || tableClass === '') ? 'ngx-table' : tableClass"
          [class.ngx-table__table--tiny]="config.tableLayout.style === 'tiny'"
          [class.ngx-table__table--normal]="config.tableLayout.style === 'normal'"
@@ -22,7 +22,7 @@
           <i class="ngx-form-icon" id="selectAllCheckbox"></i>
         </label>
       </th>
-      <ng-container *ngFor="let column of columns; let colIndex = index">
+      <ng-container *ngFor="let column of columns;">
         <th class="ngx-table__header-cell"
             #th
             [attr.width]="getColumnWidth(column)"
@@ -31,14 +31,15 @@
             (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
             <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
-              <i *ngIf="sortByIcon.key === column.key && sortByIcon.order==='asc'"
-                 [style.display]="config.orderEnabled?'':'none' "
-                 class="ngx-icon ngx-icon-arrow-up">
-              </i>
-              <i *ngIf="sortByIcon.key === column.key && sortByIcon.order==='desc'"
-                 [style.display]="config.orderEnabled?'':'none' "
-                 class="ngx-icon ngx-icon-arrow-down">
-              </i>
+              <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
+                <span *ngIf="sortKey === column.key && this.sortState.get(sortKey) === ''"> -</span>
+                <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"
+                   class="ngx-icon ngx-icon-arrow-up">
+                </i>
+                <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'desc'"
+                   class="ngx-icon ngx-icon-arrow-down">
+                </i>
+              </div>
             </div>
           </div>
           <div class="ngx-table__column-resizer" *ngIf="config.resizeColumn"></div>

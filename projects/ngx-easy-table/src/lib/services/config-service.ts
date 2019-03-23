@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Config, STYLE, THEME } from '..';
+import { Config, STYLE, THEME } from '../model/config';
 
 @Injectable()
-export class ConfigService {
+export class DefaultConfigService {
   public static config: Config = {
     searchEnabled: false,
     headerEnabled: true,
@@ -32,6 +32,7 @@ export class ConfigService {
     showContextMenu: false,
     persistState: false,
     paginationMaxSize: 5,
+    threeWaySort: false,
     tableLayout: {
       style: STYLE.NORMAL,
       theme: THEME.LIGHT,

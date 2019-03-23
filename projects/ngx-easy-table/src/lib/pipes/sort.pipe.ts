@@ -6,6 +6,8 @@ import { Config } from '..';
   name: 'sort',
 })
 export class SortPipe implements PipeTransform {
+  private defaultArray: any[] = [];
+
   private static isNaN(aV, bV) {
     return (isNaN(parseFloat(aV)) || !isFinite(aV)) || (isNaN(parseFloat(bV)) || !isFinite(bV));
   }
@@ -31,19 +33,33 @@ export class SortPipe implements PipeTransform {
   }
 
   transform(array: any[], filter?: { order: string, key: string }, config?: Config): any[] {
+    if (this.defaultArray.length === 0) {
+      this.defaultArray = array;
+    }
     if (!filter.key || filter.key === '') {
       return array;
     }
-    if (filter.order === 'asc') {
-      if (config && config.groupRows) {
-        return array.map((arr) => arr.sort((a, b) => SortPipe.compare(a, b, filter.key)));
-      }
-      return array.sort((a, b) => SortPipe.compare(a, b, filter.key));
-    } else {
-      if (config && config.groupRows) {
-        return array.map((arr) => arr.sort((a, b) => SortPipe.compare(b, a, filter.key)));
-      }
-      return array.sort((a, b) => SortPipe.compare(b, a, filter.key));
+    if (filter.order === '') {
+      return this.defaultArray;
     }
+    if (filter.order === 'asc') {
+      return this.sortAsc(config, array, filter);
+    } else {
+      return this.sortDesc(config, array, filter);
+    }
+  }
+
+  private sortAsc(config, array, filter) {
+    if (config && config.groupRows) {
+      return array.map((arr) => arr.sort((a, b) => SortPipe.compare(a, b, filter.key)));
+    }
+    return array.sort((a, b) => SortPipe.compare(a, b, filter.key));
+  }
+
+  private sortDesc(config, array, filter) {
+    if (config && config.groupRows) {
+      return array.map((arr) => arr.sort((a, b) => SortPipe.compare(b, a, filter.key)));
+    }
+    return array.sort((a, b) => SortPipe.compare(b, a, filter.key));
   }
 }

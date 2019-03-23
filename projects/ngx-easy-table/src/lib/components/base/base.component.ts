@@ -25,8 +25,7 @@ import {
   TableMouseEvent,
   ApiType,
 } from '../..';
-import { ConfigService } from '../../services/config-service';
-import { UtilsService } from '../../services/utils-service';
+import { DefaultConfigService } from '../../services/config-service';
 import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
@@ -39,7 +38,7 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [ConfigService, UtilsService, GroupRowsService, StyleService],
+  providers: [DefaultConfigService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -56,6 +55,8 @@ export class BaseComponent implements OnInit, OnChanges {
   public isSelected = false;
   public page = 1;
   public count = null;
+  public sortState = new Map();
+  public sortKey = null;
   public rowContextMenuPosition: RowContextMenuPosition = {
     top: null,
     left: null,
@@ -66,12 +67,7 @@ export class BaseComponent implements OnInit, OnChanges {
     key: '',
     order: 'asc',
   };
-  public sortByIcon: { key: string } & { order: string } = {
-    key: '',
-    order: 'asc',
-  };
   public selectedDetailsTemplateRowId = new Set();
-  public id;
   public startOffset;
   public loadingHeight = '30px';
   public config: Config;
@@ -89,6 +85,7 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() data: any[];
   @Input() pagination: Pagination;
   @Input() groupRowsBy: string;
+  @Input() id = 'table';
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
@@ -102,7 +99,6 @@ export class BaseComponent implements OnInit, OnChanges {
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
   constructor(private readonly cdr: ChangeDetectorRef) {
-    this.id = UtilsService.randomId();
   }
 
   ngOnInit() {
@@ -110,9 +106,9 @@ export class BaseComponent implements OnInit, OnChanges {
       console.error('[columns] property required!');
     }
     if (this.configuration) {
-      ConfigService.config = this.configuration;
+      DefaultConfigService.config = this.configuration;
     }
-    this.config = ConfigService.config;
+    this.config = DefaultConfigService.config;
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
       this.grouped = GroupRowsService.doGroupRows(this.data, this.groupRowsBy);
@@ -142,55 +138,49 @@ export class BaseComponent implements OnInit, OnChanges {
 
   isOrderEnabled(column: Columns) {
     const columnOrderEnabled = column.orderEnabled === undefined ? true : !!column.orderEnabled;
-    return ConfigService.config.orderEnabled && columnOrderEnabled;
+    return DefaultConfigService.config.orderEnabled && columnOrderEnabled;
   }
 
   orderBy(column: Columns): void {
     if (typeof column.orderEnabled !== 'undefined' && !column.orderEnabled) {
       return;
     }
-    const key = column.key;
-    if (!ConfigService.config.orderEnabled || key === '') {
+    this.sortKey = column.key;
+    if (!DefaultConfigService.config.orderEnabled || this.sortKey === '') {
       return;
     }
 
-    this.sortByIcon.key = key;
-    if (this.sortByIcon.order === 'asc') {
-      this.sortByIcon.order = 'desc';
-    } else {
-      this.sortByIcon.order = 'asc';
-    }
-
-    if (!ConfigService.config.orderEventOnly && !column.orderEventOnly) {
-      this.sortBy.key = this.sortByIcon.key;
-      this.sortBy.order = this.sortByIcon.order;
+    this.setColumnOrder(this.sortKey);
+    if (!DefaultConfigService.config.orderEventOnly && !column.orderEventOnly) {
+      this.sortBy.key = this.sortKey;
+      this.sortBy.order = this.sortState.get(this.sortKey);
     } else {
       this.sortBy.key = '';
       this.sortBy.order = '';
     }
-    if (!ConfigService.config.serverPagination) {
+    if (!DefaultConfigService.config.serverPagination) {
       this.data = [...this.data];
     }
     this.sortBy = { ...this.sortBy };
     const value = {
-      key,
-      order: this.sortByIcon.order,
+      key: this.sortKey,
+      order: this.sortState.get(this.sortKey),
     };
     this.emitEvent(Event.onOrder, value);
   }
 
   onClick($event: MouseEvent, row: object, key: ColumnKeyType, colIndex: number | null, rowIndex: number): void {
-    if (ConfigService.config.selectRow) {
+    if (DefaultConfigService.config.selectRow) {
       this.selectedRow = rowIndex;
     }
-    if (ConfigService.config.selectCol && colIndex) {
+    if (DefaultConfigService.config.selectCol && colIndex) {
       this.selectedCol = colIndex;
     }
-    if (ConfigService.config.selectCell && colIndex) {
+    if (DefaultConfigService.config.selectCell && colIndex) {
       this.selectedRow = rowIndex;
       this.selectedCol = colIndex;
     }
-    if (ConfigService.config.clickEvent) {
+    if (DefaultConfigService.config.clickEvent) {
       const value: TableMouseEvent = {
         event: $event,
         row,
@@ -228,14 +218,14 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   onSearch($event: Array<{ key: string; value: string }>): void {
-    if (!ConfigService.config.serverPagination) {
+    if (!DefaultConfigService.config.serverPagination) {
       this.term = $event;
     }
     this.emitEvent(Event.onSearch, $event);
   }
 
   onGlobalSearch(value: string): void {
-    if (!ConfigService.config.serverPagination) {
+    if (!DefaultConfigService.config.serverPagination) {
       this.globalSearchTerm = value;
     }
     this.emitEvent(Event.onGlobalSearch, value);
@@ -380,7 +370,7 @@ export class BaseComponent implements OnInit, OnChanges {
   private doApplyData(data) {
     const column = this.columns.find((c) => !!c.orderBy);
     if (column) {
-      this.sortByIcon.order = (column.orderBy === 'asc') ? 'desc' : 'asc';
+      this.sortState.set(this.sortKey, (column.orderBy === 'asc') ? 'desc' : 'asc');
       this.orderBy(column);
     } else {
       this.data = [...data.currentValue];
@@ -392,6 +382,7 @@ export class BaseComponent implements OnInit, OnChanges {
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
+  // DO NOT REMOVE. It is called from parent component. See src/app/demo/api-doc/api-doc.component.ts
   apiEvent(event: ApiType): void | number {
     return this.bindApi(event);
   }
@@ -484,6 +475,28 @@ export class BaseComponent implements OnInit, OnChanges {
         break;
       default:
         break;
+    }
+  }
+
+  private setColumnOrder(key: string): void {
+    switch (this.sortState.get(key)) {
+      case '':
+      case undefined:
+        this.sortState.set(key, 'desc');
+        break;
+      case 'asc':
+        this.config.threeWaySort ?
+          this.sortState.set(key, '') :
+          this.sortState.set(key, 'desc');
+        break;
+      case 'desc':
+        this.sortState.set(key, 'asc');
+        break;
+    }
+    if (this.sortState.size > 1) {
+      const temp = this.sortState.get(key);
+      this.sortState.clear();
+      this.sortState.set(key, temp);
     }
   }
 }
