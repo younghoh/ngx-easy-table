@@ -6,7 +6,7 @@ export class ConfigurationBasicService {
   public static config: Config = {
     searchEnabled: false,
     headerEnabled: true,
-    orderEnabled: false,
+    orderEnabled: true,
     paginationEnabled: true,
     exportEnabled: false,
     clickEvent: false,
@@ -30,6 +30,7 @@ export class ConfigurationBasicService {
     showDetailsArrow: false,
     showContextMenu: false,
     persistState: false,
+    threeWaySort: false,
     tableLayout: {
       style: STYLE.NORMAL,
       theme: THEME.LIGHT,

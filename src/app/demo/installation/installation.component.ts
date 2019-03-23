@@ -30,6 +30,7 @@ export class AppModule {
   public readonly appComponentHtmlCode = `
 <ngx-table [configuration]="configuration"
            [data]="data"
+           [id]="'table'" <!-- use this property when you have more tables at one page -->
            [columns]="columns">
 </ngx-table>
 `;
@@ -113,6 +114,7 @@ export class ConfigService {
     showContextMenu: false,
     persistState: false,
     paginationMaxSize: 5,
+    threeWaySort: false,
     tableLayout: {
       style: STYLE.NORMAL, // or STYLE.BIG or STYLE.TINY
       theme: THEME.LIGHT, // or THEME.DARK

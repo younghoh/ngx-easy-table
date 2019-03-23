@@ -26,7 +26,6 @@ import {
   ApiType,
 } from '../..';
 import { DefaultConfigService } from '../../services/config-service';
-import { UtilsService } from '../../services/utils-service';
 import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
@@ -39,7 +38,7 @@ interface RowContextMenuPosition {
 
 @Component({
   selector: 'ngx-table',
-  providers: [DefaultConfigService, UtilsService, GroupRowsService, StyleService],
+  providers: [DefaultConfigService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -69,7 +68,6 @@ export class BaseComponent implements OnInit, OnChanges {
     order: 'asc',
   };
   public selectedDetailsTemplateRowId = new Set();
-  public id;
   public startOffset;
   public loadingHeight = '30px';
   public config: Config;
@@ -87,6 +85,7 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() data: any[];
   @Input() pagination: Pagination;
   @Input() groupRowsBy: string;
+  @Input() id = 'table';
   @Input() toggleRowIndex;
   @Input() detailsTemplate: TemplateRef<any>;
   @Input() summaryTemplate: TemplateRef<any>;
@@ -100,7 +99,6 @@ export class BaseComponent implements OnInit, OnChanges {
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
   constructor(private readonly cdr: ChangeDetectorRef) {
-    this.id = UtilsService.randomId();
   }
 
   ngOnInit() {
@@ -487,7 +485,9 @@ export class BaseComponent implements OnInit, OnChanges {
         this.sortState.set(key, 'desc');
         break;
       case 'asc':
-        this.sortState.set(key, '');
+        this.config.threeWaySort ?
+          this.sortState.set(key, '') :
+          this.sortState.set(key, 'desc');
         break;
       case 'desc':
         this.sortState.set(key, 'asc');

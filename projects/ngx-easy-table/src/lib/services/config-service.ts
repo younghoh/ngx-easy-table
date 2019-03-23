@@ -32,6 +32,7 @@ export class DefaultConfigService {
     showContextMenu: false,
     persistState: false,
     paginationMaxSize: 5,
+    threeWaySort: false,
     tableLayout: {
       style: STYLE.NORMAL,
       theme: THEME.LIGHT,

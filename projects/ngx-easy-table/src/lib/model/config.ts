@@ -27,6 +27,7 @@ export interface Config {
   showContextMenu?: boolean;
   persistState?: boolean;
   paginationMaxSize?: number;
+  threeWaySort?: boolean;
   tableLayout: {
     style: STYLE | string | null,
     theme: THEME | string | null,
