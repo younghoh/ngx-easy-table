@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, Config, DefaultConfigService } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-basic',
@@ -21,6 +21,6 @@ export class BasicComponent {
 
   constructor() {
     this.data = data;
-    this.configuration = DefaultConfigService.config;
+    this.configuration = DefaultConfig;
   }
 }

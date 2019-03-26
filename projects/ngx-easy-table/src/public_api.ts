@@ -4,4 +4,4 @@ export * from './lib/model/columns';
 export * from './lib/model/event.enum';
 export * from './lib/model/pagination';
 export * from './lib/model/api';
-export * from './lib/services/config-service';
+export { DefaultConfig } from './lib/services/config-service';
