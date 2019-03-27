@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
+import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-server-pagination',
@@ -10,6 +11,7 @@ import { Columns } from 'ngx-easy-table';
   providers: [ConfigService, CompanyService],
 })
 export class ServerPaginationComponent implements OnInit {
+  @ViewChild('table') table: APIDefinition;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },
@@ -25,7 +27,10 @@ export class ServerPaginationComponent implements OnInit {
     count: -1,
   };
 
-  constructor(private companyService: CompanyService) {
+  constructor(
+    private companyService: CompanyService,
+    private readonly cdr: ChangeDetectorRef,
+  ) {
   }
 
   ngOnInit() {
@@ -54,10 +59,19 @@ export class ServerPaginationComponent implements OnInit {
           this.pagination.count = (this.pagination.count === -1) ? response.length : this.pagination.count;
           this.pagination = { ...this.pagination };
           this.configuration.isLoading = false;
+          this.cdr.detectChanges();
+          this.setRowStyle();
         },
         (error) => {
           console.error('ERROR: ', error.message);
         });
+  }
+
+  private setRowStyle(): void {
+    this.table.apiEvent({
+      type: API.setRowStyle,
+      value: { row: 1, attr: 'background', value: '#fd5e5ed4' },
+    });
   }
 
 }
