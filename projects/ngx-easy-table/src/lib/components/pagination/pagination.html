@@ -11,8 +11,7 @@
       <ul class="ngx-pagination"
           role="navigation"
           [attr.aria-label]="screenReaderPaginationLabel"
-          [class.responsive]="true"
-          *ngIf="!(paginationDirective.pages.length <= 1)">
+          [class.responsive]="true">
         <li class="pagination-previous" [class.disabled]="paginationDirective.isFirstPage()" *ngIf="directionLinks">
           <a tabindex="0" *ngIf="1 < paginationDirective.getCurrent()" (keyup.enter)="paginationDirective.previous()"
              (click)="paginationDirective.previous()"
