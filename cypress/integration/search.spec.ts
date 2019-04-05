@@ -65,4 +65,13 @@ context('Search', () => {
       .tableRow(2, 3).contains('ISOSWITCH')
     ;
   });
+  it('show "no-results" message when filtering returns 0 rows', () => {
+    cy
+      .getInput('company').type('{selectall}{backspace}')
+      .getInput('age').type('{selectall}{backspace}')
+      .getInput('company').type('{selectall}{backspace}')
+      .getInput('company').type('reallyLongString')
+      .get('#table > tbody > tr:nth-child(1) > td:nth-child(1)').contains('No results')
+    ;
+  });
 });
