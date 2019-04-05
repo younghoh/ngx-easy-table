@@ -30,14 +30,13 @@ export class AppModule {
   public readonly appComponentHtmlCode = `
 <ngx-table [configuration]="configuration"
            [data]="data"
-           [id]="'table'" <!-- use this property when you have more tables at one page -->
            [columns]="columns">
 </ngx-table>
 `;
   public readonly appComponentTsCode = `
 import { Component } from '@angular/core';
 import { ConfigurationService } from './configuration.service';
-import { Columns, Config, DefaultConfigService } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'my-app',
@@ -73,7 +72,7 @@ export class AppComponent  {
 
   // version 9.1 and below
   ngOnInit() {
-    this.configuration = ConfigService.config;
+    this.configuration = ConfigurationService.config;
     this.data = data;
   }
 
@@ -81,7 +80,7 @@ export class AppComponent  {
   // instead just do like below (you can still use previous version)
   // this one is just shorter, produces less code and is easier, especially when you have many tables in the project
   ngOnInit() {
-    this.configuration = DefaultConfigService.config;
+    this.configuration = DefaultConfig;
     this.configuration.orderEnabled = false;
     // ... etc.
     this.data = data;
