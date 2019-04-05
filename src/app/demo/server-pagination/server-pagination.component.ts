@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
-import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
+import { API, APIDefinition, Columns } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-server-pagination',
