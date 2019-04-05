@@ -135,9 +135,6 @@
       "app",
       "kebab-case"
     ],
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
     "no-input-rename": true,
     "no-output-rename": true,
     "use-life-cycle-interface": true,
@@ -160,20 +157,10 @@
       true,
       "check-semicolon"
     ],
-    "banana-in-box": true,
-    "templates-no-negated-async": true,
-    "max-inline-declarations": true,
     "no-life-cycle-call": true,
-    "no-conflicting-life-cycle-hooks": true,
-    "enforce-component-selector": true,
-    "no-queries-parameter": true,
-    "prefer-inline-decorator": true,
-    "use-view-encapsulation": true,
-    "no-attribute-parameter-decorator": true,
-    "no-output-named-after-standard-event": true,
+    "prefer-inline-decorator": false,
     "no-forward-ref": true,
     "contextual-life-cycle": true,
-    "pipe-impure": true,
     "template-conditional-complexity": [
       true,
       8
