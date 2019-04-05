@@ -29,6 +29,7 @@ import { DefaultConfigService } from '../../services/config-service';
 import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
 import { StyleService } from '../../services/style.service';
+import { Subject, Subscription } from 'rxjs';
 
 interface RowContextMenuPosition {
   top: string | null;
@@ -48,6 +49,9 @@ export class BaseComponent implements OnInit, OnChanges {
   public selectedRow: number;
   public selectedCol: number;
   public term;
+  public filterCount = -1;
+  public filteredCountSubject = new Subject<number>();
+  public subscription: Subscription;
   public tableClass = null;
   public globalSearchTerm: string;
   public grouped: any = [];
@@ -108,6 +112,10 @@ export class BaseComponent implements OnInit, OnChanges {
     if (this.configuration) {
       DefaultConfigService.config = this.configuration;
     }
+    this.subscription = this.filteredCountSubject.subscribe((count) => {
+      this.filterCount = count;
+      this.cdr.detectChanges();
+    });
     this.config = DefaultConfigService.config;
     this.limit = this.config.rows;
     if (this.groupRowsBy) {

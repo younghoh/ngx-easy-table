@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { FiltersService } from '../services/filters.service';
 import { Config } from '..';
+import { Subject } from 'rxjs';
 
 @Pipe({
   name: 'search',
@@ -9,11 +10,12 @@ import { Config } from '..';
 export class SearchPipe implements PipeTransform {
   private filters: { [key: string]: string } = {};
 
-  transform(array: any[], filter?: Array<{ value: string, key: string }>, config?: Config): any[] {
+  transform(array: any[], filter: Array<{ value: string, key: string }>, filteredCountSubject: Subject<number>, config?: Config): any[] {
     if (typeof array === 'undefined') {
       return;
     }
     if (typeof filter === 'undefined') {
+      filteredCountSubject.next(array.length);
       return array;
     }
     filter.forEach((f) => {
@@ -23,13 +25,13 @@ export class SearchPipe implements PipeTransform {
       }
     });
     if (config && config.groupRows) {
-      return array.map((arr) => this.filterGroup(arr));
+      return array.map((arr) => this.filterGroup(arr, filteredCountSubject));
     }
-    return this.filterGroup(array);
+    return this.filterGroup(array, filteredCountSubject);
   }
 
-  private filterGroup(array: any[]) {
-    return array.filter((obj) => {
+  private filterGroup(array: any[], filteredCountSubject) {
+    const arr = array.filter((obj) => {
       return Object.keys(this.filters).every((c) => {
         const split = c.split('.');
         const val = FiltersService.getPath(split, obj);
@@ -38,5 +40,7 @@ export class SearchPipe implements PipeTransform {
         return strings.some((string) => element.indexOf(string.trim()) > -1);
       });
     });
+    filteredCountSubject.next(arr.length);
+    return arr;
   }
 }
