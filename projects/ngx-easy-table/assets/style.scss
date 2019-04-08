@@ -514,6 +514,10 @@ $primary-color: #50596c !default;
   display: none;
 }
 
+.ngx-pagination-wrapper {
+  margin-top: 8px;
+}
+
 .ngx-pagination-range {
   display: inline-block;
   float: right;
@@ -524,7 +528,7 @@ $primary-color: #50596c !default;
 }
 
 .ngx-pagination-range-dropdown {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .ngx-pagination-range-dropdown-button-item {

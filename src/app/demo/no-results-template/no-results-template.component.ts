@@ -20,7 +20,6 @@ export class NoResultsTemplateComponent {
   ];
   data: Company[] = [];
   rows: Company[] = [];
-  ages: number[] = [];
   configuration;
 
   constructor() {

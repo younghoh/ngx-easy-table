@@ -1,20 +1,26 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Pipe({
   name: 'global',
 })
 
 export class GlobalSearchPipe implements PipeTransform {
-  transform(dataArr: any[], filter: string) {
-    if (typeof dataArr === 'undefined') {
+  transform(array: any[], filter: string, filteredCountSubject: Subject<number>) {
+    if (typeof array === 'undefined') {
       return;
     }
     if (typeof filter === 'undefined' || Object.keys(filter).length === 0 || filter === '') {
-      return dataArr;
+      filteredCountSubject.next(array.length);
+      return array;
     }
-    return dataArr.filter((row) => {
+    const arr = array.filter((row) => {
       const element = JSON.stringify(Object.values(row));
-      return element.toLocaleLowerCase().indexOf(filter.toLocaleLowerCase()) !== -1;
+      const strings = filter.split(',');
+      return strings.some((string) => element.toLocaleLowerCase().indexOf(string.trim().toLocaleLowerCase()) > -1);
     });
+    filteredCountSubject.next(arr.length);
+
+    return arr;
   }
 }

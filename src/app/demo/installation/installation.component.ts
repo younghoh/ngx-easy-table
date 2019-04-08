@@ -93,7 +93,7 @@ import { Injectable } from '@angular/core';
 import { Config } from './ngx-easy-table/model/config';
 
 @Injectable()
-export class ConfigService {
+export class ConfigurationService {
   public static config: Config = {
     searchEnabled: true,
     headerEnabled: true,
