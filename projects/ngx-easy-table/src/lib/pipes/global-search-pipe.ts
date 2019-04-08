@@ -16,7 +16,8 @@ export class GlobalSearchPipe implements PipeTransform {
     }
     const arr = array.filter((row) => {
       const element = JSON.stringify(Object.values(row));
-      return element.toLocaleLowerCase().indexOf(filter.toLocaleLowerCase()) !== -1;
+      const strings = filter.split(',');
+      return strings.some((string) => element.toLocaleLowerCase().indexOf(string.trim().toLocaleLowerCase()) > -1);
     });
     filteredCountSubject.next(arr.length);
 
