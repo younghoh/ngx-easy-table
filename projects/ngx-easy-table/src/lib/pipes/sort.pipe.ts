@@ -32,7 +32,7 @@ export class SortPipe implements PipeTransform {
     return 0;
   }
 
-  transform(array: any[], filter?: { order: string, key: string }, config?: Config): any[] {
+  transform(array: any[], filter: { order: string, key: string }, config?: Config): any[] {
     if (this.defaultArray.length === 0) {
       this.defaultArray = array;
     }
