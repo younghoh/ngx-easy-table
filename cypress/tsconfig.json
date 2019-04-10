@@ -4,15 +4,20 @@
     "baseUrl": "../node_modules",
     "target": "es5",
     "lib": [
-      "es5",
+      "es6",
       "dom"
     ],
     "types": [
       "cypress"
-    ]
+    ],
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "noImplicitAny": false
   },
   "include": [
     "../../node_modules/cypress/index.d.ts",
-    "integration/*.ts"
+    "integration/*.ts",
+    "support/*.ts",
+    "../node_modules/cypress/types"
   ]
 }

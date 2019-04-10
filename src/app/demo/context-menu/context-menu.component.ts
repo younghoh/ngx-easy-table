@@ -2,8 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { CompanyService } from '../../services/company.service';
 import { ConfigService } from './configuration.service';
-import { API, APIDefinition, TableMouseEvent } from '../../../../projects/ngx-easy-table/src/lib';
-import { Columns } from 'ngx-easy-table';
+import { API, APIDefinition, Columns } from 'ngx-easy-table';
+import { TableMouseEvent } from 'ngx-easy-table/lib';
 
 @Component({
   selector: 'app-context-menu',

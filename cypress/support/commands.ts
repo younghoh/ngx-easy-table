@@ -1,13 +1,17 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
+/// <reference types="Cypress" />
+
+declare global {
+  namespace Cypress {
+    interface Chainable<Subject = any> {
+      goToMenu: (name: string) => Cypress.Chainable<JQuery>;
+      goToMenuSort: () => Cypress.Chainable<JQuery>;
+      goToMenuPersistState: () => Cypress.Chainable<JQuery>;
+      tableRow: (tr: number, td: number) => Cypress.Chainable<JQuery>;
+      getInput: (name: string) => Cypress.Chainable<JQuery>;
+    }
+  }
+}
+
 Cypress.Commands.add('goToMenu', (name) => {
   cy.get(`#${name}`).click();
 });
