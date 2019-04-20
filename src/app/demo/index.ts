@@ -48,3 +48,4 @@ export * from './api-doc/api-doc.component';
 export * from './bootstrap/bootstrap.component';
 export * from './doc/doc.component';
 export * from './installation/installation.component';
+export * from './pinned/pinned.component';

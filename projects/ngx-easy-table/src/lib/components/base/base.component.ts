@@ -75,6 +75,7 @@ export class BaseComponent implements OnInit, OnChanges {
   public startOffset;
   public loadingHeight = '30px';
   public config: Config;
+  public StyleService = StyleService;
   onSelectAllBinded = this.onSelectAll.bind(this);
 
   @Input('configuration')
@@ -469,7 +470,7 @@ export class BaseComponent implements OnInit, OnChanges {
         this.cdr.detectChanges();
         break;
       case API.setColumnPinned:
-        StyleService.setColumnPinned(event.value);
+        StyleService.setColumnPinned(event.value.column, event.value.pinned);
         this.cdr.detectChanges();
         break;
       case API.setCellClass:

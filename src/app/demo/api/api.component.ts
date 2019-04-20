@@ -34,16 +34,6 @@ export class ApiComponent implements OnInit, AfterViewInit {
       { key: 'company', title: 'Company', width: '15%' },
       { key: 'name', title: 'Name', width: '15%' },
       { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
-      { key: 'name', title: 'Name', width: '15%' },
       { key: 'isActive', title: 'STATUS', width: '15%' },
     ];
     this.data = data;
@@ -196,20 +186,6 @@ export class ApiComponent implements OnInit, AfterViewInit {
     this.table.apiEvent({
       type: API.setPaginationDisplayLimit,
       value: limit,
-    });
-  }
-
-  setColumnBG(column: number, className: string) {
-    this.table.apiEvent({
-      type: API.setColumnClass,
-      value: { column, className, includeHeader: false },
-    });
-  }
-
-  setColumnPinned(column: number) {
-    this.table.apiEvent({
-      type: API.setColumnPinned,
-      value: { column, pinned: true },
     });
   }
 }

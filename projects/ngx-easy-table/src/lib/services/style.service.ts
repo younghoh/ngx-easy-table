@@ -3,6 +3,8 @@ import { rowClass, rowStyle, cellClass, cellStyle, columnClass } from '../model/
 
 @Injectable()
 export class StyleService {
+  public static pinnedColumn = new Set<number>();
+
   static setRowClass(val: rowClass): void {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
     const row: HTMLTableRowElement = document.querySelector(selector);
@@ -24,22 +26,27 @@ export class StyleService {
     });
   }
 
-  static setColumnPinned(value: { column: number, pinned: boolean }): void {
-    if (value.column < 1) {
+  static setColumnPinned(column: number, pinned: boolean): void {
+    if (column < 1) {
       console.error('Column number need to be 1 or greater');
       return;
     }
-    const cols = document.querySelectorAll(`#table tr > td:nth-child(${value.column}),th:nth-child(${value.column})`);
+    this.updatePinnedColumns(column, pinned);
+    const cols = document.querySelectorAll(`#table tr > td:nth-child(${column}),th:nth-child(${column})`);
     const lengths = document.querySelectorAll('#table tr:nth-child(1) > td');
     let leftMargin = 0;
     lengths.forEach((length, index) => {
-      if (index < (value.column - 1)) {
+      if (index < (column - 1)) {
         leftMargin = leftMargin + length.clientWidth;
       }
     });
     [].forEach.call(cols, (col: HTMLTableElement) => {
-      col.className = 'pinned-left';
-      col.style.left = value.column > 1 ? `${leftMargin}px` : '0px';
+      if (pinned) {
+        col.className = 'ngx-table__header-cell pinned-left';
+        col.style.left = column > 1 ? `${leftMargin}px` : '0';
+      } else {
+        col.className = 'ngx-table__header-cell';
+      }
     });
   }
 
@@ -66,6 +73,14 @@ export class StyleService {
     if (cell) {
       // tslint:disable-next-line:no-string-literal
       cell.style[val.attr] = val.value;
+    }
+  }
+
+  private static updatePinnedColumns(column: number, pinned: boolean) {
+    if (pinned) {
+      StyleService.pinnedColumn.add(column);
+    } else {
+      StyleService.pinnedColumn.delete(column);
     }
   }
 }

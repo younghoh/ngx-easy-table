@@ -66,6 +66,7 @@ import {
   InstallationComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
+import { PinnedComponent } from './demo/pinned/pinned.component';
 
 @NgModule({
   imports: [
@@ -131,6 +132,7 @@ import { TableModule } from 'ngx-easy-table';
     BootstrapComponent,
     DocComponent,
     InstallationComponent,
+    PinnedComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

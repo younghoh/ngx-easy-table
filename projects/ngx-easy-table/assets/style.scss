@@ -364,6 +364,13 @@ $primary-color: #50596c !default;
     width: 100%;
   }
 
+  &-icon-pin {
+    border-radius: 50%;
+    border: 4px solid $dark;
+    width: 11px;
+    height: 11px;
+  }
+
   &-dropdown {
     display: inline-block;
     position: relative;

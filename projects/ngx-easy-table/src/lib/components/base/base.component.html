@@ -22,7 +22,7 @@
           <i class="ngx-form-icon" id="selectAllCheckbox"></i>
         </label>
       </th>
-      <ng-container *ngFor="let column of columns;">
+      <ng-container *ngFor="let column of columns;let colIndex = index">
         <th class="ngx-table__header-cell"
             #th
             [attr.width]="getColumnWidth(column)"
@@ -31,6 +31,7 @@
             (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
             <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
+              <i class="ngx-icon ngx-icon-pin" *ngIf="StyleService.pinnedColumn.has(colIndex + 1)"></i>
               <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
                 <span *ngIf="sortKey === column.key && this.sortState.get(sortKey) === ''"> -</span>
                 <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"
