@@ -153,10 +153,6 @@
       35
     ],
     "no-same-line-conditional": true,
-    "angular-whitespace": [
-      true,
-      "check-semicolon"
-    ],
     "no-life-cycle-call": true,
     "prefer-inline-decorator": false,
     "no-forward-ref": true,
