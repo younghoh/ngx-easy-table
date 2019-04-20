@@ -383,7 +383,7 @@ $primary-color: #50596c !default;
       right: 0;
     }
 
-    &.ngx-active .ngx-menu, .ngx-menu:hover {
+    &.ngx-menu, .ngx-menu:hover {
       display: block;
     }
   }
@@ -542,6 +542,13 @@ $primary-color: #50596c !default;
   border: 1px solid $grey;
   cursor: pointer;
   padding: 4px;
+}
+
+.pinned-left {
+  position: sticky;
+  z-index: 1;
+  background-color: white;
+  box-shadow: 2px 0 0 rgba(gray, .175);
 }
 
 @media screen and (max-width: 601px) {

@@ -278,12 +278,16 @@ export class BaseComponent implements OnInit, OnChanges {
     }
     if (sort) {
       const { key, order } = JSON.parse(sort);
-      this.sortBy.key = key;
-      this.sortBy.order = order;
-      this.data = [...this.data];
+      this.bindApi({
+        type: API.sortBy,
+        value: { column: key, order },
+      });
     }
     if (search) {
-      this.term = JSON.parse(search);
+      this.bindApi({
+        type: API.setInputValue,
+        value: JSON.parse(search),
+      });
     }
   }
 
@@ -376,13 +380,35 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   private doApplyData(data) {
-    const column = this.columns.find((c) => !!c.orderBy);
-    if (column) {
-      this.sortState.set(this.sortKey, (column.orderBy === 'asc') ? 'desc' : 'asc');
-      this.orderBy(column);
+    const order = this.columns.find((c) => !!c.orderBy);
+    const colClass = this.columns.filter((c) => !!c.cssClass);
+    const pinned = this.columns.filter((c) => !!c.pinned);
+    if (order) {
+      this.sortState.set(this.sortKey, (order.orderBy === 'asc') ? 'desc' : 'asc');
+      this.orderBy(order);
     } else {
       this.data = [...data.currentValue];
     }
+    colClass.forEach((col) => {
+      this.bindApi({
+        type: API.setColumnClass,
+        value: {
+          column: this.columns.indexOf(col) + 1,
+          className: col.cssClass.name,
+          includeHeader: col.cssClass.includeHeader,
+        },
+      });
+    });
+
+    pinned.forEach((pin) => {
+      this.bindApi({
+        type: API.setColumnPinned,
+        value: {
+          column: this.columns.indexOf(pin) + 1,
+          pinned: pin.pinned,
+        },
+      });
+    });
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
@@ -434,6 +460,18 @@ export class BaseComponent implements OnInit, OnChanges {
         StyleService.setRowClass(event.value);
         this.cdr.detectChanges();
         break;
+      case API.setColumnClass:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => StyleService.setColumnClass(val));
+          break;
+        }
+        StyleService.setColumnClass(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.setColumnPinned:
+        StyleService.setColumnPinned(event.value);
+        this.cdr.detectChanges();
+        break;
       case API.setCellClass:
         if (Array.isArray(event.value)) {
           event.value.forEach((val) => StyleService.setCellClass(val));
@@ -461,6 +499,10 @@ export class BaseComponent implements OnInit, OnChanges {
         break;
       case API.getPaginationTotalItems:
         return this.paginationComponent.paginationDirective.getTotalItems();
+      case API.getPaginationCurrentPage:
+        return this.paginationComponent.paginationDirective.getCurrent();
+      case API.getPaginationLastPage:
+        return this.paginationComponent.paginationDirective.getLastPage();
       case API.setPaginationCurrentPage:
         this.paginationComponent.paginationDirective.setCurrent(event.value);
         break;

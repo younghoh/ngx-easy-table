@@ -3,7 +3,6 @@ export * from './search/search.component';
 export * from './pagination/pagination.component';
 export * from './global-search/global-search.component';
 export * from './sort/sort.component';
-export * from './export/export.component';
 export * from './click-event/click-event.component';
 export * from './template/template.component';
 export * from './select-row/select-row.component';

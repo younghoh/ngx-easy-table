@@ -4,7 +4,7 @@ export interface Config {
   orderEnabled: boolean;
   orderEventOnly?: boolean;
   paginationEnabled: boolean;
-  exportEnabled: boolean;
+  exportEnabled?: boolean;
   clickEvent: boolean;
   selectRow: boolean;
   selectCol: boolean;

@@ -3,7 +3,7 @@ import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
 
-// import { json2excel } from 'js2excel';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-exports',
@@ -29,22 +29,18 @@ export class ExportsComponent {
 
   exportToExcel() {
     try {
-      // json2excel({
-      //   data: this.data,
-      //   name: 'user-info-data',
-      //   formateDate: 'yyyy/mm/dd'
-      // });
-    } catch (e) {
-      console.error('export error');
-    }
-  }
+      /* generate worksheet */
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
 
-  exportToText() {
-    // var a = document.createElement("a");
-    // var file = new Blob([this.data], { type: 'text/plain' });
-    // a.href = URL.createObjectURL(file);
-    // a.download = 'json.txt';
-    // a.click();
+      /* generate workbook and add the worksheet */
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+      /* save to file */
+      XLSX.writeFile(wb, 'file.xlsx');
+    } catch (err) {
+      console.error('export error', err);
+    }
   }
 
   exportToCSV() {
