@@ -1,15 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Company } from '../../../assets/data';
-import { ConfigService } from './configuration.service';
-import { Columns } from 'ngx-easy-table';
+import { Columns, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-no-results-template',
   templateUrl: './no-results-template.component.html',
   styleUrls: ['./no-results-template.component.css'],
-  providers: [ConfigService],
 })
-export class NoResultsTemplateComponent {
+export class NoResultsTemplateComponent implements OnInit {
 
   public columns: Columns[] = [
     { key: 'name', title: 'Name' },
@@ -18,13 +16,11 @@ export class NoResultsTemplateComponent {
     { key: 'phone', title: 'Phone' },
     { key: 'address.street', title: 'Street' },
   ];
-  data: Company[] = [];
-  rows: Company[] = [];
-  configuration;
+  public data: Company[] = [];
+  public configuration;
 
-  constructor() {
-    this.configuration = ConfigService.config;
-    this.data = [];
+  ngOnInit(): void {
+    this.configuration = DefaultConfig;
+    this.configuration.horizontalScroll = false;
   }
-
 }

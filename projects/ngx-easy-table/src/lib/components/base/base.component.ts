@@ -1,6 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChild,
@@ -41,7 +40,6 @@ interface RowContextMenuPosition {
   selector: 'ngx-table',
   providers: [DefaultConfigService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges {
   @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
@@ -106,6 +104,10 @@ export class BaseComponent implements OnInit, OnChanges {
     private readonly cdr: ChangeDetectorRef,
     public readonly styleService: StyleService,
   ) {
+    this.subscription = this.filteredCountSubject.subscribe((count) => {
+      this.filterCount = count;
+      this.cdr.detectChanges();
+    });
   }
 
   ngOnInit() {
@@ -115,10 +117,7 @@ export class BaseComponent implements OnInit, OnChanges {
     if (this.configuration) {
       DefaultConfigService.config = this.configuration;
     }
-    this.subscription = this.filteredCountSubject.subscribe((count) => {
-      this.filterCount = count;
-      this.cdr.detectChanges();
-    });
+
     this.config = DefaultConfigService.config;
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
