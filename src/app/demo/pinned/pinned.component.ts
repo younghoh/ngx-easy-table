@@ -16,11 +16,14 @@ export class PinnedComponent implements OnInit {
   ngOnInit(): void {
     this.configuration = DefaultConfig;
     this.configuration.horizontalScroll = true;
+    this.configuration.searchEnabled = true;
     this.data = data;
     this.columns = [
-      { key: 'phone', title: 'Phone' },
-      { key: 'age', title: 'Age' },
+      { key: 'phone', title: 'Phone', pinned: true, orderBy: 'asc' },
+      { key: 'age', title: 'Age', cssClass: { name: 'pink', includeHeader: false } },
       { key: 'company', title: 'Company' },
+      { key: 'name', title: 'Name' },
+      { key: 'name', title: 'Name' },
       { key: 'name', title: 'Name' },
       { key: 'name', title: 'Name' },
       { key: 'name', title: 'Name' },
@@ -34,10 +37,10 @@ export class PinnedComponent implements OnInit {
     ];
   }
 
-  setColumnBG(column: number, className: string) {
+  setColumnBG(column: number, className: string, includeHeader: boolean) {
     this.table.apiEvent({
       type: API.setColumnClass,
-      value: { column, className, includeHeader: false },
+      value: { column, className, includeHeader },
     });
   }
 

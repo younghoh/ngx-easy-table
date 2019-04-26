@@ -41,7 +41,7 @@ interface RowContextMenuPosition {
   selector: 'ngx-table',
   providers: [DefaultConfigService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges {
   @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
@@ -75,7 +75,6 @@ export class BaseComponent implements OnInit, OnChanges {
   public startOffset;
   public loadingHeight = '30px';
   public config: Config;
-  public StyleService = StyleService;
   onSelectAllBinded = this.onSelectAll.bind(this);
 
   @Input('configuration')
@@ -103,7 +102,10 @@ export class BaseComponent implements OnInit, OnChanges {
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor(private readonly cdr: ChangeDetectorRef) {
+  constructor(
+    private readonly cdr: ChangeDetectorRef,
+    public readonly styleService: StyleService,
+  ) {
   }
 
   ngOnInit() {
@@ -175,6 +177,8 @@ export class BaseComponent implements OnInit, OnChanges {
       key: this.sortKey,
       order: this.sortState.get(this.sortKey),
     };
+    this.setColumnPinned();
+    this.setColumnClass();
     this.emitEvent(Event.onOrder, value);
   }
 
@@ -230,6 +234,8 @@ export class BaseComponent implements OnInit, OnChanges {
     if (!DefaultConfigService.config.serverPagination) {
       this.term = $event;
     }
+    this.setColumnPinned();
+    this.setColumnClass();
     this.emitEvent(Event.onSearch, $event);
   }
 
@@ -243,6 +249,8 @@ export class BaseComponent implements OnInit, OnChanges {
   onPagination(pagination: PaginationRange): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
+    this.setColumnPinned();
+    this.setColumnClass();
     this.emitEvent(Event.onPagination, pagination);
   }
 
@@ -329,7 +337,7 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   get isLoading(): boolean {
-    const table = document.getElementById('table') as HTMLTableElement;
+    const table = document.getElementById(this.id) as HTMLTableElement;
     if (table && table.rows && table.rows.length > 3) {
       this.getLoadingHeight(table.rows);
     }
@@ -382,15 +390,21 @@ export class BaseComponent implements OnInit, OnChanges {
 
   private doApplyData(data) {
     const order = this.columns.find((c) => !!c.orderBy);
-    const colClass = this.columns.filter((c) => !!c.cssClass);
-    const pinned = this.columns.filter((c) => !!c.pinned);
     if (order) {
       this.sortState.set(this.sortKey, (order.orderBy === 'asc') ? 'desc' : 'asc');
       this.orderBy(order);
     } else {
       this.data = [...data.currentValue];
     }
+    this.setColumnClass();
+    this.setColumnPinned();
+  }
+
+  private setColumnClass() {
+    this.cdr.detectChanges();
+    const colClass = this.columns.filter((c) => !!c.cssClass);
     colClass.forEach((col) => {
+      console.warn('colClass:', colClass);
       this.bindApi({
         type: API.setColumnClass,
         value: {
@@ -400,8 +414,13 @@ export class BaseComponent implements OnInit, OnChanges {
         },
       });
     });
+  }
 
+  private setColumnPinned() {
+    this.cdr.detectChanges();
+    const pinned = this.columns.filter((c) => !!c.pinned);
     pinned.forEach((pin) => {
+      console.warn('is pinned:', pinned);
       this.bindApi({
         type: API.setColumnPinned,
         value: {
@@ -455,44 +474,44 @@ export class BaseComponent implements OnInit, OnChanges {
         break;
       case API.setRowClass:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setRowClass(val));
+          event.value.forEach((val) => this.styleService.setRowClass(val));
           break;
         }
-        StyleService.setRowClass(event.value);
+        this.styleService.setRowClass(event.value);
         this.cdr.detectChanges();
         break;
       case API.setColumnClass:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setColumnClass(val));
+          event.value.forEach((val) => this.styleService.setColumnClassStyle(val));
           break;
         }
-        StyleService.setColumnClass(event.value);
+        this.styleService.setColumnClassStyle(event.value);
         this.cdr.detectChanges();
         break;
       case API.setColumnPinned:
-        StyleService.setColumnPinned(event.value.column, event.value.pinned);
+        this.styleService.setColumnPinnedStyle(event.value.column, event.value.pinned);
         this.cdr.detectChanges();
         break;
       case API.setCellClass:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setCellClass(val));
+          event.value.forEach((val) => this.styleService.setCellClass(val));
           break;
         }
-        StyleService.setCellClass(event.value);
+        this.styleService.setCellClass(event.value);
         break;
       case API.setRowStyle:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setRowStyle(val));
+          event.value.forEach((val) => this.styleService.setRowStyle(val));
           break;
         }
-        StyleService.setRowStyle(event.value);
+        this.styleService.setRowStyle(event.value);
         break;
       case API.setCellStyle:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setCellStyle(val));
+          event.value.forEach((val) => this.styleService.setCellStyle(val));
           break;
         }
-        StyleService.setCellStyle(event.value);
+        this.styleService.setCellStyle(event.value);
         break;
       case API.setTableClass:
         this.tableClass = event.value;

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { rowClass, rowStyle, cellClass, cellStyle, columnClass } from '../model/api';
+import { cellClass, cellStyle, columnClass, rowClass, rowStyle } from '..';
 
 @Injectable()
 export class StyleService {
-  public static pinnedColumn = new Set<number>();
+  public pinnedColumn = new Set<number>();
 
-  static setRowClass(val: rowClass): void {
+  setRowClass(val: rowClass): void {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
     const row: HTMLTableRowElement = document.querySelector(selector);
     if (row) {
@@ -13,7 +13,11 @@ export class StyleService {
     }
   }
 
-  static setColumnClass(val: columnClass): void {
+  setColumnClassStyle(val: columnClass): void {
+    if (val.column < 1) {
+      console.error('Column number need to be 1 or greater');
+      return;
+    }
     if (val.includeHeader) {
       const headerRows = document.querySelectorAll(`#table > thead tr > th:nth-child(${val.column})`);
       [].forEach.call(headerRows, (header) => {
@@ -26,7 +30,7 @@ export class StyleService {
     });
   }
 
-  static setColumnPinned(column: number, pinned: boolean): void {
+  setColumnPinnedStyle(column: number, pinned: boolean): void {
     if (column < 1) {
       console.error('Column number need to be 1 or greater');
       return;
@@ -35,6 +39,9 @@ export class StyleService {
     const cols = document.querySelectorAll(`#table tr > td:nth-child(${column}),th:nth-child(${column})`);
     const lengths = document.querySelectorAll('#table tr:nth-child(1) > td');
     let leftMargin = 0;
+    console.log('Column:', column);
+    console.log('pinned', pinned);
+    console.log('cols:', cols);
     lengths.forEach((length, index) => {
       if (index < (column - 1)) {
         leftMargin = leftMargin + length.clientWidth;
@@ -50,7 +57,7 @@ export class StyleService {
     });
   }
 
-  static setCellClass(val: cellClass): void {
+  setCellClass(val: cellClass): void {
     const selector = `#table > tbody > tr:nth-child(${val.row}) > td:nth-child(${val.cell})`;
     const cell: HTMLTableCellElement = document.querySelector(selector);
     if (cell) {
@@ -58,7 +65,7 @@ export class StyleService {
     }
   }
 
-  static setRowStyle(val: rowStyle): void {
+  setRowStyle(val: rowStyle): void {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
     const row: HTMLTableRowElement = document.querySelector(selector);
     if (row) {
@@ -67,7 +74,7 @@ export class StyleService {
     }
   }
 
-  static setCellStyle(val: cellStyle): void {
+  setCellStyle(val: cellStyle): void {
     const selector = `#table > tbody > tr:nth-child(${val.row}) > td:nth-child(${val.cell})`;
     const cell: HTMLTableCellElement = document.querySelector(selector);
     if (cell) {
@@ -76,11 +83,11 @@ export class StyleService {
     }
   }
 
-  private static updatePinnedColumns(column: number, pinned: boolean) {
+  private updatePinnedColumns(column: number, pinned: boolean) {
     if (pinned) {
-      StyleService.pinnedColumn.add(column);
+      this.pinnedColumn.add(column);
     } else {
-      StyleService.pinnedColumn.delete(column);
+      this.pinnedColumn.delete(column);
     }
   }
 }

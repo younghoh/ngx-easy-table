@@ -64,9 +64,9 @@ import {
   BootstrapComponent,
   DocComponent,
   InstallationComponent,
+  PinnedComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
-import { PinnedComponent } from './demo/pinned/pinned.component';
 
 @NgModule({
   imports: [
