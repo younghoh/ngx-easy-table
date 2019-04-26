@@ -404,7 +404,6 @@ export class BaseComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
     const colClass = this.columns.filter((c) => !!c.cssClass);
     colClass.forEach((col) => {
-      console.warn('colClass:', colClass);
       this.bindApi({
         type: API.setColumnClass,
         value: {
@@ -420,7 +419,6 @@ export class BaseComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
     const pinned = this.columns.filter((c) => !!c.pinned);
     pinned.forEach((pin) => {
-      console.warn('is pinned:', pinned);
       this.bindApi({
         type: API.setColumnPinned,
         value: {

@@ -39,9 +39,6 @@ export class StyleService {
     const cols = document.querySelectorAll(`#table tr > td:nth-child(${column}),th:nth-child(${column})`);
     const lengths = document.querySelectorAll('#table tr:nth-child(1) > td');
     let leftMargin = 0;
-    console.log('Column:', column);
-    console.log('pinned', pinned);
-    console.log('cols:', cols);
     lengths.forEach((length, index) => {
       if (index < (column - 1)) {
         leftMargin = leftMargin + length.clientWidth;
