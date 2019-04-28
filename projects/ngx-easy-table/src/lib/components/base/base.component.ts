@@ -1,6 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChild,
@@ -41,7 +40,6 @@ interface RowContextMenuPosition {
   selector: 'ngx-table',
   providers: [DefaultConfigService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges {
   @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
@@ -102,7 +100,14 @@ export class BaseComponent implements OnInit, OnChanges {
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
 
-  constructor(private readonly cdr: ChangeDetectorRef) {
+  constructor(
+    private readonly cdr: ChangeDetectorRef,
+    public readonly styleService: StyleService,
+  ) {
+    this.subscription = this.filteredCountSubject.subscribe((count) => {
+      this.filterCount = count;
+      this.cdr.detectChanges();
+    });
   }
 
   ngOnInit() {
@@ -112,10 +117,7 @@ export class BaseComponent implements OnInit, OnChanges {
     if (this.configuration) {
       DefaultConfigService.config = this.configuration;
     }
-    this.subscription = this.filteredCountSubject.subscribe((count) => {
-      this.filterCount = count;
-      this.cdr.detectChanges();
-    });
+
     this.config = DefaultConfigService.config;
     this.limit = this.config.rows;
     if (this.groupRowsBy) {
@@ -174,6 +176,8 @@ export class BaseComponent implements OnInit, OnChanges {
       key: this.sortKey,
       order: this.sortState.get(this.sortKey),
     };
+    this.setColumnPinned();
+    this.setColumnClass();
     this.emitEvent(Event.onOrder, value);
   }
 
@@ -229,6 +233,8 @@ export class BaseComponent implements OnInit, OnChanges {
     if (!DefaultConfigService.config.serverPagination) {
       this.term = $event;
     }
+    this.setColumnPinned();
+    this.setColumnClass();
     this.emitEvent(Event.onSearch, $event);
   }
 
@@ -242,6 +248,8 @@ export class BaseComponent implements OnInit, OnChanges {
   onPagination(pagination: PaginationRange): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
+    this.setColumnPinned();
+    this.setColumnClass();
     this.emitEvent(Event.onPagination, pagination);
   }
 
@@ -278,12 +286,16 @@ export class BaseComponent implements OnInit, OnChanges {
     }
     if (sort) {
       const { key, order } = JSON.parse(sort);
-      this.sortBy.key = key;
-      this.sortBy.order = order;
-      this.data = [...this.data];
+      this.bindApi({
+        type: API.sortBy,
+        value: { column: key, order },
+      });
     }
     if (search) {
-      this.term = JSON.parse(search);
+      this.bindApi({
+        type: API.setInputValue,
+        value: JSON.parse(search),
+      });
     }
   }
 
@@ -324,7 +336,7 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   get isLoading(): boolean {
-    const table = document.getElementById('table') as HTMLTableElement;
+    const table = document.getElementById(this.id) as HTMLTableElement;
     if (table && table.rows && table.rows.length > 3) {
       this.getLoadingHeight(table.rows);
     }
@@ -376,13 +388,44 @@ export class BaseComponent implements OnInit, OnChanges {
   }
 
   private doApplyData(data) {
-    const column = this.columns.find((c) => !!c.orderBy);
-    if (column) {
-      this.sortState.set(this.sortKey, (column.orderBy === 'asc') ? 'desc' : 'asc');
-      this.orderBy(column);
+    const order = this.columns.find((c) => !!c.orderBy);
+    if (order) {
+      this.sortState.set(this.sortKey, (order.orderBy === 'asc') ? 'desc' : 'asc');
+      this.orderBy(order);
     } else {
       this.data = [...data.currentValue];
+      this.setColumnClass();
+      this.setColumnPinned();
     }
+  }
+
+  private setColumnClass() {
+    this.cdr.detectChanges();
+    const colClass = this.columns.filter((c) => !!c.cssClass);
+    colClass.forEach((col) => {
+      this.bindApi({
+        type: API.setColumnClass,
+        value: {
+          column: this.columns.indexOf(col) + 1,
+          className: col.cssClass.name,
+          includeHeader: col.cssClass.includeHeader,
+        },
+      });
+    });
+  }
+
+  private setColumnPinned() {
+    this.cdr.detectChanges();
+    const pinned = this.columns.filter((c) => !!c.pinned);
+    pinned.forEach((pin) => {
+      this.bindApi({
+        type: API.setColumnPinned,
+        value: {
+          column: this.columns.indexOf(pin) + 1,
+          pinned: pin.pinned,
+        },
+      });
+    });
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
@@ -428,32 +471,44 @@ export class BaseComponent implements OnInit, OnChanges {
         break;
       case API.setRowClass:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setRowClass(val));
+          event.value.forEach((val) => this.styleService.setRowClass(val));
           break;
         }
-        StyleService.setRowClass(event.value);
+        this.styleService.setRowClass(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.setColumnClass:
+        if (Array.isArray(event.value)) {
+          event.value.forEach((val) => this.styleService.setColumnClassStyle(val));
+          break;
+        }
+        this.styleService.setColumnClassStyle(event.value);
+        this.cdr.detectChanges();
+        break;
+      case API.setColumnPinned:
+        this.styleService.setColumnPinnedStyle(event.value.column, event.value.pinned);
         this.cdr.detectChanges();
         break;
       case API.setCellClass:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setCellClass(val));
+          event.value.forEach((val) => this.styleService.setCellClass(val));
           break;
         }
-        StyleService.setCellClass(event.value);
+        this.styleService.setCellClass(event.value);
         break;
       case API.setRowStyle:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setRowStyle(val));
+          event.value.forEach((val) => this.styleService.setRowStyle(val));
           break;
         }
-        StyleService.setRowStyle(event.value);
+        this.styleService.setRowStyle(event.value);
         break;
       case API.setCellStyle:
         if (Array.isArray(event.value)) {
-          event.value.forEach((val) => StyleService.setCellStyle(val));
+          event.value.forEach((val) => this.styleService.setCellStyle(val));
           break;
         }
-        StyleService.setCellStyle(event.value);
+        this.styleService.setCellStyle(event.value);
         break;
       case API.setTableClass:
         this.tableClass = event.value;
@@ -461,6 +516,10 @@ export class BaseComponent implements OnInit, OnChanges {
         break;
       case API.getPaginationTotalItems:
         return this.paginationComponent.paginationDirective.getTotalItems();
+      case API.getPaginationCurrentPage:
+        return this.paginationComponent.paginationDirective.getCurrent();
+      case API.getPaginationLastPage:
+        return this.paginationComponent.paginationDirective.getLastPage();
       case API.setPaginationCurrentPage:
         this.paginationComponent.paginationDirective.setCurrent(event.value);
         break;

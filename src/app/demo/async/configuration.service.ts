@@ -14,7 +14,7 @@ export class ConfigService {
     selectCol: false,
     selectCell: false,
     rows: 10,
-    additionalActions: true,
+    additionalActions: false,
     serverPagination: false,
     isLoading: false,
     detailsTemplate: false,

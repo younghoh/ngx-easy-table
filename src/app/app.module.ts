@@ -29,7 +29,6 @@ import {
   DynamicConfigurationComponent,
   DynamicRowComponent,
   ExchangeTemplateComponent,
-  ExportComponent,
   ExportsComponent,
   FilterTemplateComponent,
   FixedWidthComponent,
@@ -65,6 +64,7 @@ import {
   BootstrapComponent,
   DocComponent,
   InstallationComponent,
+  PinnedComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -87,7 +87,6 @@ import { TableModule } from 'ngx-easy-table';
     PaginationComponent,
     GlobalSearchComponent,
     SortComponent,
-    ExportComponent,
     ClickEventComponent,
     TemplateComponent,
     SelectRowComponent,
@@ -133,6 +132,7 @@ import { TableModule } from 'ngx-easy-table';
     BootstrapComponent,
     DocComponent,
     InstallationComponent,
+    PinnedComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],

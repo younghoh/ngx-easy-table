@@ -12,7 +12,8 @@
     ]
   },
   "include": [
-    "../../node_modules/cypress/index.d.ts",
-    "integration/*.ts"
+    "../node_modules/cypress/types",
+    "integration/*.ts",
+    "support/*.ts"
   ]
 }

@@ -137,7 +137,6 @@
     ],
     "no-input-rename": true,
     "no-output-rename": true,
-    "use-life-cycle-interface": true,
     "no-misleading-array-reverse": false,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
@@ -153,14 +152,8 @@
       35
     ],
     "no-same-line-conditional": true,
-    "angular-whitespace": [
-      true,
-      "check-semicolon"
-    ],
-    "no-life-cycle-call": true,
     "prefer-inline-decorator": false,
     "no-forward-ref": true,
-    "contextual-life-cycle": true,
     "template-conditional-complexity": [
       true,
       8

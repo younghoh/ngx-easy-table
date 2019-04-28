@@ -1,0 +1,47 @@
+<!--<div class="columns">-->
+<!--  <div class="column col-12">-->
+<!--    <button class="btn mx-1"-->
+<!--            id="setColumn1Pinned"-->
+<!--            (click)="pinColumn(1)">1st Column pinned-->
+<!--    </button>-->
+<!--    <button class="btn btn-primary mx-1"-->
+<!--            id="setColumn1UnPinned"-->
+<!--            (click)="unpinColumn(1)">1st Column unpinned-->
+<!--    </button>-->
+<!--    <button class="btn mx-1"-->
+<!--            id="setColumn2Pinned"-->
+<!--            (click)="pinColumn(2)">2nd Column pinned-->
+<!--    </button>-->
+<!--    <button class="btn btn-primary mx-1"-->
+<!--            id="setColumn2UnPinned"-->
+<!--            (click)="unpinColumn(2)">2nd Column unpinned-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<div class="columns">-->
+<!--  <div class="column col-12 my-2">-->
+<!--    <button class="btn mx-1"-->
+<!--            id="setColumn2Background"-->
+<!--            (click)="setColumnBG(2, 'yellow', false)">Column yellow-->
+<!--    </button>-->
+<!--    <button class="btn mx-1"-->
+<!--            id="setColumn3Background"-->
+<!--            (click)="setColumnBG(3, 'pink', false)">Column pink-->
+<!--    </button>-->
+<!--    <button class="btn mx-1"-->
+<!--            id="setColumn4Background"-->
+<!--            (click)="setColumnBG(4, 'blue', true)">Column blue (with header)-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="columns">
+  <div class="column col-12">
+    <ngx-table
+      [configuration]="configuration"
+      [data]="data"
+      #table
+      [columns]="columns">
+    </ngx-table>
+  </div>
+</div>

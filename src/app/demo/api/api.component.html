@@ -61,7 +61,13 @@
         </button>
         <button class="btn btn-primary mx-1"
                 (click)="getTotal()">Get total
-        </button> <div class="d-inline" *ngIf="total">Total: {{total}}</div>
+        </button>
+        <button class="btn btn-primary mx-1"
+                (click)="getLastPage()">Get last
+        </button>
+        <div class="d-inline" *ngIf="total">Total: {{total}}</div>
+        <div class="d-inline" *ngIf="current">Current: {{current}}</div>
+        <div class="d-inline" *ngIf="last">Last: {{last}}</div>
       </div>
     </div>
     <div class="accordion" id="accordionHeaderRow">

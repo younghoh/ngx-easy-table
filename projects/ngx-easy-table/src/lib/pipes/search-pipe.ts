@@ -11,6 +11,7 @@ export class SearchPipe implements PipeTransform {
   private filters: { [key: string]: string } = {};
 
   transform(array: any[], filter: Array<{ value: string, key: string }>, filteredCountSubject: Subject<number>, config?: Config): any[] {
+    filteredCountSubject.next(0);
     if (typeof array === 'undefined') {
       return;
     }

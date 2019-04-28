@@ -10,4 +10,6 @@ export interface Columns {
   orderEventOnly?: boolean;
   searchEnabled?: boolean;
   orderBy?: string;
+  cssClass?: { name: string, includeHeader: boolean };
+  pinned?: boolean;
 }

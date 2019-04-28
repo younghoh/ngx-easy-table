@@ -10,8 +10,6 @@
     "noImplicitThis": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
     "baseUrl": "./",
     "target": "es5",
     "typeRoots": [

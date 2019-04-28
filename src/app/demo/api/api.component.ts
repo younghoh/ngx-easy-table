@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
-import { Columns, API, APIDefinition } from 'ngx-easy-table';
+import { API, Columns, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-api',
@@ -15,6 +15,8 @@ export class ApiComponent implements OnInit, AfterViewInit {
   public data: Company[] = [];
   public configuration;
   public total;
+  public current;
+  public last;
   public checked = {
     paginationEnabled: true,
     headerEnabled: true,
@@ -30,6 +32,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
       { key: 'phone', title: 'Phone', width: '15%' },
       { key: 'age', title: 'Age', width: '10%' },
       { key: 'company', title: 'Company', width: '15%' },
+      { key: 'name', title: 'Name', width: '15%' },
       { key: 'name', title: 'Name', width: '15%' },
       { key: 'isActive', title: 'STATUS', width: '15%' },
     ];
@@ -84,7 +87,7 @@ export class ApiComponent implements OnInit, AfterViewInit {
   }
 
   getPaginationCurrent() {
-    this.table.apiEvent({
+    this.current = this.table.apiEvent({
       type: API.getPaginationCurrentPage,
     });
   }
@@ -92,6 +95,12 @@ export class ApiComponent implements OnInit, AfterViewInit {
   getTotal() {
     this.total = this.table.apiEvent({
       type: API.getPaginationTotalItems,
+    });
+  }
+
+  getLastPage() {
+    this.last = this.table.apiEvent({
+      type: API.getPaginationLastPage,
     });
   }
 

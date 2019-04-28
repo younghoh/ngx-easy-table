@@ -16,7 +16,6 @@ import {
   CustomSortComponent,
   DynamicConfigurationComponent,
   DynamicRowComponent,
-  ExportComponent,
   ExportsComponent,
   FilterTemplateComponent,
   FixedWidthComponent,
@@ -52,6 +51,7 @@ import {
   BootstrapComponent,
   DocComponent,
   InstallationComponent,
+  PinnedComponent,
 } from './demo';
 
 export const routes = [
@@ -63,7 +63,6 @@ export const routes = [
   { path: 'server-sort', component: ServerSortComponent },
   { path: 'global-search', component: GlobalSearchComponent },
   { path: 'sort', component: SortComponent },
-  { path: 'export', component: ExportComponent },
   { path: 'click-event', component: ClickEventComponent },
   { path: 'template', component: TemplateComponent },
   { path: 'modal', component: ModalComponent },
@@ -106,6 +105,7 @@ export const routes = [
   { path: 'doc', component: DocComponent },
   { path: 'api-doc', component: ApiDocComponent },
   { path: 'installation', component: InstallationComponent },
+  { path: 'pinned', component: PinnedComponent },
   { path: '**', component: BasicComponent },
 ];
 
