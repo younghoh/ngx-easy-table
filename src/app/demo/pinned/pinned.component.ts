@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, Config, DefaultConfig, API, APIDefinition } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig, APIDefinition } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-pinned',
