@@ -23,4 +23,4 @@ Library requires `@angular/cdk`, please install it as well.
 
 ## Available config settings:
 
-See https://github.com/ssuperczynski/ngx-easy-table/wiki
+See https://ngx-easy-table.eu/#/doc

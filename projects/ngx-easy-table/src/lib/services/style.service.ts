@@ -3,7 +3,7 @@ import { cellClass, cellStyle, columnClass, rowClass, rowStyle } from '..';
 
 @Injectable()
 export class StyleService {
-  public pinnedColumn = new Set<number>();
+  public pinnedColumns = new Set<number>();
 
   setRowClass(val: rowClass): void {
     const selector = `#table > tbody > tr:nth-child(${val.row})`;
@@ -36,21 +36,21 @@ export class StyleService {
       return;
     }
     this.updatePinnedColumns(column, pinned);
-    const cols = document.querySelectorAll(`#table tr > td:nth-child(${column}),th:nth-child(${column})`);
-    const lengths = document.querySelectorAll('#table tr:nth-child(1) > td');
     let leftMargin = 0;
-    lengths.forEach((length, index) => {
-      if (index < (column - 1)) {
-        leftMargin = leftMargin + length.clientWidth;
+    this.pinnedColumns.forEach((col) => {
+      if (col < column) {
+        const currentColumn = document.querySelector(`#table tr:nth-child(1) > td:nth-child(${col})`);
+        leftMargin = leftMargin + currentColumn.clientWidth;
       }
     });
+    const cols = document.querySelectorAll(`#table tr > td:nth-child(${column}),th:nth-child(${column})`);
     [].forEach.call(cols, (col: HTMLTableElement) => {
       if (pinned) {
         col.className = 'ngx-table__header-cell pinned-left';
-        col.style.left = column > 1 ? `${leftMargin}px` : '0';
-      } else {
-        col.className = 'ngx-table__header-cell';
+        col.style.left = `${leftMargin}px`;
+        return;
       }
+      col.className = 'ngx-table__header-cell';
     });
   }
 
@@ -82,9 +82,9 @@ export class StyleService {
 
   private updatePinnedColumns(column: number, pinned: boolean) {
     if (pinned) {
-      this.pinnedColumn.add(column);
+      this.pinnedColumns.add(column);
     } else {
-      this.pinnedColumn.delete(column);
+      this.pinnedColumns.delete(column);
     }
   }
 }

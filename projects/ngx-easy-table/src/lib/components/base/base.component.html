@@ -31,7 +31,7 @@
             (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
             <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
-              <i class="ngx-icon ngx-icon-pin" *ngIf="styleService.pinnedColumn.has(colIndex + 1)"></i>
+              <i class="ngx-icon ngx-icon-pin" *ngIf="styleService.pinnedColumns.has(colIndex + 1)"></i>
               <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
                 <span *ngIf="sortKey === column.key && this.sortState.get(sortKey) === ''"> -</span>
                 <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"

@@ -20,7 +20,7 @@ export class PinnedComponent implements OnInit {
     this.data = data;
     this.columns = [
       { key: 'phone', title: 'Phone', pinned: true, orderBy: 'asc' },
-      { key: 'age', title: 'Age', cssClass: { name: 'pink', includeHeader: false } },
+      { key: 'age', title: 'Age', pinned: true },
       { key: 'company', title: 'Company' },
       { key: 'name', title: 'Name' },
       { key: 'name', title: 'Name' },
@@ -37,24 +37,27 @@ export class PinnedComponent implements OnInit {
     ];
   }
 
-  setColumnBG(column: number, className: string, includeHeader: boolean) {
-    this.table.apiEvent({
-      type: API.setColumnClass,
-      value: { column, className, includeHeader },
-    });
-  }
+  // TODO fix API when random columns pinned
+  // setColumnBG(column: number, className: string, includeHeader: boolean) {
+  //   this.table.apiEvent({
+  //     type: API.setColumnClass,
+  //     value: { column, className, includeHeader },
+  //   });
+  // }
 
-  pinColumn(column: number) {
-    this.table.apiEvent({
-      type: API.setColumnPinned,
-      value: { column, pinned: true },
-    });
-  }
+  // TODO fix API when random columns pinned
+  // pinColumn(column: number) {
+  //   this.table.apiEvent({
+  //     type: API.setColumnPinned,
+  //     value: { column, pinned: true },
+  //   });
+  // }
 
-  unpinColumn(column: number) {
-    this.table.apiEvent({
-      type: API.setColumnPinned,
-      value: { column, pinned: false },
-    });
-  }
+  // TODO fix API when random columns pinned
+  // unpinColumn(column: number) {
+  //   this.table.apiEvent({
+  //     type: API.setColumnPinned,
+  //     value: { column, pinned: false },
+  //   });
+  // }
 }

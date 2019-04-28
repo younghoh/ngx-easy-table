@@ -394,9 +394,9 @@ export class BaseComponent implements OnInit, OnChanges {
       this.orderBy(order);
     } else {
       this.data = [...data.currentValue];
+      this.setColumnClass();
+      this.setColumnPinned();
     }
-    this.setColumnClass();
-    this.setColumnPinned();
   }
 
   private setColumnClass() {
