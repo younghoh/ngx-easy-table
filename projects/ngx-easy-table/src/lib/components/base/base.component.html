@@ -24,14 +24,17 @@
       </th>
       <ng-container *ngFor="let column of columns; let colIndex = index">
         <th class="ngx-table__header-cell"
+            [class.pinned-left]="column.pinned"
+            [ngClass]="column.cssClass && column.cssClass.includeHeader ? column.cssClass.name : ''"
+            [style.left]="pinnedWidth(column.pinned, colIndex)"
             #th
-            [attr.width]="getColumnWidth(column)"
+            [style.width]="getColumnWidth(column)"
             (mousedown)="onMouseDown($event, th)"
             (mouseup)="onMouseUp($event)"
             (mousemove)="onMouseMove($event)">
           <div (click)="orderBy(column)" [class.pointer]="isOrderEnabled(column)">
             <div class="ngx-table__header-title">{{ column.title }}<span>&nbsp;</span>
-              <i class="ngx-icon ngx-icon-pin" *ngIf="styleService.pinnedColumns.has(colIndex + 1)"></i>
+              <i class="ngx-icon ngx-icon-pin" *ngIf="column.pinned"></i>
               <div [style.display]="config.orderEnabled ? 'inline' : 'none' ">
                 <span *ngIf="sortKey === column.key && this.sortState.get(sortKey) === ''"> -</span>
                 <i *ngIf="sortKey === column.key && this.sortState.get(sortKey) === 'asc'"
@@ -66,8 +69,11 @@
     <tr *ngIf="config.searchEnabled && !filtersTemplate"
         class="ngx-table__sort-header">
       <th *ngIf="config.checkboxes"></th>
-      <ng-container *ngFor="let column of columns">
-        <th>
+      <ng-container *ngFor="let column of columns; let colIndex = index">
+        <th
+          [ngClass]="column.cssClass && column.cssClass.includeHeader ? column.cssClass.name : ''"
+          [class.pinned-left]="column.pinned"
+          [style.left]="pinnedWidth(column.pinned, colIndex)">
           <table-header
             *ngIf="getColumnDefinition(column)"
             (update)="onSearch($event)"
@@ -150,6 +156,9 @@
             <td (click)="onClick($event, row, column.key, colIndex, rowIndex)"
                 (contextmenu)="onRowContextMenu($event, row, column.key, colIndex, rowIndex)"
                 (dblclick)="onDoubleClick($event, row, column.key, colIndex, rowIndex)"
+                [class.pinned-left]="column.pinned"
+                [ngClass]="column.cssClass ? column.cssClass.name : ''"
+                [style.left]="pinnedWidth(column.pinned, colIndex)"
                 [class.ngx-table__table-col--selected]="colIndex == selectedCol && !config.selectCell"
                 [class.ngx-table__table-cell--selected]="colIndex == selectedCol && rowIndex == selectedRow && !config.selectCol && !config.selectRow"
             >

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as faker from 'faker';
+import { phone, random, company, name } from 'faker';
 import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
 
@@ -29,11 +29,11 @@ export class PaginationRangeComponent {
   private static generateData() {
     return Array(170).fill('').map(() => {
       return {
-        phone: faker.phone.phoneNumberFormat(),
-        age: faker.random.number({ min: 15, max: 70 }).toString(),
-        company: faker.company.companyName(),
-        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-        isActive: faker.random.boolean(),
+        phone: phone.phoneNumberFormat(),
+        age: random.number({ min: 15, max: 70 }).toString(),
+        company: company.companyName(),
+        name: `${name.firstName()} ${name.lastName()}`,
+        isActive: random.boolean(),
       };
     });
   }

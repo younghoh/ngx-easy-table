@@ -36,28 +36,4 @@ export class PinnedComponent implements OnInit {
       { key: 'isActive', title: 'STATUS' },
     ];
   }
-
-  // TODO fix API when random columns pinned
-  // setColumnBG(column: number, className: string, includeHeader: boolean) {
-  //   this.table.apiEvent({
-  //     type: API.setColumnClass,
-  //     value: { column, className, includeHeader },
-  //   });
-  // }
-
-  // TODO fix API when random columns pinned
-  // pinColumn(column: number) {
-  //   this.table.apiEvent({
-  //     type: API.setColumnPinned,
-  //     value: { column, pinned: true },
-  //   });
-  // }
-
-  // TODO fix API when random columns pinned
-  // unpinColumn(column: number) {
-  //   this.table.apiEvent({
-  //     type: API.setColumnPinned,
-  //     value: { column, pinned: false },
-  //   });
-  // }
 }

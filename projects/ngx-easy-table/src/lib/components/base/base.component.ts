@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChild,
@@ -14,16 +15,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import {
-  Columns,
-  Config,
-  Event,
-  API,
-  Pagination,
-  ColumnKeyType,
-  TableMouseEvent,
-  ApiType,
-} from '../..';
+import { API, ApiType, ColumnKeyType, Columns, Config, Event, Pagination, TableMouseEvent } from '../..';
 import { DefaultConfigService } from '../../services/config-service';
 import { PaginationComponent, PaginationRange } from '../pagination/pagination.component';
 import { GroupRowsService } from '../../services/group-rows.service';
@@ -40,6 +32,7 @@ interface RowContextMenuPosition {
   selector: 'ngx-table',
   providers: [DefaultConfigService, GroupRowsService, StyleService],
   templateUrl: './base.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges {
   @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
@@ -176,8 +169,6 @@ export class BaseComponent implements OnInit, OnChanges {
       key: this.sortKey,
       order: this.sortState.get(this.sortKey),
     };
-    this.setColumnPinned();
-    this.setColumnClass();
     this.emitEvent(Event.onOrder, value);
   }
 
@@ -233,8 +224,6 @@ export class BaseComponent implements OnInit, OnChanges {
     if (!DefaultConfigService.config.serverPagination) {
       this.term = $event;
     }
-    this.setColumnPinned();
-    this.setColumnClass();
     this.emitEvent(Event.onSearch, $event);
   }
 
@@ -248,8 +237,6 @@ export class BaseComponent implements OnInit, OnChanges {
   onPagination(pagination: PaginationRange): void {
     this.page = pagination.page;
     this.limit = pagination.limit;
-    this.setColumnPinned();
-    this.setColumnClass();
     this.emitEvent(Event.onPagination, pagination);
   }
 
@@ -387,6 +374,12 @@ export class BaseComponent implements OnInit, OnChanges {
     this.emitEvent(Event.onRowContextMenu, value);
   }
 
+  pinnedWidth(pinned: boolean, column: number): string {
+    if (pinned) {
+      return 150 * column + 'px'; //
+    }
+  }
+
   private doApplyData(data) {
     const order = this.columns.find((c) => !!c.orderBy);
     if (order) {
@@ -394,38 +387,7 @@ export class BaseComponent implements OnInit, OnChanges {
       this.orderBy(order);
     } else {
       this.data = [...data.currentValue];
-      this.setColumnClass();
-      this.setColumnPinned();
     }
-  }
-
-  private setColumnClass() {
-    this.cdr.detectChanges();
-    const colClass = this.columns.filter((c) => !!c.cssClass);
-    colClass.forEach((col) => {
-      this.bindApi({
-        type: API.setColumnClass,
-        value: {
-          column: this.columns.indexOf(col) + 1,
-          className: col.cssClass.name,
-          includeHeader: col.cssClass.includeHeader,
-        },
-      });
-    });
-  }
-
-  private setColumnPinned() {
-    this.cdr.detectChanges();
-    const pinned = this.columns.filter((c) => !!c.pinned);
-    pinned.forEach((pin) => {
-      this.bindApi({
-        type: API.setColumnPinned,
-        value: {
-          column: this.columns.indexOf(pin) + 1,
-          pinned: pin.pinned,
-        },
-      });
-    });
   }
 
   onDrop(event: CdkDragDrop<string[]>) {
@@ -475,18 +437,6 @@ export class BaseComponent implements OnInit, OnChanges {
           break;
         }
         this.styleService.setRowClass(event.value);
-        this.cdr.detectChanges();
-        break;
-      case API.setColumnClass:
-        if (Array.isArray(event.value)) {
-          event.value.forEach((val) => this.styleService.setColumnClassStyle(val));
-          break;
-        }
-        this.styleService.setColumnClassStyle(event.value);
-        this.cdr.detectChanges();
-        break;
-      case API.setColumnPinned:
-        this.styleService.setColumnPinnedStyle(event.value.column, event.value.pinned);
         this.cdr.detectChanges();
         break;
       case API.setCellClass:
