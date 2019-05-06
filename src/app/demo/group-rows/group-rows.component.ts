@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as faker from 'faker';
+import { random, company, name } from 'faker';
 import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
 
@@ -34,16 +34,16 @@ export class GroupRowsComponent {
 
   private static generateData() {
     return Array(31).fill('').map((_, key) => ({
-      amount: faker.random.number(300),
+      amount: random.number(300),
       debit: 300,
-      company: faker.company.companyName(),
-      name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+      company: company.companyName(),
+      name: `${name.firstName()} ${name.lastName()}`,
       isActive: key % 2 === 1,
     }));
   }
 
-  onChange(name): void {
-    this.groupBy = name;
+  onChange(groupBy: string): void {
+    this.groupBy = groupBy;
   }
 
   showCount(group, key: string) {

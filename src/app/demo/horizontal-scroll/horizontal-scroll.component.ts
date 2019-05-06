@@ -1,5 +1,5 @@
 import { Component, NgZone, OnInit } from '@angular/core';
-import * as faker from 'faker';
+import { phone, company, random, name } from 'faker';
 import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
 
@@ -37,21 +37,21 @@ export class HorizontalScrollComponent implements OnInit {
   private static generateData() {
     return Array(20).fill('').map(() => {
       return {
-        phone: faker.phone.phoneNumberFormat(),
-        age: faker.random.number({ min: 15, max: 70 }).toString(),
-        company: faker.company.companyName(),
-        name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-        isActive: faker.random.boolean(),
-        company2: faker.company.companyName(),
-        company3: faker.company.companyName(),
-        company4: faker.company.companyName(),
-        company5: faker.company.companyName(),
-        company6: faker.company.companyName(),
-        company7: faker.company.companyName(),
-        company8: faker.company.companyName(),
-        company9: faker.company.companyName(),
-        company10: faker.company.companyName(),
-        company11: faker.company.companyName(),
+        phone: phone.phoneNumberFormat(),
+        age: random.number({ min: 15, max: 70 }).toString(),
+        company: company.companyName(),
+        name: `${name.firstName()} ${name.lastName()}`,
+        isActive: random.boolean(),
+        company2: company.companyName(),
+        company3: company.companyName(),
+        company4: company.companyName(),
+        company5: company.companyName(),
+        company6: company.companyName(),
+        company7: company.companyName(),
+        company8: company.companyName(),
+        company9: company.companyName(),
+        company10: company.companyName(),
+        company11: company.companyName(),
       };
     });
   }

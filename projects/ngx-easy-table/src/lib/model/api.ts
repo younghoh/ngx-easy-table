@@ -13,8 +13,6 @@ export enum API {
   setPaginationDisplayLimit = 'setPaginationDisplayLimit',
   setTableClass = 'setTableClass',
   setRowClass = 'setRowClass',
-  setColumnClass = 'setColumnClass',
-  setColumnPinned = 'setColumnPinned',
   setCellClass = 'setCellClass',
   setRowStyle = 'setRowStyle',
   setCellStyle = 'setCellStyle',
@@ -22,7 +20,6 @@ export enum API {
 }
 
 export type rowClass = { row: number, className: string };
-export type columnClass = { column: number, className: string, includeHeader: boolean };
 export type cellClass = { row: number, cell: number | string, className: string };
 export type rowStyle = { row: number, attr: string, value: string };
 export type cellStyle = { row: number, cell: number, attr: string, value: string };
@@ -42,8 +39,6 @@ export type ApiType =
   | { type: API.setPaginationDisplayLimit; value: number; }
   | { type: API.setTableClass; value: string | null; }
   | { type: API.setRowClass; value: rowClass | rowClass[] }
-  | { type: API.setColumnClass; value: columnClass | columnClass[] }
-  | { type: API.setColumnPinned; value: { column: number, pinned: boolean } }
   | { type: API.setCellClass; value: cellClass | cellClass[] }
   | { type: API.setRowStyle; value: rowStyle | rowStyle[] }
   | { type: API.setCellStyle; value: cellStyle | cellStyle[] }
