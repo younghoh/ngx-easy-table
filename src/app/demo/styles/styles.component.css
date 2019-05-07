@@ -1,15 +1,15 @@
-:host /deep/ .ngx-table__header-title {
+:host ::ng-deep .ngx-table__header-title {
   color: deeppink;
 }
-:host /deep/ .ngx-pagination-range-dropdown-button {
+:host ::ng-deep .ngx-pagination-range-dropdown-button {
   color: deeppink;
 }
-:host /deep/ #table > tbody > tr > td {
+:host ::ng-deep #table > tbody > tr > td {
   color: hotpink;
 }
-:host /deep/ #pagination-controls > pagination-template > ul > li.current > span {
+:host ::ng-deep #pagination-controls > pagination-template > ul > li.current > span {
   color: hotpink;
 }
-:host /deep/ #pagination-controls > pagination-template > ul > li > a > span {
+:host ::ng-deep #pagination-controls > pagination-template > ul > li > a > span {
   color: hotpink;
 }

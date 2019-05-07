@@ -63,7 +63,7 @@ public columns: Columns[] = [
     { key: 'phone', title: 'Phone', orderBy: 'phone' },
 ];
 `;
-  public readonly tableFontCode = `:host /deep/ #table {
+  public readonly tableFontCode = `:host ::ng-deep #table {
   font-family: 'Montserrat', sans-serif;
 }
 `;

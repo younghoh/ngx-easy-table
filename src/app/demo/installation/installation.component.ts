@@ -145,7 +145,7 @@ export class ConfigurationService {
   public readonly styleScssCode = `
 @import "~ngx-easy-table/style.scss";
 `;
-  public readonly tableFontCode = `:host /deep/ #table {
+  public readonly tableFontCode = `:host ::ng-deep #table {
   font-family: 'Montserrat', sans-serif;
 }
 `;

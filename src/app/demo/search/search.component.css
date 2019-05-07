@@ -1,4 +1,4 @@
-:host /deep/ .ngx-table__header-cell > div {
+:host ::ng-deep .ngx-table__header-cell > div {
   text-align: center;
   display: block;
 }

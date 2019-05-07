@@ -183,26 +183,26 @@ $primary-color: #50596c !default;
       }
 
       &-pagination {
-        & /deep/ .ngx-pagination .current {
+        & ::ng-deep .ngx-pagination .current {
           background: $grey-lighter;
           color: $dark;
         }
 
-        & /deep/ pagination-template > ul {
+        & ::ng-deep pagination-template > ul {
           -webkit-padding-start: 0;
           -webkit-margin-before: 0;
         }
 
-        & /deep/ pagination-template > ul > li {
+        & ::ng-deep pagination-template > ul > li {
           border: 1px solid $grey;
           background: $dark;
         }
 
-        & /deep/ pagination-template > ul > li.current {
+        & ::ng-deep pagination-template > ul > li.current {
           border: 1px solid $dark;
         }
 
-        & /deep/ pagination-template > ul > li > a {
+        & ::ng-deep pagination-template > ul > li > a {
           color: $grey-lighter;
         }
 
