@@ -49,3 +49,4 @@ export * from './bootstrap/bootstrap.component';
 export * from './doc/doc.component';
 export * from './installation/installation.component';
 export * from './pinned/pinned.component';
+export * from './column-class/column-class.component';

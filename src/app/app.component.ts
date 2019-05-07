@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
       { link: 'persist-state', name: 'Persist state' },
       { link: 'context-menu', name: 'Context menu', experimental: true },
       { link: 'pinned', name: 'Pinned column' },
+      { link: 'column-class', name: 'Column Class' },
     ],
     templates: [
       { link: 'template', name: 'Basic template' },

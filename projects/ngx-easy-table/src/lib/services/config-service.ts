@@ -23,7 +23,7 @@ export const DefaultConfig: Config = {
   checkboxes: false,
   resizeColumn: false,
   fixedColumnWidth: true,
-  horizontalScroll: true,
+  horizontalScroll: false,
   draggable: false,
   logger: false,
   showDetailsArrow: false,

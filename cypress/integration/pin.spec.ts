@@ -26,15 +26,4 @@ context('Pinned column', () => {
       .get('#table > tbody > tr:nth-child(1) > td:nth-child(2)').should('have.class', 'pinned-left')
     ;
   });
-  // TODO implement pin API
-  // it('uses API to set 2nd column pinned', () => {
-  //   cy
-  //     .get('#setColumn2Pinned').click()
-  //     .get('#table > tbody > tr:nth-child(1) > td:nth-child(1)').should('have.class', 'pinned-left')
-  //     .get('#table > tbody > tr:nth-child(1) > td:nth-child(2)').should('have.class', 'pinned-left')
-  //     .get('#setColumn2UnPinned').click()
-  //     .get('#table > tbody > tr:nth-child(1) > td:nth-child(1)').should('have.class', 'pinned-left')
-  //     .get('#table > tbody > tr:nth-child(1) > td:nth-child(2)').should('have.class', 'ngx-table__header-cell')
-  //   ;
-  // });
 });

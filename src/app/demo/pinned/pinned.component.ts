@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Company, data } from '../../../assets/data';
-import { Columns, Config, DefaultConfig, APIDefinition } from 'ngx-easy-table';
+import { Columns, Config, DefaultConfig } from 'ngx-easy-table';
 
 @Component({
   selector: 'app-pinned',
@@ -11,7 +11,6 @@ export class PinnedComponent implements OnInit {
   public columns: Columns[];
   public data: Company[] = [];
   public configuration: Config;
-  @ViewChild('table') table: APIDefinition;
 
   ngOnInit(): void {
     this.configuration = DefaultConfig;

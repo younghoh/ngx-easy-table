@@ -52,6 +52,7 @@ import {
   DocComponent,
   InstallationComponent,
   PinnedComponent,
+  ColumnClassComponent,
 } from './demo';
 
 export const routes = [
@@ -106,6 +107,7 @@ export const routes = [
   { path: 'api-doc', component: ApiDocComponent },
   { path: 'installation', component: InstallationComponent },
   { path: 'pinned', component: PinnedComponent },
+  { path: 'column-class', component: ColumnClassComponent },
   { path: '**', component: BasicComponent },
 ];
 

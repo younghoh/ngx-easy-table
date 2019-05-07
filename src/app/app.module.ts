@@ -64,7 +64,7 @@ import {
   BootstrapComponent,
   DocComponent,
   InstallationComponent,
-  PinnedComponent,
+  PinnedComponent, ColumnClassComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -133,6 +133,7 @@ import { TableModule } from 'ngx-easy-table';
     DocComponent,
     InstallationComponent,
     PinnedComponent,
+    ColumnClassComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],
