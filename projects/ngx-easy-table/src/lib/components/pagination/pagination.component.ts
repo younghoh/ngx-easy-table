@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  HostListener,
   Input,
   Output,
   ViewChild,
@@ -22,12 +23,13 @@ export interface PaginationRange {
 })
 export class PaginationComponent {
   @ViewChild('paginationDirective') paginationDirective: PaginationControlsDirective;
+  @ViewChild('paginationRange') paginationRange;
   @Input() pagination;
   @Input() config: Config;
   @Input() id;
   @Output() readonly updateRange: EventEmitter<PaginationRange> = new EventEmitter();
   public ranges: number[] = [5, 10, 25, 50, 100];
-  public limit: number = DefaultConfigService.config.rows;
+  public selectedLimit: number = DefaultConfigService.config.rows;
   public showRange = false;
   public screenReaderPaginationLabel = 'Pagination';
   public screenReaderPageLabel = 'page';
@@ -36,10 +38,18 @@ export class PaginationComponent {
   public nextLabel = '';
   public directionLinks = true;
 
+  @HostListener('document:click', ['$event.target'])
+  public onClick(targetElement) {
+    const clickedInside = this.paginationRange.nativeElement.contains(targetElement);
+    if (!clickedInside) {
+      this.showRange = false;
+    }
+  }
+
   onPageChange(page: number): void {
     this.updateRange.emit({
       page,
-      limit: this.limit,
+      limit: this.selectedLimit,
     });
   }
 
@@ -47,11 +57,10 @@ export class PaginationComponent {
     if (!callFromAPI) {
       this.showRange = !this.showRange;
     }
-    this.limit = limit;
+    this.selectedLimit = limit;
     this.updateRange.emit({
       page: 1,
       limit,
     });
   }
-
 }

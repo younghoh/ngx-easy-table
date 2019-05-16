@@ -53,6 +53,7 @@
     </pagination-template>
   </div>
   <div class="ngx-pagination-range"
+       #paginationRange
        [class.ngx-table__table--dark-pagination-range]="config.tableLayout.theme === 'dark'"
        *ngIf="config.paginationRangeEnabled">
     <div class="ngx-dropdown ngx-pagination-range-dropdown"
@@ -60,10 +61,11 @@
       <div class="ngx-btn-group">
         <div class="ngx-pagination-range-dropdown-button"
              (click)="showRange = !showRange">
-          {{limit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
+          {{selectedLimit}} <i class="ngx-icon ngx-icon-arrow-down"></i>
         </div>
         <ul class="ngx-menu" *ngIf="showRange">
           <li class="ngx-pagination-range-dropdown-button-item"
+              [class.ngx-pagination-range--selected]="limit === selectedLimit"
               (click)="changeLimit(limit, false)"
               *ngFor="let limit of ranges">
             <span>{{limit}}</span>
