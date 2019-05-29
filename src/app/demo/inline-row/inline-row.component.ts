@@ -10,16 +10,16 @@ import { Columns } from 'ngx-easy-table';
   providers: [ConfigService],
 })
 export class InlineRowComponent implements OnInit {
-  @ViewChild('phoneTpl') phoneTpl: TemplateRef<any>;
-  @ViewChild('ageTpl') ageTpl: TemplateRef<any>;
-  @ViewChild('companyTpl') companyTpl: TemplateRef<any>;
-  @ViewChild('nameTpl') nameTpl: TemplateRef<any>;
-  @ViewChild('actionTpl') actionTpl: TemplateRef<any>;
+  @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
+  @ViewChild('ageTpl', { static: true }) ageTpl: TemplateRef<any>;
+  @ViewChild('companyTpl', { static: true }) companyTpl: TemplateRef<any>;
+  @ViewChild('nameTpl', { static: true }) nameTpl: TemplateRef<any>;
+  @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
 
-  @ViewChild('phone') phone: ElementRef<any>;
-  @ViewChild('age') age: ElementRef<any>;
-  @ViewChild('company') company: ElementRef<any>;
-  @ViewChild('name') name: ElementRef<any>;
+  @ViewChild('phone', { static: false }) phone: ElementRef<any>;
+  @ViewChild('age', { static: false }) age: ElementRef<any>;
+  @ViewChild('company', { static: false }) company: ElementRef<any>;
+  @ViewChild('name', { static: false }) name: ElementRef<any>;
   public columns: Columns[];
   data = [];
   configuration;

@@ -10,7 +10,7 @@ import { Columns } from 'ngx-easy-table';
   providers: [ConfigService],
 })
 export class RowTemplateComponent {
-  @ViewChild('detailsTemplate') detailsTemplateRef: TemplateRef<any>;
+  @ViewChild('detailsTemplate', { static: true }) detailsTemplateRef: TemplateRef<any>;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },

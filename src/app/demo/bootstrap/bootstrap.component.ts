@@ -12,7 +12,7 @@ import { Columns, API, APIDefinition } from 'ngx-easy-table';
   providers: [ConfigService],
 })
 export class BootstrapComponent implements OnInit {
-  @ViewChild('table') table: APIDefinition;
+  @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration;

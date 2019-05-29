@@ -10,7 +10,7 @@ import { Columns } from 'ngx-easy-table';
   providers: [ConfigService],
 })
 export class ColTemplateComponent implements OnInit {
-  @ViewChild('phoneTpl') phoneTpl: TemplateRef<any>;
+  @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
   public columns: Columns[];
   data: Company[] = [];
   configuration;

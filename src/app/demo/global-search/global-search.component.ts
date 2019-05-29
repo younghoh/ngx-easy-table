@@ -10,7 +10,7 @@ import { Columns, API, APIDefinition } from 'ngx-easy-table';
   styles: [],
 })
 export class GlobalSearchComponent implements OnInit {
-  @ViewChild('table') table: APIDefinition;
+  @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },

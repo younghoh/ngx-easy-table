@@ -10,7 +10,7 @@ import { API, Columns, APIDefinition } from '../../../../projects/ngx-easy-table
   providers: [ConfigService],
 })
 export class ApiComponent implements OnInit, AfterViewInit {
-  @ViewChild('table') table: APIDefinition;
+  @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration;

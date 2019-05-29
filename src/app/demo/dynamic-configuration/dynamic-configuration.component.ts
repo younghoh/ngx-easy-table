@@ -9,7 +9,7 @@ import { ConfigService } from './configuration.service';
   styleUrls: ['./dynamic-configuration.component.css'],
 })
 export class DynamicConfigurationComponent {
-  @ViewChild('detailsTemplate') detailsTemplateRef: TemplateRef<any>;
+  @ViewChild('detailsTemplate', { static: true }) detailsTemplateRef: TemplateRef<any>;
   columns: Columns[] = [];
   data: Company[] = [];
   checked = {

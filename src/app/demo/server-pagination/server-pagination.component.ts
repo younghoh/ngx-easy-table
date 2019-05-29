@@ -10,7 +10,7 @@ import { API, APIDefinition, Columns } from 'ngx-easy-table';
   providers: [ConfigService, CompanyService],
 })
 export class ServerPaginationComponent implements OnInit {
-  @ViewChild('table') table: APIDefinition;
+  @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[] = [
     { key: 'phone', title: 'Phone' },
     { key: 'age', title: 'Age' },

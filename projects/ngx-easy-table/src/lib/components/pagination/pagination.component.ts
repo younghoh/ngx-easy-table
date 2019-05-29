@@ -22,8 +22,8 @@ export interface PaginationRange {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {
-  @ViewChild('paginationDirective') paginationDirective: PaginationControlsDirective;
-  @ViewChild('paginationRange') paginationRange;
+  @ViewChild('paginationDirective', { static: true }) paginationDirective: PaginationControlsDirective;
+  @ViewChild('paginationRange', { static: false }) paginationRange;
   @Input() pagination;
   @Input() config: Config;
   @Input() id;
