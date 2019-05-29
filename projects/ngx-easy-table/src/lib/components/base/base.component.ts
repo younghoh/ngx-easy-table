@@ -91,7 +91,7 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
-  @ContentChild(TemplateRef, /* TODO: add static flag */ {}) public rowTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
