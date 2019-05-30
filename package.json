@@ -14,7 +14,6 @@
     "cy:test": "cypress open",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
-    "disable-analytics": "ng analytics off",
     "cy:ci": "start-server-and-test cy:serve http://localhost:4201 cy:run",
     "watch:table": "ng build ngx-easy-table --watch",
     "publish:lib": "cd dist/ngx-easy-table && npm publish",
