@@ -9,7 +9,7 @@ import { Columns } from 'ngx-easy-table';
   providers: [ConfigService],
 })
 export class DynamicRowComponent implements OnInit {
-  @ViewChild('actionTpl') actionTpl: TemplateRef<any>;
+  @ViewChild('actionTpl', { static: true }) actionTpl: TemplateRef<any>;
   public data;
   public columns: Columns[];
   public configuration;

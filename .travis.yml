@@ -1,6 +1,8 @@
+env:
+  - NG_CLI_ANALYTICS=false
 language: node_js
 node_js:
-  - "8"
+  - "10"
 script:
   - npm run lint
   - npm run build:lib
@@ -12,7 +14,8 @@ before_install:
 before_script:
   - npm install
 notifications:
-  webhooks: https://www.travisbuddy.com/
+  webhooks:
+  - https://www.travisbuddy.com/
   email: false
 sudo: required
 addons:

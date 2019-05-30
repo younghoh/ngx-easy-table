@@ -9,7 +9,6 @@ import { ConfigService } from './configuration.service';
   styleUrls: ['./dynamic-configuration.component.css'],
 })
 export class DynamicConfigurationComponent {
-  @ViewChild('detailsTemplate') detailsTemplateRef: TemplateRef<any>;
   columns: Columns[] = [];
   data: Company[] = [];
   checked = {

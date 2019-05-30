@@ -12,8 +12,8 @@ import { Columns } from 'ngx-easy-table';
   providers: [ConfigService, CompanyService],
 })
 export class ContextMenuComponent implements OnInit {
-  @ViewChild('phoneTpl') phoneTpl: TemplateRef<any>;
-  @ViewChild('table') table: APIDefinition;
+  @ViewChild('phoneTpl', { static: true }) phoneTpl: TemplateRef<any>;
+  @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[];
   public data: Company[] = [];
   public configuration;

@@ -35,8 +35,8 @@ interface RowContextMenuPosition {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges {
-  @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
-  @ViewChild('th') private th;
+  @ViewChild('paginationComponent', { static: false }) private paginationComponent: PaginationComponent;
+  @ViewChild('th', { static: false }) private th;
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -91,7 +91,7 @@ export class BaseComponent implements OnInit, OnChanges {
   @Input() rowContextMenu: TemplateRef<any>;
   @Input() columns: Columns[];
   @Output() readonly event = new EventEmitter<{ event: string, value: any }>();
-  @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef, { static: true }) public rowTemplate: TemplateRef<any>;
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
