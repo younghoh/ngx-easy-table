@@ -1,6 +1,6 @@
 {
   "name": "ngx-easy-table",
-  "version": "9.4.1",
+  "version": "10.0.0",
   "description": "Angular easy table",
   "typings": "index.ts",
   "repository": "https://github.com/ssuperczynski/ngx-easy-table.git",
@@ -30,9 +30,9 @@
   "keywords": [
     "angular",
     "angular2",
-    "angular5",
     "angular6",
     "angular7",
+    "angular8",
     "table",
     "angular table",
     "angular2 table",
