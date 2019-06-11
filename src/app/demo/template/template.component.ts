@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Company, data } from '../../../assets/data';
 import { ConfigService } from './configuration.service';
 import { Columns } from 'ngx-easy-table';
+import { API, APIDefinition } from '../../../../projects/ngx-easy-table/src/lib';
 
 @Component({
   selector: 'app-template',
@@ -10,6 +11,7 @@ import { Columns } from 'ngx-easy-table';
   providers: [ConfigService],
 })
 export class TemplateComponent {
+  @ViewChild('table', { static: true }) table: APIDefinition;
   public columns: Columns[] = [
     { key: 'name', title: 'Name', width: '15%', orderEnabled: true, searchEnabled: true },
     { key: 'age', title: 'Age', width: '15%', orderEnabled: true, searchEnabled: false },
@@ -19,9 +21,8 @@ export class TemplateComponent {
     { key: 'address.street', title: 'Address', width: '15%', orderEnabled: true },
     { key: '', title: 'Action', width: '5%', orderEnabled: false, searchEnabled: false },
   ];
-  data: Company[] = [];
-  configuration;
-  toggleRowIndex;
+  public data: Company[] = [];
+  public configuration;
 
   constructor() {
     this.configuration = ConfigService.config;
@@ -30,6 +31,9 @@ export class TemplateComponent {
 
   onRowClickEvent($event, index: number): void {
     $event.preventDefault();
-    this.toggleRowIndex = { index };
+    this.table.apiEvent({
+      type: API.toggleRowIndex,
+      value: index,
+    });
   }
 }

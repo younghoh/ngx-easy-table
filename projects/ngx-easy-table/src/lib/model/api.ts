@@ -2,6 +2,7 @@ export enum API {
   rowContextMenuClicked = 'rowContextMenuClicked',
   setInputValue = 'setInputValue',
   toolPanelClicked = 'toolPanelClicked',
+  toggleRowIndex = 'toggleRowIndex',
   onGlobalSearch = 'onGlobalSearch',
   setPaginationCurrentPage = 'setPaginationCurrentPage',
   getPaginationCurrentPage = 'getPaginationCurrentPage',
@@ -28,6 +29,7 @@ export type ApiType =
   { type: API.rowContextMenuClicked; }
   | { type: API.setInputValue; value: Array<{ key: string, value: string }>; }
   | { type: API.toolPanelClicked; }
+  | { type: API.toggleRowIndex; value: number; }
   | { type: API.onGlobalSearch; value: string; }
   | { type: API.setPaginationCurrentPage; value: number; }
   | { type: API.getPaginationCurrentPage; }
