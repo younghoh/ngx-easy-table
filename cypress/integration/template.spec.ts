@@ -15,7 +15,7 @@ context('Template', () => {
   });
   it('shows additional row when "Expand" button clicked', () => {
     cy
-      .get('expandButton-0').click({ force: true })
+      .get('#expandButton-0').click()
       .get('#table > tbody > tr:nth-child(2) > td > div').contains('Deanne Contreras - 36')
     ;
   });
