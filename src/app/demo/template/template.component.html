@@ -1,7 +1,8 @@
 <ngx-table
   [configuration]="configuration"
   [data]="data"
-  [toggleRowIndex]="toggleRowIndex"
+  #table
+  [detailsTemplate]="detailsTemplate"
   [columns]="columns">
   <ng-template let-row let-index="index">
     <td>
@@ -30,9 +31,17 @@
       <div>{{row.address.street}}</div>
     </td>
     <td>
-      <button class="btn btn-primary" (click)="onRowClickEvent($event, index)"><i class="icon icon-arrow-left"></i> Expand
+      <button class="btn btn-primary"
+              id="expandButton-{{index}}"
+              (click)="onRowClickEvent($event, index)"><i class="icon icon-arrow-left"></i>
+        Expand
       </button>
     </td>
   </ng-template>
 
 </ngx-table>
+<ng-template #detailsTemplate let-row>
+  <div>
+    {{row.name }} - {{row.age}}
+  </div>
+</ng-template>

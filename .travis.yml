@@ -2,7 +2,7 @@ env:
   - NG_CLI_ANALYTICS=false
 language: node_js
 node_js:
-  - "10"
+  - "12"
 script:
   - npm run lint
   - npm run build:lib

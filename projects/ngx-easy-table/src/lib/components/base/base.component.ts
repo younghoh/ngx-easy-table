@@ -413,6 +413,9 @@ export class BaseComponent implements OnInit, OnChanges {
       case API.toolPanelClicked:
         // TODO
         break;
+      case API.toggleRowIndex:
+        this.collapseRow(event.value);
+        break;
       case API.setInputValue:
         if (this.config.searchEnabled) {
           event.value.forEach((input) => {
