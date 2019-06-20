@@ -53,6 +53,8 @@ import {
   InstallationComponent,
   PinnedComponent,
   ColumnClassComponent,
+  NestedTableComponent,
+  PersistStateRouterComponent,
 } from './demo';
 
 export const routes = [
@@ -108,6 +110,8 @@ export const routes = [
   { path: 'installation', component: InstallationComponent },
   { path: 'pinned', component: PinnedComponent },
   { path: 'column-class', component: ColumnClassComponent },
+  { path: 'nested-table', component: NestedTableComponent },
+  { path: 'persist-state-router/:state', component: PersistStateRouterComponent },
   { path: '**', component: BasicComponent },
 ];
 

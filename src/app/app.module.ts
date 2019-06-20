@@ -64,7 +64,10 @@ import {
   BootstrapComponent,
   DocComponent,
   InstallationComponent,
-  PinnedComponent, ColumnClassComponent,
+  PinnedComponent,
+  ColumnClassComponent,
+  NestedTableComponent,
+  PersistStateRouterComponent,
 } from './demo';
 import { TableModule } from 'ngx-easy-table';
 
@@ -78,7 +81,6 @@ import { TableModule } from 'ngx-easy-table';
     HighlightModule.forRoot({
       languages: hljsLanguages,
     }),
-    // TrendModule,
   ],
   declarations: [
     AppComponent,
@@ -134,6 +136,8 @@ import { TableModule } from 'ngx-easy-table';
     InstallationComponent,
     PinnedComponent,
     ColumnClassComponent,
+    NestedTableComponent,
+    PersistStateRouterComponent,
   ],
   bootstrap: [AppComponent],
   providers: [],
