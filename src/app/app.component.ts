@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfigService } from './app.service';
+import { APIDefinition, ApiType, API } from './ngx-easy-table/components/api';
 
 @Component({
   selector: 'app-table',
@@ -11,6 +12,34 @@ export class AppComponent implements OnInit {
   configuration;
   data;
   columns;
+  @ViewChild('table') table: APIDefinition;
+  @ViewChild('table') tableAll;
+  allSelected: boolean = false;
+
+  navigatePage(page) {
+    this.table.apiEvent({
+      type: API.setPaginationCurrentPage,
+      value: page,
+    });
+  }
+
+  changeLimit(limit) {
+    this.table.apiEvent({
+      type: API.setPaginationDisplayLimit,
+      value: limit
+    });
+  }
+
+  tableEventEmitted(event: any) {
+    if (event.event === 'onSelectAll') {
+      this.data.forEach((row: any) => row.selected = event.value);
+    }
+  }
+
+  rowSelected() {
+    this.allSelected = !this.data.some(data => !data.selected);
+    this.tableAll.isSelected = this.allSelected;
+  }
 
   constructor() {
   }
@@ -265,6 +294,8 @@ export class AppComponent implements OnInit {
       'name': 'Blankenship Glover',
       'isActive': false
     }];
+
+    this.data = this.data.map(value => ({...value, selected: false}));
   }
 
 }

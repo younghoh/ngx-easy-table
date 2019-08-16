@@ -12,6 +12,7 @@ import {
   SimpleChange,
   SimpleChanges,
   TemplateRef,
+  ViewChild,
 } from '@angular/core';
 
 import { ConfigService } from '../../services/config-service';
@@ -20,6 +21,8 @@ import { LoggerService } from '../../services/logger.service';
 import { Config } from '../../model/config';
 import { from } from 'rxjs/observable/from';
 import { flatMap, groupBy, reduce } from 'rxjs/operators';
+import { PaginationComponent } from '../pagination/pagination.component';
+import { ApiType, API } from '../api';
 
 @Component({
   selector: 'ngx-table',
@@ -29,6 +32,7 @@ import { flatMap, groupBy, reduce } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
+  @ViewChild('paginationComponent') private paginationComponent: PaginationComponent;
   public selectedRow: number;
   public selectedCol: number;
   public term;
@@ -46,11 +50,14 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
   };
   selectedDetailsTemplateRowId = new Set();
   id;
+  onSelectAllBinded = this.onSelectAll.bind(this);
+
   @Input() configuration: Config;
   @Input() data: Array<Object>;
   @Input() pagination;
   @Input() groupRowsBy;
   @Input() detailsTemplate;
+  @Input() selectAllTemplate: TemplateRef<any>;
   @Input() columns: Array<string>;
   @Output() event = new EventEmitter();
   @ContentChild(TemplateRef) public rowTemplate: TemplateRef<any>;
@@ -212,5 +219,23 @@ export class BaseComponent implements OnInit, OnChanges, AfterViewInit {
       return true;
     }
     return this.selectedDetailsTemplateRowId.has(rowIndex);
+  }
+
+  apiEvent(event: ApiType): void | number {
+    return this.bindApi(event);
+  }
+
+  // tslint:disable:no-big-function cognitive-complexity
+  private bindApi(event: ApiType): void | number {
+    switch (event.type) {
+      case API.setPaginationCurrentPage:
+        this.paginationComponent.paginationDirective.setCurrent(event.value);
+        break;
+      case API.setPaginationDisplayLimit:
+        this.paginationComponent.changeLimit(event.value, true);
+        break;
+      default:
+        break;
+    }
   }
 }

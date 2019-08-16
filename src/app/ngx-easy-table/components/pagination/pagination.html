@@ -1,12 +1,61 @@
 <div class="ngx-columns">
   <div class="ngx-col-mr-auto pagination-mobile">
-    <pagination-controls
+    <!-- <pagination-controls
       [id]="id"
       [maxSize]="5"
       [previousLabel]="''"
       [nextLabel]="''"
       (pageChange)="onPageChange($event)">
-    </pagination-controls>
+    </pagination-controls> -->
+    <pagination-template
+      #paginationDirective="paginationApi"
+      id="pagination-controls"
+      [id]="id"
+      [maxSize]="config.paginationMaxSize || 5"
+      (pageChange)="onPageChange($event)">
+      <ul class="ngx-pagination"
+          role="navigation"
+          [attr.aria-label]="screenReaderPaginationLabel"
+          [class.responsive]="true">
+        <li class="pagination-previous" [class.disabled]="paginationDirective.isFirstPage()" *ngIf="directionLinks">
+          <a tabindex="0" *ngIf="1 < paginationDirective.getCurrent()" (keyup.enter)="paginationDirective.previous()"
+             (click)="paginationDirective.previous()"
+             [attr.aria-label]="previousLabel + ' ' + screenReaderPageLabel">
+            {{ previousLabel }} <span class="show-for-sr">{{ screenReaderPageLabel }}</span>
+          </a>
+          <span *ngIf="paginationDirective.isFirstPage()">
+                {{ previousLabel }} <span class="show-for-sr">{{ screenReaderPageLabel }}</span>
+            </span>
+        </li>
+        <li class="small-screen">
+          {{ paginationDirective.getCurrent() }} / {{ paginationDirective.getLastPage() }}
+        </li>
+        <li [class.current]="paginationDirective.getCurrent() === page.value"
+            [class.ellipsis]="page.label === '...'"
+            *ngFor="let page of paginationDirective.pages">
+          <a tabindex="0" (keyup.enter)="paginationDirective.setCurrent(page.value)"
+             (click)="paginationDirective.setCurrent(page.value)"
+             *ngIf="paginationDirective.getCurrent() !== page.value">
+            <span class="show-for-sr">{{ screenReaderPageLabel }} </span>
+            <span>{{ page.label }}</span>
+          </a>
+          <ng-container *ngIf="paginationDirective.getCurrent() === page.value">
+            <span class="show-for-sr">{{ screenReaderCurrentLabel }} </span>
+            <span>{{ page.label }}</span>
+          </ng-container>
+        </li>
+        <li class="pagination-next" [class.disabled]="paginationDirective.isLastPage()" *ngIf="directionLinks">
+          <a tabindex="0" *ngIf="!paginationDirective.isLastPage()" (keyup.enter)="paginationDirective.next()"
+             (click)="paginationDirective.next()"
+             [attr.aria-label]="nextLabel + ' ' + screenReaderPageLabel">
+            {{ nextLabel }} <span class="show-for-sr">{{ screenReaderPageLabel }}</span>
+          </a>
+          <span *ngIf="paginationDirective.isLastPage()">
+                 {{ nextLabel }} <span class="show-for-sr">{{ screenReaderPageLabel }}</span>
+            </span>
+        </li>
+      </ul>
+    </pagination-template>
   </div>
   <div class="pagination-mobile" *ngIf="config.paginationRangeEnabled">
     <div class="ngx-dropdown ngx-range-dropdown ngx-float-right"
@@ -19,7 +68,7 @@
         </div>
         <ul class="ngx-menu">
           <li class="ngx-c-hand ngx-range-dropdown-button"
-              (click)="changeLimit(limit)"
+              (click)="changeLimit(limit, false)"
               *ngFor="let limit of ranges">
             <span>{{limit}}</span>
           </li>

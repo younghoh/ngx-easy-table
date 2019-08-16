@@ -14,7 +14,12 @@
       <tr class="ngx-table__header" *ngIf="config.headerEnabled">
         <th *ngIf="config.checkboxes">
           <div class="form-group">
-            <label class="form-checkbox">
+            <ng-container
+              *ngIf="selectAllTemplate"
+              [ngTemplateOutlet]="selectAllTemplate"
+              [ngTemplateOutletContext]="{ $implicit: onSelectAllBinded }">
+            </ng-container>
+            <label class="form-checkbox" *ngIf="!selectAllTemplate">
               <input type="checkbox" (change)="onSelectAll()">
               <i class="form-icon"></i>
             </label>
@@ -182,6 +187,7 @@
     </table>
   </div>
   <pagination
+    #paginationComponent
     *ngIf="config.paginationEnabled"
     [id]="id"
     [pagination]="pagination"

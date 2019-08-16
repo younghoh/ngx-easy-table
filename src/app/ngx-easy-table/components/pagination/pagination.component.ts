@@ -1,8 +1,9 @@
 import {
-  ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit
+  ChangeDetectionStrategy, Component, EventEmitter, Input, Output, OnInit, ViewChild
 } from '@angular/core';
 import { ConfigService } from '../../services/config-service';
 import { Config } from '../../model/config';
+import { PaginationControlsDirective } from 'ngx-pagination';
 
 @Component({
   selector: 'pagination',
@@ -12,6 +13,7 @@ import { Config } from '../../model/config';
 })
 
 export class PaginationComponent implements OnInit {
+  @ViewChild('paginationDirective') paginationDirective: PaginationControlsDirective;
   @Input() pagination;
   @Input() id;
   @Output() updateRange = new EventEmitter();
@@ -27,8 +29,10 @@ export class PaginationComponent implements OnInit {
     });
   }
 
-  changeLimit(limit): void {
-    this.showRange = !this.showRange;
+  changeLimit(limit, callFromAPI: boolean): void {
+    if (!callFromAPI) {
+      this.showRange = !this.showRange;
+    }
     this.limit = limit;
     this.updateRange.emit({
       page: 1,

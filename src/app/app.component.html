@@ -9,11 +9,45 @@
   </div>
   <div class="ngx-columns">
     <div class="ngx-column ngx-col-12">
+      <ng-template #selectAllTemplate2 let-changeEvent>
+        <label class="ngx-form-checkbox">
+          <input type="checkbox" [(ngModel)]="allSelected" (ngModelChange)="changeEvent()">
+          <i class="ngx-form-icon custom-checkbox-color" id="selectAllCheckbox2"></i>
+        </label>
+      </ng-template>
       <ngx-table
+        #table
         [configuration]="configuration"
         [data]="data"
-        [columns]="columns">
+        [columns]="columns"
+        [selectAllTemplate]="selectAllTemplate2"
+        (event)="tableEventEmitted($event)">
+        <ng-template let-row>
+          <td>
+            <label class="ngx-form-checkbox">
+              <input type="checkbox" [(ngModel)]="row.selected" (ngModelChange)="rowSelected()">
+              <i class="ngx-form-icon custom-checkbox-color"></i>
+            </label>
+          </td>
+          <td>
+            {{row.phone}}
+          </td>
+          <td>
+            {{row.age}}
+          </td>
+          <td>
+            {{row.company}}
+          </td>
+          <td>
+            {{row.name}}
+          </td>
+          <td>
+            {{row.isActive}}
+          </td>
+        </ng-template>
       </ngx-table>
     </div>
   </div>
 </div>
+<button (click)="navigatePage(1)">go to page 1</button>
+<button (click)="changeLimit(1)">limit page 1</button>
